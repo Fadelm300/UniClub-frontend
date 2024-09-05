@@ -22,7 +22,7 @@ nav {
 }
 
 .downNav {
-  height: 30px;
+  height: 40px;
   background-color: #0f1016;
   display: flex;
   justify-content: space-between;
@@ -50,10 +50,12 @@ nav a {
   align-items: center;
   text-decoration: none;
   color: #f0f0f0;
+  font-size: 20px;
 }
 
 nav a:hover {
   background-color: #006aff;
+  font-size: 23px;
 }
 nav .logoHome:hover {
     background-color: #000000;
@@ -77,7 +79,7 @@ nav .logoHome:hover {
   background-color: #0f1016;
   top: 100%;
   left: 0;
-  min-width: 150px;
+  min-width: 190px;
   border-radius: 4px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }

@@ -20,7 +20,7 @@ const NavBar = ({ user, handleSignout }) => {
           <div className='downNav'>
              <div className="dropNav">
               
-                  <li> <Link >Category</Link>
+                  <li > <Link >Category</Link>
                   <ul className="dropdownMenu">
                       <li> <Link to="/posts/new">NEW Post</Link> </li>
                       <li><Link to="/posts/category1">Category 1</Link></li>
@@ -44,12 +44,43 @@ const NavBar = ({ user, handleSignout }) => {
          
         </nav>
       ) : (
-        <nav>
-          <div class="links-container">
+      
+       
+     
+
+
+<nav>
+<div class="links-container"></div>
+
+
+<div className='topNav'>
+     <Link className='logoHome' to="/">
+       <div className="Navimg">
+         <img className="imginthenav" src="src/components/NavBar/uob-logo.jpg" alt="logo_footer" />
+       </div>
+     </Link>
+</div>
+
+<div className='downNav'>
+ <div className="dropNav">
+  
+  
+  
+    
+        </div>
+
+
+             <div className='otherNav'>
             <li><Link to="/signin">Sign In</Link></li>
             <li><Link to="/signup">Sign Up</Link></li>
-          </div>
-        </nav>
+  
+
+            </div>
+</div>
+
+
+
+</nav>
       )}
     </>
   )

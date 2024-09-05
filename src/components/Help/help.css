@@ -1,0 +1,38 @@
+.help-container {
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #eef1f5;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  .help-container h1{
+    display: flex;
+    justify-content: center;
+  }
+  .help-container p{
+    display: flex;
+    justify-content: center;
+  }
+  
+  .help-container ul {
+    list-style-type: none;
+    padding: 40px;
+
+  }
+  
+  .help-container li {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+   
+  }
+  
+  .help-container li::before {
+    content: "•";
+    color: #007BFF;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+  }
+  

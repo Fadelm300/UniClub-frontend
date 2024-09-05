@@ -15,6 +15,14 @@ import PostDetails from './components/PostDetails/PostDetails';
 import PostForm from './components/PostForm/PostForm';
 import Footer from './components/footer/footer';
 
+
+
+import Help from "./components/Help/help";
+import About from "./components/About/about";
+import Contact from "./components/Contact/contact";
+
+
+
 const App = () => {
   const [user, setUser] = useState(authService.getUser());
   const [posts, setPosts] = useState([]);
@@ -66,9 +74,17 @@ const App = () => {
         ) : (
             // Public Route:
             <Route path="/" element={<Landing />} />
+
         )}
+
+
         <Route path="/signup" element={<SignupForm setUser={setUser}/>} />
         <Route path="/signin" element={<SigninForm setUser={setUser}/>} />
+
+
+          <Route path="/help" element={<Help/>}/>
+          <Route path="/about" element={<About/>}/>
+          <Route path="/contact" element={<Contact/>}/>
 
       </Routes>
       
