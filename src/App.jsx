@@ -28,7 +28,7 @@ const App = () => {
       // fetch the posts
       getPosts()
     }
-  }, [user])
+  }, [user, posts])
 
   const handleSignout = () => {
     authService.signout();
