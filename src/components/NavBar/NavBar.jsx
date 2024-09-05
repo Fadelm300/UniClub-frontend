@@ -1,24 +1,54 @@
 import { Link } from 'react-router-dom';
-
+import './NavBar.css'
 const NavBar = ({ user, handleSignout }) => {
   return (
     <>
       { user ? (
+        
         <nav>
-          <ul>
-            <li> <Link to="/">Home</Link> </li>
-            <li> <Link to='/posts'>Posts</Link> </li>
-            <li> <Link onClick={handleSignout} to="">Sign Out</Link> </li>
-            <li> <Link to="/posts/new">NEW Post</Link> </li>
+            <div class="links-container"></div>
 
-          </ul>
+
+          <div className='topNav'>
+                 <Link className='logoHome' to="/">
+                   <div className="Navimg">
+                     <img className="imginthenav" src="src/components/NavBar/uob-logo.jpg" alt="logo_footer" />
+                   </div>
+                 </Link>
+          </div>
+
+          <div className='downNav'>
+             <div className="dropNav">
+              
+                  <li> <Link >Category</Link>
+                  <ul className="dropdownMenu">
+                      <li> <Link to="/posts/new">NEW Post</Link> </li>
+                      <li><Link to="/posts/category1">Category 1</Link></li>
+                      <li><Link to="/posts/category2">Category 2</Link></li>
+                      <li><Link to="/posts/category3">Category 3</Link></li>
+                  </ul>
+              
+                  </li>
+                    </div>
+
+
+              <div className='otherNav'>
+              <li>  <Link to='/posts'>Posts</Link></li>
+              <li> <Link to="/posts/new">NEW Post</Link> </li>
+            <li> <Link onClick={handleSignout} to="">Sign Out</Link> </li>
+           
+            </div>
+          </div>
+
+
+         
         </nav>
       ) : (
         <nav>
-          <ul>
+          <div class="links-container">
             <li><Link to="/signin">Sign In</Link></li>
             <li><Link to="/signup">Sign Up</Link></li>
-          </ul>
+          </div>
         </nav>
       )}
     </>
