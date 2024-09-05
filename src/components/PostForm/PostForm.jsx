@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const HootForm = ({ handleAddHoot }) => {
+const PostForm = ({ handleAddPost }) => {
   const [formData, setFormData] = useState({
     title: '',
     text: '',
@@ -13,7 +13,7 @@ const HootForm = ({ handleAddHoot }) => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    handleAddHoot(formData);
+    handleAddPost(formData);
 
   };
 
@@ -59,4 +59,4 @@ const HootForm = ({ handleAddHoot }) => {
   );
 };
 
-export default HootForm;
+export default PostForm;

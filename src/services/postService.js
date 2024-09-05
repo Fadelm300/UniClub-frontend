@@ -1,4 +1,4 @@
-const BASE_URL = `${import.meta.env.VITE_BACKEND_URL}/hoots`;
+const BASE_URL = `${import.meta.env.VITE_BACKEND_URL}/posts`;
 
 const index = async () => {
   try {
@@ -11,9 +11,9 @@ const index = async () => {
   }
 };
 
-const show = async (hootId) => {
+const show = async (postId) => {
   try {
-    const res = await fetch(`${BASE_URL}/${hootId}`, {
+    const res = await fetch(`${BASE_URL}/${postId}`, {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
     });
     return res.json();
@@ -36,9 +36,9 @@ const create = async (formData) => {
   return res.json()
 }
 
-const deleteHoot = async (hootId) => {
+const deletePost = async (postId) => {
   try {
-    const res = await fetch(`${BASE_URL}/${hootId}`, {
+    const res = await fetch(`${BASE_URL}/${postId}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -50,4 +50,4 @@ const deleteHoot = async (hootId) => {
   }
 }
 
-export default { index, show, create, delete: deleteHoot };
+export default { index, show, create, delete: deletePost };

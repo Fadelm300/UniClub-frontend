@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import authService from './services/authService';
-import hootService from './services/hootService';
+import postService from './services/postService';
 
 
 // Components
@@ -10,23 +10,23 @@ import Landing from './components/Landing/Landing';
 import Dashboard from './components/Dashboard/Dashboard';
 import SignupForm from './components/SignupForm/SignupForm';
 import SigninForm from './components/SigninForm/SigninForm'
-import HootList from './components/HootList/HootList';
-import HootDetails from './components/HootDetails/HootDetails';
-import HootForm from './components/HootForm/HootForm';
+import PostList from './components/PostList/PostList';
+import PostDetails from './components/PostDetails/PostDetails';
+import PostForm from './components/PostForm/PostForm';
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser());
-  const [hoots, setHoots] = useState([]);
+  const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
 
   useEffect(()=>{
-    async function getHoots (){
-      const hootsData = await hootService.index()
-      setHoots(hootsData)
+    async function getPosts (){
+      const postsData = await postService.index()
+      setPosts(postsData)
     }
     if(user){
-      // fetch the hoots
-      getHoots()
+      // fetch the posts
+      getPosts()
     }
   }, [user])
 
@@ -35,16 +35,16 @@ const App = () => {
     setUser(null);
   }
 
-  const handleAddHoot = async (formData) => {
-    const newHoot = await hootService.create(formData);
-    setHoots([...hoots, newHoot])
-    navigate('/hoots');
+  const handleAddPost = async (formData) => {
+    const newPost = await postService.create(formData);
+    setPosts([...posts, newPost])
+    navigate('/posts');
   }
 
-  const handleDeleteHoot = async (hootId) => {
-    const deletedHoot = await hootService.delete(hootId);
-    setHoots(hoots.filter(hoot => hoot._id !== deletedHoot._id))
-    navigate('/hoots');
+  const handleDeletePost = async (postId) => {
+    const deletedPost = await postService.delete(postId);
+    setPosts(posts.filter(post => post._id !== deletedPost._id))
+    navigate('/posts');
   };
 
   return (
@@ -55,11 +55,11 @@ const App = () => {
           // Protected Routes:
           <>
             <Route path="/" element={<Dashboard user={user} />} />
-            <Route path="/hoots" element={<HootList hoots={hoots}/>} />
-            <Route path="/hoots/:hootId" element={<HootDetails user={user} handleDeleteHoot={handleDeleteHoot}/>} />
+            <Route path="/posts" element={<PostList posts={posts}/>} />
+            <Route path="/posts/:postId" element={<PostDetails user={user} handleDeletePost={handleDeletePost}/>} />
             <Route
-              path="/hoots/new"
-              element={<HootForm handleAddHoot={handleAddHoot} />}
+              path="/posts/new"
+              element={<PostForm handleAddPost={handleAddPost} />}
             />
           </>
         ) : (

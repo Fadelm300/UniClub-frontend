@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 // Services
-import hootService from "../../services/hootService";
+import postService from "../../services/postService";
 import commentService from "../../services/commentService";
 
 // Router
@@ -14,51 +14,51 @@ import AuthorDate from "../common/AuthorDate";
 import CommentForm from '../CommentForm/CommentForm';
 
 
-const HootDetails = ({user, handleDeleteHoot}) => {
-  const { hootId } = useParams();
-  const [hoot, setHoot] = useState(null);
+const PostDetails = ({user, handleDeletePost}) => {
+  const { postId } = useParams();
+  const [post, setPost] = useState(null);
 
   useEffect(()=>{
-    async function getHoot(){
-      const hootData = await hootService.show(hootId)
-      setHoot(hootData)
+    async function getPost(){
+      const postData = await postService.show(postId)
+      setPost(postData)
     }
-    getHoot()
-  },[hootId])
+    getPost()
+  },[postId])
 
   const handleAddComment = async (formData) => {
-    const newComment = await commentService.create(hootId, formData)
+    const newComment = await commentService.create(postId, formData)
 
-    const copyHoot = {...hoot}
-    copyHoot.comments.push(newComment)
+    const copyPost = {...post}
+    copyPost.comments.push(newComment)
 
-    setHoot(copyHoot)
+    setPost(copyPost)
   }
 
 
-  if(!hoot){
+  if(!post){
     return <main><h3>Loading...</h3></main>
   }
 
   return (
     <main>
       <header>
-        <p>{hoot.category.toUpperCase()}</p>
-        <h1>{hoot.title}</h1>
-        <AuthorDate name={hoot.author.username} date={hoot.createdAt}/>
-        {hoot.author._id === user.id && (
+        <p>{post.category.toUpperCase()}</p>
+        <h1>{post.title}</h1>
+        <AuthorDate name={post.author.username} date={post.createdAt}/>
+        {post.author._id === user.id && (
           <>
-            <button onClick={() => handleDeleteHoot(hootId)}>Delete</button>
+            <button onClick={() => handleDeletePost(postId)}>Delete</button>
           </>
         )}
       </header>
-      <p>{hoot.text}</p>
+      <p>{post.text}</p>
       <section>
         <h2>Comments</h2>
         <CommentForm handleAddComment={handleAddComment}/>
-        {!hoot.comments.length && <p>There are no comments.</p>}
+        {!post.comments.length && <p>There are no comments.</p>}
 
-        {hoot.comments.map((comment) => (
+        {post.comments.map((comment) => (
           <article key={comment._id}>
             <header>
               <p>
@@ -74,4 +74,4 @@ const HootDetails = ({user, handleDeleteHoot}) => {
   );
 };
 
-export default HootDetails;
+export default PostDetails;
