@@ -13,6 +13,7 @@ import SigninForm from './components/SigninForm/SigninForm'
 import PostList from './components/PostList/PostList';
 import PostDetails from './components/PostDetails/PostDetails';
 import PostForm from './components/PostForm/PostForm';
+import Footer from './components/footer/footer';
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser());
@@ -70,6 +71,8 @@ const App = () => {
         <Route path="/signin" element={<SigninForm setUser={setUser}/>} />
 
       </Routes>
+      
+      <Footer/>
     </>
   );
 };
