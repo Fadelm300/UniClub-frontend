@@ -7,11 +7,11 @@ footer{
     font-family: monospace;
     padding-top: 20px;
     padding-bottom: 20px;
-    color: #000000;
+    color: white;
     flex-direction: column;
     flex-wrap: wrap;
     align-content: center;
-    
+    background-color: #0f1016;
     text-align: center;
   }
 
@@ -44,7 +44,7 @@ footer{
   .footerHelp a {
   
     text-decoration: none;
-    color: #000000;
+    color: white;
   }
 
   .footerHelp a i {
@@ -67,7 +67,7 @@ footer{
 
   .title{
 
-color: #030303;
+color: white;
 margin-bottom: 90px;
 font-family: 'Montserrat', sans-serif;
 text-align: center;

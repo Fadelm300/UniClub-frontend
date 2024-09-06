@@ -50,7 +50,7 @@ const NavBar = ({ user, handleSignout }) => {
 
 
 <nav>
-<div class="links-container"></div>
+<div className="links-container"></div>
 
 
 <div className='topNav'>
