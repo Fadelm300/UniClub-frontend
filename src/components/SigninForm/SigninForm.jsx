@@ -34,37 +34,38 @@ const SigninForm = (props) => {
   };
 
   return (
-    <main>
+    <main className="signMain">
       <h1>Log In</h1>
       <p>{message}</p>
       <form autoComplete="off" onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="email">Username:</label>
-          <input
-            type="text"
-            autoComplete="off"
-            id="username"
-            value={formData.username}
-            name="username"
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            autoComplete="off"
-            id="password"
-            value={formData.password}
-            name="password"
-            onChange={handleChange}
-          />
-        </div>
-        <div>
+        <div className='inputs'>
+          <div className="username">
+            <label htmlFor="email">Username</label>
+            <input
+              type="text"
+              placeholder="Username"
+              autoComplete="off"
+              id="username"
+              value={formData.username}
+              name="username"
+              onChange={handleChange}
+            />
+          </div>
+          <div className="password">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              placeholder="Password"
+              autoComplete="off"
+              id="password"
+              value={formData.password}
+              name="password"
+              onChange={handleChange}
+            />
+          </div>
+        <div className='buttons'>
           <button>Log In</button>
-          <Link to="/">
-            <button>Cancel</button>
-          </Link>
+        </div>
         </div>
       </form>
     </main>
