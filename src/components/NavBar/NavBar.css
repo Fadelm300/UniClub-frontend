@@ -9,7 +9,7 @@
 }
 
 nav {
-  height: 120px;
+  height: auto;
 }
 
 .topNav {
@@ -18,60 +18,60 @@ nav {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-
+  padding: 0 10px;
 }
 
 .downNav {
   height: 40px;
-  background-color: #0f1016;
+  background-color: #000000;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
+  padding: 0 10px;
 }
 
 .Navimg {
-  height: 100px;
-  width: 100px;
+  height: 60px;
+  width: 60px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  
 }
 
-.imginthenav{
-    width: 100%;
+.imginthenav {
+  width: 100%;
 }
 
 nav a {
   height: 100%;
-  padding: 0 20px;
+  padding: 0 15px;
   display: flex;
   align-items: center;
   text-decoration: none;
   color: #f0f0f0;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 nav a:hover {
   background-color: #006aff;
-  font-size: 23px;
+  font-size: 20px;
+  transition: all 0.6s ease-in-out;
+  border-radius: 25%;
 }
-nav .logoHome:hover {
-    background-color: #000000;
-  }
-  .Category{
-    color: aliceblue;
-  }
 
+nav .logoHome:hover {
+  background-color: #000000;
+}
+
+.Category {
+  color: aliceblue;
+}
 
 .dropNav {
   display: flex;
   align-items: center;
   position: relative;
-
 }
-
 
 .dropdownMenu {
   display: none;
@@ -79,7 +79,7 @@ nav .logoHome:hover {
   background-color: #0f1016;
   top: 100%;
   left: 0;
-  min-width: 190px;
+  min-width: 150px;
   border-radius: 4px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
@@ -89,10 +89,11 @@ nav .logoHome:hover {
 }
 
 .dropdownMenu li a {
-  padding: 10px 20px;
+  padding: 10px 15px;
   width: 100%;
   display: block;
   color: #f0f0f0;
+  border-radius: 0%;
 }
 
 .dropdownMenu li a:hover {
@@ -109,12 +110,45 @@ nav .logoHome:hover {
 }
 
 
-/* level up */
 
-@media(max-width: 450px){
 
+
+
+/* Responsive design */
+@media (max-width: 768px) {
+  nav a {
+    font-size: 16px;
+    padding: 0 10px;
   }
 
+  .Navimg {
+    height: 50px;
+    width: 50px;
+  }
 
+  .dropdownMenu {
+    min-width: 120px;
+  }
+}
 
+@media (max-width: 450px) {
+  .topNav {
+    flex-direction: column;
+    height: auto;
+  }
 
+  .downNav {
+    flex-direction: column;
+    height: auto;
+  }
+
+  nav a {
+    font-size: 14px;
+    padding: 5px;
+  }
+
+  .Navimg {
+    height: 40px;
+    width: 40px;
+  }
+}
