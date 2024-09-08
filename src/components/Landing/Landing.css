@@ -41,6 +41,20 @@ h1 {
     background-color: rgb(4, 0, 255);
 }
 
+.channelsContainer {
+    margin-top: 20px;
+  }
+  
+  .channelButton {
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
 
 /* level up */
 
