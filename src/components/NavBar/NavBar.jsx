@@ -12,7 +12,7 @@ const NavBar = ({ user, handleSignout }) => {
           <div className='topNav'>
                  <Link className='logoHome' to="/">
                    <div className="Navimg">
-                     <img className="imginthenav" src="src/components/NavBar/uob-logo.jpg" alt="logo_footer" />
+                     <img className="imginthenav" src="/logo.png" alt="UoB Logo" />
                    </div>
                  </Link>
           </div>
@@ -44,22 +44,15 @@ const NavBar = ({ user, handleSignout }) => {
          
         </nav>
       ) : (
-      
-       
-     
-
-
-<nav>
-<div className="links-container"></div>
-
-
-<div className='topNav'>
-     <Link className='logoHome' to="/">
-       <div className="Navimg">
-         <img className="imginthenav" src="src/components/NavBar/uob-logo.jpg" alt="logo_footer" />
-       </div>
-     </Link>
-</div>
+      <nav>
+      <div className="links-container"></div>
+      <div className='topNav'>
+          <Link className='logoHome' to="/">
+            <div className="Navimg">
+              <img className="imginthenav" src="/logo.png" alt="UoB Logo" />
+            </div>
+          </Link>
+      </div>
 
 <div className='downNav'>
  <div className="dropNav">
@@ -80,7 +73,7 @@ const NavBar = ({ user, handleSignout }) => {
 
 
 
-</nav>
+      </nav>
       )}
     </>
   )
