@@ -42,8 +42,8 @@ const SignupForm = (props) => {
   };
 
   return (
-    <main className="signMain">
-      <h1>Sign Up</h1>
+    <main className="signMain2">
+      <p className='logintxt' >Sign Up</p>
       <p>{message}</p>
       <form onSubmit={handleSubmit}>
         <div className="inputs">

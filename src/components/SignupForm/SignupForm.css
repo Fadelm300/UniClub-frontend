@@ -1,15 +1,17 @@
-.signMain{
+.signMain2{
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    height: 75vh;
-    width: 80vh;
+     height: 500px;
+    width: 350px; 
     margin: auto;
     background-color: whitesmoke;
     border-radius: 10px;
     gap: 20px;
-    margin-bottom: 15px;
+    margin-bottom: 60px;
+    margin-top: 60px;
+    padding-bottom: 30px;
 }
 
 .signMain h1{
@@ -29,6 +31,9 @@
 .inputs label{
     font-weight:bold;
     font-size: 14px;
+}
+.logintxt{
+    font-size: 30px;
 }
 
 .inputs input{

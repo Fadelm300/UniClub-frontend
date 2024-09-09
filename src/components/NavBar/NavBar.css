@@ -31,8 +31,8 @@ nav {
 }
 
 .Navimg {
-  height: 60px;
-  width: 60px;
+  height: 90px;
+  width: 90px;
   display: flex;
   flex-direction: row;
   align-items: center;
