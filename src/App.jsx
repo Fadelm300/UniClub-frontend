@@ -7,6 +7,7 @@ import postService from './services/postService';
 // Components
 import NavBar from './components/NavBar/NavBar';
 import Landing from './components/Landing/Landing';
+import LandingReal from './components/LandingReal/LandingReal';
 import Dashboard from './components/Dashboard/Dashboard';
 import SignupForm from './components/SignupForm/SignupForm';
 import SigninForm from './components/SigninForm/SigninForm'
@@ -81,7 +82,17 @@ const App = () => {
           </>
         ) : (
             // Public Route:
-            <Route path="/" element={<Landing  />} />
+            <>
+            <Route path="/" element={<LandingReal  />} />
+            <Route path="/:uni" element={<Landing  />} />
+            <Route path="/:uni/:college" element={<Landing  />} />
+            <Route path="/:uni/:college/:major" element={<Landing  />} />
+            <Route path="/:uni/:college/:major/:course" element={<Landing  />} />
+            <Route path="/:uni/:college/:major/:course/:event" element={<Landing  />} />
+
+
+
+            </>
             
 
         )}

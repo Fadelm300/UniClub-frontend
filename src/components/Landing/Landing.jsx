@@ -1,31 +1,38 @@
 import React, { useState, useEffect } from "react";
 import "./Landing.css";
 import channelService from "../../services/channelService";
+import { useParams, Link } from "react-router-dom";
+import { deriveChannelPath } from "../../utils/helpers/urlHelpers";
 
 const Landing = () => {
-  const [channel, setChannel] = useState([]);
+  const [channel, setChannel] = useState({});
+  const { uni ,college, major, course, event } = useParams();
+  const path = deriveChannelPath({ uni ,college, major, course, event });
+
+  async function getChannel() {
+    const channelData = await channelService.index(path);
+    console.log(channelData);
+    setChannel(channelData);
+  }
 
   useEffect(() => {
-    // async function getPosts (){
-    //   const postsData = await postService.index()
-    //   setPosts(postsData)
-    // }
-    async function getChannel() {
-      const channelData = await channelService.index();
-      console.log(channelData);
-      setChannel(channelData);
-    }
-    // if(user){
-    //   // fetch the posts
-    //   // getPosts()
     getChannel();
-    // }
   }, []);
+
+  useEffect(() => {
+    if (channel.path !== path) {
+      getChannel();
+    }
+    console.log(path);
+    console.log("CHANNEL PATH", channel);
+  }, [channel]);
+
   return (
     <main>
       <div className="LandingPageMain">
         <div className="LandingPagecontener">
-          <h1>Hello, you are on the landing page for visitors.</h1>
+          <h1>{channel.name}</h1>
+          <p>{channel.description}</p>
 
           <div className="card">
             <div className="topCard"></div>
@@ -49,7 +56,9 @@ const Landing = () => {
 
         <div className="channelsContainer">
           {channel.subchannels?.map((channel) => (
-            <button className="channelButton">{channel.name}</button>
+            <Link to={`${path}/${channel.name}`}>
+              <button className="channelButton">{channel.name}</button>
+            </Link>
           ))}
         </div>
       </div>
