@@ -31,11 +31,18 @@ const Landing = (props) => {
         <div className="LandingPagecontener">
           <h1>{channel.name}</h1>
           <p>{channel.description}</p>
+
           {props.user && (
+
             <Link to={`${path}/newpost`}>
               <button className="buttons">Add Post</button>
             </Link>
+            <Link to={`${path}/newchannel`}>
+              <button className="buttons">Add channel</button>
+            </Link>
+            </>
           )}
+
 
           <PostList
             posts={channel.posts}

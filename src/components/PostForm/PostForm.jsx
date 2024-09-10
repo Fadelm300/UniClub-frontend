@@ -23,22 +23,22 @@ const PostForm = ({handleAddPost}) => {
 
   return (
     <main>
-        <dev className="Postmain">
+        <div className="Postmain">
       <form onSubmit={handleSubmit} className='postform'>
-            <dev className="postContener">
+            <div className="postContener">
 
 
             <label htmlFor="">text</label>
             <input name='text' type="text"  className='addpost' onChange={handleChange}/>
 
 
-            </dev>
+            </div>
         
 
         
         <button type="submitPost">SUBMIT</button>
       </form>
-      </dev>
+      </div>
     </main>
   );
 };
