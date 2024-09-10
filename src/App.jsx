@@ -77,6 +77,12 @@ const App = () => {
               path="/posts/new"
               element={<PostForm handleAddPost={handleAddPost} />}
             />
+                 <Route path="/" element={<LandingReal  />} />
+            <Route path="/:uni" element={<Landing  />} />
+            <Route path="/:uni/:college" element={<Landing  />} />
+            <Route path="/:uni/:college/:major" element={<Landing  />} />
+            <Route path="/:uni/:college/:major/:course" element={<Landing  />} />
+            <Route path="/:uni/:college/:major/:course/:event" element={<Landing  />} />
            
 
           </>

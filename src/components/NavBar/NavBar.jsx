@@ -23,7 +23,7 @@ const NavBar = ({ user, handleSignout }) => {
                   <li > <Link >Category</Link>
                   <ul className="dropdownMenu">
                       <li> <Link to="/posts/new">NEW Post</Link> </li>
-                      <li><Link to="/posts/category1">Category 1</Link></li>
+                      <li><Link to="/uob">Category 1</Link></li>
                       <li><Link to="/posts/category2">Category 2</Link></li>
                       <li><Link to="/posts/category3">Category 3</Link></li>
                   </ul>
