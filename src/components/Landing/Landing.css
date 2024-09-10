@@ -91,6 +91,15 @@ h1 {
    
     
 }
+
+.addbtn :hover{
+    font-size: 19px;    
+    background-image: linear-gradient(to right,#13a6e1, #0197d3);
+    border-radius: 10px;
+
+}
+
+
 .addbtn{
     display: flex;
     gap: 20px;
