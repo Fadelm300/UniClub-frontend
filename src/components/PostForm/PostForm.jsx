@@ -6,7 +6,6 @@ import { deriveChannelPath } from "../../utils/helpers/urlHelpers";
 const PostForm = ({handleAddPost}) => {
   const { uni, college, major, course, event } = useParams();
   const path = deriveChannelPath({ uni, college, major, course, event });
-console.log(path)
   const [formData, setFormData] = useState({
    
     text: ''

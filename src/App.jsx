@@ -57,71 +57,112 @@ const App = () => {
     navigate(path);
   }
 
-  const handleDeletePost = async (postId) => {
-    const deletedPost = await postService.delete(postId);
+  const handleDeletePost = async (postId, path) => {
+    const deletedPost = await postService.delete(postId, path);
     setPosts(posts.filter(post => post._id !== deletedPost._id))
-    navigate('/posts');
+    // navigate('/posts');
   };
 
   return (
     <>
-      <NavBar user={user} handleSignout={handleSignout}/>
+      <NavBar user={user} handleSignout={handleSignout} />
       <Routes>
-        { user ? (
+        {user ? (
           // Protected Routes:
           <>
             <Route path="/" element={<Dashboard user={user} />} />
-            <Route path="/posts" element={<PostList posts={posts}/>} />
-            <Route path="/posts/:postId" element={<PostDetails user={user} handleDeletePost={handleDeletePost}/>} />
+            <Route path="/posts" element={<PostList posts={posts} />} />
             <Route
-              path="/posts/new"
-              element={<PostForm />}
+              path="/posts/:postId"
+              element={
+                <PostDetails user={user} handleDeletePost={handleDeletePost} />
+              }
             />
-                 <Route path="/" element={<LandingReal  />} />
-            <Route path="/:uni" element={<Landing  user={user} />} />
-            <Route path="/:uni/:college" element={<Landing user={user}  />} />
-            <Route path="/:uni/:college/:major" element={<Landing user={user}  />} />
-            <Route path="/:uni/:college/:major/:course" element={<Landing  user={user} />} />
-            <Route path="/:uni/:college/:major/:course/:event" element={<Landing  user={user} />} />
-           PostForm
-              {/* //add post */}
-              <Route path="/:uni/newpost" element={<PostForm handleAddPost={handleAddPost} />} />
-<Route path="/:uni/:college/newpost" element={<PostForm handleAddPost={handleAddPost} />} />
-<Route path="/:uni/:college/:major/newpost" element={<PostForm handleAddPost={handleAddPost} />} />
-<Route path="/:uni/:college/:major/:course/newpost" element={<PostForm handleAddPost={handleAddPost} />} />
-<Route path="/:uni/:college/:major/:course/:event/newpost" element={<PostForm handleAddPost={handleAddPost} />} />
-
-
+            <Route path="/posts/new" element={<PostForm />} />
+            <Route path="/" element={<LandingReal />} />
+            <Route
+              path="/:uni"
+              element={
+                <Landing user={user} handleDeletePost={handleDeletePost} />
+              }
+            />
+            <Route
+              path="/:uni/:college"
+              element={
+                <Landing user={user} handleDeletePost={handleDeletePost} />
+              }
+            />
+            <Route
+              path="/:uni/:college/:major"
+              element={
+                <Landing user={user} handleDeletePost={handleDeletePost} />
+              }
+            />
+            <Route
+              path="/:uni/:college/:major/:course"
+              element={
+                <Landing user={user} handleDeletePost={handleDeletePost} />
+              }
+            />
+            <Route
+              path="/:uni/:college/:major/:course/:event"
+              element={
+                <Landing user={user} handleDeletePost={handleDeletePost} />
+              }
+            />
+            PostForm
+            {/* //add post */}
+            <Route
+              path="/:uni/newpost"
+              element={<PostForm handleAddPost={handleAddPost} />}
+            />
+            <Route
+              path="/:uni/:college/newpost"
+              element={<PostForm handleAddPost={handleAddPost} />}
+            />
+            <Route
+              path="/:uni/:college/:major/newpost"
+              element={<PostForm handleAddPost={handleAddPost} />}
+            />
+            <Route
+              path="/:uni/:college/:major/:course/newpost"
+              element={<PostForm handleAddPost={handleAddPost} />}
+            />
+            <Route
+              path="/:uni/:college/:major/:course/:event/newpost"
+              element={<PostForm handleAddPost={handleAddPost} />}
+            />
           </>
         ) : (
-            // Public Route:
-            <>
-            <Route path="/" element={<LandingReal  />} />
-            <Route path="/:uni" element={<Landing user={user}  />} />
-            <Route path="/:uni/:college" element={<Landing user={user}  />} />
-            <Route path="/:uni/:college/:major" element={<Landing user={user}  />} />
-            <Route path="/:uni/:college/:major/:course" element={<Landing user={user}  />} />
-            <Route path="/:uni/:college/:major/:course/:event" element={<Landing  user={user} />} />
-
-
-
-            </>
-            
-
+          // Public Route:
+          <>
+            <Route path="/" element={<LandingReal />} />
+            <Route path="/:uni" element={<Landing user={user} />} />
+            <Route path="/:uni/:college" element={<Landing user={user} />} />
+            <Route
+              path="/:uni/:college/:major"
+              element={<Landing user={user} />}
+            />
+            <Route
+              path="/:uni/:college/:major/:course"
+              element={<Landing user={user} />}
+            />
+            <Route
+              path="/:uni/:college/:major/:course/:event"
+              element={<Landing user={user} />}
+            />
+          </>
         )}
 
+        <Route path="/signup" element={<SignupForm setUser={setUser} />} />
+        <Route path="/signin" element={<SigninForm setUser={setUser} />} />
 
-        <Route path="/signup" element={<SignupForm setUser={setUser}/>} />
-        <Route path="/signin" element={<SigninForm setUser={setUser}/>} />
-
-
-          <Route path="/help" element={<Help/>}/>
-          <Route path="/about" element={<About/>}/>
-          <Route path="/contact" element={<Contact/>}/>
-
+        <Route path="/help" element={<Help />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
-      
-      <Footer/>
+
+      <Footer />
     </>
   );
 };

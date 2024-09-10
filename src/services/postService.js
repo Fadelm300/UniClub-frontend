@@ -36,9 +36,9 @@ const create = async (formData ,path) => {
   return res.json()
 }
 
-const deletePost = async (postId) => {
+const deletePost = async (postId, path) => {
   try {
-    const res = await fetch(`${BASE_URL}/${postId}`, {
+    const res = await fetch(`${BASE_URL}/${path}/${postId}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
