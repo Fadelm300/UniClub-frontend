@@ -3,9 +3,12 @@ import "./Landing.css";
 import channelService from "../../services/channelService";
 import { useParams, Link } from "react-router-dom";
 import { deriveChannelPath } from "../../utils/helpers/urlHelpers";
+import PostList from "../PostList/PostList";
+
 
 const Landing = () => {
   const [channel, setChannel] = useState({});
+  // const [post, setPost] = useState({});
   const { uni, college, major, course, event } = useParams();
   const path = deriveChannelPath({ uni, college, major, course, event });
 
@@ -17,31 +20,29 @@ const Landing = () => {
     getChannel();
   }, [path]);
 
+  // useEffect(() => {
+  //   async function getPost() {
+  //     const postData = await postService.show(path);
+  //     setPost(postData);
+  //   }
+  //   getPost();
+  // }, [path]);
+
+  console.log(channel.posts)
+
   return (
     <main>
       <div className="LandingPageMain">
         <div className="LandingPagecontener">
           <h1>{channel.name}</h1>
           <p>{channel.description}</p>
+          
+          {/* <div className="card">
+            <div className="topCard"></div>
+            <div className="dawnCard"></div>
+          </div> */}
 
-          <div className="card">
-            <div className="topCard"></div>
-            <div className="dawnCard"></div>
-          </div>
-
-          <div className="card">
-            <div className="topCard"></div>
-            <div className="dawnCard"></div>
-          </div>
-
-          <div className="card">
-            <div className="topCard"></div>
-            <div className="dawnCard"></div>
-          </div>
-          <div className="card">
-            <div className="topCard"></div>
-            <div className="dawnCard"></div>
-          </div>
+            <PostList posts = {channel.posts} />
         </div>
 
         <div className="channelsContainer">
