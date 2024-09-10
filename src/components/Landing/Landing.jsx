@@ -6,26 +6,16 @@ import { deriveChannelPath } from "../../utils/helpers/urlHelpers";
 
 const Landing = () => {
   const [channel, setChannel] = useState({});
-  const { uni ,college, major, course, event } = useParams();
-  const path = deriveChannelPath({ uni ,college, major, course, event });
-
-  async function getChannel() {
-    const channelData = await channelService.index(path);
-    console.log(channelData);
-    setChannel(channelData);
-  }
+  const { uni, college, major, course, event } = useParams();
+  const path = deriveChannelPath({ uni, college, major, course, event });
 
   useEffect(() => {
-    getChannel();
-  }, []);
-
-  useEffect(() => {
-    if (channel.path !== path) {
-      getChannel();
+    async function getChannel() {
+      const channelData = await channelService.index(path);
+      setChannel(channelData);
     }
-    console.log(path);
-    console.log("CHANNEL PATH", channel);
-  }, [channel]);
+    getChannel();
+  }, [path]);
 
   return (
     <main>
@@ -55,9 +45,9 @@ const Landing = () => {
         </div>
 
         <div className="channelsContainer">
-          {channel.subchannels?.map((channel) => (
-            <Link to={`${path}/${channel.name}`}>
-              <button className="channelButton">{channel.name}</button>
+          {channel.subchannels?.map((subchannel) => (
+            <Link key={subchannel.name} to={`${path}/${subchannel.name}`}>
+              <button className="channelButton">{subchannel.name}</button>
             </Link>
           ))}
         </div>
