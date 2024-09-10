@@ -36,6 +36,7 @@ const NavBar = ({ user, handleSignout }) => {
               <li>  <Link to='/posts'>Posts</Link></li>
               <li> <Link to="/posts/new">NEW Post</Link> </li>
             <li> <Link onClick={handleSignout} to="">Sign Out</Link> </li>
+            
            
             </div>
           </div>

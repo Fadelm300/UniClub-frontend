@@ -1,10 +1,16 @@
 import { useState } from 'react';
+import './PostForm.css';
+import { useParams, Link } from "react-router-dom";
+import { deriveChannelPath } from "../../utils/helpers/urlHelpers";
 
-const PostForm = ({ handleAddPost }) => {
+const PostForm = ({handleAddPost}) => {
+  const { uni, college, major, course, event } = useParams();
+  const path = deriveChannelPath({ uni, college, major, course, event });
+console.log(path)
   const [formData, setFormData] = useState({
-    title: '',
-    text: '',
-    category: 'News',
+   
+    text: ''
+   
   });
 
   const handleChange = (evt) => {
@@ -13,48 +19,27 @@ const PostForm = ({ handleAddPost }) => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    handleAddPost(formData);
-
+    handleAddPost(formData,path);
   };
 
   return (
     <main>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="title-input">Title</label>
-        <input
-          required
-          type="text"
-          name="title"
-          id="title-input"
-          value={formData.title}
-          onChange={handleChange}
-        />
-        <label htmlFor="text-input">Text</label>
-        <textarea
-          required
-          type="text"
-          name="text"
-          id="text-input"
-          value={formData.text}
-          onChange={handleChange}
-        />
-        <label htmlFor="category-input">Category</label>
-        <select
-          required
-          name="category"
-          id="category-input"
-          value={formData.category}
-          onChange={handleChange}
-        >
-          <option value="News">News</option>
-          <option value="Games">Games</option>
-          <option value="Music">Music</option>
-          <option value="Movies">Movies</option>
-          <option value="Sports">Sports</option>
-          <option value="Television">Television</option>
-        </select>
-        <button type="submit">SUBMIT</button>
+        <dev className="Postmain">
+      <form onSubmit={handleSubmit} className='postform'>
+            <dev className="postContener">
+
+
+            <label htmlFor="">text</label>
+            <input name='text' type="text"  className='addpost' onChange={handleChange}/>
+
+
+            </dev>
+        
+
+        
+        <button type="submitPost">SUBMIT</button>
       </form>
+      </dev>
     </main>
   );
 };
