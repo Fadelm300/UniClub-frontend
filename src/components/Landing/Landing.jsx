@@ -6,7 +6,10 @@ import { deriveChannelPath } from "../../utils/helpers/urlHelpers";
 import PostList from "../PostList/PostList";
 
 
-const Landing = ({user}) => {
+
+
+const Landing = (props) => {
+  console.log(props.handleDeletePost)
   const [channel, setChannel] = useState({});
   // const [post, setPost] = useState({});
   const { uni, college, major, course, event } = useParams();
@@ -20,18 +23,17 @@ const Landing = ({user}) => {
     getChannel();
   }, [path]);
 
-
-  console.log(channel.posts)
+  console.log(channel.posts);
 
   return (
     <main>
-
       <div className="LandingPageMain">
         <div className="LandingPagecontener">
           <h1>{channel.name}</h1>
           <p>{channel.description}</p>
-          {user && (
-            <>
+
+          {props.user && (
+
             <Link to={`${path}/newpost`}>
               <button className="buttons">Add Post</button>
             </Link>
@@ -42,9 +44,11 @@ const Landing = ({user}) => {
           )}
 
 
-         
-            <PostList posts = {channel.posts} />
-           
+          <PostList
+            posts={channel.posts}
+            handleDeletePost={props.handleDeletePost}
+            path={path}
+          />
         </div>
 
         <div className="channelsContainer">
@@ -55,7 +59,6 @@ const Landing = ({user}) => {
           ))}
         </div>
       </div>
-
     </main>
   );
 };
