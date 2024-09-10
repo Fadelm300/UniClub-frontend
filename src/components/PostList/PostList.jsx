@@ -1,6 +1,3 @@
-// import { Link } from 'react-router-dom';
-// import AuthorDate from '../common/AuthorDate';
-
 const PostList = (props) => {
   if (!props.posts || props.posts.length === 0) return <main>Loading...</main>;
 
@@ -14,10 +11,17 @@ const PostList = (props) => {
             <div className="topCard">
               <h1>{post.text}</h1>
               <p>{post.user.username}</p>
-          
-              <p>{postDate.toLocaleDateString()} {postDate.toLocaleTimeString()}</p>
+              <p>
+                {postDate.toLocaleDateString()} {postDate.toLocaleTimeString()}{" "}
+              </p>
             </div>
-            <div className="dawnCard">{post.content}</div>
+            <div className="dawnCard">
+              <button
+                onClick={() => props.handleDeletePost(post._id, props.path)}
+              >
+                Delete
+              </button>
+            </div>
           </div>
         );
       })}
