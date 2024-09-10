@@ -22,7 +22,7 @@ const show = async (postId) => {
   }
 };
 
-const create = async (formData) => {
+const create = async (formData ,path) => {
   const options = {
     method: 'POST',
     headers: {
@@ -31,7 +31,7 @@ const create = async (formData) => {
             },
     body: JSON.stringify(formData)
   }
-  const res = await fetch(BASE_URL, options)
+  const res = await fetch(`${BASE_URL}${path}`,options)
 
   return res.json()
 }

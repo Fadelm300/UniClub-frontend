@@ -51,10 +51,10 @@ const App = () => {
     setUser(null);
   }
 
-  const handleAddPost = async (formData) => {
-    const newPost = await postService.create(formData);
+  const handleAddPost = async (formData,path) => {
+    const newPost = await postService.create(formData , path);
     setPosts([...posts, newPost])
-    navigate('/posts');
+    navigate(path);
   }
 
   const handleDeletePost = async (postId) => {
@@ -75,7 +75,7 @@ const App = () => {
             <Route path="/posts/:postId" element={<PostDetails user={user} handleDeletePost={handleDeletePost}/>} />
             <Route
               path="/posts/new"
-              element={<PostForm handleAddPost={handleAddPost} />}
+              element={<PostForm />}
             />
                  <Route path="/" element={<LandingReal  />} />
             <Route path="/:uni" element={<Landing  />} />
@@ -83,7 +83,14 @@ const App = () => {
             <Route path="/:uni/:college/:major" element={<Landing  />} />
             <Route path="/:uni/:college/:major/:course" element={<Landing  />} />
             <Route path="/:uni/:college/:major/:course/:event" element={<Landing  />} />
-           
+           PostForm
+              {/* //add post */}
+              <Route path="/:uni/newpost" element={<PostForm handleAddPost={handleAddPost} />} />
+<Route path="/:uni/:college/newpost" element={<PostForm handleAddPost={handleAddPost} />} />
+<Route path="/:uni/:college/:major/newpost" element={<PostForm handleAddPost={handleAddPost} />} />
+<Route path="/:uni/:college/:major/:course/newpost" element={<PostForm handleAddPost={handleAddPost} />} />
+<Route path="/:uni/:college/:major/:course/:event/newpost" element={<PostForm handleAddPost={handleAddPost} />} />
+
 
           </>
         ) : (

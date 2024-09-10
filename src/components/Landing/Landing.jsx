@@ -32,11 +32,15 @@ const Landing = () => {
 
   return (
     <main>
+
       <div className="LandingPageMain">
         <div className="LandingPagecontener">
           <h1>{channel.name}</h1>
           <p>{channel.description}</p>
-          
+          <Link to={`${path}/newpost`}>
+              <button className="buttons">add post</button>
+          </Link>
+
           {/* <div className="card">
             <div className="topCard"></div>
             <div className="dawnCard"></div>
