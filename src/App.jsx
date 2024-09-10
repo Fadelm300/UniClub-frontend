@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import authService from './services/authService';
 import postService from './services/postService';
-
+import channelService from './services/channelService';
 
 // Components
 import NavBar from './components/NavBar/NavBar';
@@ -15,6 +15,8 @@ import PostList from './components/PostList/PostList';
 import PostDetails from './components/PostDetails/PostDetails';
 import PostForm from './components/PostForm/PostForm';
 import Footer from './components/footer/footer';
+
+import ChannelForm from './components/Channel/ChannelForm';
 
 
 
@@ -57,6 +59,15 @@ const App = () => {
     navigate(path);
   }
 
+
+
+// add channel 
+  const handleAddchannel = async (formData,path) => {
+    const newPost = await channelService.create(formData , path);
+    setPosts([...posts, newPost])
+    navigate(path);
+  }
+
   const handleDeletePost = async (postId) => {
     const deletedPost = await postService.delete(postId);
     setPosts(posts.filter(post => post._id !== deletedPost._id))
@@ -86,10 +97,16 @@ const App = () => {
            PostForm
               {/* //add post */}
               <Route path="/:uni/newpost" element={<PostForm handleAddPost={handleAddPost} />} />
-<Route path="/:uni/:college/newpost" element={<PostForm handleAddPost={handleAddPost} />} />
-<Route path="/:uni/:college/:major/newpost" element={<PostForm handleAddPost={handleAddPost} />} />
-<Route path="/:uni/:college/:major/:course/newpost" element={<PostForm handleAddPost={handleAddPost} />} />
-<Route path="/:uni/:college/:major/:course/:event/newpost" element={<PostForm handleAddPost={handleAddPost} />} />
+               <Route path="/:uni/:college/newpost" element={<PostForm handleAddPost={handleAddPost} />} />
+                <Route path="/:uni/:college/:major/newpost" element={<PostForm handleAddPost={handleAddPost} />} />
+                <Route path="/:uni/:college/:major/:course/newpost" element={<PostForm handleAddPost={handleAddPost} />} />
+                <Route path="/:uni/:college/:major/:course/:event/newpost" element={<PostForm handleAddPost={handleAddPost} />} />
+
+{/* add channel */}
+                <Route path="/:uni/newchannel" element={<ChannelForm handleAddchannel={handleAddchannel} />} />
+                <Route path="/:uni/:college/newchannel" element={<ChannelForm handleAddchannel={handleAddchannel} />} />
+                <Route path="/:uni/:college/:major/newchannel" element={<ChannelForm handleAddchannel={handleAddchannel} />} />
+                <Route path="/:uni/:college/:major/:course/newchannel" element={<ChannelForm handleAddchannel={handleAddchannel} />} />
 
 
           </>

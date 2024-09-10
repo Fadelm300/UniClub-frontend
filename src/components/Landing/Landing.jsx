@@ -31,14 +31,20 @@ const Landing = ({user}) => {
           <h1>{channel.name}</h1>
           <p>{channel.description}</p>
           {user && (
+            <>
             <Link to={`${path}/newpost`}>
               <button className="buttons">Add Post</button>
             </Link>
+            <Link to={`${path}/newchannel`}>
+              <button className="buttons">Add channel</button>
+            </Link>
+            </>
           )}
 
 
          
             <PostList posts = {channel.posts} />
+           
         </div>
 
         <div className="channelsContainer">
