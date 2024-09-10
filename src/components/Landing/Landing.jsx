@@ -27,19 +27,35 @@ const Landing = (props) => {
 
   return (
     <main>
+      
       <div className="LandingPageMain">
         <div className="LandingPagecontener">
           <h1>{channel.name}</h1>
+          
+
+          <div className="landingpagContainer">
+            <div className="channelsNAV">
+          {channel.subchannels?.map((subchannel) => (
+            <Link key={subchannel.name} to={`${path}/${subchannel.name}`}>
+              <button className="channelButton">{subchannel.name}</button>
+            </Link>
+          ))}
+          </div>
+        </div>
           <p>{channel.description}</p>
 
           {props.user && (
             <>
+            <div className="addbtn">
             <Link to={`${path}/newpost`}>
               <button className="buttons">Add Post</button>
             </Link>
+         
             <Link to={`${path}/newchannel`}>
               <button className="buttons">Add channel</button>
             </Link>
+            </div>
+         
             </>
           )}
 
@@ -51,13 +67,7 @@ const Landing = (props) => {
           />
         </div>
 
-        <div className="channelsContainer">
-          {channel.subchannels?.map((subchannel) => (
-            <Link key={subchannel.name} to={`${path}/${subchannel.name}`}>
-              <button className="channelButton">{subchannel.name}</button>
-            </Link>
-          ))}
-        </div>
+       
       </div>
     </main>
   );

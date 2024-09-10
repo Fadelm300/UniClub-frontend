@@ -1,3 +1,5 @@
+import './PostList.css'
+
 const PostList = (props) => {
   if (!props.posts || props.posts.length === 0) return <main>Loading...</main>;
 
@@ -16,7 +18,7 @@ const PostList = (props) => {
               </p>
             </div>
             <div className="dawnCard">
-              <button
+              <button className="deleteButton"
                 onClick={() => props.handleDeletePost(post._id, props.path)}
               >
                 Delete

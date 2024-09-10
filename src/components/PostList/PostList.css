@@ -1,0 +1,32 @@
+
+
+
+
+
+
+
+
+.deleteButton {
+    background-color: #ff4c4c; /* Red background */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .deleteButton:hover {
+    background-color: #ff1a1a; /* Darker red on hover */
+    font-size: 1.2rem;  
+}
+
+
+
+.dawnCard{
+    padding-top: 10px;
+}
+
+
+

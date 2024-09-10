@@ -41,8 +41,29 @@ h1 {
     background-color: rgb(4, 0, 255);
 }
 
-.channelsContainer {
-    margin-top: 20px;
+.landingpagContainer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; 
+    gap: 10px; 
+    padding: 20px;
+
+  }
+  .channelsNAV{
+    background-color: #007bff;
+  }
+  
+  .channelButton {
+    padding: 10px 20px;
+    background-color: aqua;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .channelButton:hover {
+    background-color: #00cccc;
   }
   
   .channelButton {
@@ -57,7 +78,7 @@ h1 {
 
 
 
-  .buttons {
+  .addbtn .buttons{
     height: 7vh;
     width: 65vh;
     border: 0;
@@ -67,7 +88,13 @@ h1 {
     font-size: 15px;    
     background-image: linear-gradient(to right,#2cc1fb, #0197d3);
     color: white;
+   
     
+}
+.addbtn{
+    display: flex;
+    gap: 20px;
+    padding-top: 20px;
 }
 
 .buttons :hover{
