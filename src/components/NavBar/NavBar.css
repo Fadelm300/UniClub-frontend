@@ -23,7 +23,9 @@ nav {
 
 .downNav {
   height: 40px;
-  background-color: #000000;
+  /* background-color: #000000; */
+  background-image: linear-gradient(to right,#2cc1fb, #0197d3);
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -31,8 +33,8 @@ nav {
 }
 
 .Navimg {
-  height: 60px;
-  width: 60px;
+  height: 90px;
+  width: 90px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -53,10 +55,13 @@ nav a {
 }
 
 nav a:hover {
-  background-color: #006aff;
   font-size: 20px;
-  transition: all 0.6s ease-in-out;
+  transition: all 0.3s ease-in-out;
   border-radius: 25%;
+
+  background-color: #2384aa;
+  border: 2px solid  rgb(255, 255, 255);
+ 
 }
 
 nav .logoHome:hover {

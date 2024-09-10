@@ -35,7 +35,7 @@ const SigninForm = (props) => {
 
   return (
     <main className="signMain">
-      <h1>Log In</h1>
+      <p className='logintxt'>Log In</p>
       <p>{message}</p>
       <form autoComplete="off" onSubmit={handleSubmit}>
         <div className='inputs'>
