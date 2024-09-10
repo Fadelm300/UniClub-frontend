@@ -33,7 +33,7 @@ const Landing = (props) => {
           <p>{channel.description}</p>
 
           {props.user && (
-
+            <>
             <Link to={`${path}/newpost`}>
               <button className="buttons">Add Post</button>
             </Link>

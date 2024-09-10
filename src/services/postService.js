@@ -13,7 +13,7 @@ const index = async () => {
 
 const show = async (postId) => {
   try {
-    const res = await fetch(`${BASE_URL}/${postId}`, {
+    const res = await fetch(`${BASE_URL}${postId}`, {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
     });
     return res.json();

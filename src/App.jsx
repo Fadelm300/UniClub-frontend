@@ -93,66 +93,16 @@ const App = () => {
               }
             />
             <Route path="/posts/new" element={<PostForm />} />
-            <Route path="/" element={<LandingReal />} />
-            <Route
-              path="/:uni"
-              element={
-                <Landing user={user} handleDeletePost={handleDeletePost} />
-              }
-            />
-            <Route
-              path="/:uni/:college"
-              element={
-                <Landing user={user} handleDeletePost={handleDeletePost} />
-              }
-            />
-            <Route
-              path="/:uni/:college/:major"
-              element={
-                <Landing user={user} handleDeletePost={handleDeletePost} />
-              }
-            />
-            <Route
-              path="/:uni/:college/:major/:course"
-              element={
-                <Landing user={user} handleDeletePost={handleDeletePost} />
-              }
-            />
-            <Route
-              path="/:uni/:college/:major/:course/:event"
-              element={
-                <Landing user={user} handleDeletePost={handleDeletePost} />
-              }
-            />
-            PostForm
-            {/* //add post */}
-            <Route
-              path="/:uni/newpost"
-              element={<PostForm handleAddPost={handleAddPost} />}
-            />
-            <Route
-              path="/:uni/:college/newpost"
-              element={<PostForm handleAddPost={handleAddPost} />}
-            />
-            <Route
-              path="/:uni/:college/:major/newpost"
-              element={<PostForm handleAddPost={handleAddPost} />}
-            />
-            <Route
-              path="/:uni/:college/:major/:course/newpost"
-              element={<PostForm handleAddPost={handleAddPost} />}
-            />
-            <Route
-              path="/:uni/:college/:major/:course/:event/newpost"
-              element={<PostForm handleAddPost={handleAddPost} />}
-            />
+     
+
+                
                  <Route path="/" element={<LandingReal  />} />
-            <Route path="/:uni" element={<Landing  user={user} />} />
-            <Route path="/:uni/:college" element={<Landing user={user}  />} />
-            <Route path="/:uni/:college/:major" element={<Landing user={user}  />} />
-            <Route path="/:uni/:college/:major/:course" element={<Landing  user={user} />} />
-            <Route path="/:uni/:college/:major/:course/:event" element={<Landing  user={user} />} />
-           PostForm
+            <Route path="/:uni" element={<Landing  user={user}  handleDeletePost={handleDeletePost}  />} />
+            <Route path="/:uni/:college" element={<Landing user={user}  handleDeletePost={handleDeletePost}  />} />
+            <Route path="/:uni/:college/:major" element={<Landing user={user}   handleDeletePost={handleDeletePost} />} />
+            <Route path="/:uni/:college/:major/:course" element={<Landing  user={user}  handleDeletePost={handleDeletePost} />} />
+            <Route path="/:uni/:college/:major/:course/:event" element={<Landing  user={user} handleDeletePost={handleDeletePost}  />} />
+             
               {/* //add post */}
               <Route path="/:uni/newpost" element={<PostForm handleAddPost={handleAddPost} />} />
                <Route path="/:uni/:college/newpost" element={<PostForm handleAddPost={handleAddPost} />} />

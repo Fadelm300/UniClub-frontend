@@ -1,4 +1,4 @@
-const BASE_URL = `${import.meta.env.VITE_BACKEND_URL}/channels/`;
+const BASE_URL = `${import.meta.env.VITE_BACKEND_URL}/channels`;
 
 const index = async (path) => {
   try {
