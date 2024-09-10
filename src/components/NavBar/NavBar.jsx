@@ -6,7 +6,7 @@ const NavBar = ({ user, handleSignout }) => {
       { user ? (
         
         <nav>
-            <div class="links-container"></div>
+            <div className="links-container"></div>
 
 
           <div className='topNav'>
