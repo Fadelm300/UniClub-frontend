@@ -7,6 +7,7 @@ import postService from './services/postService';
 // Components
 import NavBar from './components/NavBar/NavBar';
 import Landing from './components/Landing/Landing';
+import LandingReal from './components/LandingReal/LandingReal';
 import Dashboard from './components/Dashboard/Dashboard';
 import SignupForm from './components/SignupForm/SignupForm';
 import SigninForm from './components/SigninForm/SigninForm'
@@ -26,18 +27,24 @@ import Contact from "./components/Contact/contact";
 const App = () => {
   const [user, setUser] = useState(authService.getUser());
   const [posts, setPosts] = useState([]);
+  // const [channel, setChannel] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(()=>{
-    async function getPosts (){
-      const postsData = await postService.index()
-      setPosts(postsData)
-    }
-    if(user){
-      // fetch the posts
-      getPosts()
-    }
-  }, [user, posts])
+  // useEffect(()=>{
+  //   // async function getPosts (){
+  //   //   const postsData = await postService.index()
+  //   //   setPosts(postsData)
+  //   // }
+  //   async function getChannel (){
+  //     const channelData = await channelService.index()
+  //     setChannel(channelData)
+  //   }
+  //   // if(user){
+  //   //   // fetch the posts
+  //   //   // getPosts()
+  //     getChannel()
+  //   // }
+  // }, [channel])
 
   const handleSignout = () => {
     authService.signout();
@@ -70,10 +77,23 @@ const App = () => {
               path="/posts/new"
               element={<PostForm handleAddPost={handleAddPost} />}
             />
+           
+
           </>
         ) : (
             // Public Route:
-            <Route path="/" element={<Landing />} />
+            <>
+            <Route path="/" element={<LandingReal  />} />
+            <Route path="/:uni" element={<Landing  />} />
+            <Route path="/:uni/:college" element={<Landing  />} />
+            <Route path="/:uni/:college/:major" element={<Landing  />} />
+            <Route path="/:uni/:college/:major/:course" element={<Landing  />} />
+            <Route path="/:uni/:college/:major/:course/:event" element={<Landing  />} />
+
+
+
+            </>
+            
 
         )}
 
