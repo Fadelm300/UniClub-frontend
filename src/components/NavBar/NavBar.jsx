@@ -22,31 +22,14 @@ const NavBar = ({ user, handleSignout }) => {
                      <img className="imginthenav" src="/logo.png" alt="UoB Logo" />
                    </div>
                  </Link>
+
+
+                 <div className='otherNav'>
+                       <li> <Link onClick={handleSignout} to="">Sign Out</Link> </li>
+                 </div>
           </div>
 
-          <div className='downNav'>
-             <div className="dropNav">
-              
-                  <li > <Link >Category</Link>
-                  <ul className="dropdownMenu">
-                      <li> <Link to="/posts/new">NEW Post</Link> </li>
-                      <li><Link to="/uob">Category 1</Link></li>
-                      <li><Link to="/posts/category2">Category 2</Link></li>
-                      <li><Link to="/posts/category3">Category 3</Link></li>
-                  </ul>
-              
-                  </li>
-                    </div>
-
-
-              <div className='otherNav'>
-
-            <li> <Link onClick={handleSignout} to="">Sign Out</Link> </li>
-            
-           
-            </div>
-          </div>
-
+       
 
          
         </nav>
@@ -59,24 +42,13 @@ const NavBar = ({ user, handleSignout }) => {
               <img className="imginthenav" src="/logo.png" alt="UoB Logo" />
             </div>
           </Link>
-      </div>
-
-<div className='downNav'>
- <div className="dropNav">
-  
-  
-  
-    
-        </div>
 
 
-             <div className='otherNav'>
+          <div className='otherNav'>
             <li><Link to="/signin">Sign In</Link></li>
             <li><Link to="/signup">Sign Up</Link></li>
-  
-
             </div>
-</div>
+      </div>
 
 
 

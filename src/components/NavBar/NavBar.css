@@ -13,28 +13,19 @@ nav {
 }
 
 .topNav {
-  height: 60px;
+  height: 70px;
   background-color: #000000;
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0 10px;
-}
-
-.downNav {
-  height: 40px;
-  /* background-color: #000000; */
-  background-image: linear-gradient(to right,#2cc1fb, #0197d3);
-
-  display: flex;
   justify-content: space-between;
-  align-items: center;
+    align-items: center;
   padding: 0 10px;
 }
+
+
 
 .Navimg {
-  height: 90px;
-  width: 90px;
+  height: 140px;
+  width: 140px;
   display: flex;
   flex-direction: row;
   align-items: center;
