@@ -20,7 +20,7 @@ const CommentForm = ({handleAddComment}) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="text-input">Your comment:</label>
+      <label htmlFor="text-input">add reply:</label>
       <textarea
         required
         type="text"

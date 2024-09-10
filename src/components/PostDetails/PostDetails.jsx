@@ -13,21 +13,27 @@ import { Link } from 'react-router-dom';
 import AuthorDate from "../common/AuthorDate";
 import CommentForm from '../CommentForm/CommentForm';
 
+//func 
+import { deriveChannelPath } from "../../utils/helpers/urlHelpers";
 
 const PostDetails = ({user, handleDeletePost}) => {
-  const { postId } = useParams();
+  const { postid } = useParams();
   const [post, setPost] = useState(null);
+  console.log(postid)
+  const { uni, college, major, course, event } = useParams();
+  const path = deriveChannelPath({ uni, college, major, course, event });
+
 
   useEffect(()=>{
     async function getPost(){
-      const postData = await postService.show(postId)
+      const postData = await postService.show(path , postid)
       setPost(postData)
     }
     getPost()
-  },[postId])
+  },[postid])
 
   const handleAddComment = async (formData) => {
-    const newComment = await commentService.create(postId, formData)
+    const newComment = await commentService.create(path , postid, formData)
 
     const copyPost = {...post}
     copyPost.comments.push(newComment)
@@ -37,24 +43,24 @@ const PostDetails = ({user, handleDeletePost}) => {
 
 
   if(!post){
-    return <main><h3>No posts yet...</h3></main>
+    return <main><h3>borken...</h3></main>
   }
 
   return (
     <main>
       <header>
-        <p>{post.category.toUpperCase()}</p>
-        <h1>{post.title}</h1>
-        <AuthorDate name={post.author.username} date={post.createdAt}/>
-        {post.author._id === user.id && (
+        
+        {/* <AuthorDate name={post.user.username} date={post.createdAt}/>
+        {post.user._id === user.id && (
           <>
-            <button onClick={() => handleDeletePost(postId)}>Delete</button>
+            <button onClick={() => handleDeletePost(postid)}>Delete</button>
           </>
-        )}
+        )} */}
       </header>
+      <h4>{post.user.username}</h4>
       <p>{post.text}</p>
       <section>
-        <h2>Comments</h2>
+        <h2>replies</h2>
         <CommentForm handleAddComment={handleAddComment}/>
         {!post.comments.length && <p>There are no comments.</p>}
 
@@ -62,7 +68,8 @@ const PostDetails = ({user, handleDeletePost}) => {
           <article key={comment._id}>
             <header>
               <p>
-                {comment.author.username} posted on
+                {comment.user.username} posted on
+                {console.log(comment)}
                 {new Date(comment.createdAt).toLocaleDateString()}
               </p>
             </header>
