@@ -1,0 +1,60 @@
+.LandingRealContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 90vh;
+    text-align: center;
+  }
+  
+  .unbutton {
+    margin-top: 20px;
+  }
+  
+  .channelButtonun1 {
+    padding: 10px 20px;
+    background-image: linear-gradient(to right,#aadbee, #64caf1);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 30px;
+  }
+  
+  .channelButtonun1:hover {
+    background-image: linear-gradient(to right,#bfeafc, #7dd6f9);
+    font-size:32px ;
+    
+  }
+
+  .landingimg {
+    width: 600px; 
+    height: 300px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+    margin: 20px;
+  }
+  
+  .imginthelanding {
+    width: 100%; 
+    height: auto; 
+    border-radius: 10px; 
+    object-fit: cover; 
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
