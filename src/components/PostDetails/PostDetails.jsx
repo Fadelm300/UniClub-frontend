@@ -37,7 +37,7 @@ const PostDetails = ({user, handleDeletePost}) => {
 
 
   if(!post){
-    return <main><h3>Loading...</h3></main>
+    return <main><h3>No posts yet...</h3></main>
   }
 
   return (

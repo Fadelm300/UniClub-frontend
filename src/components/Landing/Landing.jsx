@@ -6,7 +6,7 @@ import { deriveChannelPath } from "../../utils/helpers/urlHelpers";
 import PostList from "../PostList/PostList";
 
 
-const Landing = () => {
+const Landing = ({user}) => {
   const [channel, setChannel] = useState({});
   // const [post, setPost] = useState({});
   const { uni, college, major, course, event } = useParams();
@@ -20,13 +20,6 @@ const Landing = () => {
     getChannel();
   }, [path]);
 
-  // useEffect(() => {
-  //   async function getPost() {
-  //     const postData = await postService.show(path);
-  //     setPost(postData);
-  //   }
-  //   getPost();
-  // }, [path]);
 
   console.log(channel.posts)
 
@@ -37,15 +30,14 @@ const Landing = () => {
         <div className="LandingPagecontener">
           <h1>{channel.name}</h1>
           <p>{channel.description}</p>
-          <Link to={`${path}/newpost`}>
-              <button className="buttons">add post</button>
-          </Link>
+          {user && (
+            <Link to={`${path}/newpost`}>
+              <button className="buttons">Add Post</button>
+            </Link>
+          )}
 
-          {/* <div className="card">
-            <div className="topCard"></div>
-            <div className="dawnCard"></div>
-          </div> */}
 
+         
             <PostList posts = {channel.posts} />
         </div>
 
@@ -57,6 +49,7 @@ const Landing = () => {
           ))}
         </div>
       </div>
+
     </main>
   );
 };

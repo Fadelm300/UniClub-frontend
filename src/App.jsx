@@ -78,11 +78,11 @@ const App = () => {
               element={<PostForm />}
             />
                  <Route path="/" element={<LandingReal  />} />
-            <Route path="/:uni" element={<Landing  />} />
-            <Route path="/:uni/:college" element={<Landing  />} />
-            <Route path="/:uni/:college/:major" element={<Landing  />} />
-            <Route path="/:uni/:college/:major/:course" element={<Landing  />} />
-            <Route path="/:uni/:college/:major/:course/:event" element={<Landing  />} />
+            <Route path="/:uni" element={<Landing  user={user} />} />
+            <Route path="/:uni/:college" element={<Landing user={user}  />} />
+            <Route path="/:uni/:college/:major" element={<Landing user={user}  />} />
+            <Route path="/:uni/:college/:major/:course" element={<Landing  user={user} />} />
+            <Route path="/:uni/:college/:major/:course/:event" element={<Landing  user={user} />} />
            PostForm
               {/* //add post */}
               <Route path="/:uni/newpost" element={<PostForm handleAddPost={handleAddPost} />} />
@@ -97,11 +97,11 @@ const App = () => {
             // Public Route:
             <>
             <Route path="/" element={<LandingReal  />} />
-            <Route path="/:uni" element={<Landing  />} />
-            <Route path="/:uni/:college" element={<Landing  />} />
-            <Route path="/:uni/:college/:major" element={<Landing  />} />
-            <Route path="/:uni/:college/:major/:course" element={<Landing  />} />
-            <Route path="/:uni/:college/:major/:course/:event" element={<Landing  />} />
+            <Route path="/:uni" element={<Landing user={user}  />} />
+            <Route path="/:uni/:college" element={<Landing user={user}  />} />
+            <Route path="/:uni/:college/:major" element={<Landing user={user}  />} />
+            <Route path="/:uni/:college/:major/:course" element={<Landing user={user}  />} />
+            <Route path="/:uni/:college/:major/:course/:event" element={<Landing  user={user} />} />
 
 
 

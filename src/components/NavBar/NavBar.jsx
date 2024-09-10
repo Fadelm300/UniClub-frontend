@@ -1,6 +1,13 @@
 import { Link } from 'react-router-dom';
 import './NavBar.css'
 const NavBar = ({ user, handleSignout }) => {
+
+
+
+
+
+
+
   return (
     <>
       { user ? (
@@ -33,8 +40,7 @@ const NavBar = ({ user, handleSignout }) => {
 
 
               <div className='otherNav'>
-              <li>  <Link to='/posts'>Posts</Link></li>
-              <li> <Link to="/posts/new">NEW Post</Link> </li>
+
             <li> <Link onClick={handleSignout} to="">Sign Out</Link> </li>
             
            
