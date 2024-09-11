@@ -1,29 +1,22 @@
 import { Link } from "react-router-dom";
-import  './Dashboard.css';
+import './Dashboard.css'; // Updated CSS file import
+
 const Dashboard = ({ user }) => {
   return (
-
-
-    <div className="channelsContainer">
+    <div className="channelsContainer22">
       <h1>Welcome, {user.username}</h1>
 
-      
-      <div className="landingimg">
-                     <img className="imginthelanding" src="/UOB1.jpg" alt="UoB pic" />
-                   </div>
+      <div className="landingimg22">
+        <img className="imginthelanding22" src="/UOB1.jpg" alt="UoB pic" />
+      </div>
 
-      <h1>choose the university</h1>
-      <div className="unbutton">
+      <div className="unbutton22">
         <Link to="/uob">
-          <button className="channelButtonun">University of Bahrain</button>
-
+          <button className="channelButtonun22">Universitya of Bahrain</button>
         </Link>
+      </div>
     </div>
-  </div>
-);
+  );
 };
 
 export default Dashboard;
-
-
-
