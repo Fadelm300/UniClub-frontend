@@ -49,6 +49,8 @@ const SigninForm = (props) => {
               value={formData.username}
               name="username"
               onChange={handleChange}
+              className="usernameinput"
+
             />
           </div>
           <div className="password">
@@ -61,6 +63,8 @@ const SigninForm = (props) => {
               value={formData.password}
               name="password"
               onChange={handleChange}
+              className="passwordinput"
+
             />
           </div>
         <div className='buttons'>

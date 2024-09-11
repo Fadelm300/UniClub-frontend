@@ -66,23 +66,27 @@ const PostDetails = ({user, handleDeletePost}) => {
       </button>)}
       <section>
         
-        <h2>replies</h2>
+        
         <CommentForm handleAddComment={handleAddComment} />
         {!post.comments.length && <p>There are no comments.</p>}
         <div className="commentShow">
+        <h4>replies</h4>
         {post.comments.map((comment) => (
          
          <div className="comments">
+          
          <article key={comment._id}>
             <header>
-             <div className="username"> 
-              <p>
-               {comment.user.username} posted on
+             <div className="usernamecontener"> 
+              <div>
+               {comment.user.username} 
+               </div>
+               <div>
                 {new Date(comment.createdAt).toLocaleDateString()}
-              </p>
               </div>
+              </div>
+            <div className="usercomment">{comment.text}</div>
             </header>
-            <p>{comment.text}</p>
           </article>
           </div>
         ))}

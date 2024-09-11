@@ -31,17 +31,43 @@
 }
 
 .commentShow {
-    background-image: linear-gradient(to right,#2cc1fb, #0197d3);    padding: 20px;
+    background-image: linear-gradient(to right, #2cc1fb, #2cc1fb);
     padding: 20px;
     border-radius: 8px;
+    max-height: 400px; 
+    overflow-y: scroll;
+    margin-top: 20px; 
 }
 
+
+
+.commentShow::-webkit-scrollbar{
+    display: none;
+  }
+
+
 .comments {
-    background-color: #fff;
+    background-color: #fff;  
     padding: 10px;
     border-radius: 4px;
     margin-top: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    
+}
+
+.usernamecontener {
+    display: flex;
+    justify-content: space-between; 
+    padding: 0px; 
+    color: #858181; 
+    border-bottom: 0.1px solid #333;
+}
+
+
+
+.usercomment {
+    line-height: 1.5;
+    color: #2b2d42;
 }
 
 /* Improve responsiveness */

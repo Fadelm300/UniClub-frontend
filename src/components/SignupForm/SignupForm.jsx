@@ -55,6 +55,8 @@ const SignupForm = (props) => {
               value={username}
               name="username"
               onChange={handleChange}
+              className="usernameinput"
+
             />
           </div>
           <div className="password">
@@ -66,6 +68,8 @@ const SignupForm = (props) => {
               name="password"
               autoComplete='off'
               onChange={handleChange}
+              className="passwordinput"
+
             />
           </div>
           <div className="password">
@@ -77,6 +81,7 @@ const SignupForm = (props) => {
               name="passwordConf"
               autoComplete='off'
               onChange={handleChange}
+              className="passwordinput"
             />
           </div>
           <div className="buttons">
