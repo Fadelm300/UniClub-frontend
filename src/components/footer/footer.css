@@ -1,105 +1,89 @@
 
 
-footer{
-    height: auto;
-    display: flex;
-    width: 100%;
-    font-family: monospace;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    color: white;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-content: center;
-    background-color: #657aed;
-    text-align: center;
-  }
+footer {
+  height: auto;
+  display: flex;
+  width: 100%;
+  font-family: 'Montserrat', sans-serif;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: white;
+  flex-direction: column;
+  align-content: center;
+  background-color: #4556b3; /* Adjusted to a slightly darker blue for harmony */
+  text-align: center;
+}
 
-  .footer-content h3{
+.footer-content h3 {
+  font-size: 15px;
+  text-transform: capitalize;
+}
 
-    font-size: 15px;
-    text-transform: capitalize;
-  
-  
-  }
-  .footer-contact p {
-    max-width: 500px;
-    margin: 15px auto;
-    line-height: 25px;
-    font-size: 323px;
-  }
-  
-  .footerHelp{
-  
-    list-style: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 10px 0;
-    padding: 0;
-  }
-  .footerHelp li {
-    margin: 0 10px;
-  }
-  .footerHelp a {
-  
-    text-decoration: none;
-    color: white;
-  }
+.footerHelp {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
+  padding: 0;
+}
 
-  .footerHelp a i {
-  
-    font-size: 1.1rem;
-    transition: color .4s ease ;
-  }
-  
-  .footerHelp a:hover  {
-  
-    color: #ffcc00;
-    text-decoration: underline;
-  }
-  .footer-bottom{
-  
-    font-size: 14px;
-    word-spacing: 2px;
-    text-decoration: capitalize;
-  
-  }
+.footerHelp li {
+  margin: 0 10px;
+}
 
-  .title{
+.footerHelp a {
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+}
 
-color: white;
-margin-bottom: 90px;
-font-family: 'Montserrat', sans-serif;
-text-align: center;
-font-size: 30px;
+.footerHelp a i {
+  font-size: 1.1rem;
+  transition: color .4s ease;
+}
 
+.footerHelp a:hover {
+  color: #ffd700; /* Harmonious gold color for hover effect */
+  text-decoration: underline;
+}
 
-  }
+.footer-bottom {
+  font-size: 14px;
+  word-spacing: 2px;
+  text-transform: capitalize;
+  color: #d1d1e0; /* Lighter color for the copyright text */
+}
 
+.title {
+  color: white;
+  margin-bottom: 90px;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  font-size: 30px;
+}
 
-  /* Responsive design */
+/* Responsive design */
 @media (max-width: 768px) {
   .footerHelp {
-    flex-direction: column;
+      flex-direction: column;
   }
 
   .footerHelp li {
-    margin: 5px 0;
+      margin: 5px 0;
   }
 }
 
 @media (max-width: 450px) {
   .footer-content h3 {
-    font-size: 13px;
+      font-size: 13px;
   }
 
   .footer-bottom {
-    font-size: 12px;
+      font-size: 12px;
   }
 
   .title {
-    font-size: 24px;
+      font-size: 24px;
   }
 }
-  
