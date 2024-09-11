@@ -38,7 +38,7 @@ const Landing = (props) => {
                       <Link key={subchannel.name} to={`${path}/${subchannel.name}`}>
                              <button className="channelButton">{subchannel.name}</button>
                       </Link>
-                               ))}
+                    ))}
                   </div>
               </div>
 
