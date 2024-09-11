@@ -9,19 +9,19 @@
 
 .user-profile h1 {
   font-size: 2rem;
-  color: #333;
+  color: #2b2d42;
   margin-bottom: 10px;
 }
 
 .user-profile h2 {
   font-size: 1.5rem;
-  color: #555;
+  color: #2b2d42;
   margin-bottom: 20px;
 }
 
 .user-profile p {
   font-size: 1rem;
-  color: #666;
+  color: #2b2d42;
   margin-bottom: 20px;
 }
 
@@ -48,10 +48,12 @@
 
 .user-profile a {
   text-decoration: none;
-  color: #0197d3;
+  color: #ad2727;
   font-size: 1rem;
+  font-weight: bold; /* Add this line to make the text bold */
   transition: color 0.3s ease;
 }
+
 
 .user-profile a:hover {
   color: #017bb3;
