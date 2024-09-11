@@ -1,4 +1,3 @@
-/* Main container for the file form */
 .Filemain {
     display: flex;
     justify-content: center;
@@ -6,7 +5,6 @@
     min-height: 100vh;
 }
 
-/* Styling for the form */
 .Fileform {
     background-color: white;
     padding: 20px;
@@ -19,14 +17,12 @@
     gap: 15px;
 }
 
-/* Container for the input fields */
 .FileContener {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-/* Label styling */
 .Fileform label {
     font-size: 1rem;
     font-weight: bold;
@@ -34,7 +30,6 @@
     margin-bottom: 5px;
 }
 
-/* Styling for input fields */
 .addFile {
     padding: 10px;
     font-size: 1rem;
@@ -51,7 +46,6 @@
     box-shadow: 0 0 8px rgba(1, 151, 211, 0.2);
 }
 
-/* Submit button styling */
 .Fileform button {
     padding: 10px 20px;
     font-size: 1rem;
@@ -60,7 +54,7 @@
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    align-self: flex-start;
+    align-self: center;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -69,7 +63,6 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
     .Fileform {
         padding: 15px;

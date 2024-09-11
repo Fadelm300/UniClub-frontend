@@ -31,8 +31,8 @@ const UserProfile = (props) => {
 
   return (
     <div className="user-profile">
-      <h1>{user?.username}'s Profile</h1>
-      <h2>Posts by {user?.username}</h2>
+      <h1>{user?.username} Profile</h1>
+      <h2>Your Posts </h2>
       {posts.length === 0 ? (
         <p>No posts yet</p>
       ) : (

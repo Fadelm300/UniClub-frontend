@@ -1,63 +1,74 @@
-/* UserProfile.css */
 .user-profile {
-  max-width: 800px;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 20px;
   background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  min-height: 100vh;
 }
 
 .user-profile h1 {
-  font-size: 2em;
+  font-size: 2rem;
   color: #333;
   margin-bottom: 10px;
 }
 
 .user-profile h2 {
-  font-size: 1.5em;
+  font-size: 1.5rem;
   color: #555;
   margin-bottom: 20px;
 }
 
 .user-profile p {
-  font-size: 1.2em;
+  font-size: 1rem;
   color: #666;
+  margin-bottom: 20px;
 }
 
 .user-profile ul {
-  list-style-type: none;
+  list-style: none;
   padding: 0;
+  width: 100%;
+  max-width: 600px;
 }
 
 .user-profile li {
-  background-color: #fff;
-  margin-bottom: 10px;
+  background-color: white;
   padding: 15px;
-  border-radius: 5px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  color: #333;
-  font-size: 1.1em;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .user-profile li:hover {
-  background-color: #f0f0f0;
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-@media (max-width: 600px) {
-  .user-profile {
-    padding: 10px;
+.user-profile a {
+  text-decoration: none;
+  color: #0197d3;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.user-profile a:hover {
+  color: #017bb3;
+}
+
+.user-profile .loading, .user-profile .error {
+  font-size: 1.2rem;
+  color: #ff0000;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .user-profile ul {
+      max-width: 100%;
   }
 
-  .user-profile h1 {
-    font-size: 1.5em;
-  }
-
-  .user-profile h2 {
-    font-size: 1.2em;
-  }
-
-  .user-profile p, .user-profile li {
-    font-size: 1em;
+  .user-profile h1, .user-profile h2 {
+      text-align: center;
   }
 }
