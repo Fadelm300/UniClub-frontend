@@ -3,6 +3,8 @@ import { Routes, Route, useNavigate } from 'react-router-dom';
 import authService from './services/authService';
 import postService from './services/postService';
 import channelService from './services/channelService';
+import FileService from './services/FileService';
+
 
 // Components
 import NavBar from './components/NavBar/NavBar';
@@ -14,6 +16,8 @@ import SigninForm from './components/SigninForm/SigninForm'
 import PostList from './components/PostList/PostList';
 import PostDetails from './components/PostDetails/PostDetails';
 import PostForm from './components/PostForm/PostForm';
+import FileForm from './components/FileForm/FileForm';
+
 import Footer from './components/footer/footer';
 
 import ChannelForm from './components/Channel/ChannelForm';
@@ -58,6 +62,11 @@ const App = () => {
     setPosts([...posts, newPost])
     navigate(path);
   }
+  const handleAddFile = async (formData,path) => {
+    const newFile = await FileService.create(formData , path);
+    navigate(path);
+  }
+
 
 
 
@@ -73,8 +82,8 @@ const App = () => {
   const handleDeletePost = async (postId, path) => {
     const deletedPost = await postService.delete(postId, path);
 
-    setPosts(posts.filter(post => post._id !== deletedPost._id))
-    // navigate('/posts');
+    setPosts(posts.filter(post => post._id !== deletedPost._id));
+    navigate(path);
   };
 
   return (
@@ -98,11 +107,11 @@ const App = () => {
                 
             <Route path="/" element={<LandingReal  />} />
 
-            <Route path="/:uni" element={<Landing  user={user}  handleDeletePost={handleDeletePost}  />} />
-            <Route path="/:uni/:college" element={<Landing user={user}  handleDeletePost={handleDeletePost}  />} />
-            <Route path="/:uni/:college/:major" element={<Landing user={user}   handleDeletePost={handleDeletePost} />} />
-            <Route path="/:uni/:college/:major/:course" element={<Landing  user={user}  handleDeletePost={handleDeletePost} />} />
-            <Route path="/:uni/:college/:major/:course/:event" element={<Landing  user={user} handleDeletePost={handleDeletePost}  />} />
+            <Route path="/:uni" element={<Landing  user={user}  />} />
+            <Route path="/:uni/:college" element={<Landing user={user}  />} />
+            <Route path="/:uni/:college/:major" element={<Landing user={user}  />} />
+            <Route path="/:uni/:college/:major/:course" element={<Landing  user={user} />} />
+            <Route path="/:uni/:college/:major/:course/:event" element={<Landing  user={user} />} />
 
             <Route path="/:uni/post/:postid" element={<PostDetails  user={user}  handleDeletePost={handleDeletePost}  />} />
             <Route path="/:uni/:college/post/:postid" element={<PostDetails user={user}  handleDeletePost={handleDeletePost}  />} />
@@ -122,6 +131,14 @@ const App = () => {
                 <Route path="/:uni/:college/newchannel" element={<ChannelForm handleAddchannel={handleAddchannel} />} />
                 <Route path="/:uni/:college/:major/newchannel" element={<ChannelForm handleAddchannel={handleAddchannel} />} />
                 <Route path="/:uni/:college/:major/:course/newchannel" element={<ChannelForm handleAddchannel={handleAddchannel} />} />
+              
+              {/* add file */}
+                <Route path="/:uni/newfile" element={<FileForm handleAddFile={handleAddFile} />} />
+                <Route path="/:uni/:college/newfile" element={<FileForm handleAddFile={handleAddFile} />} />
+                <Route path="/:uni/:college/:major/newfile" element={<FileForm handleAddFile={handleAddFile} />} />
+                <Route path="/:uni/:college/:major/:course/newfile" element={<FileForm handleAddFile={handleAddFile} />} />
+
+
 
 
 

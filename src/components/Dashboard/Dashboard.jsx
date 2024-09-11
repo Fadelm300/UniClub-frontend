@@ -6,6 +6,12 @@ const Dashboard = ({ user }) => {
 
     <div className="channelsContainer">
       <h1>Welcome, {user.username}</h1>
+
+      
+      <div className="landingimg">
+                     <img className="imginthelanding" src="/UOB1.jpg" alt="UoB pic" />
+                   </div>
+
       <h1>choose the university</h1>
       <div className="unbutton">
         <Link to="/uob">

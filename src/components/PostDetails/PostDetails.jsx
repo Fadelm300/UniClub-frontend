@@ -50,19 +50,24 @@ const PostDetails = ({user, handleDeletePost}) => {
   return (
     <main>
       <header>
-        
-        {/* <AuthorDate name={post.user.username} date={post.createdAt}/>
-        {post.user._id === user.id && (
+        {/* <AuthorDate name={post.user.username} date={post.createdAt}/> */}
+        {/* {post.user._id === user.id && (
           <>
-            <button onClick={() => handleDeletePost(postid)}>Delete</button>
+            <button onClick={() => handleDeletePost(postid, path)}>Delete</button>
           </>
         )} */}
       </header>
       <h4>{post.user.username}</h4>
       <p>{post.text}</p>
+      {post.user._id === user.id && (<button
+        className="deleteButton"
+        onClick={() => handleDeletePost(postid, path)}
+      >
+        Delete
+      </button>)}
       <section>
         <h2>replies</h2>
-        <CommentForm handleAddComment={handleAddComment}/>
+        <CommentForm handleAddComment={handleAddComment} />
         {!post.comments.length && <p>There are no comments.</p>}
 
         {post.comments.map((comment) => (
