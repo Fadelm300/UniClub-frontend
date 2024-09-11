@@ -4,13 +4,11 @@ import channelService from "../../services/channelService";
 import { useParams, Link } from "react-router-dom";
 import { deriveChannelPath } from "../../utils/helpers/urlHelpers";
 import PostList from "../PostList/PostList";
-
-
-
+import FileList from "../FileList/FileList";
 
 const Landing = (props) => {
   const [channel, setChannel] = useState({});
-  // const [post, setPost] = useState({});
+  const [viewType, setViewType] = useState("posts"); 
   const { uni, college, major, course, event } = useParams();
   const path = deriveChannelPath({ uni, college, major, course, event });
 
@@ -22,52 +20,53 @@ const Landing = (props) => {
     getChannel();
   }, [path]);
 
+  const handleViewChange = (type) => {
+    setViewType(type); 
+  };
 
   return (
     <main>
-      
       <div className="LandingPageMain">
         <div className="LandingPagecontener">
-         
-        
-
           <div className="landingpagContainer">
-                 <div className="channelsNAV">
-                  {channel.subchannels?.map((subchannel) => (
-                      <Link key={subchannel.name} to={`${path}/${subchannel.name}`}>
-                             <button className="channelButton">{subchannel.name}</button>
-                      </Link>
-                               ))}
-                  </div>
-              </div>
+            <div className="channelsNAV">
+              {channel.subchannels?.map((subchannel) => (
+                <Link key={subchannel.name} to={`${path}/${subchannel.name}`}>
+                  <button className="channelButton">{subchannel.name}</button>
+                </Link>
+              ))}
+            </div>
+          </div>
 
-
-        <h1>{channel.name}</h1>
+          <h1>{channel.name}</h1>
           <p>{channel.description}</p>
 
           {props.user && (
-            <>
             <div className="addbtn">
-            <Link to={`${path}/newpost`}>
-              <button className="buttons">Add Post</button>
-            </Link>
-         
-            <Link to={`${path}/newchannel`}>
-              <button className="buttons">Add channel</button>
-            </Link>
+              <button className="buttons" onClick={() => handleViewChange("files")}>Files</button>
+              <button className="buttons" onClick={() => handleViewChange("posts")}>Posts</button>
+              <Link to={`${path}/newpost`}>
+                <button className="buttons">Add Post</button>
+              </Link>
+              <Link to={`${path}/newchannel`}>
+                <button className="buttons">Add Channel</button>
+              </Link>
+              <Link to={`${path}/newfile`}>
+                <button className="buttons">Add File</button>
+              </Link>
             </div>
-         
-            </>
           )}
 
 
-          <PostList
-            posts={channel.posts}
-            path={path}
-          />
-        </div>
+         
+          {viewType === "posts" ? (
+            <PostList posts={channel.posts} handleDeletePost={props.handleDeletePost} path={path} />
+          ) : (
+            <FileList files={channel.files} path={path} />
+          )}
 
-       
+
+        </div>
       </div>
     </main>
   );
