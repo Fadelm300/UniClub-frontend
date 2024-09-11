@@ -37,6 +37,7 @@ const PostDetails = ({user, handleDeletePost}) => {
 
     const copyPost = {...post}
     copyPost.comments.push(newComment)
+    console.log("this one"+copyPost)
 
     setPost(copyPost)
   }
@@ -45,7 +46,7 @@ const PostDetails = ({user, handleDeletePost}) => {
   if(!post){
     return <main><h3>borken...</h3></main>
   }
-
+  console.log(post)
   return (
     <main>
       <header>
@@ -74,7 +75,6 @@ const PostDetails = ({user, handleDeletePost}) => {
             <header>
               <p>
                 {comment.user.username} posted on
-                {console.log(comment)}
                 {new Date(comment.createdAt).toLocaleDateString()}
               </p>
             </header>

@@ -29,6 +29,7 @@ const Landing = (props) => {
       <div className="LandingPageMain">
         <div className="LandingPagecontener">
           <div className="landingpagContainer">
+
             <div className="channelsNAV">
               {channel.subchannels?.map((subchannel) => (
                 <Link key={subchannel.name} to={`${path}/${subchannel.name}`}>
@@ -37,6 +38,7 @@ const Landing = (props) => {
               ))}
             </div>
           </div>
+
 
           <h1>{channel.name}</h1>
           <p>{channel.description}</p>

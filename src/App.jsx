@@ -162,6 +162,12 @@ const App = () => {
               path="/:uni/:college/:major/:course/:event"
               element={<Landing user={user} />}
             />
+
+            <Route path="/:uni/post/:postid" element={<PostDetails  user={user}  handleDeletePost={handleDeletePost}  />} />
+            <Route path="/:uni/:college/post/:postid" element={<PostDetails user={user}  handleDeletePost={handleDeletePost}  />} />
+            <Route path="/:uni/:college/:major/post/:postid" element={<PostDetails user={user}   handleDeletePost={handleDeletePost} />} />
+            <Route path="/:uni/:college/:major/:course/post/:postid" element={<PostDetails  user={user}  handleDeletePost={handleDeletePost} />} />
+            <Route path="/:uni/:college/:major/:course/:event/post/:postid" element={<PostDetails  user={user} handleDeletePost={handleDeletePost}  />} />
           </>
         )}
 
