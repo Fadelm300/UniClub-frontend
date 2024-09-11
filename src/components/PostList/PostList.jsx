@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import './PostList.css'
+import './PostList.css';
 
 const PostList = (props) => {
-  if (!props.posts || props.posts.length === 0) return <main>no posts yet</main>;
+  if (!props.posts || props.posts.length === 0) return <main>No posts yet</main>;
 
   return (
     <>
@@ -13,14 +13,15 @@ const PostList = (props) => {
           <Link key={idx} to={`${props.path}/post/${post._id}`}>
             <div className="card">
               <div className="topCard">
-                <p>{post.text}</p>
-                <p>{post.user.username}</p>
-                <p>
-                  {postDate.toLocaleDateString()}{" "}
-                  {postDate.toLocaleTimeString()}{" "}
-                </p>
+                <div className="topcardtex">{post.text}</div>
               </div>
               <div className="dawnCard">
+                <div className="dawncardusername">{post.user.username}</div>
+                <div className="dawncardDate">
+                  {postDate.toLocaleDateString()}
+                  <span> | </span>
+                  {postDate.toLocaleTimeString()}
+                </div>
               </div>
             </div>
           </Link>

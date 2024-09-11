@@ -28,7 +28,7 @@ const PostForm = ({handleAddPost}) => {
             <div className="postContener">
 
 
-            <label htmlFor="">text</label>
+            <label htmlFor="">Add text for post </label>
             <input name='text' type="text"  className='addpost' onChange={handleChange}/>
 
 
@@ -36,7 +36,7 @@ const PostForm = ({handleAddPost}) => {
         
 
         
-        <button type="submitPost">SUBMIT</button>
+        <button type="submitpost" className='submitpost'>SUBMIT</button>
       </form>
       </div>
     </main>

@@ -1,22 +1,89 @@
-.postmain {
+.Postmain {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
-    background-color: #f4f4f4;
-}
-
-
-.postform {
+    min-height: 100vh;
+  }
+  
+  .postform {
     width: 100%;
-    max-width: 800px;
-    background-image: linear-gradient(to right,#ffffff, #0197d3);    padding: 20px;
+    max-width: 600px;
+    background-image: linear-gradient(to right, #82bdf8, #01bfff); /* Bright blue gradient */
+    padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.postContener {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-}
+    align-items: center;
+  }
+  
+  .postContener {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .postContener label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #2b80b4;
+  }
+  
+  .addpost {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+  
+  .submitpost {
+    background-color: #0197d3;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+  }
+  
+  .submitpost:hover {
+    background-color: #017bbd;
+  }
+  
+  @media (max-width: 768px) {
+    .postform {
+      padding: 15px;
+    }
+  
+    .addpost {
+      font-size: 0.9rem;
+    }
+  
+    .submitpost {
+      font-size: 0.9rem;
+      padding: 8px 16px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .postform {
+      padding: 10px;
+    }
+  
+    .addpost {
+      font-size: 0.8rem;
+      padding: 8px;
+    }
+  
+    .submitpost {
+      font-size: 0.8rem;
+      padding: 6px 12px;
+    }
+  }
+  
