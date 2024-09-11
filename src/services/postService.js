@@ -50,4 +50,27 @@ const deletePost = async (postId, path) => {
   }
 }
 
-export default { index, show, create, delete: deletePost };
+const getPostsByUser = async (userId) => {
+  try {
+    const token = localStorage.getItem('token');
+
+    const response = await fetch(`${BASE_URL}/user/${userId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch posts by user');
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching posts by user:', error);
+    throw error;
+  }
+};
+
+
+
+export default { index, show, create, delete: deletePost , getPostsByUser};

@@ -17,7 +17,7 @@ import PostForm from './components/PostForm/PostForm';
 import Footer from './components/footer/footer';
 
 import ChannelForm from './components/Channel/ChannelForm';
-
+import UserProfile from './components/UserProfile/UserProfile';
 
 
 import Help from "./components/Help/help";
@@ -84,6 +84,8 @@ const App = () => {
         {user ? (
           // Protected Routes:
           <>
+             <Route path="/profile/:userId" element={<UserProfile />} />
+            
             <Route path="/" element={<Dashboard user={user} />} />
             <Route path="/posts" element={<PostList posts={posts} />} />
             <Route
@@ -150,7 +152,7 @@ const App = () => {
 
         <Route path="/signup" element={<SignupForm setUser={setUser} />} />
         <Route path="/signin" element={<SigninForm setUser={setUser} />} />
-
+       
         <Route path="/help" element={<Help />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />

@@ -72,6 +72,27 @@ const signin = async (user) => {
   }
 };
 
+
+
+const getUserProfile = async (userId) => {
+  try {
+    const token = localStorage.getItem('token');
+    const response = await fetch(`${BACKEND_URL}/profiles/${userId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch user profile');
+    }
+
+    return await response.json();
+  } catch (error) {
+    throw new Error('Error fetching user profile: ' + error.message);
+  }
+};
+
 export default {
-  signup, signin, getUser, signout
+  signup, signin, getUser, signout , getUserProfile
 };
