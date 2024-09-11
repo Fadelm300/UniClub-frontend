@@ -9,7 +9,6 @@ import PostList from "../PostList/PostList";
 
 
 const Landing = (props) => {
-  console.log(props.handleDeletePost)
   const [channel, setChannel] = useState({});
   // const [post, setPost] = useState({});
   const { uni, college, major, course, event } = useParams();
@@ -64,7 +63,6 @@ const Landing = (props) => {
 
           <PostList
             posts={channel.posts}
-            handleDeletePost={props.handleDeletePost}
             path={path}
           />
         </div>
