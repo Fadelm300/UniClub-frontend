@@ -6,7 +6,7 @@
 }
 
 .Fileform {
-    background-color: white;
+    background-image: linear-gradient(to right, #82bdf8, #01bfff); /* Bright blue gradient */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -41,7 +41,7 @@
 }
 
 .addFile:focus {
-    border-color: #0197d3;
+    background-image: linear-gradient(to right, #01bfff, #01bfff); /* Bright blue gradient */
     outline: none;
     box-shadow: 0 0 8px rgba(1, 151, 211, 0.2);
 }
@@ -50,7 +50,7 @@
     padding: 10px 20px;
     font-size: 1rem;
     color: white;
-    background-color: #0197d3;
+    background-image: linear-gradient(to right, #01bfff, #01bfff); /* Bright blue gradient */
     border: none;
     border-radius: 6px;
     cursor: pointer;

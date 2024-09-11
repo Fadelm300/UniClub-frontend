@@ -32,6 +32,7 @@ const UserProfile = (props) => {
   return (
     <div className="user-profile">
       <h1>{user?.username} Profile</h1>
+      <img src="https://img.icons8.com/?size=100&id=kfZajSPygW1l&format=png&color=000000" alt="" />
       <h2>Your Posts </h2>
       {posts.length === 0 ? (
         <p>No posts yet</p>
