@@ -1,7 +1,7 @@
 
 # UniClub
 
-## Date: 12/9/2024
+## Date:12/9/2024
 
 ## website description :
 UniClub Application is an app developed to allow the users to add channels for university courses, and add comments, posts, details related to each course in order to have a technical community in the university, that everyone can share their added comments, details, and posts with every student in the university.
