@@ -68,8 +68,12 @@ h1 {
     text-transform: uppercase;
   }
   .channelButton:hover {
-    background-color: #00cccc;
-  }
+    transition: all 0.3s ease-in-out;
+    border-radius: 25%;
+    background-color: #8d99ae; 
+    border: px solid #edf2f4; 
+
+}
   
   .channelButton {
     padding: 10px 20px;
@@ -108,7 +112,7 @@ h1 {
     text-align: center;
 }
 
-.addbtn button:hover {
+.buttonsfiles:hover ,.buttonsposts:hover ,.buttonsAddPost:hover,.buttonsAddChannel:hover,.buttonsAddFile:hover {
     color: #aefffe;
     border: 2px solid #67c1e7;
     font-size: 20px; 

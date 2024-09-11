@@ -8,14 +8,13 @@
   font-family: 'Poppins', sans-serif;
 }
 
-/* Main navigation styles */
 nav {
   height: auto;
 }
 
 .topNav {
   height: 70px;
-  background-color: #2b2d42; /* Deep indigo for a modern feel */
+  background-color: #2b2d42; 
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -40,7 +39,7 @@ nav a {
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: #edf2f4; /* Soft off-white for clean contrast */
+  color: #edf2f4;
   font-size: 18px;
 }
 
@@ -48,8 +47,8 @@ nav a:hover {
   font-size: 20px;
   transition: all 0.3s ease-in-out;
   border-radius: 25%;
-  background-color: #8d99ae; /* Muted blue-gray for a subtle hover effect */
-  border: 2px solid #edf2f4; /* Matches the text color */
+  background-color: #8d99ae; 
+  border: 2px solid #edf2f4; 
 }
 
 nav .logoHome:hover {

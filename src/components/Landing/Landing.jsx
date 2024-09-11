@@ -45,18 +45,26 @@ const Landing = (props) => {
 
           {props.user && (
             <div className="addbtn">
-              <button className="buttonsfiles" onClick={() => handleViewChange("files")}>Files</button>
-              <button className="buttonsposts" onClick={() => handleViewChange("posts")}>Posts</button>
-              <Link to={`${path}/newpost`}>
-                <button className="buttonsAddPost">Add Post</button>
-              </Link>
-              <Link to={`${path}/newchannel`}>
-                <button className="buttonsAddChannel">Add Channel</button>
-              </Link>
-              <Link to={`${path}/newfile`}>
-                <button className="buttonsAddFile">Add File</button>
-              </Link>
+                <Link>
+                <button className="buttonsfiles" onClick={() => handleViewChange("files")}>
+                  Files
+                </button></Link>
+                <Link>
+                <button className="buttonsposts" onClick={() => handleViewChange("posts")}>
+                  Posts
+                </button>
+                </Link>
+                <Link to={`${path}/newpost`}>
+                  <button className="buttonsAddPost">Add Post</button>
+                </Link>
+                <Link to={`${path}/newchannel`}>
+                  <button className="buttonsAddChannel">Add Channel</button>
+                </Link>
+                <Link to={`${path}/newfile`}>
+                  <button className="buttonsAddFile">Add File</button>
+                </Link>
             </div>
+
           )}
 
 
