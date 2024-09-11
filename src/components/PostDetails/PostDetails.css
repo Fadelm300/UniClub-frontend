@@ -43,3 +43,18 @@
     margin-top: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+/* Improve responsiveness */
+@media (max-width: 768px) {
+    .postform {
+        padding: 15px;
+    }
+
+    .PostShow, .commentShow {
+        padding: 15px;
+    }
+
+    .comments {
+        padding: 10px;
+    }
+}

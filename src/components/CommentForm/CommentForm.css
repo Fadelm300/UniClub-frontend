@@ -1,0 +1,77 @@
+.m22 {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.m22 label {
+    font-size: 1rem;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.replaycom {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    resize: vertical;
+    font-family: 'Arial', sans-serif;
+    font-size: 1rem;
+    color: #333;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
+}
+
+.replaycom:focus {
+    border-color: #0197d3;
+    outline: none;
+    box-shadow: 0 0 8px rgba(1, 151, 211, 0.2);
+}
+
+.comsubmit {
+    width: 150px;
+    background-color: #0197d3;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    align-self: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.comsubmit:hover {
+    background-color: #017bb3;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .m22 {
+        padding: 10px;
+    }
+
+    .comsubmit {
+        width: 150px;
+        background-color: #0197d3;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 6px;
+        font-size: 1rem;
+        cursor: pointer;
+        align-self: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+}

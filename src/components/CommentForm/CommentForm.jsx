@@ -1,7 +1,7 @@
 // src/components/CommentForm/CommentForm.jsx
 
 import { useState, useEffect } from 'react';
-
+import './CommentForm.css'
 import commentService from '../../services/commentService';
 
 const CommentForm = ({handleAddComment}) => {
@@ -19,7 +19,7 @@ const CommentForm = ({handleAddComment}) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='m22'>
       <label htmlFor="text-input">add reply:</label>
       <textarea
         required
@@ -28,8 +28,9 @@ const CommentForm = ({handleAddComment}) => {
         id="text-input"
         value={formData.text}
         onChange={handleChange}
+        className='replaycom'
       />
-      <button type="submit">SUBMIT COMMENT</button>
+      <button type="submit" className='comsubmit'>SUBMIT COMMENT</button>
     </form>
   );
 };

@@ -45,16 +45,16 @@ const Landing = (props) => {
 
           {props.user && (
             <div className="addbtn">
-              <button className="buttons" onClick={() => handleViewChange("files")}>Files</button>
-              <button className="buttons" onClick={() => handleViewChange("posts")}>Posts</button>
+              <button className="buttonsfiles" onClick={() => handleViewChange("files")}>Files</button>
+              <button className="buttonsposts" onClick={() => handleViewChange("posts")}>Posts</button>
               <Link to={`${path}/newpost`}>
-                <button className="buttons">Add Post</button>
+                <button className="buttonsAddPost">Add Post</button>
               </Link>
               <Link to={`${path}/newchannel`}>
-                <button className="buttons">Add Channel</button>
+                <button className="buttonsAddChannel">Add Channel</button>
               </Link>
               <Link to={`${path}/newfile`}>
-                <button className="buttons">Add File</button>
+                <button className="buttonsAddFile">Add File</button>
               </Link>
             </div>
           )}

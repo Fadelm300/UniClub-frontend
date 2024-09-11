@@ -8,20 +8,19 @@
   font-family: 'Poppins', sans-serif;
 }
 
+/* Main navigation styles */
 nav {
   height: auto;
 }
 
 .topNav {
   height: 70px;
-  background-color: #000000;
+  background-color: #2b2d42; /* Deep indigo for a modern feel */
   display: flex;
   justify-content: space-between;
-    align-items: center;
+  align-items: center;
   padding: 0 10px;
 }
-
-
 
 .Navimg {
   height: 140px;
@@ -41,7 +40,7 @@ nav a {
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: #f0f0f0;
+  color: #edf2f4; /* Soft off-white for clean contrast */
   font-size: 18px;
 }
 
@@ -49,66 +48,28 @@ nav a:hover {
   font-size: 20px;
   transition: all 0.3s ease-in-out;
   border-radius: 25%;
-
-  background-color: #2384aa;
-  border: 2px solid  rgb(255, 255, 255);
- 
+  background-color: #8d99ae; /* Muted blue-gray for a subtle hover effect */
+  border: 2px solid #edf2f4; /* Matches the text color */
 }
 
 nav .logoHome:hover {
-  background-color: #000000;
+  background-color: #2b2d42;
 }
 
 .Category {
-  color: aliceblue;
+  color: #edf2f4;
 }
 
-.dropNav {
-  display: flex;
-  align-items: center;
-  position: relative;
-}
 
-.dropdownMenu {
-  display: none;
-  position: absolute;
-  background-color: #0f1016;
-  top: 100%;
-  left: 0;
-  min-width: 150px;
-  border-radius: 4px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
 
-.dropdownMenu li {
-  width: 100%;
-}
 
-.dropdownMenu li a {
-  padding: 10px 15px;
-  width: 100%;
-  display: block;
-  color: #f0f0f0;
-  border-radius: 0%;
-}
 
-.dropdownMenu li a:hover {
-  background-color: #006aff;
-}
 
-.dropNav:hover .dropdownMenu {
-  display: block;
-}
 
 .otherNav {
   display: flex;
   align-items: center;
 }
-
-
-
-
-
 
 /* Responsive design */
 @media (max-width: 768px) {

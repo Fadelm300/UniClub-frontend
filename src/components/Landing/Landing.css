@@ -62,8 +62,11 @@ h1 {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+}
+
+.titlename {
+    text-transform: uppercase;
   }
-  
   .channelButton:hover {
     background-color: #00cccc;
   }
@@ -78,44 +81,68 @@ h1 {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
-
-
-
-  .addbtn .buttons {
-    height: 7vh;
-    width: 150px;
-    border: 0;
-    border-radius: 10px;
-    font-size: 15px;
-    background-image: linear-gradient(to right, #2cc1fb, #0197d3);
-    color: white;
-    cursor: pointer;
-    transition: font-size 0.3s ease, background-color 0.3s ease;
 }
 
 
-.addbtn :hover{
-    font-size: 19px;    
-    background-image: linear-gradient(to right,#13a6e1, #0197d3);
-    border-radius: 10px;
 
-}
-.titlename {
-    text-transform: uppercase;
-  }
-
-.addbtn{
+.addbtn {
     display: flex;
-    gap: 20px;
-    padding-top: 20px;
+    flex-wrap: wrap; 
+    gap: 10px;        
+    margin-top: 20px; 
+    justify-content: center;
 }
 
-.buttons :hover{
+
+.addbtn button {
+    background-color: #0197d3;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    min-width: 150px;
+    text-align: center;
+}
+
+.addbtn button:hover {
     color: #aefffe;
     border: 2px solid #67c1e7;
     font-size: 20px; 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
+@media (max-width: 768px) {
+    .addbtn button {
+        width: 100%;   
+        min-width: unset;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* level up */
 
