@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom'; // Import Link
 import authService from '../../services/authService';
 import './UserProfile.css';
 
-const UserProfile = () => {
+const UserProfile = (props) => {
   const { userId } = useParams();
   const [user, setUser] = useState(null);
   const [posts, setPosts] = useState([]); 
@@ -38,7 +38,9 @@ const UserProfile = () => {
       ) : (
         <ul>
           {posts.map((post) => (
-            <li key={post._id}>{post.text}</li>
+            <li key={post._id}>
+              <Link key={post._id} to={`/${post.path}/post/${post._id}`}>{post.text}</Link> 
+            </li>
           ))}
         </ul>
       )}

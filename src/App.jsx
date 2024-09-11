@@ -85,7 +85,7 @@ const App = () => {
           // Protected Routes:
           <>
              <Route path="/profile/:userId" element={<UserProfile />} />
-            
+             
             <Route path="/" element={<Dashboard user={user} />} />
             <Route path="/posts" element={<PostList posts={posts} />} />
             <Route
