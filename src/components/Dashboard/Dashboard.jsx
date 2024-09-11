@@ -12,7 +12,7 @@ const Dashboard = ({ user }) => {
 
       <div className="unbutton22">
         <Link to="/uob">
-          <button className="channelButtonun22">Universitya of Bahrain</button>
+          <button className="channelButtonun22">University of Bahrain</button>
         </Link>
       </div>
     </div>
