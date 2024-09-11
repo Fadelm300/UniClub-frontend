@@ -40,7 +40,7 @@ console.log(path)
         
 
         
-        <button type="submitchannel">SUBMIT</button>
+        <button type="submitchannel"><img  src="https://img.icons8.com/?size=50&id=24717&format=png&color=000000" alt="submitlogo" /></button>
       </form>
       </div>
     </main>

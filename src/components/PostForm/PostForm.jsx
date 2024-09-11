@@ -36,7 +36,7 @@ const PostForm = ({handleAddPost}) => {
         
 
         
-        <button type="submitpost" className='submitpost'>SUBMIT</button>
+        <button type="submitpost" className='submitpost'><img  src="https://img.icons8.com/?size=70&id=24717&format=png&color=000000" alt="submitlogo" /></button>
       </form>
       </div>
     </main>

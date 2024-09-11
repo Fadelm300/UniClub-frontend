@@ -30,7 +30,7 @@ const CommentForm = ({handleAddComment}) => {
         onChange={handleChange}
         className='replaycom'
       />
-      <button type="submit" className='comsubmit'>SUBMIT COMMENT</button>
+      <button type="submit" className='comsubmit'><img  src="https://img.icons8.com/?size=50&id=24717&format=png&color=000000" alt="submitlogo" /></button>
     </form>
   );
 };

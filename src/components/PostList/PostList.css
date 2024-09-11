@@ -24,7 +24,7 @@ a {
 .card {
   width: 400px;
   height: 400px;
-  background-color: #92d5f7;
+  background-image: linear-gradient(to right, #28c6fa, #5abdde); /* Bright blue gradient */
   margin: 50px auto;
   border-radius: 30px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -39,7 +39,7 @@ a {
 .dawnCard {
   width: 100%;
   height: 25%;
-  background-color: rgb(4, 0, 255);
+  background-image: linear-gradient(to right, #90cbdd, #99def8); 
   padding: 10px;
 }
 

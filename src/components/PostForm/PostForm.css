@@ -41,7 +41,7 @@
   }
   
   .submitpost {
-    background-color: #0197d3;
+    background-image: linear-gradient(to right, #01bfff, #01bfff); 
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -53,7 +53,7 @@
   }
   
   .submitpost:hover {
-    background-color: #017bbd;
+    background-image: linear-gradient(to right, #01bfff, #01bfff);
   }
   
   @media (max-width: 768px) {
