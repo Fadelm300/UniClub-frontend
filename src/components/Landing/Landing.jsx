@@ -40,7 +40,7 @@ const Landing = (props) => {
           </div>
 
 
-          <h1>{channel.name}</h1>
+          <h1 className="titlename">{channel.name}</h1>
           <p>{channel.description}</p>
 
           {props.user && (

@@ -101,7 +101,9 @@ h1 {
     border-radius: 10px;
 
 }
-
+.titlename {
+    text-transform: uppercase;
+  }
 
 .addbtn{
     display: flex;

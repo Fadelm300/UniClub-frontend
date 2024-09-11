@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-
+import './PostDetails.css';
 // Services
 import postService from "../../services/postService";
 import commentService from "../../services/commentService";
@@ -49,16 +49,15 @@ const PostDetails = ({user, handleDeletePost}) => {
   console.log(post)
   return (
     <main>
-      <header>
-        {/* <AuthorDate name={post.user.username} date={post.createdAt}/> */}
-        {/* {post.user._id === user.id && (
-          <>
-            <button onClick={() => handleDeletePost(postid, path)}>Delete</button>
-          </>
-        )} */}
-      </header>
+      <div className="postmain">
+        
+    
+      <div className="postform">
+        <div className="postContener">
+          <div className="PostShow">
       <h4>{post.user.username}</h4>
       <p>{post.text}</p>
+      </div>
       {post.user._id === user.id && (<button
         className="deleteButton"
         onClick={() => handleDeletePost(postid, path)}
@@ -66,22 +65,32 @@ const PostDetails = ({user, handleDeletePost}) => {
         Delete
       </button>)}
       <section>
+        
         <h2>replies</h2>
         <CommentForm handleAddComment={handleAddComment} />
         {!post.comments.length && <p>There are no comments.</p>}
-
+        <div className="commentShow">
         {post.comments.map((comment) => (
-          <article key={comment._id}>
+         
+         <div className="comments">
+         <article key={comment._id}>
             <header>
+             <div className="username"> 
               <p>
-                {comment.user.username} posted on
+               {comment.user.username} posted on
                 {new Date(comment.createdAt).toLocaleDateString()}
               </p>
+              </div>
             </header>
             <p>{comment.text}</p>
           </article>
+          </div>
         ))}
+          </div>
       </section>
+      </div>
+      </div>
+      </div>
     </main>
   );
 };
