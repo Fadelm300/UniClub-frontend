@@ -1,7 +1,7 @@
-const BASE_URL = `${import.meta.env.VITE_BACKEND_URL}/posts`;
+const BASE_URL = `${import.meta.env.VITE_BACKEND_URL}/comments`;
 
 
-const create = async (postId, formData) => {
+const create = async (path , postId, formData) => {
   try {
     const options = {
       method: 'POST',
@@ -12,7 +12,7 @@ const create = async (postId, formData) => {
       body: JSON.stringify(formData)
     }
 
-    const res = await fetch(`${BASE_URL}/${postId}/comments/`, options)
+    const res = await fetch(`${BASE_URL}${path}/${postId}`, options)
 
     return res.json()
   }catch(e){

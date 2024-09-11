@@ -96,12 +96,19 @@ const App = () => {
      
 
                 
-                 <Route path="/" element={<LandingReal  />} />
+            <Route path="/" element={<LandingReal  />} />
+
             <Route path="/:uni" element={<Landing  user={user}  handleDeletePost={handleDeletePost}  />} />
             <Route path="/:uni/:college" element={<Landing user={user}  handleDeletePost={handleDeletePost}  />} />
             <Route path="/:uni/:college/:major" element={<Landing user={user}   handleDeletePost={handleDeletePost} />} />
             <Route path="/:uni/:college/:major/:course" element={<Landing  user={user}  handleDeletePost={handleDeletePost} />} />
             <Route path="/:uni/:college/:major/:course/:event" element={<Landing  user={user} handleDeletePost={handleDeletePost}  />} />
+
+            <Route path="/:uni/post/:postid" element={<PostDetails  user={user}  handleDeletePost={handleDeletePost}  />} />
+            <Route path="/:uni/:college/post/:postid" element={<PostDetails user={user}  handleDeletePost={handleDeletePost}  />} />
+            <Route path="/:uni/:college/:major/post/:postid" element={<PostDetails user={user}   handleDeletePost={handleDeletePost} />} />
+            <Route path="/:uni/:college/:major/:course/post/:postid" element={<PostDetails  user={user}  handleDeletePost={handleDeletePost} />} />
+            <Route path="/:uni/:college/:major/:course/:event/post/:postid" element={<PostDetails  user={user} handleDeletePost={handleDeletePost}  />} />
              
               {/* //add post */}
               <Route path="/:uni/newpost" element={<PostForm handleAddPost={handleAddPost} />} />

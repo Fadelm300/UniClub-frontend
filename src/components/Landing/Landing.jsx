@@ -23,7 +23,6 @@ const Landing = (props) => {
     getChannel();
   }, [path]);
 
-  console.log(channel.posts);
 
   return (
     <main>
