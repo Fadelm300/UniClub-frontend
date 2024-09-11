@@ -82,8 +82,8 @@ const App = () => {
   const handleDeletePost = async (postId, path) => {
     const deletedPost = await postService.delete(postId, path);
 
-    setPosts(posts.filter(post => post._id !== deletedPost._id))
-    // navigate('/posts');
+    setPosts(posts.filter(post => post._id !== deletedPost._id));
+    navigate(path);
   };
 
   return (
@@ -107,11 +107,11 @@ const App = () => {
                 
             <Route path="/" element={<LandingReal  />} />
 
-            <Route path="/:uni" element={<Landing  user={user}  handleDeletePost={handleDeletePost}  />} />
-            <Route path="/:uni/:college" element={<Landing user={user}  handleDeletePost={handleDeletePost}  />} />
-            <Route path="/:uni/:college/:major" element={<Landing user={user}   handleDeletePost={handleDeletePost} />} />
-            <Route path="/:uni/:college/:major/:course" element={<Landing  user={user}  handleDeletePost={handleDeletePost} />} />
-            <Route path="/:uni/:college/:major/:course/:event" element={<Landing  user={user} handleDeletePost={handleDeletePost}  />} />
+            <Route path="/:uni" element={<Landing  user={user}  />} />
+            <Route path="/:uni/:college" element={<Landing user={user}  />} />
+            <Route path="/:uni/:college/:major" element={<Landing user={user}  />} />
+            <Route path="/:uni/:college/:major/:course" element={<Landing  user={user} />} />
+            <Route path="/:uni/:college/:major/:course/:event" element={<Landing  user={user} />} />
 
             <Route path="/:uni/post/:postid" element={<PostDetails  user={user}  handleDeletePost={handleDeletePost}  />} />
             <Route path="/:uni/:college/post/:postid" element={<PostDetails user={user}  handleDeletePost={handleDeletePost}  />} />

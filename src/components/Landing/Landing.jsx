@@ -8,7 +8,7 @@ import FileList from "../FileList/FileList";
 
 const Landing = (props) => {
   const [channel, setChannel] = useState({});
-  const [viewType, setViewType] = useState("posts"); // 'posts' or 'files'
+  const [viewType, setViewType] = useState("posts"); 
   const { uni, college, major, course, event } = useParams();
   const path = deriveChannelPath({ uni, college, major, course, event });
 
@@ -21,7 +21,7 @@ const Landing = (props) => {
   }, [path]);
 
   const handleViewChange = (type) => {
-    setViewType(type); // Update the view type based on button click
+    setViewType(type); 
   };
 
   return (
@@ -57,12 +57,15 @@ const Landing = (props) => {
             </div>
           )}
 
-          {/* Conditionally render PostList or FileList based on viewType */}
+
+         
           {viewType === "posts" ? (
             <PostList posts={channel.posts} handleDeletePost={props.handleDeletePost} path={path} />
           ) : (
             <FileList files={channel.files} path={path} />
           )}
+
+
         </div>
       </div>
     </main>
