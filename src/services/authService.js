@@ -17,8 +17,8 @@ const getUser = () =>  {
     return user;
 
   } catch (err) {
-
-    return null
+    console.log(err);
+    return err;
   }
 
 }
