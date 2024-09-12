@@ -7,7 +7,6 @@ import { deriveChannelPath } from "../../utils/helpers/urlHelpers";
 const ChannelForm = ({handleAddchannel}) => {
   const { uni, college, major, course, event } = useParams();
   const path = deriveChannelPath({ uni, college, major, course, event });
-console.log(path)
   const [formData, setFormData] = useState({
    
     name: '',

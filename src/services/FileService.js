@@ -50,4 +50,22 @@ const deleteFile = async (FileId, path) => {
   }
 }
 
-export default { index, show, create, delete: deleteFile };
+
+const updateFile = async (formData, FileId, path) => {
+  try {
+    const options = {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        body: JSON.stringify(formData),
+      },
+    };
+
+    const res = await fetch(`${BASE_URL}/${path}/${FileId}`, options);
+    return res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export default { index, show, create, delete: deleteFile, updateFile };

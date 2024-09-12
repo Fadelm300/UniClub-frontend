@@ -33,6 +33,7 @@ import Contact from "./components/Contact/contact";
 const App = () => {
   const [user, setUser] = useState(authService.getUser());
   const [posts, setPosts] = useState([]);
+  const [files, setFiles] = useState([]);
   // const [channel, setChannel] = useState([]);
   const navigate = useNavigate();
 
@@ -59,11 +60,12 @@ const App = () => {
 
   const handleAddPost = async (formData,path) => {
     const newPost = await postService.create(formData , path);
-    setPosts([...posts, newPost])
+    setPosts([...posts, newPost]);
     navigate(path);
   }
   const handleAddFile = async (formData,path) => {
     const newFile = await FileService.create(formData , path);
+    setFiles([...files, newFile]);
     navigate(path);
   }
 
@@ -86,6 +88,18 @@ const App = () => {
     navigate(path);
   };
 
+  const handleDeleteFile = async (fileId, path) => {
+    const deletedFile = await FileService.delete(fileId, path);
+
+    setFiles(files.filter((file) => file._id !== deletedFile._id));
+
+  };
+
+
+  const handleUpdateFile = async (formData, fileId, path) => {
+    const updateFile = await FileService.updateFile(formData, fileId, path);
+  };
+
   return (
     <>
       <NavBar user={user} handleSignout={handleSignout} />
@@ -93,8 +107,8 @@ const App = () => {
         {user ? (
           // Protected Routes:
           <>
-             <Route path="/profile/:userId" element={<UserProfile />} />
-             
+            <Route path="/profile/:userId" element={<UserProfile />} />
+
             <Route path="/" element={<Dashboard user={user} />} />
             <Route path="/posts" element={<PostList posts={posts} />} />
             <Route
@@ -104,47 +118,148 @@ const App = () => {
               }
             />
             <Route path="/posts/new" element={<PostForm />} />
-     
 
-                
-            <Route path="/" element={<LandingReal  />} />
+            <Route path="/" element={<LandingReal />} />
 
-            <Route path="/:uni" element={<Landing  user={user}  />} />
-            <Route path="/:uni/:college" element={<Landing user={user}  />} />
-            <Route path="/:uni/:college/:major" element={<Landing user={user}  />} />
-            <Route path="/:uni/:college/:major/:course" element={<Landing  user={user} />} />
-            <Route path="/:uni/:college/:major/:course/:event" element={<Landing  user={user} />} />
+            <Route
+              path="/:uni"
+              element={
+                <Landing
+                  user={user}
+                  handleDeleteFile={handleDeleteFile}
+                  handleUpdateFile={handleUpdateFile}
+                />
+              }
+            />
+            <Route
+              path="/:uni/:college"
+              element={
+                <Landing
+                  user={user}
+                  handleDeleteFile={handleDeleteFile}
+                  handleUpdateFile={handleUpdateFile}
+                />
+              }
+            />
+            <Route
+              path="/:uni/:college/:major"
+              element={
+                <Landing
+                  user={user}
+                  handleDeleteFile={handleDeleteFile}
+                  handleUpdateFile={handleUpdateFile}
+                />
+              }
+            />
+            <Route
+              path="/:uni/:college/:major/:course"
+              element={
+                <Landing
+                  user={user}
+                  handleDeleteFile={handleDeleteFile}
+                  handleUpdateFile={handleUpdateFile}
+                />
+              }
+            />
+            <Route
+              path="/:uni/:college/:major/:course/:event"
+              element={
+                <Landing
+                  user={user}
+                  handleDeleteFile={handleDeleteFile}
+                  handleUpdateFile={handleUpdateFile}
+                />
+              }
+            />
 
-            <Route path="/:uni/post/:postid" element={<PostDetails  user={user}  handleDeletePost={handleDeletePost}  />} />
-            <Route path="/:uni/:college/post/:postid" element={<PostDetails user={user}  handleDeletePost={handleDeletePost}  />} />
-            <Route path="/:uni/:college/:major/post/:postid" element={<PostDetails user={user}   handleDeletePost={handleDeletePost} />} />
-            <Route path="/:uni/:college/:major/:course/post/:postid" element={<PostDetails  user={user}  handleDeletePost={handleDeletePost} />} />
-            <Route path="/:uni/:college/:major/:course/:event/post/:postid" element={<PostDetails  user={user} handleDeletePost={handleDeletePost}  />} />
-             
-              {/* //add post */}
-              <Route path="/:uni/newpost" element={<PostForm handleAddPost={handleAddPost} />} />
-               <Route path="/:uni/:college/newpost" element={<PostForm handleAddPost={handleAddPost} />} />
-                <Route path="/:uni/:college/:major/newpost" element={<PostForm handleAddPost={handleAddPost} />} />
-                <Route path="/:uni/:college/:major/:course/newpost" element={<PostForm handleAddPost={handleAddPost} />} />
-                <Route path="/:uni/:college/:major/:course/:event/newpost" element={<PostForm handleAddPost={handleAddPost} />} />
+            <Route
+              path="/:uni/post/:postid"
+              element={
+                <PostDetails user={user} handleDeletePost={handleDeletePost} />
+              }
+            />
+            <Route
+              path="/:uni/:college/post/:postid"
+              element={
+                <PostDetails user={user} handleDeletePost={handleDeletePost} />
+              }
+            />
+            <Route
+              path="/:uni/:college/:major/post/:postid"
+              element={
+                <PostDetails user={user} handleDeletePost={handleDeletePost} />
+              }
+            />
+            <Route
+              path="/:uni/:college/:major/:course/post/:postid"
+              element={
+                <PostDetails user={user} handleDeletePost={handleDeletePost} />
+              }
+            />
+            <Route
+              path="/:uni/:college/:major/:course/:event/post/:postid"
+              element={
+                <PostDetails user={user} handleDeletePost={handleDeletePost} />
+              }
+            />
 
-{/* add channel */}
-                <Route path="/:uni/newchannel" element={<ChannelForm handleAddchannel={handleAddchannel} />} />
-                <Route path="/:uni/:college/newchannel" element={<ChannelForm handleAddchannel={handleAddchannel} />} />
-                <Route path="/:uni/:college/:major/newchannel" element={<ChannelForm handleAddchannel={handleAddchannel} />} />
-                <Route path="/:uni/:college/:major/:course/newchannel" element={<ChannelForm handleAddchannel={handleAddchannel} />} />
-              
-              {/* add file */}
-                <Route path="/:uni/newfile" element={<FileForm handleAddFile={handleAddFile} />} />
-                <Route path="/:uni/:college/newfile" element={<FileForm handleAddFile={handleAddFile} />} />
-                <Route path="/:uni/:college/:major/newfile" element={<FileForm handleAddFile={handleAddFile} />} />
-                <Route path="/:uni/:college/:major/:course/newfile" element={<FileForm handleAddFile={handleAddFile} />} />
+            {/* //add post */}
+            <Route
+              path="/:uni/newpost"
+              element={<PostForm handleAddPost={handleAddPost} />}
+            />
+            <Route
+              path="/:uni/:college/newpost"
+              element={<PostForm handleAddPost={handleAddPost} />}
+            />
+            <Route
+              path="/:uni/:college/:major/newpost"
+              element={<PostForm handleAddPost={handleAddPost} />}
+            />
+            <Route
+              path="/:uni/:college/:major/:course/newpost"
+              element={<PostForm handleAddPost={handleAddPost} />}
+            />
+            <Route
+              path="/:uni/:college/:major/:course/:event/newpost"
+              element={<PostForm handleAddPost={handleAddPost} />}
+            />
 
+            {/* add channel */}
+            <Route
+              path="/:uni/newchannel"
+              element={<ChannelForm handleAddchannel={handleAddchannel} />}
+            />
+            <Route
+              path="/:uni/:college/newchannel"
+              element={<ChannelForm handleAddchannel={handleAddchannel} />}
+            />
+            <Route
+              path="/:uni/:college/:major/newchannel"
+              element={<ChannelForm handleAddchannel={handleAddchannel} />}
+            />
+            <Route
+              path="/:uni/:college/:major/:course/newchannel"
+              element={<ChannelForm handleAddchannel={handleAddchannel} />}
+            />
 
-
-
-
-
+            {/* add file */}
+            <Route
+              path="/:uni/newfile"
+              element={<FileForm handleAddFile={handleAddFile} />}
+            />
+            <Route
+              path="/:uni/:college/newfile"
+              element={<FileForm handleAddFile={handleAddFile} />}
+            />
+            <Route
+              path="/:uni/:college/:major/newfile"
+              element={<FileForm handleAddFile={handleAddFile} />}
+            />
+            <Route
+              path="/:uni/:college/:major/:course/newfile"
+              element={<FileForm handleAddFile={handleAddFile} />}
+            />
           </>
         ) : (
           // Public Route:
@@ -165,17 +280,42 @@ const App = () => {
               element={<Landing user={user} />}
             />
 
-            <Route path="/:uni/post/:postid" element={<PostDetails  user={user}  handleDeletePost={handleDeletePost}  />} />
-            <Route path="/:uni/:college/post/:postid" element={<PostDetails user={user}  handleDeletePost={handleDeletePost}  />} />
-            <Route path="/:uni/:college/:major/post/:postid" element={<PostDetails user={user}   handleDeletePost={handleDeletePost} />} />
-            <Route path="/:uni/:college/:major/:course/post/:postid" element={<PostDetails  user={user}  handleDeletePost={handleDeletePost} />} />
-            <Route path="/:uni/:college/:major/:course/:event/post/:postid" element={<PostDetails  user={user} handleDeletePost={handleDeletePost}  />} />
+            <Route
+              path="/:uni/post/:postid"
+              element={
+                <PostDetails user={user} handleDeletePost={handleDeletePost} />
+              }
+            />
+            <Route
+              path="/:uni/:college/post/:postid"
+              element={
+                <PostDetails user={user} handleDeletePost={handleDeletePost} />
+              }
+            />
+            <Route
+              path="/:uni/:college/:major/post/:postid"
+              element={
+                <PostDetails user={user} handleDeletePost={handleDeletePost} />
+              }
+            />
+            <Route
+              path="/:uni/:college/:major/:course/post/:postid"
+              element={
+                <PostDetails user={user} handleDeletePost={handleDeletePost} />
+              }
+            />
+            <Route
+              path="/:uni/:college/:major/:course/:event/post/:postid"
+              element={
+                <PostDetails user={user} handleDeletePost={handleDeletePost} />
+              }
+            />
           </>
         )}
 
         <Route path="/signup" element={<SignupForm setUser={setUser} />} />
         <Route path="/signin" element={<SigninForm setUser={setUser} />} />
-       
+
         <Route path="/help" element={<Help />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />

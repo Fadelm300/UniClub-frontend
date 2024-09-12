@@ -19,7 +19,6 @@ import { deriveChannelPath } from "../../utils/helpers/urlHelpers";
 const PostDetails = ({user, handleDeletePost}) => {
   const { postid } = useParams();
   const [post, setPost] = useState(null);
-  console.log(postid)
   const { uni, college, major, course, event } = useParams();
   const path = deriveChannelPath({ uni, college, major, course, event });
 
@@ -37,7 +36,6 @@ const PostDetails = ({user, handleDeletePost}) => {
 
     const copyPost = {...post}
     copyPost.comments.push(newComment)
-    console.log("this one"+copyPost)
 
     setPost(copyPost)
   }
@@ -46,7 +44,6 @@ const PostDetails = ({user, handleDeletePost}) => {
   if(!post){
     return <main><h3>borken...</h3></main>
   }
-  console.log(post)
   return (
     <main>
       <div className="postmain">

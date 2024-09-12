@@ -26,7 +26,6 @@ const SignupForm = (props) => {
     e.preventDefault();
     try {
       updateMessage('');
-      console.log(authService)
       const newUserResponse = await authService.signup(formData)
       props.setUser(newUserResponse.user)
       navigate('/');
