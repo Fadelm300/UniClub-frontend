@@ -14,7 +14,7 @@ const FileList = (props) => {
             <div className="topCard">
               <h1>{file.title}</h1>
               <a href={file.link}>{file.link}</a>
-              <h1>{file.description}</h1>
+              <p>{file.description}</p>
 
               <p>{file.user.username}</p>
               <p>
@@ -30,9 +30,9 @@ const FileList = (props) => {
               >
                 Delete
               </button>
-              {/* <Link to={`${props.path}/newfile`}>
-                <button className="deleteButton">Edit File</button>
-              </Link> */}
+              <Link to={`${props.path}/newfile`}>
+                <button className="deleteButton2" >Edit File</button>
+              </Link>
             </div>
           </div>
         );

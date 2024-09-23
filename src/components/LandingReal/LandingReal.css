@@ -6,19 +6,17 @@
   text-align: center;
   padding-bottom: 20px;
   box-sizing: border-box;
-  max-width: 1200px;
+  max-width: 100%;
+  max-height: 100%;
   margin: 0 auto;
+  
 }
 
-h1 {
-  font-size: 2.5rem;
-  color: #2c3e50;
-  margin: 10px 0;
-}
+
 
 .landingimg {
-  width: 100%;
-  max-width: 600px;
+  width: 1100px;
+ height: 500px;
   height: auto;
   display: flex;
   justify-content: center;
@@ -26,8 +24,155 @@ h1 {
   margin: 20px auto;
 }
 
+
+
+
+
+/* --------------cards about the uni--------------- */
+.uobabout {
+  display: flex;
+  justify-content: space-between; 
+  align-items: stretch;
+  width: 800px;
+  height: 300px; 
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.liftbox {
+  flex: 1; /* Makes the liftbox take up equal space */
+  background-color: #f6f6f6;
+  position: relative;
+}
+
+.liftbox img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the entire box */
+}
+
+.rightbox {
+  flex: 1;
+  padding: 20px;
+  background-color: #7077c7;
+  color: #edf2f4;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.rightbox h1 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  border-bottom: 2px solid black;
+  display: inline-block;
+}
+
+.rightbox p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: auto;
+}
+
+.rightbox .unbutton {
+  align-self: flex-end;
+  padding: 10px 20px;
+  color: #edf2f4;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+
+
+
+/* =---------------------------- */
+
+
+
+
+
+
+
+
+
+
+
+
+/* --------------event cards --------------- */
+.eventscontanir {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.eventscontanir h1 {
+  font-size: 32px;
+  margin-bottom: 30px;
+  color:2c3e50;
+   border-bottom: 2px solid black;
+  display: inline-block;
+
+}
+
+.evintcards {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: space-around;
+  gap: 20px; 
+}
+
+.card1ev {
+  width: 300px; 
+  height:300px ;
+  background-color: #edf2f4;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.topcardev {
+  background-color: #2b2d42;
+  padding: 20px;
+  color: #edf2f4;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.buttomcardev {
+  height:100% ;
+  padding: 20px;
+  font-size: 16px;
+  color: #2b2d42;
+  background-color: #ffffff;
+  text-align: left;
+}
+
+
+
+/* ----------------------------- */
+
+
+
+
+
+
+
+
+
+
+
+
 .imginthelanding {
-  width: 100%; 
+  width: 100%;
+  height: 100%;
   height: auto; 
   border-radius: 10px; 
   object-fit: cover; 
@@ -58,9 +203,46 @@ h1 {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  h1 {
-    font-size: 2rem;
+  .landingimg {
+    width: 90%;
+    margin: 15px auto;
   }
+
+  .uobabout {
+    flex-direction: column;
+    width: 90%;
+    height: auto;
+  }
+
+  .liftbox, .rightbox {
+    width: 100%;
+    height: auto;
+  }
+
+  .rightbox {
+    position: relative;
+    padding: 20px;
+  }
+
+  .rightbox .unbutton {
+    align-self: center;
+    position: relative;
+    bottom: auto;
+    right: auto;
+  }
+
+  .eventscontanir {
+    width: 60%;
+  }
+
+  .card1ev {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  
 
   .channelButtonun1 {
     font-size: 1rem;
@@ -68,23 +250,38 @@ h1 {
   }
 
   .landingimg {
-    width: 90%;
-    margin: 15px auto;
-  }
-}
-
-@media (max-width: 480px) {
-  h1 {
-    font-size: 1.5rem;
-  }
-
-  .channelButtonun1 {
-    font-size: 0.9rem;
-    padding: 8px 16px;
-  }
-
-  .landingimg {
     width: 95%;
     margin: 10px auto;
+  }
+
+  .uobabout {
+    flex-direction: column;
+    width: 95%;
+    height: auto;
+  }
+
+  .rightbox h1 {
+    font-size: 20px;
+  }
+
+  .rightbox p {
+    font-size: 14px;
+  }
+
+  .rightbox .unbutton {
+    align-self: center;
+  }
+
+  .eventscontanir h1 {
+    font-size:20px;
+  }
+
+  .evintcards {
+    flex-direction: column;
+  }
+
+  .card1ev {
+    width: 100%;
+    margin-bottom: 20px;
   }
 }
