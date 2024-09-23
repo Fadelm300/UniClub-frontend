@@ -1,0 +1,121 @@
+.affiliate-program {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: #444;
+    line-height: 1.6;
+
+}
+
+.affiliate-program h2 {
+    font-size: 2rem;
+    color: #2b2d42;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.affiliate-program h3 {
+    font-size: 1.5rem;
+    color: #0077b6;
+    margin-bottom: 15px;
+}
+
+.affiliate-program p {
+    color: #555;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+.affiliate-program ul, 
+.affiliate-program ol {
+    color: #666;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.affiliate-program ul {
+    list-style-type: disc;
+}
+
+.affiliate-program ol {
+    list-style-type: decimal;
+}
+
+.affiliate-program ul li,
+.affiliate-program ol li {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: #444;
+}
+
+.affiliate-program .get-started-button {
+    display: inline-block;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #0077b6;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 20px;
+    text-decoration: none;
+}
+
+.affiliate-program .get-started-button:hover {
+    background-color: #005f8d;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    .affiliate-program h2 {
+        font-size: 1.8rem;
+    }
+
+    .affiliate-program h3 {
+        font-size: 1.3rem;
+    }
+
+    .affiliate-program p {
+        font-size: 1rem;
+    }
+
+    .affiliate-program ul, 
+    .affiliate-program ol {
+        margin-left: 15px;
+    }
+
+    .affiliate-program .get-started-button {
+        font-size: 1rem;
+        padding: 10px 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .affiliate-program h2 {
+        font-size: 1.5rem;
+    }
+
+    .affiliate-program h3 {
+        font-size: 1.2rem;
+    }
+
+    .affiliate-program p {
+        font-size: 0.9rem;
+    }
+
+    .affiliate-program ul, 
+    .affiliate-program ol {
+        margin-left: 10px;
+    }
+
+    .affiliate-program .get-started-button {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+}

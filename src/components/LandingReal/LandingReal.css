@@ -15,13 +15,13 @@
 
 
 .landingimg {
-  width: 1100px;
+  width: 100%;
  height: 500px;
   height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 20px auto;
+  margin: 0px auto;
 }
 
 
@@ -43,12 +43,16 @@
   flex: 1; /* Makes the liftbox take up equal space */
   background-color: #f6f6f6;
   position: relative;
+  border-top-left-radius: 15px;   
+  border-bottom-left-radius: 15px;
 }
 
 .liftbox img {
   width: 100%;
   height: 100%;
   object-fit: cover; /* Ensures the image covers the entire box */
+  border-top-left-radius: 15px;   
+  border-bottom-left-radius: 15px;
 }
 
 .rightbox {
@@ -60,6 +64,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border-top-right-radius: 15px;   
+  border-bottom-right-radius: 15px; 
 }
 
 .rightbox h1 {
@@ -157,6 +163,51 @@
 
 
 
+/* ----------landingimg------------------- */
+.landingimg {
+  position: relative;
+  width: 100%;
+  height: 500px; /* Default for larger screens */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.landing-text {
+  position: absolute;
+  top: 200px;
+  left: 80px;
+  right: 530px;
+  color: white;
+  z-index: 1;
+  background-color: rgba(105, 105, 105, 0.5);
+  padding: 20px;
+  border-radius: 8px;
+  font-size: 24px;
+  line-height: 1.4;
+}
+
+.imginthelanding {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.titleUniClub {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  color: #2b2d42;
+  font-size: 36px;
+  font-weight: bold;
+  margin: 20px 0;
+  padding-left: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
 /* ----------------------------- */
 
 
@@ -168,16 +219,6 @@
 
 
 
-
-
-.imginthelanding {
-  width: 100%;
-  height: 100%;
-  height: auto; 
-  border-radius: 10px; 
-  object-fit: cover; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-}
 
 .unbutton {
   margin-top: 10px;
@@ -201,13 +242,46 @@
   transform: scale(1.05);
 }
 
+
+
+
+
+
+
+
+
+
+
+
 /* Responsive Design */
+
+
+
+/* =========media 768============== */
+
 @media (max-width: 768px) {
-  .landingimg {
+  /* .landingimg {
     width: 90%;
     margin: 15px auto;
+  } */
+
+
+  .landingimg {
+    height: 400px; 
   }
 
+  .landing-text {
+    top: 150px;
+    left: 40px;
+    right: 40px;
+    font-size: 20px; 
+    padding: 15px;
+  }
+
+  .titleUniClub {
+    font-size: 28px; 
+    padding-left: 5px;
+  }
   .uobabout {
     flex-direction: column;
     width: 90%;
@@ -217,11 +291,15 @@
   .liftbox, .rightbox {
     width: 100%;
     height: auto;
+    border-top-left-radius: 15px;   
+    border-bottom-left-radius: 15px;
   }
 
   .rightbox {
     position: relative;
     padding: 20px;
+    border-top-right-radius: 15px;   
+    border-bottom-right-radius: 15px; 
   }
 
   .rightbox .unbutton {
@@ -239,7 +317,19 @@
     width: 100%;
     margin-bottom: 20px;
   }
+
+
 }
+
+
+
+
+
+/* =========media 480============== */
+
+
+
+
 
 @media (max-width: 480px) {
   
@@ -249,10 +339,7 @@
     padding: 10px 20px;
   }
 
-  .landingimg {
-    width: 95%;
-    margin: 10px auto;
-  }
+
 
   .uobabout {
     flex-direction: column;
@@ -270,6 +357,8 @@
 
   .rightbox .unbutton {
     align-self: center;
+      border-top-right-radius: 15px;   
+  border-bottom-right-radius: 15px; 
   }
 
   .eventscontanir h1 {
@@ -283,5 +372,87 @@
   .card1ev {
     width: 100%;
     margin-bottom: 20px;
+  }
+  .landingimg {
+    height: 300px; 
+  }
+
+  .landing-text {
+    top: 100px;
+    left: 20px;
+    right: 20px;
+    font-size: 16px; 
+    padding: 10px;
+  }
+
+  .titleUniClub {
+    font-size: 22px; 
+    margin: 10px 0;
+    padding-left: 0;
+  }
+}
+
+
+
+/* =========media 1200============== */
+
+@media (min-width: 1200px) {
+  .landingimg {
+    height: 700px; 
+  }
+
+
+  .landing-text {
+    top: 250px; 
+    left: 100px;
+    right: 600px; 
+    font-size: 28px; 
+    padding: 25px;
+  }
+
+
+  .titleUniClub {
+    font-size: 40px; 
+    padding-left: 20px;
+  }
+
+  
+  .uobabout {
+    width: 1000px; 
+    height: 400px;
+  }
+
+  .liftbox, .rightbox {
+    height: auto; 
+    border-top-right-radius: 15px;   
+    border-bottom-right-radius: 15px; 
+  }
+
+  .rightbox h1 {
+    font-size: 28px; 
+  }
+
+  .rightbox p {
+    font-size: 18px; 
+  }
+
+
+  .eventscontanir {
+    width: 80%; 
+  }
+
+  .evintcards {
+    justify-content: space-around;
+  }
+
+  .card1ev {
+    width: 350px; 
+    height: 350px; 
+  }
+
+
+  .channelButtonun1 {
+    font-size: 1.3rem; 
+    padding: 14px 30px; 
   }
 }

@@ -1,18 +1,23 @@
 
 import { Link } from "react-router-dom";
-import  './LandingReal.css';
-
+import UpcomingEvents from '../UpcomingEvents/UpcomingEvents';
+import  './LandingReal.css'; 
 const LandingReal = () => {
   return (
 
 <div className="LandingRealContainer">
 
 
-      <div className="landingimg">
-        {/* add vid */}
-          <img className="imginthelanding" src="/UOB1.jpg" alt="UoB pic" />
-          
-       </div>
+            <div className="landingimg">
+             <div className="landing-text">
+              <p className="titleUniClub">UniClub</p>
+               <p>
+                 UniClub is a platform designed to provide university students with essential academic resources and tools. Founded in 2024, we aim to simplify student life and support academic success.
+               </p>
+             </div>
+             <img className="imginthelanding" src="/Untitled-design.png" alt="Untitled-design" />
+            </div>
+
        
 
 
@@ -22,7 +27,7 @@ const LandingReal = () => {
                    </div>
                    
                    <div className="rightbox">
-                          <h1>About University of B</h1>
+                          <h1>About University of BAHRAINB</h1>
                              <p>
                                Learn more about the history, mission, and values of the University of B.
                              </p>
@@ -36,13 +41,13 @@ const LandingReal = () => {
              
              <div className="uobabout">
                    <div className="liftbox">
-                           <img className="imgintherightbox" src="/UOB1.jpg" alt="UoB pic" />
+                           <img className="imgintherightbox" src="/OxfordImg.jpg" alt="OxfordImg" />
                    </div>
                    
                    <div className="rightbox">
-                          <h1>About University of B</h1>
+                          <h1>About University of Oxford</h1>
                              <p>
-                               Learn more about the history, mission, and values of the University of B.
+                               Learn more about the history, mission, and values of the University of Oxford.
                              </p>
                        <div className="unbutton">
                             <Link to="/uob">
@@ -53,33 +58,10 @@ const LandingReal = () => {
              </div>
 
 
+             <UpcomingEvents />
 
 
 
-
-             <div className="eventscontanir">
-  <h1 className="Eventsh1">Upcoming Events  </h1>
-  
-  <div className="evintcards">
-    <div className="card1ev">
-      <div className="topcardev">Event Title 1</div>
-      <div className="buttomcardev">This is the description of the first event. It contains information about the event details.</div>
-    </div>
-    
-    <div className="card1ev">
-      <div className="topcardev">Event Title 2</div>
-      <div className="buttomcardev">This is the description of the second event. It contains information about the event details.</div>
-    </div>
-    
-    <div className="card1ev">
-      <div className="topcardev">Event Title 3</div>
-      <div className="buttomcardev">This is the description of the third event. It contains information about the event details.</div>
-    </div>
-    
-    
-  </div>
-  
-</div>
 
       
   </div>

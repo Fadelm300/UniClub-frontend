@@ -1,0 +1,77 @@
+/* Container Styling */
+.services-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    line-height: 1.8;
+}
+
+/* Headings */
+.services-container h1 {
+    font-size: 2.5rem;
+    color: #0077b6;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.services-list h3 {
+    color: #0077b6;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+/* Paragraph Styling */
+.services-container p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #555;
+    text-align: justify;
+}
+
+/* Service List */
+.services-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.service-item {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .services-list {
+        grid-template-columns: 1fr;
+    }
+
+    .services-container h1 {
+        font-size: 2rem;
+    }
+
+    .services-container p, .services-list h3 {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .services-container h1 {
+        font-size: 1.8rem;
+    }
+
+    .services-container p, .services-list h3 {
+        font-size: 1rem;
+    }
+
+    .services-container {
+        padding: 15px;
+    }
+}

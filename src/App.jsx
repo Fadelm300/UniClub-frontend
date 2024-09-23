@@ -27,9 +27,10 @@ import UserProfile from './components/UserProfile/UserProfile';
 import Help from "./components/Help/help";
 import About from "./components/About/about";
 import Contact from "./components/Contact/contact";
-
-
-
+import PrivacyPolicy from "./components/privacyPolicy/PrivacyPolicy"
+import AffiliateProgram from "./components/AffiliateProgram/AffiliateProgram"
+import OurServices from "./components/OurServices/OurServices"
+import FAQ from "./components/FAQ/FAQ"
 const App = () => {
   const [user, setUser] = useState(authService.getUser());
   const [posts, setPosts] = useState([]);
@@ -319,6 +320,11 @@ const App = () => {
         <Route path="/help" element={<Help />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
+        <Route path="/AffiliateProgram" element={<AffiliateProgram />} />
+        <Route path="/OurServices" element={<OurServices />} />
+        <Route path="/FAQ" element={<FAQ />} />
+
       </Routes>
 
       <Footer />

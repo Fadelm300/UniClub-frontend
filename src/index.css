@@ -11,6 +11,7 @@ body {
     background: linear-gradient(to right, #e2e2e2, #c9d6ff);
     height: 100vh;
     overflow-y: scroll;
+    margin-top: 70px;
 
 }
   body::-webkit-scrollbar{
