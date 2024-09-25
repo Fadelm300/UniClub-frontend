@@ -4,9 +4,11 @@ import './PostList.css';
 const PostList = (props) => {
   if (!props.posts || props.posts.length === 0) return <main>No posts yet</main>;
 
+  const sortedPosts = [...props.posts].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
   return (
     <>
-      {props.posts.map((post, idx) => {
+      {sortedPosts.map((post, idx) => {
         const postDate = new Date(post.createdAt);
 
         return (
