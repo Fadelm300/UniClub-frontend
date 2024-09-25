@@ -2,7 +2,7 @@ import React from 'react';
 import './UpcomingEvents.css';
 
 const UpcomingEvents = () => {
-    // fake data 
+    // fake data
   const events = [
     {
       title: "Event Title 1",

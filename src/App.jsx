@@ -11,7 +11,7 @@ import NavBar from './components/NavBar/NavBar';
 import Landing from './components/Landing/Landing';
 import LandingReal from './components/LandingReal/LandingReal';
 import Dashboard from './components/Dashboard/Dashboard';
-import SignupForm from './components/SignupForm/SignupForm';
+// import SignupForm from './components/SignupForm/SignupForm';
 import SigninForm from './components/SigninForm/SigninForm'
 import PostList from './components/PostList/PostList';
 import PostDetails from './components/PostDetails/PostDetails';
@@ -314,7 +314,7 @@ const App = () => {
           </>
         )}
 
-        <Route path="/signup" element={<SignupForm setUser={setUser} />} />
+        {/* <Route path="/signup" element={<SignupForm setUser={setUser} />} /> */}
         <Route path="/signin" element={<SigninForm setUser={setUser} />} />
 
         <Route path="/help" element={<Help />} />
