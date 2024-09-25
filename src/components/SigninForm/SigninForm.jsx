@@ -68,7 +68,7 @@ const [error, setError] = useState("");
 
 
   return (
-    <div className="big">
+    <div className="fullContainer">
       <div className={`container ${isActive ? "active" : ""}`} id="container">
       <div className="form-container sign-up">
               <form onSubmit={handleSubmitSignUp}>
