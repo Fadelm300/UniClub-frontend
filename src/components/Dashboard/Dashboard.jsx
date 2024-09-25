@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import './Dashboard.css'; // Updated CSS file import
 import UpcomingEvents from '../UpcomingEvents/UpcomingEvents';
 
+
 const Dashboard = () => {
 
 
@@ -51,6 +52,7 @@ const Dashboard = () => {
                                  <p>
                                    Learn more about the history, mission, and values of the University of Oxford.
                                  </p>
+                                 
                            <div className="unbutton">
                                 <Link to="/uob">
                                  <button className="channelButtonun1">Learn More</button>
@@ -61,7 +63,7 @@ const Dashboard = () => {
     
     
                  <UpcomingEvents />
-    
+                 
     
     
     
