@@ -1,0 +1,36 @@
+.gpa-calculator {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .course-input {
+    margin-bottom: 10px;
+  }
+  
+  .course-input input {
+    margin-right: 10px;
+    padding: 5px;
+    width: 120px;
+  }
+  
+  .add-course-button,
+  .calculate-gpa-button {
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #017bb3;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .add-course-button:hover,
+  .calculate-gpa-button:hover {
+    background-color: #005f8b;
+  }
+  
+  p {
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
