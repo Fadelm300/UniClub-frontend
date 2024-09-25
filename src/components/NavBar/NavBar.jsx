@@ -33,7 +33,7 @@ const NavBar = ({ user, handleSignout }) => {
             </Link>
             <div className="otherNav">
               <li><Link to="/signin">Sign In</Link></li>
-              <li><Link to="/signup">Sign Up</Link></li>
+              {/* <li><Link to="/signup">Sign Up</Link></li> */}
             </div>
           </div>
         </nav>
