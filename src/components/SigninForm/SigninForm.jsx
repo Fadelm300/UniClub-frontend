@@ -181,9 +181,18 @@ const [error, setError] = useState("");
           <div className="toggle">
             <div className="toggle-panel toggle-left">
               <h1>Welcome Back!</h1>
-              <p>
-                 login with your personal info
-              </p>
+              <div className="image-layer">
+                    <img src="img/white-outline.png" className="form-image-main" alt="form-image-main"/>
+                    <img src="/img/dots.png" className="form-image dots" alt="form-image dots"/>
+                    <img src="/img/coin.png" className="form-image coin" alt=""/>
+                    <img src="/img/spring.png" className="form-image spring" alt=""/>
+                    <img src="/img/rocket.png" className="form-image rocket" alt=""/>
+                    <img src="/img/cloud.png" className="form-image cloud" alt=""/>
+                    <img src="/img/stars.png" className="form-image stars" alt=""/>
+                    <img src="/img/stars.png" className="form-image stars2" alt=""/>
+
+                    
+                </div>
               <button className="hidden" onClick={toggleForm}>
                 Sign In
               </button>
