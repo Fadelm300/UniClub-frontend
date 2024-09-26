@@ -68,22 +68,15 @@ const [error, setError] = useState("");
 
 
   return (
+    
     <div className="fullContainer">
+      
       <div className={`container ${isActive ? "active" : ""}`} id="container">
       <div className="form-container sign-up">
               <form onSubmit={handleSubmitSignUp}>
                 <p>{error}</p>
                 
-                {/* <input
-                  type="text"
-                  placeholder="Username"
-                  name="username"
-                  value={formData.username}
-                  onChange={handleChange}
-                  required
-                />
-                {formData.username === "" && <p className="error-message">Username is required</p>} */}
-                   <input
+                 <input
                 type="text"
                 placeholder="Username"
                 name="username"
@@ -197,8 +190,20 @@ const [error, setError] = useState("");
             </div>
             <div className="toggle-panel toggle-right">
               <h1>Hello, Friend!</h1>
-              <p>start your journey with us</p>
+              
 
+               <div className="image-layer">
+                    <img src="img/white-outline.png" className="form-image-main" alt="form-image-main"/>
+                    <img src="/img/dots.png" className="form-image dots" alt="form-image dots"/>
+                    <img src="/img/coin.png" className="form-image coin" alt=""/>
+                    <img src="/img/spring.png" className="form-image spring" alt=""/>
+                    <img src="/img/rocket.png" className="form-image rocket" alt=""/>
+                    <img src="/img/cloud.png" className="form-image cloud" alt=""/>
+                    <img src="/img/stars.png" className="form-image stars" alt=""/>
+                    <img src="/img/stars.png" className="form-image stars2" alt=""/>
+
+                    
+                </div>
               <button className="hidden" onClick={toggleForm}>
                 Sign Up
               </button>

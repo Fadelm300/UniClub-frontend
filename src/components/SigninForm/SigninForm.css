@@ -97,13 +97,18 @@
   align-items: center;
   justify-content: center;
   font-family: "Montserrat", sans-serif;
-  background-color: #acbed4;
+  /* background-color: #acbed4; */
+  background-image: url('/img/1.jpg');
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
   overflow: hidden;
 }
 
 .container {
   z-index: 1;
   position: relative;
+  
 }
 
 
@@ -140,7 +145,7 @@
 .error-message {
   color: red;
   margin-top: 5px;
-  font-weight: bold; /* Makes the text bold */
+  font-weight: bold; 
   text-decoration: underline; 
 }
 
@@ -148,8 +153,8 @@
 
 
 .container button {
-    background: linear-gradient(to right, #58229a, #450f86);
-    color: #fff;
+  background: linear-gradient(to right, #4b79a1, #283e51); 
+  color: #fff;
   font-size: 12px;
   padding: 10px 45px;
   border: 1px solid transparent;
@@ -264,9 +269,9 @@
 }
 
 .toggle {
-  background-color: #24262b;
   height: 100%;
-  background: linear-gradient(to right, #8898bd, #450f86);
+  background: linear-gradient(to right, #0b0e23, #1a2740 30%, #273a54 60%, #3b4d6b 100%); /* Twilight to night sky effect */
+
   color: #fff;
   position: relative;
   left: -100%;
@@ -310,4 +315,126 @@
 
 .container.active .toggle-right {
   transform: translateX(200%);
+}
+
+/* ======================================== */
+
+.image-layer {
+  position: relative;
+  width: 400px;
+  height: 300px;
+  overflow: hidden;
+}
+
+.form-image {
+  position: absolute;
+  left: 0;
+  width: 400px;
+}
+
+.form-image-main {
+  top: 40px;
+  left: 40px;
+  width: 340px;
+  height: 340px;
+}
+
+.form-image.dots {
+  top: 30px;
+  left: 200px;
+  width: 500px;
+  height: 500px;
+  animation: scale-up 3s ease-in-out alternate infinite;
+}
+
+.form-image.coin {
+  bottom: 90px;
+  left: -90px;
+  width: 250px;
+  height: 250px;
+  animation: scale-down 3s ease-in-out alternate infinite;
+}
+
+.form-image.spring {
+  top: 130px;
+  left: 250px;
+  width: 300px;
+  height: 300px;
+  animation: scale-down 3s ease-in-out alternate infinite;
+}
+
+.form-image.rocket {
+  top: -80px;
+  left: 10px;
+  width: 420px;
+  height: 420px;
+  animation: up-down 3s ease-in-out alternate infinite;
+}
+
+.form-image.cloud {
+  top: -30px;
+  left: -90px;
+  width: 250px;
+  height: 250px;
+  animation: left-right 3s ease-in-out alternate infinite;
+}
+
+.form-image.stars {
+  top: 10px;
+  right: 20px;
+  width: 90px;
+  height: 90px;
+  animation: star-glow 4s ease-in-out infinite;
+
+}
+
+.form-image.stars2 {
+  top: 10px;
+  left: 290px;
+  width: 90px;
+  height: 90px;
+  animation: star-glow 4s ease-in-out infinite;
+
+}
+
+@keyframes scale-down {
+  to {
+    transform: scale(1.2);
+  }
+}
+
+@keyframes scale-up {
+  to {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes up-down {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes left-right {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(10px);
+  }
+}
+@keyframes star-glow {
+  0%, 100% {
+    transform: scale(0.9);
+    opacity: 0.1;
+   
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+    
+  }
 }
