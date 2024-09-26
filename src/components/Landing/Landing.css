@@ -1,113 +1,3 @@
-/* .LandingPageMain{
-width: 100%;
-width: 100%;
-}
-
-
-
-.LandingPagecontener {
-    
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-   
-}
-
-h1 {
-    margin-bottom: 20px;
-}
-
-.landingpagContainer {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap; 
-    gap: 10px; 
-    padding: 0px;
-    width: 100%;
-
-  }
-  .channelsNAV{
-    background-color: #007bff;
-    width: 100%;
-    
-  }
-  
-  .channelButton {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.titlename {
-    text-transform: uppercase;
-  }
-  .channelButton:hover {
-    transition: all 0.3s ease-in-out;
-    border-radius: 25%;
-    background-color: #8d99ae; 
-    border: px solid #edf2f4; 
-
-}
-  
-  .channelButton {
-    padding: 10px 20px;
-    margin: 5px;
-    /* Button color 
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-
-
-.addbtn {
-    display: flex;
-    flex-wrap: wrap; 
-    gap: 10px;        
-    margin-top: 20px; 
-    justify-content: center;
-}
-
-
-.addbtn button {
-    background-image: linear-gradient(to right, #1e90ff, #00bfff); 
-    transition: all 0.3s ease;
-    color: white;
-    padding: 10px 20px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    min-width: 150px;
-    text-align: center;
-}
-
-.buttonsfiles:hover ,.buttonsposts:hover ,.buttonsAddPost:hover,.buttonsAddChannel:hover,.buttonsAddFile:hover {
-    background-image: linear-gradient(to right, #00bfff, #1e90ff); 
-    transform: scale(1.05);  
-    border: 2px solid #67c1e7;
-    font-size: 20px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-@media (max-width: 768px) {
-    .addbtn button {
-        width: 100%;   
-        min-width: unset;
-    }
-}
-
- */
-
-
 
 
 
@@ -175,11 +65,12 @@ h1 {
 }
   
 .toggleSidebarBtn {
+   
+    border: none; 
+    background: none; 
     position: fixed;
     top: 75px;
     left: 20px;
-    background-color: #007bff;
-    color: white;
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
@@ -187,10 +78,14 @@ h1 {
     z-index: 200;
     transition: all 0.3s ease;
 }
-  
-.toggleSidebarBtn:hover {
-    background-color: #0056b3;
+.OpenNavLogo,
+.closNavLogo {
+    width: 40px; 
+    height: auto; 
+    max-height: 40px; 
 }
+  
+
   
 .buttonsfiles:hover,
 .buttonsposts:hover,
@@ -275,5 +170,56 @@ h1 {
   
     .sidebar.open ~ .mainContent {
         margin-left: 0; 
+    }
+    .toggleSidebarBtn {
+        top: 80px; 
+        left: 10px; 
+        padding: 5px; 
+    }
+
+    .OpenNavLogo,
+    .closNavLogo {
+        width: 60px; 
+        max-height: 60px; 
+    }
+
+    .sidebar {
+        width: 150px; 
+    }
+}
+
+@media (max-width: 480px) {
+    .toggleSidebarBtn {
+        top: 120px; 
+        left: 5px; 
+        padding: 2px; 
+
+    }
+
+    .OpenNavLogo,
+    .closNavLogo {
+        width: 40px; 
+        max-height: 40px; 
+    }
+
+    .sidebar {
+        width: 25%; 
+        padding-top: 90px;
+    }
+
+    .sidebar.open {
+        left: 0; 
+    }
+
+    .mainContent {
+        padding: 5px; 
+    }
+
+    .channelButton {
+        font-size: 0.8rem; 
+    }
+
+    .addbtn button {
+        min-width: 80px; 
     }
 }

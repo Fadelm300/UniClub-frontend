@@ -34,7 +34,7 @@ const Landing = (props) => {
     <main>
       <div className="LandingPageMain">
         <button className="toggleSidebarBtn" onClick={toggleSidebar}>
-          {isSidebarOpen ? 'Close Sidebar' : 'Open Sidebar'}
+          {isSidebarOpen ? <img className="closNavLogo" src="https://img.icons8.com/?id=111057&format=png&color=000000" alt="closNavLogo" /> :  <img className="OpenNavLogo" src="https://img.icons8.com/?id=rMW5POudfbBJ&format=png&color=000000" alt="OpenNavLogo" /> }
         </button>
 
         {/* sidebar */}
