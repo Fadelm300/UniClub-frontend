@@ -31,28 +31,13 @@ import PrivacyPolicy from "./components/privacyPolicy/PrivacyPolicy"
 import AffiliateProgram from "./components/AffiliateProgram/AffiliateProgram"
 import OurServices from "./components/OurServices/OurServices"
 import FAQ from "./components/FAQ/FAQ"
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 const App = () => {
   const [user, setUser] = useState(authService.getUser());
   const [posts, setPosts] = useState([]);
   const [files, setFiles] = useState([]);
-  // const [channel, setChannel] = useState([]);
   const navigate = useNavigate();
 
-  // useEffect(()=>{
-  //   // async function getPosts (){
-  //   //   const postsData = await postService.index()
-  //   //   setPosts(postsData)
-  //   // }
-  //   async function getChannel (){
-  //     const channelData = await channelService.index()
-  //     setChannel(channelData)
-  //   }
-  //   // if(user){
-  //   //   // fetch the posts
-  //   //   // getPosts()
-  //     getChannel()
-  //   // }
-  // }, [channel])
 
   const handleSignout = () => {
     authService.signout();
@@ -104,6 +89,8 @@ const App = () => {
   return (
     <>
       <NavBar user={user} handleSignout={handleSignout} />
+      {/* Scroll to top of page */}
+      <ScrollToTop />
       <Routes>
         {user ? (
           // Protected Routes:
