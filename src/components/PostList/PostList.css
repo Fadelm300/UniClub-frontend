@@ -1,53 +1,52 @@
-.deleteButton {
-  background-color: #ff4c4c;
-  width: 150px;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 6px;
-  font-size: 1rem;
-  cursor: pointer;
-  align-self: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-a {
-    text-decoration: none; 
-    color: inherit;
-  }
-
-.deleteButton:hover {
-  background-color: #ff1a1a;
-  font-size: 1.2rem;
-}
-
 .card {
-  width: 400px;
-  height: 400px;
-  background-image: linear-gradient(to right, #28c6fa, #5abdde); /* Bright blue gradient */
+  width: 700px;
+  height: 300px;
+  background-image: linear-gradient(to right, #28c6fa, #8ebbca); 
   margin: 50px auto;
   border-radius: 30px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
   overflow: hidden;
+  padding: 0px; 
 }
-
+.readMore {
+  color: #e40b0b; 
+  font-weight: 0.1; 
+  margin-left:5px; 
+  font-size: 15px;
+ 
+}
 .topCard {
+  padding: 20px; 
   width: 100%;
   height: 75%;
 }
-
+a {
+  text-decoration: none; 
+  color: inherit;
+}
 .dawnCard {
   width: 100%;
   height: 25%;
-  background-image: linear-gradient(to right, #90cbdd, #99def8); 
+  background-image: linear-gradient(to right, #90cbdd, #25404a); 
   padding: 10px;
+  display: flex; 
+  justify-content: space-between; 
 }
 
 .topcardtex {
   font-size: 1.2rem;
   font-weight: bold;
-  padding: 20px;
-  padding-top: 90px;
+  padding: 10px;
+  padding-top: 30px;
+}
+
+.fileLink {
+  color: #007bff; 
+  text-decoration: none; 
+}
+
+.fileLink:hover {
+  text-decoration: underline;
 }
 
 .dawncardusername {
@@ -62,20 +61,45 @@ a {
   padding: 5px 0;
 }
 
-.dawncardDate span {
-  margin: 0 5px;
+.deleteButton {
+  background-color: #ff4c4c;
+  width: 150px;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  align-self: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
-.card:hover {
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  }
 
-/* Responsive Design */
+.deleteButton2 {
+  background-color: #ffc800;
+  width: 150px;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  align-self: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.deleteButton:hover {
+  background-color: #ff1a1a;
+}
+
+.deleteButton2:hover {
+  background-color: #e0a500; 
+}
+
 @media (max-width: 768px) {
   .card {
-    width: 300px;
-    height: 200px;
-    background-color: #ae7b7b;
+    width: 300px; 
   }
 
   h1 {

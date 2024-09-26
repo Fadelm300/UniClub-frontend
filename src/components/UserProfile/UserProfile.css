@@ -19,6 +19,19 @@
   width: 100%;
   max-width: 600px;
 }
+.see-more, .see-less {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+.see-more:hover, .see-less:hover {
+  background-color: #0056b3;
+}
 
 .profile-picture {
   width: 120px;
