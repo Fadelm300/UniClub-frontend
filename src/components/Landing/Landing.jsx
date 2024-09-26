@@ -9,6 +9,7 @@ import FileList from "../FileList/FileList";
 const Landing = (props) => {
   const [channel, setChannel] = useState({});
   const [viewType, setViewType] = useState("posts"); 
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // For controlling the sidebar
   const { uni, college, major, course, event } = useParams();
   const path = deriveChannelPath({ uni, college, major, course, event });
 
@@ -24,41 +25,47 @@ const Landing = (props) => {
     setViewType(type); 
   };
 
+  // Toggle the sidebar
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   return (
     <main>
       <div className="LandingPageMain">
-        <div className="LandingPagecontener">
-          <div className="landingpagContainer">
-            <div className="channelsNAV">
-              {channel.subchannels?.map((subchannel) => (
-                <Link key={subchannel.name} to={`${path}/${subchannel.name}`}>
-                  <button className="channelButton">{subchannel.name}</button>
-                </Link>
-              ))}
-            </div>
-          </div>
+        <button className="toggleSidebarBtn" onClick={toggleSidebar}>
+          {isSidebarOpen ? 'Close Sidebar' : 'Open Sidebar'}
+        </button>
 
+        {/* sidebar */}
+        <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
+          <div className="channelsNAV">
+            {channel.subchannels?.map((subchannel) => (
+              <Link key={subchannel.name} to={`${path}/${subchannel.name}`}>
+                <button className="channelButton">{subchannel.name}</button>
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        <div className="mainContent">
           <h1 className="titlename">{channel.name}</h1>
           <p>{channel.description}</p>
 
           {props.user && (
             <div className="addbtn">
-              <Link>
-                <button
-                  className="buttonsfiles"
-                  onClick={() => handleViewChange("files")}
-                >
-                  Files
-                </button>
-              </Link>
-              <Link>
-                <button
-                  className="buttonsposts"
-                  onClick={() => handleViewChange("posts")}
-                >
-                  Posts
-                </button>
-              </Link>
+              <button
+                className="buttonsfiles"
+                onClick={() => handleViewChange("files")}
+              >
+                Files
+              </button>
+              <button
+                className="buttonsposts"
+                onClick={() => handleViewChange("posts")}
+              >
+                Posts
+              </button>
               <Link to={`${path}/newpost`}>
                 <button className="buttonsAddPost">Add Post</button>
               </Link>

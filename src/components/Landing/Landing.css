@@ -1,4 +1,4 @@
-.LandingPageMain{
+/* .LandingPageMain{
 width: 100%;
 width: 100%;
 }
@@ -56,7 +56,7 @@ h1 {
   .channelButton {
     padding: 10px 20px;
     margin: 5px;
-    /* Button color */
+    /* Button color 
     background-color: #007bff;
     color: white;
     border: none;
@@ -77,7 +77,7 @@ h1 {
 
 
 .addbtn button {
-    background-image: linear-gradient(to right, #1e90ff, #00bfff); /* Bright blue gradient */
+    background-image: linear-gradient(to right, #1e90ff, #00bfff); 
     transition: all 0.3s ease;
     color: white;
     padding: 10px 20px;
@@ -91,7 +91,7 @@ h1 {
 }
 
 .buttonsfiles:hover ,.buttonsposts:hover ,.buttonsAddPost:hover,.buttonsAddChannel:hover,.buttonsAddFile:hover {
-    background-image: linear-gradient(to right, #00bfff, #1e90ff); /* Reversed blue gradient on hover */
+    background-image: linear-gradient(to right, #00bfff, #1e90ff); 
     transform: scale(1.05);  
     border: 2px solid #67c1e7;
     font-size: 20px; 
@@ -105,25 +105,175 @@ h1 {
     }
 }
 
+ */
 
 
 
 
 
 
+.landingPageContainer {
+    display: flex;
+    width: 100%;
+    position: relative;
+}
+  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.sidebar {
+    width: 200px; 
+    background-color: #007bff;
+    padding: 10px;
+    position: fixed;
+    left: -250px; 
+    height: 100%;
+    top: 0;
+    transition: left 0.7s ease;
+    z-index: 100;
+    margin-top: 70px;
+    padding-top: 60px;
+}
+  
+.sidebar.open {
+    left: 0; 
+}
+  
+.channelsNAV {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+  
+.channelButton {
+    padding: 10px 20px;
+    margin: 5px 0; 
+    background-color: #007bff; 
+    color: white; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+  
+.channelButton:hover {
+    background-color: #8d99ae;
+    border-radius: 25%;
+}
+  
+.mainContent {
+    flex-grow: 1; 
+    padding: 20px;
+    margin-left: 0;
+    transition: margin-left 0.3s ease; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    min-height: 90vh;
+}
+  
+.sidebar.open ~ .mainContent {
+    margin-left: 250px; 
+}
+  
+.toggleSidebarBtn {
+    position: fixed;
+    top: 75px;
+    left: 20px;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 200;
+    transition: all 0.3s ease;
+}
+  
+.toggleSidebarBtn:hover {
+    background-color: #0056b3;
+}
+  
+.buttonsfiles:hover,
+.buttonsposts:hover,
+.buttonsAddPost:hover,
+.buttonsAddChannel:hover,
+.buttonsAddFile:hover {
+    background-image: linear-gradient(to right, #00bfff, #1e90ff); 
+    transform: scale(1.05); 
+    border: 2px solid #67c1e7;
+    font-size: 20px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+  
+.addbtn {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 10px;        
+    margin-top: 20px; 
+    justify-content: center;
+}
+  
+.addbtn button {
+    background-image: linear-gradient(to right, #1e90ff, #00bfff); 
+    transition: all 0.3s ease;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    min-width: 150px;
+    text-align: center;
+}
+  
+h1 {
+    margin-bottom: 20px;
+}
+  
+.titlename {
+    text-transform: uppercase;
+    font-size: 32px; 
+    font-weight: bold;
+    background-image: linear-gradient(to right, #1e90ff, #00bfff); 
+    color: #ffffff; 
+    padding: 20px 40px; 
+    border-radius: 100%; 
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); 
+    text-align: center;
+    margin: 20px auto; 
+}
+  
+.LandingPagecontener {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+  
+.LandingPageMain {
+    width: 100%;
+}
+  
+@media (max-width: 768px) {
+    .landingPageContainer {
+        flex-direction: column; 
+    }
+  
+    .sidebar {
+        width: 100%; 
+        left: -100%; 
+    }
+  
+    .sidebar.open {
+        left: 0; 
+    }
+  
+    .mainContent {
+        margin-left: 0; 
+    }
+  
+    .sidebar.open ~ .mainContent {
+        margin-left: 0; 
+    }
+}

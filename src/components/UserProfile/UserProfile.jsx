@@ -9,6 +9,9 @@ const UserProfile = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  
+  // State to manage which posts are expanded
+  const [expandedPosts, setExpandedPosts] = useState({});
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -26,8 +29,17 @@ const UserProfile = () => {
     fetchUserData();
   }, [userId]);
 
+  const togglePostVisibility = (postId) => {
+    setExpandedPosts((prev) => ({
+      ...prev,
+      [postId]: !prev[postId]
+    }));
+  };
+
   if (loading) return <div className="loading">Loading...</div>;
   if (error) return <div className="error">Error: {error}</div>;
+
+  const maxLength = 100; // Set a maximum length for post text
 
   return (
     <div className="user-profile">
@@ -51,8 +63,26 @@ const UserProfile = () => {
         ) : (
           <ul>
             {posts.map((post) => (
-              <li key={post._id}>
-                <Link to={`/${post.path}/post/${post._id}`}>{post.text}</Link>
+              <li key={post._id} className="post-item">
+                <Link to={`/${post.path}/post/${post._id}`}>
+                {/* expandedPosts to show more or less  */}
+                  {expandedPosts[post._id] 
+                    ? post.text 
+                    : post.text.length > maxLength 
+                      ? `${post.text.substring(0, maxLength)}...` 
+                      : post.text
+                  }
+                </Link>
+                {post.text.length > maxLength && !expandedPosts[post._id] && (
+                  <button className="see-more" onClick={() => togglePostVisibility(post._id)}>
+                    Click to see more details
+                  </button>
+                )}
+                {expandedPosts[post._id] && (
+                  <button className="see-less" onClick={() => togglePostVisibility(post._id)}>
+                    Click to see less
+                  </button>
+                )}
               </li>
             ))}
           </ul>

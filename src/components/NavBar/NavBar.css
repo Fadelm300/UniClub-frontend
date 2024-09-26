@@ -26,8 +26,8 @@ nav {
 }
 
 .Navimg {
-  height: 140px;
-  width: 140px;
+  height: 50px;
+  width: 70px;
   display: flex;
   flex-direction: row;
   align-items: center;
