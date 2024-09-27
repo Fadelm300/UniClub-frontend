@@ -52,7 +52,8 @@ const [error, setError] = useState("");
       if (formData.password === formData.passwordConf) {
         const newUserResponse = await authService.signup(formData);
         props.setUser(newUserResponse.user);
-        navigate("/");
+        navigate("/signin");
+        window.location.reload();
       } else {
         setError("Passwords do not match");  // Display error if passwords don't match
       }
