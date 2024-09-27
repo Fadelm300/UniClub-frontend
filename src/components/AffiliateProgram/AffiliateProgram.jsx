@@ -25,7 +25,7 @@ function AffiliateProgram() {
         Apply today to become an affiliate and start earning by helping students succeed. For more information, contact our support team.
       </p>
     </div>
-  );
+  ); 
 }
 
 export default AffiliateProgram;

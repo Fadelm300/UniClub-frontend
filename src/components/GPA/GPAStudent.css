@@ -1,36 +1,110 @@
-.gpa-calculator {
-    margin-top: 20px;
-    text-align: center;
-  }
-  
-  .course-input {
-    margin-bottom: 10px;
-  }
-  
-  .course-input input {
-    margin-right: 10px;
-    padding: 5px;
-    width: 120px;
-  }
-  
-  .add-course-button,
-  .calculate-gpa-button {
-    margin-top: 10px;
-    padding: 8px 16px;
-    background-color: #017bb3;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  .add-course-button:hover,
-  .calculate-gpa-button:hover {
-    background-color: #005f8b;
-  }
-  
-  p {
-    font-weight: bold;
-    margin-top: 10px;
-  }
-  
+.gpa-calculator4 {
+  background: linear-gradient(to right, #0b0e23, #1a2740 30%, #273a54 60%, #3b4d6b 100%); 
+  color: #000000; 
+  padding: 20px;
+  border-radius: 8px;
+  width: 600px; 
+  margin: 50px auto; 
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); 
+  margin-top: 120px;
+}
+
+.course-input4 {
+  margin-bottom: 10px;
+}
+
+.course-name4,
+.course-grade4,
+.course-credit4 {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+  border: none;
+  border-radius: 4px;
+  background-color: #f2f2f2; 
+  color: #000000; 
+  font-weight: bold ; 
+}
+
+.button-row4 {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px; 
+}
+
+.add-course-button4,
+.calculate-gpa-button4,
+.clear-data-button4,
+.calculate-cumulative-gpa-button4 {
+  background-color: #3498db;
+  color: #ffffff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 48%; 
+  font-weight: bold; 
+}
+
+.add-course-button4:hover,
+.calculate-gpa-button4:hover,
+.clear-data-button4:hover,
+.calculate-cumulative-gpa-button4:hover {
+  background-color: #5dade2; 
+}
+
+.previous-gpa-inputs4 {
+  margin-top: 20px;
+}
+
+.gpa-title4,
+.cumulative-title4 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #f1eded; 
+  font-weight: bold;
+  text-align: right;
+  margin-top: 20px; 
+}
+
+.previous-gpa4,
+.previous-credits4 {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+  border: none;
+  border-radius: 4px;
+  background-color: #f2f2f2;
+  color: #a72424; 
+  font-weight: bold; 
+}
+
+.gpa-result4 {
+  text-align: center;    
+  font-size: 18px;       
+  font-weight: bold;     
+  color: black;          
+  margin-top: 20px;      
+  background-color: #fff; 
+  padding: 10px;         
+  border: 1px solid #ddd; 
+  width: 100%;           
+  box-sizing: border-box; 
+}
+
+
+.cumulative-title4 {
+  text-align: right; 
+  margin-top: 20px; 
+}
+
+.bottom-input4 {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+  border: none;
+  border-radius: 4px;
+  background-color: #f2f2f2; 
+  color: #000000; 
+  font-weight: bold; 
+}
