@@ -96,53 +96,79 @@ const App = () => {
       <ScrollToTop />
      
       <Routes>
+      {user?.admin?
+       <>
+       <Route
+        path="/:uni/newchannel"
+        element={<ChannelForm handleAddchannel={handleAddchannel} />}
+       />
+       <Route
+        path="/:uni/:college/newchannel"
+        element={<ChannelForm handleAddchannel={handleAddchannel} />}
+       />
+       <Route
+        path="/:uni/:college/:major/newchannel"
+        element={<ChannelForm handleAddchannel={handleAddchannel} />}
+       />
+       <Route
+        path="/:uni/:college/:major/:course/newchannel"
+        element={<ChannelForm handleAddchannel={handleAddchannel} />}
+       />
+
+       </> 
+      :
+      <>
+
+      </>
+      }
+      
       {user?
       <>
-        <Route path="/profile/:userId" element={<UserProfile />} />
-        <Route path="/" element={<Dashboard user={user} />} />
+      <Route path="/profile/:userId" element={<UserProfile />} />
+      <Route path="/" element={<Dashboard user={user} />} />
 
-            {/* //add post */}
-            <Route
-              path="/:uni/newpost"
-              element={<PostForm handleAddPost={handleAddPost} />}
-            />
-            <Route
-              path="/:uni/:college/newpost"
-              element={<PostForm handleAddPost={handleAddPost} />}
-            />
-            <Route
-              path="/:uni/:college/:major/newpost"
-              element={<PostForm handleAddPost={handleAddPost} />}
-            />
-            <Route
-              path="/:uni/:college/:major/:course/newpost"
-              element={<PostForm handleAddPost={handleAddPost} />}
-            />
-            <Route
-              path="/:uni/:college/:major/:course/:event/newpost"
-              element={<PostForm handleAddPost={handleAddPost} />}
-            />
+          {/* //add post */}
+          <Route
+            path="/:uni/newpost"
+            element={<PostForm handleAddPost={handleAddPost} />}
+          />
+          <Route
+            path="/:uni/:college/newpost"
+            element={<PostForm handleAddPost={handleAddPost} />}
+          />
+          <Route
+            path="/:uni/:college/:major/newpost"
+            element={<PostForm handleAddPost={handleAddPost} />}
+          />
+          <Route
+            path="/:uni/:college/:major/:course/newpost"
+            element={<PostForm handleAddPost={handleAddPost} />}
+          />
+          <Route
+            path="/:uni/:college/:major/:course/:event/newpost"
+            element={<PostForm handleAddPost={handleAddPost} />}
+          />
 
 
-            {/* add file */}
-            <Route
-              path="/:uni/newfile"
-              element={<FileForm handleAddFile={handleAddFile} />}
-            />
-            <Route
-              path="/:uni/:college/newfile"
-              element={<FileForm handleAddFile={handleAddFile} />}
-            />
-            <Route
-              path="/:uni/:college/:major/newfile"
-              element={<FileForm handleAddFile={handleAddFile} />}
-            />
-            <Route
-              path="/:uni/:college/:major/:course/newfile"
-              element={<FileForm handleAddFile={handleAddFile} />}
-            />
-       </>
-      :
+          {/* add file */}
+          <Route
+            path="/:uni/newfile"
+            element={<FileForm handleAddFile={handleAddFile} />}
+          />
+          <Route
+            path="/:uni/:college/newfile"
+            element={<FileForm handleAddFile={handleAddFile} />}
+          />
+          <Route
+            path="/:uni/:college/:major/newfile"
+            element={<FileForm handleAddFile={handleAddFile} />}
+          />
+          <Route
+            path="/:uni/:college/:major/:course/newfile"
+            element={<FileForm handleAddFile={handleAddFile} />}
+          />
+     </>
+     :
       <>
       <Route path="/signin" element={<SigninForm setUser={setUser} end />} />
       <Route path="/" element={<LandingReal />} />
