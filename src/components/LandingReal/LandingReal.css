@@ -58,7 +58,7 @@
 .rightbox {
   flex: 1;
   padding: 20px;
-  background-color: #7077c7;
+  background: linear-gradient(to right, #0b0e23, #1a2740 30%, #273a54 60%, #3b4d6b 100%); 
   color: #edf2f4;
   position: relative;
   display: flex;
