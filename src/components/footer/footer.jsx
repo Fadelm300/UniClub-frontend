@@ -23,12 +23,15 @@ export default function footer() {
               <ul>
                 <li><Link to='/FAQ'>FAQ</Link></li>
                 <li><Link to='/contact'>Contact</Link></li>
+                <li><Link to='/contact'>GPA calculate</Link></li>
  
               </ul>
             </div>
             <div className="footer-col">
-              {/* if we need to add more inf */}
-            
+            <h4>Serves</h4>
+              <ul>
+                <li><Link to='/GPAStudent'>GPA calculate</Link></li>
+              </ul>
             </div>
 
 

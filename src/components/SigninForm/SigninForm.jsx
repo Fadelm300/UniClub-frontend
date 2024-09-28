@@ -86,15 +86,17 @@ const [error, setError] = useState("");
                 required
               />
              
-              {formData.username === "" ? (
-                <p className="error-message">Username is required</p>
-              ) : (
-                !/^[a-zA-Z0-9_]{3,}$/.test(formData.username) && (
-                  <p className="error-message">
-                    Username must be at least 3 characters and can only contain letters, numbers, and underscores.
-                  </p>
-                )
-              )}
+             {
+              formData.username.trim() === "" ? (
+                <p className="error-messag">Username is required</p>
+              ) : formData.username.includes(" ") ? (
+                <p className="error-message">Username cannot contain spaces.</p>
+              ) : !/^[a-zA-Z0-9_]{3,}$/.test(formData.username) ? (
+                <p className="error-message">
+                  Username must be at least 3 characters and can only contain letters, numbers, and underscores.
+                </p>
+              ) : null
+            }
 
 
                 <input
@@ -129,9 +131,17 @@ const [error, setError] = useState("");
                   onChange={handleChange}
                   required
                 />
-                {formData.password.length < 8 && formData.password !== "" && (
-                  <p className="error-message">Password must be at least 8 characters</p>
-                )}
+               {formData.password && (
+                        <>
+                          {formData.password.length < 8 ? (
+                            <p className="error-message">Password must be at least 8 characters long.</p>
+                          ) : !/[A-Z]/.test(formData.password) ? (
+                            <p className="error-message">Password must contain at least one uppercase letter.</p>
+                          ) : !/[0-9]/.test(formData.password) ? (
+                            <p className="error-message">Password must contain at least one number.</p>
+                          ) : null}
+                        </>
+                      )}
 
                 <input
                   type="password"

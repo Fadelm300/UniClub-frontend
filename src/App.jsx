@@ -33,9 +33,12 @@ import AffiliateProgram from "./components/AffiliateProgram/AffiliateProgram"
 import OurServices from "./components/OurServices/OurServices"
 import FAQ from "./components/FAQ/FAQ"
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
+
 import UserRoutes from './components/Routes/UserRoutes';
 import GuestRoutes from './components/Routes/GuestRoutes';
 import FreeRoutes from './components/Routes/FreeRoutes';
+import GPAStudent from "./components/GPA/GPAStudent";
+
 const App = () => {
   const [user, setUser] = useState(authService.getUser());
   const [posts, setPosts] = useState([]);
@@ -271,6 +274,7 @@ const App = () => {
         <Route path="/AffiliateProgram" element={<AffiliateProgram />} />
         <Route path="/OurServices" element={<OurServices />} />
         <Route path="/FAQ" element={<FAQ />} />
+        <Route path="/GPAStudent" element={<GPAStudent />} />
 
 
     </>
