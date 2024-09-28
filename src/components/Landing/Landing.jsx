@@ -66,12 +66,15 @@ const Landing = (props) => {
               >
                 Posts
               </button>
+              
               <Link to={`${path}/newpost`}>
                 <button className="buttonsAddPost">Add Post</button>
               </Link>
+              {props.user.admin &&(
               <Link to={`${path}/newchannel`}>
                 <button className="buttonsAddChannel">Add Channel</button>
               </Link>
+              )}
               <Link to={`${path}/newfile`}>
                 <button className="buttonsAddFile">Add File</button>
               </Link>
