@@ -11,6 +11,7 @@ import NavBar from './components/NavBar/NavBar';
 import Landing from './components/Landing/Landing';
 import LandingReal from './components/LandingReal/LandingReal';
 import Dashboard from './components/Dashboard/Dashboard';
+import AdminDashboard from './components/AdminDashboard/AdminDashboard';
 // import SignupForm from './components/SignupForm/SignupForm';
 import SigninForm from './components/SigninForm/SigninForm'
 import PostList from './components/PostList/PostList';
@@ -98,6 +99,8 @@ const App = () => {
       <Routes>
       {user?.admin?
        <>
+       <Route path="/" element={<AdminDashboard user={user} />} />
+
        <Route
         path="/:uni/newchannel"
         element={<ChannelForm handleAddchannel={handleAddchannel} />}
@@ -121,7 +124,7 @@ const App = () => {
 
       </>
       }
-      
+
       {user?
       <>
       <Route path="/profile/:userId" element={<UserProfile />} />
