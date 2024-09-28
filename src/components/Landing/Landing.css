@@ -81,11 +81,16 @@
     z-index: 200;
     transition: all 0.3s ease;
 }
-.OpenNavLogo,
-.closNavLogo {
-    width: 40px; 
+.OpenNavLogo{
+    width: 50px; 
     height: auto; 
-    max-height: 40px; 
+    max-height: 50px; 
+}
+.closNavLogo {
+    width: 30px; 
+    height: auto; 
+    max-height: 30px; 
+
 }
   
 
