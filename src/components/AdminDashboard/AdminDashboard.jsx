@@ -54,7 +54,7 @@ const AdminDashboard = ({}) => {
                                  </p>
                                  
                            <div className="unbutton">
-                                <Link to="/userlist">
+                                <Link to="/uob">
                                  <button className="channelButtonun1">Learn More</button>
                               </Link>
                            </div>
