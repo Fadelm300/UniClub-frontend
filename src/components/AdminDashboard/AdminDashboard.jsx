@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import './Dashboard.css'; // Updated CSS file import
 import UpcomingEvents from '../UpcomingEvents/UpcomingEvents';
+import UserList from "../UserList/UserList";
 
-
-const AdminDashboard = () => {
+const AdminDashboard = ({}) => {
 
 
   return (
@@ -54,13 +54,13 @@ const AdminDashboard = () => {
                                  </p>
                                  
                            <div className="unbutton">
-                                <Link to="/uob">
+                                <Link to="/userlist">
                                  <button className="channelButtonun1">Learn More</button>
                               </Link>
                            </div>
                         </div>
                  </div>
-    
+                 <UserList/>
     
                  <UpcomingEvents />
                  
