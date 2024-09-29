@@ -51,7 +51,7 @@ const PostDetails = ({ user, handleDeletePost }) => {
               <h4>{post.user.username}</h4>
               <p>{post.text}</p>
             </div>
-            {post.user._id === user?.id && (
+            {(post.user._id === user?.id || user?.admin)&& (
               <button
                 className="deleteButton"
                 onClick={() => handleDeletePost(postid, path)}
