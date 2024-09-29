@@ -103,7 +103,6 @@ const App = () => {
       {user?.admin?
        <>
        <Route path="/" element={<AdminDashboard user={user} />} />
-
        <Route
         path="/:uni/newchannel"
         element={<ChannelForm handleAddchannel={handleAddchannel} />}
