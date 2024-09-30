@@ -51,8 +51,7 @@ nav a:hover {
   font-size: 20px;
   transition: all 0.3s ease-in-out;
   border-radius: 25%;
-  background-color: #8d99ae; 
-  border: 2px solid #edf2f4; 
+  transform: scale(1.1); 
 }
 
 nav .logoHome:hover {
@@ -63,7 +62,10 @@ nav .logoHome:hover {
   color: #edf2f4;
 }
 
-
+.imgSerch{
+  width: 50px; 
+  height: auto;
+}
 
 
 

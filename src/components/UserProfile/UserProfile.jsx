@@ -39,7 +39,7 @@ const UserProfile = () => {
   if (loading) return <div className="loading">Loading...</div>;
   if (error) return <div className="error">Error: {error}</div>;
 
-  const maxLength = 100; // Set a maximum length for post text
+  const maxLength = 100; 
 
   return (
     <div className="user-profile">

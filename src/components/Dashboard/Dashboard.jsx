@@ -60,7 +60,47 @@ const Dashboard = () => {
                            </div>
                         </div>
                  </div>
-    
+                 <div className="uobabout">
+                       <div className="liftbox">
+                               <img className="imgintherightbox" src="/ScienceUniversity.jpg" alt="ScienceUniversity" />
+                       </div>
+                       
+                          <div className="rightbox">
+                                    <h1>About University of Science University</h1>
+                                      <p>
+                                        Learn more about the history, mission, and values of the University of Science University.
+                                      </p>
+                                      
+                                <div className="unbutton">
+                                      <Link to="/oxf">
+                                      <button className="channelButtonun1">Learn More</button>
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+
+{/* Polytechnic */}
+
+
+                        <div className="uobabout">
+                              <div className="liftbox">
+                                      <img className="imgintherightbox" src="/PT15.jpg" alt="PT15" />
+                              </div>
+                              
+                              <div className="rightbox">
+                                          <h1>About University of Bahrain Polytechnic</h1>
+                                            <p>
+                                              Learn more about the history, mission, and values of the University of Bahrain Polytechnic.
+                                            </p>
+                                            
+                                      <div className="unbutton">
+                                            <Link to="/poly">
+                                            <button className="channelButtonun1">Learn More</button>
+                                          </Link>
+                                      </div>
+                                </div>
+                        </div>
+                        
     
                  <UpcomingEvents />
                  

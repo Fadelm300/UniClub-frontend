@@ -1,6 +1,7 @@
-import React from 'react'
+import React from 'react';
 import adminService from '../../services/adminService';
 import { useEffect, useState } from 'react';
+import './UserList.css'; // Import the CSS file
 
 function UserList() {
     const [users, setUsers] = useState([]);
@@ -10,38 +11,50 @@ function UserList() {
         const fetchUsers = async () => {
             try {
                 const data = await adminService.getUsers();
-                setUsers(data); // Assuming data is an array
-
+                setUsers(data);
             } catch (error) {
-                setError(error.message);
+                console.error(error.message);
             }
         };
 
         fetchUsers();
     }, [change]);
 
-    const toggleAdmin = async (userId) =>{
+    const toggleAdmin = async (userId) => {
         await adminService.toggleAdmin(userId);
-        if(change){
-            setChange(false);
-        }else{
-            setChange(true);
-        }
-
+        setChange(!change);
     }
 
-
-  return (
-    <>
-    {users.map((user) => (
-        user.admin?
-        <div key={user._id}> {user.username} , {user.email} , {user.phone} , admin <button onClick={()=>toggleAdmin(user._id)}>demote to user</button></div>
-        :
-        <div key={user._id}> {user.username} , {user.email} , {user.phone} , user <button onClick={()=>toggleAdmin(user._id)}> promote to admin</button></div>
-      
-    ))}
-    </>
-  )
+    return (
+        <div className="user-list-container">
+            <table className="user-table">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Role</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {users.map((user) => (
+                        <tr key={user._id}>
+                            <td>{user.username}</td>
+                            <td>{user.email}</td>
+                            <td>{user.phone}</td>
+                            <td>{user.admin ? 'Admin' : 'User'}</td>
+                            <td>
+                                <button onClick={() => toggleAdmin(user._id)}>
+                                    {user.admin ? 'Demote to User' : 'Promote to Admin'}
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
 }
 
 export default UserList;

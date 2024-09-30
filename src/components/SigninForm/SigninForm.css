@@ -63,6 +63,7 @@
   margin: 15px 0 10px;
 }
 .error-message {
+  text-align: center; 
   color: red;
   margin-top: 5px;
   font-weight: bold; 

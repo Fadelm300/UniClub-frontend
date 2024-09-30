@@ -38,6 +38,7 @@ import UserRoutes from './components/Routes/UserRoutes';
 import GuestRoutes from './components/Routes/GuestRoutes';
 import FreeRoutes from './components/Routes/FreeRoutes';
 import GPAStudent from "./components/GPA/GPAStudent";
+import UserList from "./components/UserList/UserList"
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser());
@@ -274,6 +275,9 @@ const App = () => {
         <Route path="/OurServices" element={<OurServices />} />
         <Route path="/FAQ" element={<FAQ />} />
         <Route path="/GPAStudent" element={<GPAStudent />} />
+        <Route path="/UserList" element={<UserList />} />
+
+
 
 
     </>
