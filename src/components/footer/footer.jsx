@@ -38,7 +38,7 @@ export default function footer() {
             <div className="footer-col">
               <h4>follow us</h4>
               <div className="social-links">
-                <a href="https://x.com/Bh_9_?t=WAuWIBDZJHL16wc1JgzRJQ&s=09/"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://x.com/Bh_9_?t=WAuWIBDZJHL16wc1JgzRJQ&s=09/"><i className="fa-brands fa-x-twitter"></i></a>
                 <a href="https://www.instagram.com/__f.001?igsh=em5kc3Bvc2kya2Vk/"><i className="fab fa-instagram"></i></a>
                 <a href="https://www.linkedin.com/in/fadel-mohammad-b70662151/"><i className="fab fa-linkedin-in"></i></a>
               </div>
