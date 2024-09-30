@@ -72,5 +72,22 @@ const getPostsByUser = async (userId) => {
 };
 
 
+const updatePost = async (postId, formData, path) => {
+  try {
+    const options = {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    };
+    
+    const res = await fetch(`${BASE_URL}${path}/${postId}`, options);
+    return res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-export default { index, show, create, delete: deletePost , getPostsByUser};
+export default { index, show, create, delete: deletePost, getPostsByUser, update: updatePost };

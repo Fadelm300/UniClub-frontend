@@ -1,18 +1,11 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import './PostDetails.css';
-// Services
 import postService from "../../services/postService";
 import commentService from "../../services/commentService";
-
-// Router
 import { Link } from 'react-router-dom';
-
-// Components
 import AuthorDate from "../common/AuthorDate";
 import CommentForm from '../CommentForm/CommentForm';
-
-// Function
 import { deriveChannelPath } from "../../utils/helpers/urlHelpers";
 
 const PostDetails = ({ user, handleDeletePost }) => {
@@ -20,22 +13,29 @@ const PostDetails = ({ user, handleDeletePost }) => {
   const [post, setPost] = useState(null);
   const { uni, college, major, course, event } = useParams();
   const path = deriveChannelPath({ uni, college, major, course, event });
+  const [isEditing, setIsEditing] = useState(false);
+  const [editText, setEditText] = useState('');
 
   useEffect(() => {
     async function getPost() {
       const postData = await postService.show(path, postid);
       setPost(postData);
+      setEditText(postData.text); // Set the initial edit text to current post text
     }
     getPost();
   }, [postid, path]);
 
   const handleAddComment = async (formData) => {
     const newComment = await commentService.create(path, postid, formData);
-
     const copyPost = { ...post };
     copyPost.comments.push(newComment);
-
     setPost(copyPost);
+  };
+
+  const handleEditPost = async () => {
+    await postService.update(postid, { text: editText }, path);
+    setPost((prevPost) => ({ ...prevPost, text: editText }));
+    setIsEditing(false);
   };
 
   if (!post) {
@@ -49,15 +49,26 @@ const PostDetails = ({ user, handleDeletePost }) => {
           <div className="postContener">
             <div className="PostShow">
               <h4>{post.user.username}</h4>
-              <p>{post.text}</p>
+              {isEditing ? (
+                <div>
+                  <textarea
+                    value={editText}
+                    onChange={(e) => setEditText(e.target.value)}
+                  />
+                  <button onClick={handleEditPost}>Save</button>
+                  <button onClick={() => setIsEditing(false)}>Cancel</button>
+                </div>
+              ) : (
+                <p>{post.text}</p>
+              )}
             </div>
-            {(post.user._id === user?.id || user?.admin)&& (
-              <button
-                className="deleteButton"
-                onClick={() => handleDeletePost(postid, path)}
-              >
-                Delete
-              </button>
+            {(post.user._id === user?.id || user?.admin) && (
+              <>
+              <div className="buttonContainer">
+                <button className="editButton" onClick={() => setIsEditing(true)}>Edit</button>
+                <button className="deleteButton" onClick={() => handleDeletePost(postid, path)}>Delete</button>
+                </div>
+              </>
             )}
             <section>
               <CommentForm handleAddComment={handleAddComment} />
@@ -65,16 +76,12 @@ const PostDetails = ({ user, handleDeletePost }) => {
               <div className="commentShow">
                 <h4>Replies</h4>
                 {post.comments.map((comment) => (
-                  <div className="comments" key={comment._id}> {/* Unique key added here */}
+                  <div className="comments" key={comment._id}>
                     <article>
                       <header>
-                        <div className="usernamecontener"> 
-                          <div>
-                            {comment.user?.username} 
-                          </div>
-                          <div>
-                            {new Date(comment.createdAt).toLocaleDateString()}
-                          </div>
+                        <div className="usernamecontener">
+                          <div>{comment.user?.username}</div>
+                          <div>{new Date(comment.createdAt).toLocaleDateString()}</div>
                         </div>
                         <div className="usercomment">{comment.text}</div>
                       </header>

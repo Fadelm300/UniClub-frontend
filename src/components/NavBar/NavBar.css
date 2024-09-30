@@ -15,6 +15,9 @@ nav {
   z-index: 1000; 
   height: auto;
 }
+.SignOutLogo{
+  width: 30px;
+}
 
 .topNav {
   height: 70px;
@@ -63,7 +66,7 @@ nav .logoHome:hover {
 }
 
 .imgSerch{
-  width: 50px; 
+  width: 40px; 
   height: auto;
 }
 

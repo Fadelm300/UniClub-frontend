@@ -64,6 +64,84 @@
 }
 
 
+.deleteButton {
+    background-color: #ff4c4c;
+    width: 150px;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    align-self: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .deleteButton2 {
+    background-color: #ffc800;
+    width: 150px;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    align-self: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .deleteButton:hover {
+    background-color: #ff1a1a;
+  }
+  
+  .deleteButton2:hover {
+    background-color: #e0a500; 
+  }
+
+  .editButton:hover {
+    background-color: #0eb73e;
+  }
+
+
+
+.editButton {
+    background-color: #4c73ff;
+    width: 150px;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    align-self: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  
+
+  
+ 
+  .buttonContainer {
+    display: flex;
+    gap: 40px; 
+    justify-content: center; 
+    margin-top: 40px; 
+    
+}
+
+.editButton ,.deleteButton {
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease; /* Include transform in transition */
+}
+
+.editButton:hover,
+.deleteButton:hover {
+    transform: scale(1.05); 
+}
+
+
 
 .usercomment {
     line-height: 1.5;
