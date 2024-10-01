@@ -20,7 +20,7 @@ const NavBar = ({ user, handleSignout }) => { // Keeping handleSignout prop
                 <Link to="/UserList">
                   <img
                   className='imgSerch'
-                    src="icons8-reserch-64.png"
+                    src="https://img.icons8.com/?id=12773&format=png&color=000000"
                     alt="Search Logo"
                   />
                 </Link>
@@ -28,7 +28,7 @@ const NavBar = ({ user, handleSignout }) => { // Keeping handleSignout prop
               <li>
                 <Link to={`/profile/${user.id}`}>
                   <img
-                    src="https://img.icons8.com/?size=50&id=kfZajSPygW1l&format=png&color=f1f2f6"
+                    src="https://img.icons8.com/?size=40&id=z-JBA_KtSkxG&format=png&color=000000"
                     alt="Profile Logo"
                   />
                 </Link>

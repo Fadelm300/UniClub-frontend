@@ -93,6 +93,46 @@ const getUserProfile = async (userId) => {
   }
 };
 
+const updateUserProfile = async (userId, userData) => {
+  const token = localStorage.getItem('token');
+  const response = await fetch(`${BACKEND_URL}/profiles/${userId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify(userData)
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to update user profile');
+  }
+
+  return await response.json();
+};
+
+const deleteUserProfile = async (userId) => {
+  const token = localStorage.getItem('token');
+  const response = await fetch(`${BACKEND_URL}/profiles/${userId}`, {
+    method: 'DELETE',
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to delete user profile');
+  }
+
+  return await response.json();
+};
+
 export default {
-  signup, signin, getUser, signout , getUserProfile
+  signup,
+  signin,
+  getUser,
+  signout,
+  getUserProfile,
+  updateUserProfile,
+  deleteUserProfile
 };

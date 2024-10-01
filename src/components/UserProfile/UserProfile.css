@@ -159,3 +159,151 @@
     font-size: 16px; 
   }
 }
+
+
+
+
+
+.user-profile {
+  padding: 20px;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+}
+
+.profile-picture {
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.profile-info {
+  flex-grow: 1;
+}
+
+.edit-profile-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-profile-form input {
+  margin: 5px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.user-posts {
+  margin-top: 20px;
+}
+
+.EandD {
+  display: flex;               
+  justify-content: center;     
+  align-items: center;         
+  gap: 50px;
+  
+}
+
+.EandD button {
+  background: none;            
+  border: none;                
+  cursor: pointer;            
+  transition: transform 0.3s;  
+}
+
+.EandD button:hover {
+  transform: scale(1.1);       
+}
+
+.EandD img {
+  width: 50px;                 
+  height: 50px;                
+  transition: transform 0.3s;  
+}
+
+.EandD button:hover img {
+  transform: scale(1.1);       
+}
+
+
+
+.Save_and_Cancel {
+  display: flex;               
+  justify-content: center;     
+  align-items: center;         
+  gap: 50px;  
+}
+
+.Save_and_Cancel button {
+  background: none;            
+  border: none;                
+  cursor: pointer;            
+  transition: transform 0.3s;  
+}
+
+.Save_and_Cancel button:hover {
+  transform: scale(1.1);       
+}
+
+.Save_and_Cancel img {
+  width: 50px;                 
+  height: 50px;                
+  transition: transform 0.3s;  
+}
+
+.Save_and_Cancel button:hover img {
+  transform: scale(1.1);       
+}
+
+
+
+/* ==============modal================= */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); 
+  display: flex;
+  justify-content: center; 
+  align-items: center;      
+}
+.modal-content {
+  background-color: #fff;  
+  padding: 20px;            
+  border-radius: 5px;       
+  text-align: center;       
+}
+.modal-content h2 {
+  margin-bottom: 10px;       
+}
+.modal-content p {
+  margin-bottom: 20px;       
+}
+.Confirmation_but {
+  display: flex;             
+  justify-content: center;    
+  align-items: center;        
+  gap: 20px;                 
+}
+.Confirmation_but button {
+  background-color: #6eb0f8;  
+  color: white;             
+  padding: 10px 20px;        
+  border: none;               
+  border-radius: 5px;         
+  cursor: pointer;             
+  transition: background-color 0.3s, transform 0.3s; 
+}
+.Confirmation_but button.delete:hover {
+  background-color: #c82333;   
+}
+.Confirmation_but button.save:hover {
+  background-color: #218838;     
+}
+.Confirmation_but button:hover {
+  transform: scale(1.05);       
+}
