@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import UpcomingEvents from '../UpcomingEvents/UpcomingEvents';
+import UpcomingEvents from "../Events/UpcomingEvents/UpcomingEvents";
 import  './LandingReal.css'; 
 const LandingReal = () => {
   return (
@@ -99,6 +99,7 @@ const LandingReal = () => {
 
 
              <UpcomingEvents />
+
 
 
 

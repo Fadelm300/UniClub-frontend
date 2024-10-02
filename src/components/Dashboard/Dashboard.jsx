@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import './Dashboard.css'; // Updated CSS file import
-import UpcomingEvents from '../UpcomingEvents/UpcomingEvents';
+import UpcomingEvents from '../Events/UpcomingEvents/UpcomingEvents';
 
 
 const Dashboard = () => {
@@ -30,7 +30,7 @@ const Dashboard = () => {
                        </div>
                        
                        <div className="rightbox">
-                              <h1>About University of BAHRAINB</h1>
+                              <h1>About University of BAHRAIN</h1>
                                  <p>
                                    Learn more about the history, mission, and values of the University of B.
                                  </p>

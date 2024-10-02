@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import './Dashboard.css'; // Updated CSS file import
-import UpcomingEvents from '../UpcomingEvents/UpcomingEvents';
+import UpcomingEvents from '../Events/UpcomingEvents/UpcomingEvents';
 import UserList from "../UserList/UserList";
+import AddEvent from "../Events/AddEvent/AddEvent";
 
 const AdminDashboard = ({}) => {
 
@@ -108,9 +109,10 @@ const AdminDashboard = ({}) => {
                                       </div>
                                 </div>
                         </div>
-                 <UserList/>
-    
-                 <UpcomingEvents />
+               
+                <AddEvent/>
+                            <UpcomingEvents />
+                
                  
     
     

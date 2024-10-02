@@ -14,7 +14,7 @@ export function deriveChannelPath({ uni , college, major, course, event }) {
     path = `/${uni}/${college}/${major}/${course}`;
   }
   if (event) {
-    path = `/${uni}/${college}/${major}/${course}`;
+    path = `/${uni}/${college}/${major}/${course}/${event}`;
   }
 
   return path;
