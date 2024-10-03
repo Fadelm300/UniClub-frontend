@@ -34,11 +34,11 @@ import OurServices from "./components/OurServices/OurServices"
 import FAQ from "./components/FAQ/FAQ"
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 
-import UserRoutes from './components/Routes/UserRoutes';
-import GuestRoutes from './components/Routes/GuestRoutes';
-import FreeRoutes from './components/Routes/FreeRoutes';
+
 import GPAStudent from "./components/GPA/GPAStudent";
 import UserList from "./components/UserList/UserList"
+import AddEvent from './components/Events/AddEvent/AddEvent';
+import EditEvent from './components/Events/EditEvent/EditEvent';
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser());
@@ -104,6 +104,8 @@ const App = () => {
       {user?.admin?
        <>
        <Route path="/" element={<AdminDashboard user={user} />} />
+       <Route path="/edit-event/:eventid" element={<EditEvent user={user} />} />
+
        <Route
         path="/:uni/newchannel"
         element={<ChannelForm handleAddchannel={handleAddchannel} />}
@@ -120,6 +122,7 @@ const App = () => {
         path="/:uni/:college/:major/:course/newchannel"
         element={<ChannelForm handleAddchannel={handleAddchannel} />}
        />
+       
 
        </> 
       :
