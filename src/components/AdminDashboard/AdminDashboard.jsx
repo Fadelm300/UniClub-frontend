@@ -4,7 +4,7 @@ import UpcomingEvents from '../Events/UpcomingEvents/UpcomingEvents';
 import UserList from "../UserList/UserList";
 import AddEvent from "../Events/AddEvent/AddEvent";
 
-const AdminDashboard = ({}) => {
+const AdminDashboard = ({user}) => {
 
 
   return (
@@ -111,7 +111,7 @@ const AdminDashboard = ({}) => {
                         </div>
                
                 <AddEvent/>
-                            <UpcomingEvents />
+                            <UpcomingEvents user={user}/>
                 
                  
     

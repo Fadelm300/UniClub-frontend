@@ -180,7 +180,7 @@ const App = () => {
      :
       <>
       <Route path="/signin" element={<SigninForm setUser={setUser} end />} />
-      <Route path="/" element={<LandingReal />} />
+      <Route path="/" element={<LandingReal user={user}/>} />
       </>
         
       }
