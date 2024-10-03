@@ -1,4 +1,3 @@
-// import React from 'react';
 import { Link } from 'react-router-dom';
 import '../footer/footer.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -23,7 +22,7 @@ export default function footer() {
               <ul>
                 <li><Link to='/FAQ'>FAQ</Link></li>
                 <li><Link to='/contact'>Contact</Link></li>
-                <li><Link to='/contact'>GPA calculate</Link></li>
+         
  
               </ul>
             </div>
