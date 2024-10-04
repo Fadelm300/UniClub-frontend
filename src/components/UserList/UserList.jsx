@@ -1,7 +1,7 @@
 import React from 'react';
 import adminService from '../../services/adminService';
 import { useEffect, useState } from 'react';
-import './UserList.css'; // Import the CSS file
+import './UserList.css'; 
 import authService from '../../services/authService';
 
 function UserList({userUser}) {

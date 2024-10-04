@@ -9,7 +9,7 @@ import FileList from "../FileList/FileList";
 const Landing = (props) => {
   const [channel, setChannel] = useState({});
   const [viewType, setViewType] = useState("posts"); 
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // For controlling the sidebar
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const { uni, college, major, course, event } = useParams();
   const path = deriveChannelPath({ uni, college, major, course, event });
 

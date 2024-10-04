@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
-
 * {
   margin: 0;
   padding: 0;
@@ -15,7 +13,8 @@ nav {
   z-index: 1000; 
   height: auto;
 }
-.SignOutLogo{
+
+.SignOutLogo {
   width: 30px;
 }
 
@@ -51,7 +50,7 @@ nav a {
 }
 
 nav a:hover {
-  font-size: 20px;
+  font-size: 15px;
   transition: all 0.3s ease-in-out;
   border-radius: 25%;
   transform: scale(1.1); 
@@ -65,31 +64,35 @@ nav .logoHome:hover {
   color: #edf2f4;
 }
 
-.imgSerch{
+.imgSerch {
   width: 40px; 
   height: auto;
 }
-
-
-
-
 
 .otherNav {
   display: flex;
   align-items: center;
 }
 
-.profilePicAndName > * {
-  display: block;
-  margin-bottom: -10px; /* Optional: Adds space between stacked items */
-  text-align: center; /* Centers the text inside the container */
-
+.profilePicAndName {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
 }
 
+.profilePic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
 
+.username-nav {
+  color: #edf2f4;
+  font-size: 18px;
+  font-weight: 500;
+}
 
-
-/* Responsive design */
 @media (max-width: 768px) {
   nav a {
     font-size: 16px;
@@ -112,11 +115,6 @@ nav .logoHome:hover {
     height: auto;
   }
 
-  .downNav {
-    flex-direction: column;
-    height: auto;
-  }
-
   nav a {
     font-size: 14px;
     padding: 5px;
@@ -125,5 +123,20 @@ nav .logoHome:hover {
   .Navimg {
     height: 40px;
     width: 40px;
+  }
+
+  .profilePicAndName {
+    flex-direction: column;
+    align-items: center;
+    padding: 5px 0;
+  }
+
+  .profilePic {
+    margin-right: 0;
+    margin-bottom: 5px;
+  }
+
+  .username-nav {
+    font-size: 16px;
   }
 }

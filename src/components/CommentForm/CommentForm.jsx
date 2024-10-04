@@ -1,4 +1,3 @@
-// src/components/CommentForm/CommentForm.jsx
 
 import { useState, useEffect } from 'react';
 import './CommentForm.css'
@@ -13,7 +12,6 @@ const CommentForm = ({handleAddComment}) => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    // handleAddComment
     setFormData({ text: '' });
     handleAddComment(formData)
   };

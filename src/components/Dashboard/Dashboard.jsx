@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import './Dashboard.css'; // Updated CSS file import
+import './Dashboard.css';  
 import UpcomingEvents from '../Events/UpcomingEvents/UpcomingEvents';
 
 

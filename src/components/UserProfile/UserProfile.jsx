@@ -130,6 +130,10 @@ const UserProfile = () => {
             <h1>{user?.username}</h1>
             <p>Phone: {user?.phone}</p>
             <p>Email: {user?.email}</p>
+            <div className="follow-stats2">
+          <div>Followers: {user.followers.length}</div>
+          <div>Following: {user.following.length}</div>
+        </div>
                   <div className='EandD'>
                       <button onClick={() => setIsEditing(true)}> <img src="https://img.icons8.com/?size=50&id=XPJ22YD4LrLc&format=png&color=000000" alt="Edit Profile" /> </button>
                       <button onClick={() => setShowDeleteConfirm(true)}>  <img src="https://img.icons8.com/?size=50&id=T5dnyLNPujOw&format=png&color=000000" alt="delet Profile" /> </button>

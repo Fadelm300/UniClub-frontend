@@ -18,7 +18,10 @@
     display: flex; 
     justify-content: center; 
 }
-
+.followers-nu {
+    text-align: center;
+  }
+  
 .search-bar {
     width: 100%;
     padding: 10px 40px;

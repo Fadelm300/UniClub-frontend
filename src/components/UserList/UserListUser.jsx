@@ -1,7 +1,7 @@
 import React from 'react';
 import adminService from '../../services/adminService';
 import { useEffect, useState } from 'react';
-import './UserList.css'; // Import the CSS file
+import './UserList.css'; 
 import authService from '../../services/authService';
 import { Link } from 'react-router-dom';
 
@@ -9,7 +9,7 @@ function UserListUser({userUser}) {
     const [users, setUsers] = useState([]);
     const [change, setChange] = useState(true);
   
-    const [searchQuery, setSearchQuery] = useState(''); // New state for search input
+    const [searchQuery, setSearchQuery] = useState(''); 
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -26,7 +26,6 @@ function UserListUser({userUser}) {
 
     
 
-    // Filter the users based on the search query
     const filteredUsers = users.filter(user => 
         user.username.toLowerCase().includes(searchQuery.toLowerCase()) ||
         user.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -41,13 +40,13 @@ function UserListUser({userUser}) {
     return (
         <div className="user-list-container">
             <div className="search-container">
-                <i className="fa fa-search search-icon"></i> {/* Search icon */}
+                <i className="fa fa-search search-icon"></i> 
                 <input
                     type="text"
                     className="search-bar"
                     placeholder="Search by username, email, or phone..."
                     value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)} // Update search query state
+                    onChange={(e) => setSearchQuery(e.target.value)} 
                 />
             </div>
 
@@ -56,6 +55,7 @@ function UserListUser({userUser}) {
                     <tr>
                         <th>Username</th>
                         <th>Role</th>
+                        <th className='followers-nu'>Nu followers</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -69,9 +69,9 @@ function UserListUser({userUser}) {
                             </td>
                             
                             <td>{user.admin ? 'Admin' : 'User'}</td>
-                            
+                            <td className='followers-nu'>{user.followers.length}</td>
                             <td>
-                                {user.followers.length}
+                                
                                 <button onClick={() => toggleFollow(user._id)}>
                                     {user.followers.includes(userUser.id) ? 'unfollow' : 'Follow'}
                                 </button>

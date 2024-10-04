@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import authService from '../../services/authService';
-import './UserProfile.css';
+import './OtherProfile.css';
 
 const UserProfile = ({userUser}) => {
   const { userId } = useParams();
@@ -15,10 +15,6 @@ const UserProfile = ({userUser}) => {
   const [expandedPosts, setExpandedPosts] = useState({});
   const [change, setChange] = useState(true);
 
-  // Edit state
-  
-  // Confirmation modals
-  
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -46,41 +42,39 @@ const UserProfile = ({userUser}) => {
   const toggleFollow = async (userId) => {
     await authService.toggleFollow(userId);
     setChange(!change);
-};
+  };
 
-  
-
-  if (loading) return <div className="loading">Loading...</div>;
-  if (error) return <div className="error">Error: {error}</div>;
+  if (loading) return <div className="loading2">Loading...</div>;
+  if (error) return <div className="error2">Error: {error}</div>;
 
   const maxLength = 100;
 
   return (
-    <div className="user-profile">
-      <div className="profile-header">
+    <div className="user-profile2">
+      <div className="profile-header2">
         <img
-          className="profile-picture"
+          className="profile-picture2"
           src="https://img.icons8.com/?size=100&id=kfZajSPygW1l&format=png&color=000000"
           alt="User Avatar"
         />
         <h1>{user?.username}</h1>
-        <div>followers: {user.followers.length}</div>
-        <div>following: {user.following.length}</div>
-        <button onClick={() => toggleFollow(user._id)}>
-          {user.followers.includes(userUser.id) ? 'unfollow' : 'Follow'}
+        <div className="follow-stats2">
+          <div>Followers: {user.followers.length}</div>
+          <div>Following: {user.following.length}</div>
+        </div>
+        <button className="follow-button2" onClick={() => toggleFollow(user._id)}>
+          {user.followers.includes(userUser.id) ? 'Unfollow' : 'Follow'}
         </button>
-
-
       </div>
 
-      <div className="user-posts">
+      <div className="user-posts2">
         <h2>Posts</h2>
         {posts.length === 0 ? (
           <p>No posts yet</p>
         ) : (
           <ul>
             {posts.map((post) => (
-              <li key={post._id} className="post-item">
+              <li key={post._id} className="post-item2">
                 <Link to={`/${post.path}/post/${post._id}`}>
                   {expandedPosts[post._id]
                     ? post.text
@@ -89,12 +83,12 @@ const UserProfile = ({userUser}) => {
                     : post.text}
                 </Link>
                 {post.text.length > maxLength && !expandedPosts[post._id] && (
-                  <button className="see-more" onClick={() => togglePostVisibility(post._id)}>
+                  <button className="see-more2" onClick={() => togglePostVisibility(post._id)}>
                     Click to see more details
                   </button>
                 )}
                 {expandedPosts[post._id] && (
-                  <button className="see-less" onClick={() => togglePostVisibility(post._id)}>
+                  <button className="see-less2" onClick={() => togglePostVisibility(post._id)}>
                     Click to see less
                   </button>
                 )}
@@ -103,18 +97,6 @@ const UserProfile = ({userUser}) => {
           </ul>
         )}
       </div>
-
-
-
-
-
-                      
-
-                {/* Confirmation Modal for Edit */}
-                
-
-
-
     </div>
   );
 };

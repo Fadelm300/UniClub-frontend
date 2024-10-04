@@ -20,7 +20,7 @@ const PostDetails = ({ user, handleDeletePost }) => {
     async function getPost() {
       const postData = await postService.show(path, postid);
       setPost(postData);
-      setEditText(postData.text); // Set the initial edit text to current post text
+      setEditText(postData.text);
     }
     getPost();
   }, [postid, path]);

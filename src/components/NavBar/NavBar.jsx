@@ -32,7 +32,7 @@ const NavBar = ({ user, handleSignout }) => { // Keeping handleSignout prop
                     alt="Profile Logo"
                     className='profilePic'
                   />
-                  <div>{user.username}</div>
+                  <div className='username-nav'>{user.username}</div>
                 </Link>
               </li>
               <li>
@@ -43,7 +43,7 @@ const NavBar = ({ user, handleSignout }) => { // Keeping handleSignout prop
                     alt="Sign Out Logo"
                   />
                 </Link>
-              </li> {/* Replaced Sign Out text with a logo */}
+              </li> 
             </div>
           </div>
         </nav>
