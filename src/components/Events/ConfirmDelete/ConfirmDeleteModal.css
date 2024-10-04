@@ -1,4 +1,3 @@
-/* ConfirmDeleteModal.css */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -37,7 +36,7 @@
   }
   
   .confirm-btn {
-    background-color: #f44336; /* Red */
+    background-color: #f44336; 
     color: white;
   }
   
@@ -46,7 +45,7 @@
   }
   
   .cancel-btn {
-    background-color: #4CAF50; /* Green */
+    background-color: #4CAF50; 
     color: white;
   }
   

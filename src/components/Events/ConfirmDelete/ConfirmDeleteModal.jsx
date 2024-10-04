@@ -1,6 +1,6 @@
 // ConfirmDeleteModal.js
 import React from 'react';
-import './ConfirmDeleteModal.css'; // Add your own styling here
+import './ConfirmDeleteModal.css'; 
 
 const ConfirmDeleteModal = ({ isOpen, onConfirm, onCancel }) => {
   if (!isOpen) return null;

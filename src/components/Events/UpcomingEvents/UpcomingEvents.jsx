@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import EventService from '../../../services/EventService';
 import { Link } from 'react-router-dom';
-import ConfirmDeleteModal from '../ConfirmDelete/ConfirmDeleteModal'; // Import the modal component
+import ConfirmDeleteModal from '../ConfirmDelete/ConfirmDeleteModal';
 import './UpcomingEvents.css';
 
 const UpcomingEvents = ({user}) => {
@@ -30,12 +30,14 @@ const UpcomingEvents = ({user}) => {
     if (eventIdToDelete) {
       try {
         await EventService.deleteEvent(eventIdToDelete);
-        setEvents(events.filter(event => event._id !== eventIdToDelete)); // Remove event from list
-        setEventIdToDelete(null); // Reset after delete
+        // Remove the deleted event from the state
+        setEvents(events.filter(event => event._id !== eventIdToDelete));
+        setIsModalOpen(false);
+        setEventIdToDelete(null); 
       } catch (error) {
         console.error('Error deleting event:', error);
+        setError('Failed to delete event. Please try again.'); // Update error state
       }
-      setIsModalOpen(false); // Close modal after delete
     }
   };
 
@@ -46,7 +48,7 @@ const UpcomingEvents = ({user}) => {
 
   const closeModal = () => {
     setIsModalOpen(false);
-    setEventIdToDelete(null); // Reset event ID
+    setEventIdToDelete(null); 
   };
 
   if (loading) {
@@ -74,6 +76,7 @@ const UpcomingEvents = ({user}) => {
 
               {/* Buttons for Edit and Delete */}
               {user?.admin &&(
+
               <div className="event-actions">
                 <Link to={`/edit-event/${event._id}`} className="edit-button">Edit</Link>
                 <button className="delete-button" onClick={() => openModal(event._id)}>Delete</button>
@@ -85,7 +88,6 @@ const UpcomingEvents = ({user}) => {
         ))}
       </div>
 
-      {/* Modal for confirmation */}
       <ConfirmDeleteModal 
         isOpen={isModalOpen} 
         onConfirm={handleDelete} 

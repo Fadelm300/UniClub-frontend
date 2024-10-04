@@ -289,6 +289,9 @@ const App = () => {
         <Route path="/FAQ" element={<FAQ />} />
         <Route path="/GPAStudent" element={<GPAStudent />} />
 
+        <Route path="/UserList" element={<UserList />} />
+        <Route path="/AddEvent" element={<AddEvent />} />
+
 
 
 

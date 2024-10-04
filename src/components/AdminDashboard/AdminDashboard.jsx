@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import './Dashboard.css'; // Updated CSS file import
+import './Dashboard.css'; 
 import UpcomingEvents from '../Events/UpcomingEvents/UpcomingEvents';
 import UserList from "../UserList/UserList";
 import AddEvent from "../Events/AddEvent/AddEvent";
@@ -110,12 +110,18 @@ const AdminDashboard = ({user}) => {
                                 </div>
                         </div>
                
+
+             
+
                 <AddEvent/>
                             <UpcomingEvents user={user}/>
+
                 
-                 
+                      <Link to="/AddEvent">
+                                <button className="channelButtonun1">AddEvent</button>
+                          </Link>
     
-    
+                                  <UpcomingEvents />
     
           
       </div>
