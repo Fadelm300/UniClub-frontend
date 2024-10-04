@@ -23,7 +23,7 @@ import Footer from './components/footer/footer';
 
 import ChannelForm from './components/Channel/ChannelForm';
 import UserProfile from './components/UserProfile/UserProfile';
-
+import OtherProfile from './components/UserProfile/OtherProfile'
 
 import Help from "./components/Help/help";
 import About from "./components/About/about";
@@ -36,7 +36,8 @@ import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 
 
 import GPAStudent from "./components/GPA/GPAStudent";
-import UserList from "./components/UserList/UserList"
+import UserList from "./components/UserList/UserList";
+import UserListUser from './components/UserList/UserListUser';
 import AddEvent from './components/Events/AddEvent/AddEvent';
 import EditEvent from './components/Events/EditEvent/EditEvent';
 
@@ -94,6 +95,8 @@ const App = () => {
     const updateFile = await FileService.updateFile(formData, fileId, path);
   };
 
+  
+
   return (
     <>
       <NavBar user={user} handleSignout={handleSignout} />
@@ -104,8 +107,10 @@ const App = () => {
       {user?.admin?
        <>
        <Route path="/" element={<AdminDashboard user={user} />} />
-       <Route path="/edit-event/:eventid" element={<EditEvent user={user} />} />
 
+       <Route path="/userlist" element={<UserList userUser={user} />}  />
+       <Route path="/edit-event/:eventid" element={<EditEvent user={user} />} />
+        {/* add channel */}
        <Route
         path="/:uni/newchannel"
         element={<ChannelForm handleAddchannel={handleAddchannel} />}
@@ -133,8 +138,13 @@ const App = () => {
 
       {user?
       <>
-      <Route path="/profile/:userId" element={<UserProfile />} />
+
       <Route path="/" element={<Dashboard user={user} />} />
+
+      <Route path="/userlist" element={<UserListUser userUser={user}/>} />
+      <Route path="/profile/:userId" element={<UserProfile />} />
+      <Route path="/userlist/:userId" element={<OtherProfile userUser={user}/>} />
+ 
 
           {/* //add post */}
           <Route
@@ -180,7 +190,7 @@ const App = () => {
      :
       <>
       <Route path="/signin" element={<SigninForm setUser={setUser} end />} />
-      <Route path="/" element={<LandingReal />} />
+      <Route path="/" element={<LandingReal user={user}/>} />
       </>
         
       }
@@ -278,7 +288,6 @@ const App = () => {
         <Route path="/OurServices" element={<OurServices />} />
         <Route path="/FAQ" element={<FAQ />} />
         <Route path="/GPAStudent" element={<GPAStudent />} />
-        <Route path="/UserList" element={<UserList />} />
 
 
 

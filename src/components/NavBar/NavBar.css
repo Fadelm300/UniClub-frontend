@@ -79,6 +79,16 @@ nav .logoHome:hover {
   align-items: center;
 }
 
+.profilePicAndName > * {
+  display: block;
+  margin-bottom: -10px; /* Optional: Adds space between stacked items */
+  text-align: center; /* Centers the text inside the container */
+
+}
+
+
+
+
 /* Responsive design */
 @media (max-width: 768px) {
   nav a {

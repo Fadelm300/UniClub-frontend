@@ -3,7 +3,7 @@ import './Dashboard.css'; // Updated CSS file import
 import UpcomingEvents from '../Events/UpcomingEvents/UpcomingEvents';
 
 
-const Dashboard = () => {
+const Dashboard = ({user}) => {
 
 
   return (
@@ -102,7 +102,7 @@ const Dashboard = () => {
                         </div>
                         
     
-                 <UpcomingEvents />
+                 <UpcomingEvents user={user}/>
                  
     
     

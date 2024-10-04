@@ -10,7 +10,8 @@ const UserProfile = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [expandedPosts, setExpandedPosts] = useState({});
-  
+  console.log(userId)
+
   // Edit state
   const [isEditing, setIsEditing] = useState(false);
   const [editData, setEditData] = useState({
