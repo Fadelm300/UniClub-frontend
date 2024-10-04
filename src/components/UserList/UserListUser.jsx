@@ -3,10 +3,12 @@ import adminService from '../../services/adminService';
 import { useEffect, useState } from 'react';
 import './UserList.css'; // Import the CSS file
 import authService from '../../services/authService';
+import { Link } from 'react-router-dom';
 
 function UserListUser({userUser}) {
     const [users, setUsers] = useState([]);
     const [change, setChange] = useState(true);
+  
     const [searchQuery, setSearchQuery] = useState(''); // New state for search input
 
     useEffect(() => {
@@ -22,10 +24,7 @@ function UserListUser({userUser}) {
         fetchUsers();
     }, [change]);
 
-    const toggleFollow = async (userId) => {
-        await authService.toggleFollow(userId);
-        setChange(!change);
-    };
+    
 
     // Filter the users based on the search query
     const filteredUsers = users.filter(user => 
@@ -33,6 +32,11 @@ function UserListUser({userUser}) {
         user.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
         user.phone.includes(searchQuery)
     );
+
+    const toggleFollow = async (userId) => {
+        await authService.toggleFollow(userId);
+        setChange(!change);
+    };
 
     return (
         <div className="user-list-container">
@@ -52,15 +56,22 @@ function UserListUser({userUser}) {
                     <tr>
                         <th>Username</th>
                         <th>Role</th>
-                        <th>Action</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     {filteredUsers.map((user) => (
                         <tr key={user._id}>
-                            <td>{user.username}</td>
-                            <td>{user.admin ? 'Admin' : 'User'}</td>
                             <td>
+                                <Link to={`/userlist/${user._id}`}>
+                                    {user.username}
+                                </Link>
+                            </td>
+                            
+                            <td>{user.admin ? 'Admin' : 'User'}</td>
+                            
+                            <td>
+                                {user.followers.length}
                                 <button onClick={() => toggleFollow(user._id)}>
                                     {user.followers.includes(userUser.id) ? 'unfollow' : 'Follow'}
                                 </button>

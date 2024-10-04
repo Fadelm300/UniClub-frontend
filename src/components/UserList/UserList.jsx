@@ -2,8 +2,9 @@ import React from 'react';
 import adminService from '../../services/adminService';
 import { useEffect, useState } from 'react';
 import './UserList.css'; // Import the CSS file
+import authService from '../../services/authService';
 
-function UserList() {
+function UserList({userUser}) {
     const [users, setUsers] = useState([]);
     const [change, setChange] = useState(true);
     const [searchQuery, setSearchQuery] = useState(''); // New state for search input
@@ -23,6 +24,11 @@ function UserList() {
 
     const toggleAdmin = async (userId) => {
         await adminService.toggleAdmin(userId);
+        setChange(!change);
+    };
+
+    const toggleFollow = async (userId) => {
+        await authService.toggleFollow(userId);
         setChange(!change);
     };
 
@@ -54,6 +60,7 @@ function UserList() {
                         <th>Phone</th>
                         <th>Role</th>
                         <th>Action</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -66,6 +73,11 @@ function UserList() {
                             <td>
                                 <button onClick={() => toggleAdmin(user._id)}>
                                     {user.admin ? 'Demote to User' : 'Promote to Admin'}
+                                </button>
+                            </td>
+                            <td>
+                                <button onClick={() => toggleFollow(user._id)}>
+                                    {user.followers.includes(userUser.id) ? 'unfollow' : 'Follow'}
                                 </button>
                             </td>
                         </tr>

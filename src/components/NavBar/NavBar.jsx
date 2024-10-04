@@ -25,12 +25,14 @@ const NavBar = ({ user, handleSignout }) => { // Keeping handleSignout prop
                   />
                 </Link>
               </li>
-              <li>
+              <li className='profilePicAndName'>
                 <Link to={`/profile/${user.id}`}>
                   <img
                     src="https://img.icons8.com/?size=40&id=z-JBA_KtSkxG&format=png&color=000000"
                     alt="Profile Logo"
+                    className='profilePic'
                   />
+                  <div>{user.username}</div>
                 </Link>
               </li>
               <li>

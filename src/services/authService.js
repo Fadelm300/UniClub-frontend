@@ -93,6 +93,25 @@ const getUserProfile = async (userId) => {
   }
 };
 
+const getOtherUserProfile = async (userId) => {
+  try {
+    const token = localStorage.getItem('token');
+    const response = await fetch(`${BACKEND_URL}/profiles/other/${userId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch user profile');
+    }
+
+    return await response.json();
+  } catch (error) {
+    throw new Error('Error fetching user profile: ' + error.message);
+  }
+};
+
 const updateUserProfile = async (userId, userData) => {
   const token = localStorage.getItem('token');
   const response = await fetch(`${BACKEND_URL}/profiles/${userId}`, {
@@ -149,6 +168,7 @@ export default {
   getUser,
   signout,
   getUserProfile,
+  getOtherUserProfile,
   updateUserProfile,
   deleteUserProfile,
   toggleFollow
