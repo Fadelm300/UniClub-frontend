@@ -54,6 +54,7 @@ const App = () => {
   }
 
   const handleAddPost = async (formData,path) => {
+    console.log(formData)
     const newPost = await postService.create(formData , path);
     setPosts([...posts, newPost]);
     navigate(path);
