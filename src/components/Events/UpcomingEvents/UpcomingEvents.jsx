@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import ConfirmDeleteModal from '../ConfirmDelete/ConfirmDeleteModal';
 import './UpcomingEvents.css';
 
-const UpcomingEvents = () => {
+const UpcomingEvents = ({user}) => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -74,10 +74,15 @@ const UpcomingEvents = () => {
                 <p><strong>Location:</strong> {event.location}</p>
               </div>
 
+              {/* Buttons for Edit and Delete */}
+              {user?.admin &&(
+
               <div className="event-actions">
                 <Link to={`/edit-event/${event._id}`} className="edit-button">Edit</Link>
                 <button className="delete-button" onClick={() => openModal(event._id)}>Delete</button>
               </div>
+              )
+              }
             </div>
           </div>
         ))}

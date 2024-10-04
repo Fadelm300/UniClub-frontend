@@ -4,7 +4,7 @@ import UpcomingEvents from '../Events/UpcomingEvents/UpcomingEvents';
 import UserList from "../UserList/UserList";
 import AddEvent from "../Events/AddEvent/AddEvent";
 
-const AdminDashboard = ({}) => {
+const AdminDashboard = ({user}) => {
 
 
   return (
@@ -110,8 +110,12 @@ const AdminDashboard = ({}) => {
                                 </div>
                         </div>
                
+
              
-                           
+
+                <AddEvent/>
+                            <UpcomingEvents user={user}/>
+
                 
                       <Link to="/AddEvent">
                                 <button className="channelButtonun1">AddEvent</button>

@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 import UpcomingEvents from "../Events/UpcomingEvents/UpcomingEvents";
 import  './LandingReal.css'; 
-const LandingReal = () => {
+const LandingReal = ({user}) => {
   return (
 
 <div className="LandingRealContainer">
@@ -98,7 +98,7 @@ const LandingReal = () => {
                         </div>
 
 
-             <UpcomingEvents />
+             <UpcomingEvents user={user}/>
 
 
 
