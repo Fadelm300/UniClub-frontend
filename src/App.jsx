@@ -36,7 +36,8 @@ import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 
 
 import GPAStudent from "./components/GPA/GPAStudent";
-import UserList from "./components/UserList/UserList"
+import UserList from "./components/UserList/UserList";
+import UserListUser from './components/UserList/UserListUser';
 import AddEvent from './components/Events/AddEvent/AddEvent';
 import EditEvent from './components/Events/EditEvent/EditEvent';
 
@@ -104,6 +105,8 @@ const App = () => {
       {user?.admin?
        <>
        <Route path="/" element={<AdminDashboard user={user} />} />
+
+       <Route path="/userlist" element={<UserList />} />
        <Route path="/edit-event/:eventid" element={<EditEvent user={user} />} />
 
        <Route
@@ -133,8 +136,11 @@ const App = () => {
 
       {user?
       <>
-      <Route path="/profile/:userId" element={<UserProfile />} />
       <Route path="/" element={<Dashboard user={user} />} />
+
+      <Route path="/userlist" element={<UserListUser userUser={user}/>} />
+      <Route path="/profile/:userId" element={<UserProfile />} />
+
 
           {/* //add post */}
           <Route
@@ -278,7 +284,6 @@ const App = () => {
         <Route path="/OurServices" element={<OurServices />} />
         <Route path="/FAQ" element={<FAQ />} />
         <Route path="/GPAStudent" element={<GPAStudent />} />
-        <Route path="/UserList" element={<UserList />} />
 
 
 

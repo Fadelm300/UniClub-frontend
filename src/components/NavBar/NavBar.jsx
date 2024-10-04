@@ -17,7 +17,7 @@ const NavBar = ({ user, handleSignout }) => { // Keeping handleSignout prop
 
             <div className="otherNav">
               <li>
-                <Link to="/UserList">
+                <Link to="/userlist">
                   <img
                   className='imgSerch'
                     src="https://img.icons8.com/?id=12773&format=png&color=000000"

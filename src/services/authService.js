@@ -127,6 +127,22 @@ const deleteUserProfile = async (userId) => {
   return await response.json();
 };
 
+const toggleFollow = async (userId) => {
+  const token = localStorage.getItem('token');
+  const response = await fetch(`${BACKEND_URL}/users/follow/${userId}`, {
+    method: 'PUT',
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to delete user profile');
+  }
+
+  return await response.json();
+};
+
 export default {
   signup,
   signin,
@@ -134,5 +150,6 @@ export default {
   signout,
   getUserProfile,
   updateUserProfile,
-  deleteUserProfile
+  deleteUserProfile,
+  toggleFollow
 };
