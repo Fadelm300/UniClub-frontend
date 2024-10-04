@@ -64,7 +64,7 @@ const UpcomingEvents = ({user}) => {
       <h1 className="events-h1">Upcoming Events</h1>
       <div className="event-cards">
         {events.map((event) => (
-          <div className="event-card" key={event._id} style={{ backgroundImage: `url(${event.logo})` }}>
+          <div className="event-card" key={event._id} style={{ backgroundImage: `url(${event.image})` }}>
             <div className="event-details">
               <h2 className="event-title">{event.title}</h2>
               <p className="event-description">{event.description}</p>

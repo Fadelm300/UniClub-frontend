@@ -59,8 +59,10 @@ const PostDetails = ({ user, handleDeletePost }) => {
                   <button onClick={() => setIsEditing(false)}>Cancel</button>
                 </div>
               ) : (
-                <p>{post.text}</p>
+                <p>{post.text} </p>
+                
               )}
+              <div className="postimg"><img src={post.image} alt="" /></div>
             </div>
             {(post.user._id === user?.id || user?.admin) && (
               <>

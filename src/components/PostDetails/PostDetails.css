@@ -162,3 +162,21 @@
         padding: 10px;
     }
 }
+
+
+
+
+
+
+
+.postimg {
+    width: 300px; /* Make the container full width */
+    overflow: hidden; /* Hide any overflow */
+  }
+  
+  .postimg img {
+    width: 100%; /* Make the image fill the container */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Prevents bottom whitespace */
+  }
+  

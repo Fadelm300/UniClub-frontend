@@ -3,6 +3,7 @@ import EventService from '../../../services/EventService';
 import { useNavigate } from 'react-router-dom';
 import Modal from '../ConfirmAddEvent/Modal'; 
 import './AddEvent.css';
+import axios from "axios";
 
 const AddEvent = () => {
   const [formData, setFormData] = useState({
@@ -11,35 +12,22 @@ const AddEvent = () => {
     date: '',
     time: '',
     location: '',
-    logo: ''
+    image: ''
   });
   const [error, setError] = useState(null);
-  const [modalMessage, setModalMessage] = useState(null);
-  const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [url, setUrl] = useState("");
+  const BASE_URL = import.meta.env.VITE_BACKEND_URL;
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const confirmMessage = `Confirm event creation:\n
-      Title: ${formData.title}\n
-      Description: ${formData.description}\n
-      Date: ${formData.date}\n
-      Time: ${formData.time}\n
-      Location: ${formData.location}\n
-      Logo URL: ${formData.logo}
-    `;
-
-    setModalMessage(confirmMessage);
-    setShowModal(true);
-  };
-
-  const handleConfirm = async () => {
-    setShowModal(false);
     try {
       await EventService.addEvent(formData);
       setFormData({
@@ -48,17 +36,56 @@ const AddEvent = () => {
         date: '',
         time: '',
         location: '',
-        logo: ''
+        image: ''
       });
       setTimeout(() => navigate('/'), 0);
     } catch (err) {
       setError(err.message);
-      setShowModal(false);
     }
   };
 
-  const handleCancel = () => {
-    setShowModal(false);
+  const convertBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
+
+  const uploadImage = async (event) => {
+    const files = event.target.files[0];
+    if (!files) return;
+
+    setError("");
+
+    const base64 = await convertBase64(files);
+    setLoading(true);
+
+    axios
+      .post(`${BASE_URL}/upload`, { image: base64 })
+      .then((res) => {
+        setUrl(res.data.url);
+        setFormData({ ...formData, image: res.data.url });
+        setError("");
+      })
+      .then(() => {
+        setLoading(false);
+      })
+      .catch((err) => {
+        setLoading(false);
+        if (err.response && err.response.status === 413) {
+          setError("The image is too large. Please upload a smaller file.");
+        } else {
+          setError("An error occurred during the upload. Please try again.");
+        }
+      });
   };
 
   return (
@@ -101,23 +128,9 @@ const AddEvent = () => {
           placeholder="Location"
           required
         />
-        <input
-          name="logo"
-          value={formData.logo}
-          onChange={handleChange}
-          placeholder="Logo URL"
-          required
-        />
+        <input type="file" id="image" name="image" onChange={uploadImage} />
         <button type="submit">Add Event</button>
       </form>
-
-      {showModal && (
-        <Modal
-          message={modalMessage}
-          onConfirm={handleConfirm}
-          onCancel={handleCancel}
-        />
-      )}
     </div>
   );
 };
