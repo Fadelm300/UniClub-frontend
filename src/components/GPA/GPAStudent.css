@@ -1,11 +1,11 @@
 .gpa-calculator4 {
-  background: linear-gradient(to right, #0b0e23, #1a2740 30%, #273a54 60%, #3b4d6b 100%); 
-  color: #000000; 
+  background: linear-gradient(to right, #0b0e23, #1a2740 30%, #273a54 60%, #3b4d6b 100%);
+  color: #ffffff; 
   padding: 20px;
   border-radius: 8px;
-  width: 600px; 
-  margin: 50px auto; 
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); 
+  width: 600px;
+  margin: 50px auto;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
   margin-top: 120px;
 }
 
@@ -21,14 +21,14 @@
   margin: 5px 0;
   border: none;
   border-radius: 4px;
-  background-color: #f2f2f2; 
+  background-color: #f2f2f2;
   color: #000000; 
-  font-weight: bold ; 
+  font-weight: bold; 
 }
 
 .button-row4 {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; 
   margin-bottom: 20px; 
 }
 
@@ -36,14 +36,15 @@
 .calculate-gpa-button4,
 .clear-data-button4,
 .calculate-cumulative-gpa-button4 {
-  background-color: #3498db;
-  color: #ffffff;
+  background-color: #3498db; 
+  color: #ffffff; 
   padding: 10px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   width: 48%; 
   font-weight: bold; 
+  transition: background-color 0.3s ease; 
 }
 
 .add-course-button4:hover,
@@ -63,7 +64,7 @@
   font-size: 18px;
   color: #f1eded; 
   font-weight: bold;
-  text-align: right;
+  text-align: left; 
   margin-top: 20px; 
 }
 
@@ -75,7 +76,7 @@
   border: none;
   border-radius: 4px;
   background-color: #f2f2f2;
-  color: #a72424; 
+  color: #a72424;
   font-weight: bold; 
 }
 
@@ -92,10 +93,9 @@
   box-sizing: border-box; 
 }
 
-
 .cumulative-title4 {
-  text-align: right; 
   margin-top: 20px; 
+  text-align: left; 
 }
 
 .bottom-input4 {
@@ -107,4 +107,21 @@
   background-color: #f2f2f2; 
   color: #000000; 
   font-weight: bold; 
+}
+
+.language-toggle {
+  background-color: #4550a8; 
+  color: #ffffff; 
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+.text-left {
+  text-align: left; 
+}
+
+.text-right {
+  text-align: right; 
 }
