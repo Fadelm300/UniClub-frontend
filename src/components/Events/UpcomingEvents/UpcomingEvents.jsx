@@ -30,13 +30,12 @@ const UpcomingEvents = ({user}) => {
     if (eventIdToDelete) {
       try {
         await EventService.deleteEvent(eventIdToDelete);
-        // Remove the deleted event from the state
         setEvents(events.filter(event => event._id !== eventIdToDelete));
         setIsModalOpen(false);
         setEventIdToDelete(null); 
       } catch (error) {
         console.error('Error deleting event:', error);
-        setError('Failed to delete event. Please try again.'); // Update error state
+        setError('Failed to delete event. Please try again.'); 
       }
     }
   };
@@ -74,7 +73,6 @@ const UpcomingEvents = ({user}) => {
                 <p><strong>Location:</strong> {event.location}</p>
               </div>
 
-              {/* Buttons for Edit and Delete */}
               {user?.admin &&(
 
               <div className="event-actions">

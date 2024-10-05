@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import './NavBar.css';
 
-const NavBar = ({ user, handleSignout }) => { // Keeping handleSignout prop
+const NavBar = ({ user, handleSignout }) => { 
+  const DEFAULT_IMAGE_URL = "https://img.icons8.com/?size=40&id=z-JBA_KtSkxG&format=png&color=000000";
+
   return (
     <>
       {user ? (
@@ -27,11 +29,12 @@ const NavBar = ({ user, handleSignout }) => { // Keeping handleSignout prop
               </li>
               <li className='profilePicAndName'>
                 <Link to={`/profile/${user.id}`}>
+                 
                   <img
-                    src="https://img.icons8.com/?size=40&id=z-JBA_KtSkxG&format=png&color=000000"
-                    alt="Profile Logo"
-                    className='profilePic'
-                  />
+                        className="profilePic"
+                        src={user?.image || DEFAULT_IMAGE_URL}
+                        alt="User Avatar"
+                      />
                   <div className='username-nav'>{user.username}</div>
                 </Link>
               </li>
