@@ -3,13 +3,14 @@ import './PostForm.css';
 import { useParams } from "react-router-dom";
 import { deriveChannelPath } from "../../utils/helpers/urlHelpers";
 import axios from "axios";
+import ErrorModal from '../Events/ErrorModal/ErrorModal'; 
 
 const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 const PostForm = ({ handleAddPost }) => {
   const { uni, college, major, course, event } = useParams();
   const path = deriveChannelPath({ uni, college, major, course, event });
-  
+  const [showErrorModal, setShowErrorModal] = useState(false); // State to control modal
   const [loading, setLoading] = useState(false); 
   const [error, setError] = useState(null); 
   const [formData, setFormData] = useState({
@@ -50,15 +51,14 @@ const PostForm = ({ handleAddPost }) => {
 
     try {
       const base64 = await convertBase64(files); 
-      const res = await axios.post(`${BASE_URL}/upload`, { image: base64 }); 
+      const res = await axios.post(`${BASE_URL}/uploadImg`, { image: base64 }); 
       setFormData({ ...formData, image: res.data.url }); 
       setError(""); // Clear any errors
     } catch (err) {
       if (err.response && err.response.status === 413) {
-        setError("The image is too large. Please upload a smaller file."); 
-      } else {
-        setError("An error occurred during the upload. Please try again."); 
+        setError('The image is too large. Please upload a smaller file.');
       }
+      setShowErrorModal(true);
     } finally {
       setLoading(false); 
     }
@@ -75,9 +75,9 @@ const PostForm = ({ handleAddPost }) => {
               type="text"  
               className='addpost' 
               onChange={handleChange} 
-              required // Make text field required
+              required 
             />
-      <input
+             <input
                 id="image" 
                 name="image" 
           onChange={handleChange}
@@ -100,6 +100,12 @@ const PostForm = ({ handleAddPost }) => {
             <img src="https://img.icons8.com/?size=70&id=24717&format=png&color=000000" alt="submit logo" />
           </button>
         </form>
+         {/* Error Modal */}
+         <ErrorModal
+          show={showErrorModal}
+          message={error}
+          onClose={() => setShowErrorModal(false)}
+        />
       </div>
     </main>
   );

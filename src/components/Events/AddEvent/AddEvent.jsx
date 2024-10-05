@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import EventService from '../../../services/EventService';
 import { useNavigate } from 'react-router-dom';
-import Modal from '../ConfirmAddEvent/Modal'; 
+import ErrorModal from '../ErrorModal/ErrorModal';
 import './AddEvent.css';
-import axios from "axios";
+import axios from 'axios';
 
 const AddEvent = () => {
   const [formData, setFormData] = useState({
@@ -16,7 +16,8 @@ const AddEvent = () => {
   });
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [url, setUrl] = useState("");
+  const [url, setUrl] = useState('');
+  const [showErrorModal, setShowErrorModal] = useState(false); 
   const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
   const navigate = useNavigate();
@@ -41,6 +42,7 @@ const AddEvent = () => {
       setTimeout(() => navigate('/'), 0);
     } catch (err) {
       setError(err.message);
+      setShowErrorModal(true); 
     }
   };
 
@@ -63,17 +65,17 @@ const AddEvent = () => {
     const files = event.target.files[0];
     if (!files) return;
 
-    setError("");
+    setError('');
 
     const base64 = await convertBase64(files);
     setLoading(true);
 
     axios
-      .post(`${BASE_URL}/upload`, { image: base64 })
+      .post(`${BASE_URL}/uploadImg`, { image: base64 })
       .then((res) => {
         setUrl(res.data.url);
         setFormData({ ...formData, image: res.data.url });
-        setError("");
+        setError('');
       })
       .then(() => {
         setLoading(false);
@@ -81,17 +83,15 @@ const AddEvent = () => {
       .catch((err) => {
         setLoading(false);
         if (err.response && err.response.status === 413) {
-          setError("The image is too large. Please upload a smaller file.");
-        } else {
-          setError("An error occurred during the upload. Please try again.");
+          setError('The image is too large. Please upload a smaller file.');
         }
+        setShowErrorModal(true); 
       });
   };
 
   return (
     <div className="add-event-container">
       <h2>Add Event</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
       <form onSubmit={handleSubmit}>
         <input
           name="title"
@@ -131,6 +131,13 @@ const AddEvent = () => {
         <input type="file" id="image" name="image" onChange={uploadImage} />
         <button type="submit">Add Event</button>
       </form>
+
+      {/* Error Modal */}
+      <ErrorModal
+        show={showErrorModal}
+        message={error}
+        onClose={() => setShowErrorModal(false)}
+      />
     </div>
   );
 };
