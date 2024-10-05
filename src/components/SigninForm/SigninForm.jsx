@@ -76,7 +76,7 @@ const [error, setError] = useState("");
       <div className="form-container sign-up">
               <form onSubmit={handleSubmitSignUp}>
                 <p>{error}</p>
-                
+                <h1 className="H1Sign" >Sign Up</h1>
                  <input
                 type="text"
                 placeholder="Username"
@@ -166,7 +166,7 @@ const [error, setError] = useState("");
 
         <div className="form-container sign-in">
           <form autoComplete="off" onSubmit={handleSubmit}>
-            <h1>Sign In</h1>
+            <h1 className="H1Sign" >Sign In</h1>
             <p>{message}</p>
             <input
               type="text"
@@ -191,7 +191,7 @@ const [error, setError] = useState("");
         <div className="toggle-container">
           <div className="toggle">
             <div className="toggle-panel toggle-left">
-              <h1>Welcome Back!</h1>
+              <h1 >Welcome Back!</h1>
               <div className="image-layer">
                     <img src="img/white-outline.png" className="form-image-main" alt="form-image-main"/>
                     <img src="/img/dots.png" className="form-image dots" alt="form-image dots"/>
@@ -209,7 +209,7 @@ const [error, setError] = useState("");
               </button>
             </div>
             <div className="toggle-panel toggle-right">
-              <h1>Hello, Friend!</h1>
+              <h1 >Hello, Friend!</h1>
               
 
                <div className="image-layer">

@@ -86,7 +86,9 @@
   margin-top: 10px;
   cursor: pointer;
 }
-
+.H1Sign{
+  color: #0b0e23;
+}
 .container button.hidden {
   background-color: transparent;
   border-color: #fff;

@@ -1,122 +1,120 @@
-
-
-
-
 .landingPageContainer {
     display: flex;
     width: 100%;
     position: relative;
-}
+    background-color: #f83a3a; /* Black background */
+  }
   
-
-.sidebar {
-    width: 200px; 
-    background-color: #007bff;
+  .sidebar {
+    width: 200px;
+    background-color: #1a1a1a; /* Dark sidebar */
     padding: 10px;
     position: fixed;
-    left: -250px; 
+    left: -250px;
     height: 100%;
     top: 0;
     transition: left 0.7s ease;
     z-index: 100;
     margin-top: 70px;
     padding-top: 60px;
-}
+  }
   
-.sidebar.open {
-    left: 0; 
-}
+  .sidebar.open {
+    left: 0;
+  }
   
-.channelsNAV {
+  .channelsNAV {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-}
+  }
   
-.channelButton {
+  .channelButton {
     padding: 10px 20px;
-    margin: 5px 0; 
-    background-color:#007bff; 
-    color: white; 
+    margin: 5px 0;
+    background-color: #1da1f2; /* Twitter blue */
+    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     width: 100%;
     transition: background-color 0.3s ease;
-}
+    text-transform: uppercase;
+  }
   
-.channelButton:hover {
-    background-color: #8d99ae;
+  .channelButton:hover {
+    background-color: #007bff;
     transition: background-color 0.4s ease-in-out;
-    text-transform: uppercase; 
-    font-size: 18px; 
-}
+    text-transform: uppercase;
+    font-size: 18px;
+  }
   
-.mainContent {
-    flex-grow: 1; 
+  .mainContent {
+    flex-grow: 1;
     padding: 20px;
     margin-left: 0;
-    transition: margin-left 0.3s ease; 
+    transition: margin-left 0.3s ease;
     display: flex;
     flex-direction: column;
-    align-items: center; 
+    align-items: center;
     min-height: 90vh;
-}
+    color: #fff; /* White text */
+    background-color: #000; /* Black background */
+    background-color: #000; /* Black background */
+
+  }
   
-.sidebar.open ~ .mainContent {
-    margin-left: 250px; 
-}
+  .sidebar.open ~ .mainContent {
+    margin-left: 250px;
+  }
   
-.toggleSidebarBtn {
-   
-    border: none; 
-    background: none; 
+  .toggleSidebarBtn {
+    border: none;
+    background: none;
     position: fixed;
     top: 75px;
     left: 20px;
     padding: 10px 15px;
-    border: none;
     border-radius: 5px;
     cursor: pointer;
     z-index: 200;
     transition: all 0.3s ease;
-}
-.OpenNavLogo{
-    width: 50px; 
-    height: auto; 
-    max-height: 50px; 
-}
-.closNavLogo {
-    width: 30px; 
-    height: auto; 
-    max-height: 30px; 
-
-}
+  }
   
-
+  .OpenNavLogo {
+    width: 50px;
+    height: auto;
+    max-height: 50px;
+  }
   
-.buttonsfiles:hover,
-.buttonsposts:hover,
-.buttonsAddPost:hover,
-.buttonsAddChannel:hover,
-.buttonsAddFile:hover {
-    background-image: linear-gradient(to right, #00bfff, #1e90ff); 
-    transform: scale(1.05); 
+  .closNavLogo {
+    width: 30px;
+    height: auto;
+    max-height: 30px;
+  }
+  
+  .buttonsfiles:hover,
+  .buttonsposts:hover,
+  .buttonsAddPost:hover,
+  .buttonsAddChannel:hover,
+  .buttonsAddFile:hover {
+    background-color: #1da1f2;
+    transform: scale(1.05);
     border: 2px solid #67c1e7;
-    font-size: 20px; 
+    font-size: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
+  }
   
-.addbtn {
+  .addbtn {
     display: flex;
-    flex-wrap: wrap; 
-    gap: 10px;        
-    margin-top: 20px; 
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
     justify-content: center;
-}
+  }
   
-.addbtn button {
-    background-image: linear-gradient(to right, #1e90ff, #00bfff); 
+  .addbtn button {
+    background-color: #1da1f2;
     transition: all 0.3s ease;
     color: white;
     padding: 10px 20px;
@@ -127,107 +125,109 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     min-width: 150px;
     text-align: center;
-}
+  }
   
-h1 {
+  h1 {
     margin-bottom: 20px;
-}
+    color: #fff;
+  }
   
-.titlename {
+  .titlename {
     text-transform: uppercase;
-    font-size: 32px; 
+    font-size: 32px;
     font-weight: bold;
-    background-image: linear-gradient(to right, #1e90ff, #00bfff); 
-    color: #ffffff; 
-    padding: 20px 40px; 
-    border-radius: 100%; 
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); 
+    background-color: #1a1a1a;
+    color: #1da1f2; /* Twitter blue */
+    padding: 20px 40px;
+    border-radius: 100%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
     text-align: center;
-    margin: 20px auto; 
-}
+    margin: 20px auto;
+  }
   
-.LandingPagecontener {
+  .LandingPagecontener {
     display: flex;
     text-align: center;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-}
+  }
   
-.LandingPageMain {
+  .LandingPageMain {
     width: 100%;
-}
+  }
   
-@media (max-width: 768px) {
+  @media (max-width: 768px) {
     .landingPageContainer {
-        flex-direction: column; 
+      flex-direction: column;
     }
   
     .sidebar {
-        width: 100%; 
-        left: -100%; 
+      width: 100%;
+      left: -100%;
     }
   
     .sidebar.open {
-        left: 0; 
+      left: 0;
     }
   
     .mainContent {
-        margin-left: 0; 
+      margin-left: 0;
     }
   
     .sidebar.open ~ .mainContent {
-        margin-left: 0; 
+      margin-left: 0;
     }
+  
     .toggleSidebarBtn {
-        top: 80px; 
-        left: 10px; 
-        padding: 5px; 
+      top: 80px;
+      left: 10px;
+      padding: 5px;
     }
-
+  
     .OpenNavLogo,
     .closNavLogo {
-        width: 40px; 
-        max-height: 40px; 
+      width: 40px;
+      max-height: 40px;
     }
-
+  
     .sidebar {
-        width: 150px; 
+      width: 150px;
     }
-}
-
-@media (max-width: 480px) {
+  }
+  
+  @media (max-width: 480px) {
     .toggleSidebarBtn {
-        top: 120px; 
-        left: 5px; 
-        padding: 2px; 
-
+      top: 120px;
+      left: 5px;
+      padding: 2px;
     }
-
+  
     .OpenNavLogo,
     .closNavLogo {
-        width: 40px; 
-        max-height: 40px; 
+      width: 40px;
+      max-height: 40px;
     }
-
+  
     .sidebar {
-        width: 25%; 
-        padding-top: 90px;
+      width: 25%;
+      padding-top: 90px;
     }
-
+  
     .sidebar.open {
-        left: 0; 
+      left: 0;
     }
-
+  
     .mainContent {
-        padding: 5px; 
+      padding: 5px;
     }
-
+  
     .channelButton {
-        font-size: 0.8rem; 
+      font-size: 0.8rem;
     }
-
+  
     .addbtn button {
-        min-width: 80px; 
+      min-width: 80px;
     }
-}
+  }
+  

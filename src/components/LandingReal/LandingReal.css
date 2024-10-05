@@ -9,6 +9,8 @@
   max-width: 100%;
   max-height: 100%;
   margin: 0 auto;
+  background-color: #c9d6ff;
+  background: linear-gradient(to right, #e2e2e2, #c9d6ff);
   
 }
 

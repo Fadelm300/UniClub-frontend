@@ -1,36 +1,45 @@
+.cardContaner {
+  padding-top: 50px;
+  background-color: #000; 
+}
+
 .card {
   width: 700px;
-  height: 300px;
-  background-image: linear-gradient(to right, #28c6fa, #8ebbca); 
-  margin: 50px auto;
-  border-radius: 30px;
+  height: auto;
+  background-color: #151515; 
+  margin: 10px auto;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
   overflow: hidden;
-  padding: 0px; 
+  color: #fff; 
+  border: 2px solid #605e5e; 
 }
+
 .readMore {
-  color: #e40b0b; 
-  font-weight: 0.1; 
-  margin-left:5px; 
+  color: #1da1f2; 
+  font-weight: 400;
+  margin-left: 5px;
   font-size: 15px;
- 
 }
+
 .topCard {
-  padding: 20px; 
+  padding: 20px;
   width: 100%;
   height: 75%;
+  color: #fff; /* White text */
 }
+
 a {
-  text-decoration: none; 
+  text-decoration: none;
   color: inherit;
 }
+
 .dawnCard {
   width: 100%;
   height: 25%;
-  background-image: linear-gradient(to right, #90cbdd, #25404a); 
+  background-color: #000; 
   padding: 10px;
-  display: flex; 
-  justify-content: space-between; 
+  display: flex;
+  justify-content: space-between;
 }
 
 .topcardtex {
@@ -38,11 +47,29 @@ a {
   font-weight: bold;
   padding: 10px;
   padding-top: 30px;
+  color: #fff; 
+  display: flex;
+  flex-direction: column; 
+  align-items: flex-start; 
+}
+
+.topcardTextContent {
+  width: 100%; 
+}
+
+.topcardimage {
+  display: flex;
+  justify-content: center; 
+  margin-top: 10px; 
+}
+
+.topcardimage img {
+  border-radius: 20px;
+  width: 400px;
 }
 
 .fileLink {
-  color: #007bff; 
-  text-decoration: none; 
+  color: #1da1f2; 
 }
 
 .fileLink:hover {
@@ -50,25 +77,99 @@ a {
 }
 
 .dawncardusername {
-  font-size: 0.9rem;
-  color: #fff;
-  padding: 10px 0;
+  font-size: 30px;
+  margin-left: 10px;
+  margin-top: 8px;
+  color: #fff; 
 }
 
 .dawncardDate {
-  font-size: 0.8rem;
-  color: #fff;
-  padding: 5px 0;
+  font-size:15px;
+  color: #fff; 
+}
+
+.dawnCardpostimg img {
+
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  
+}
+.dawnCardpostimg{
+  display: flex;
+  flex-direction: row;
 }
 
 
+.dawnCardText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 @media (max-width: 768px) {
   .card {
-    width: 300px; 
+    width: 300px;
   }
 
   h1 {
     margin-bottom: 20px;
     font-size: 20px;
   }
+}
+
+.interactionBar {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #2b2d42;
+  border-top: 1px solid #ccc; 
+}
+
+.interactionItem {
+  display: flex;
+  align-items: center;
+  color: #edf2f4; 
+  transition: box-shadow 0.3s, transform 0.3s; 
+  padding: 5px; 
+  border-radius: 50%; 
+}
+
+
+.interactionItem:hover {
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.4); 
+  transform: translateY(-2px); 
+}
+
+.interactionItem:nth-child(1):hover, /* Share */
+.interactionItem:nth-child(2):hover { /* Save */
+  background-color: rgba(0, 123, 255, 0.2); 
+}
+
+.interactionItem:nth-child(3):hover { /* Views */
+  background-color: rgba(0, 0, 255, 0.2); 
+}
+
+.interactionItem:nth-child(4):hover { /* Likes */
+  background-color: rgba(255, 0, 0, 0.2); 
+}
+
+.interactionItem:nth-child(5):hover { /* Comments */
+  background-color: rgba(0, 255, 0, 0.2); 
+}
+
+.interactionItem img {
+  width: 24px; /* Adjust icon size for better fit */
+  height: 24px; /* Adjust icon size for better fit */
+  margin-right: 5px; /* Space between icon and text */
+}
+
+.interactionItem span {
+  margin-left: 5px; 
+  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.6);
+}
+
+.interactionItem span:hover {
+  transform: scale(1.1); 
 }
