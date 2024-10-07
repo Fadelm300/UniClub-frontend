@@ -9,7 +9,9 @@ const FileList = (props) => {
       {props.files.map((file, idx) => {
         const fileDate = new Date(file.createdAt);
         return (
+          
           <div key={idx} className="card2">
+            <Link to={`${props.path}/file/${file._id}`}>
             <div className="topCard2">
               <h1 className="fileTitle2">{file.title}</h1>
               <a className="fileLink2" href={file.link}>{file.link}</a>
@@ -19,6 +21,8 @@ const FileList = (props) => {
                 {fileDate.toLocaleDateString()} {fileDate.toLocaleTimeString()}{" "}
               </p>
             </div>
+            </Link>
+       
 
             
             <div className="dawnCard2">
