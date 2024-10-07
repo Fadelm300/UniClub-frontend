@@ -4,7 +4,7 @@ import postService from '../../services/postService';
 import { useState } from 'react';
 
 const PostList = (props) => {
-  if (!props.posts || props.posts.length === 0) return <main>loading...</main>;
+  if (!props.posts || props.posts.length === 0) return <main>No posts yet...</main>;
 
   const sortedPosts = [...props.posts].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
   const DEFAULT_IMAGE_URL = "https://img.icons8.com/?size=100&id=kfZajSPygW1l&format=png&color=000000"; 
@@ -91,8 +91,8 @@ const PostList = (props) => {
                 <span>{post.views || 0}</span>
               </div>
 
-              <div className="interactionItem">
-                <button onClick={() => toggleLike(post._id)}>
+              <div className="interactionItem" onClick={() => toggleLike(post._id)}>
+                
                   <img
                     src={
                       (!hasUserLikedPost && isPostLiked) || (hasUserLikedPost && !isPostLiked)
@@ -108,7 +108,7 @@ const PostList = (props) => {
                         : post.likes.length + 1
                       : post.likes.length}
                   </span>
-                </button>
+                
               </div>
 
               <div className="interactionItem">
