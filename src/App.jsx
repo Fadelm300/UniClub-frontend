@@ -45,6 +45,8 @@ const App = () => {
   const [user, setUser] = useState(authService.getUser());
   const [posts, setPosts] = useState([]);
   const [files, setFiles] = useState([]);
+  const [change, setChange] = useState(true);
+
   const navigate = useNavigate();
 
 
@@ -95,6 +97,8 @@ const App = () => {
   const handleUpdateFile = async (formData, fileId, path) => {
     const updateFile = await FileService.updateFile(formData, fileId, path);
   };
+
+  
 
   
 
@@ -205,6 +209,7 @@ const App = () => {
                   user={user}
                   handleDeleteFile={handleDeleteFile}
                   handleUpdateFile={handleUpdateFile}
+                 
                 />
               }
             />
@@ -215,6 +220,7 @@ const App = () => {
                   user={user}
                   handleDeleteFile={handleDeleteFile}
                   handleUpdateFile={handleUpdateFile}
+                  
                 />
               }
             />
@@ -225,6 +231,7 @@ const App = () => {
                   user={user}
                   handleDeleteFile={handleDeleteFile}
                   handleUpdateFile={handleUpdateFile}
+                  
                 />
               }
             />
@@ -235,6 +242,8 @@ const App = () => {
                   user={user}
                   handleDeleteFile={handleDeleteFile}
                   handleUpdateFile={handleUpdateFile}
+                 
+
                 />
               }
             />
@@ -245,6 +254,7 @@ const App = () => {
                   user={user}
                   handleDeleteFile={handleDeleteFile}
                   handleUpdateFile={handleUpdateFile}
+                  
                 />
               }
             />
@@ -253,31 +263,36 @@ const App = () => {
             <Route
               path="/:uni/post/:postid"
               element={
-                <PostDetails user={user} handleDeletePost={handleDeletePost} />
+                <PostDetails user={user} handleDeletePost={handleDeletePost}  
+                />
               }
             />
             <Route
               path="/:uni/:college/post/:postid"
               element={
-                <PostDetails user={user} handleDeletePost={handleDeletePost} />
+                <PostDetails user={user} handleDeletePost={handleDeletePost} 
+                />
               }
             />
             <Route
               path="/:uni/:college/:major/post/:postid"
               element={
-                <PostDetails user={user} handleDeletePost={handleDeletePost} />
+                <PostDetails user={user} handleDeletePost={handleDeletePost} 
+                />
               }
             />
             <Route
               path="/:uni/:college/:major/:course/post/:postid"
               element={
-                <PostDetails user={user} handleDeletePost={handleDeletePost} />
+                <PostDetails user={user} handleDeletePost={handleDeletePost} 
+                />
               }
             />
             <Route
               path="/:uni/:college/:major/:course/:event/post/:postid"
               element={
-                <PostDetails user={user} handleDeletePost={handleDeletePost} />
+                <PostDetails user={user} handleDeletePost={handleDeletePost} 
+                />
               }
             />
         {/* other stuff */}

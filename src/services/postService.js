@@ -83,11 +83,27 @@ const updatePost = async (postId, formData, path) => {
       body: JSON.stringify(formData),
     };
     
-    const res = await fetch(`${BASE_URL}${path}/${postId}`, options);
+    const res = await fetch(`${BASE_URL}/${postId}`, options);
     return res.json();
   } catch (error) {
     console.log(error);
   }
 };
 
-export default { index, show, create, delete: deletePost, getPostsByUser, update: updatePost };
+const toggleLike = async (userId) => {
+  const token = localStorage.getItem('token');
+  const response = await fetch(`${BASE_URL}/like/${userId}`, {
+    method: 'PUT',
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  });
+  if (!response.ok) {
+    throw new Error('Failed');
+  }
+
+  return await response.json();
+};
+
+
+export default { index, show, create, delete: deletePost, getPostsByUser, update: updatePost , toggleLike};
