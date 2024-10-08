@@ -33,7 +33,7 @@ const PostDetails = ({ user, handleDeletePost }) => {
   };
 
   const handleEditPost = async () => {
-    await postService.update(postid, { text: editText }, path);
+    await postService.update(postid, { text: editText });
     setPost((prevPost) => ({ ...prevPost, text: editText }));
     setIsEditing(false);
   };

@@ -86,6 +86,9 @@ const Landing = (props) => {
               posts={channel.posts}
               handleDeletePost={props.handleDeletePost}
               path={path}
+              toggleLike={props.toggleLike}
+              user={props.user}
+              
             />
           ) : (
             <FileList
