@@ -114,7 +114,7 @@ const PostList = (props) => {
 
               <div className="interactionItem">
                 <img src="/icons8-comment-50.png" alt="Comments" />
-                <span>{post.comment || 0}</span>
+                <span>{post.comments.length || 0}</span>
               </div>
             </div>
           )}
