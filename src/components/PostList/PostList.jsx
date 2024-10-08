@@ -39,7 +39,7 @@ const PostList = (props) => {
         const truncatedText = isLongText ? post.text.slice(0, MAX_TEXT_LENGTH) + '...' : post.text;
 
         const isPostLiked = LikedPosts.includes(post._id);
-        const hasUserLikedPost = post.likes.includes(props.user.id);
+        const hasUserLikedPost = post.likes.includes(props.user?.id);
 
         return (
           <div className="card" key={idx}>
@@ -68,10 +68,10 @@ const PostList = (props) => {
                 </div>
               </div>
             </Link>
-
+            
             {/* Social Interaction Section */}
-            <div className="interactionBar">
-              <div className="interactionItem">
+            {props.user&&(<div className="interactionBar">
+            <div className="interactionItem">
                 <svg viewBox="0 0 24 24" aria-hidden="true" className="r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-lrvibr r-m6rgpd r-1xvli5t r-1hdv0qi">
                   <g>
                     <path d="M8.75 21V3h2v18h-2zM18 21V8.5h2V21h-2zM4 21l.004-10h2L6 21H4zm9.248 0v-7h2v7h-2z"></path>
@@ -90,7 +90,7 @@ const PostList = (props) => {
                 <img src="/icons8-results-24.png" alt="Views" />
                 <span>{post.views || 0}</span>
               </div>
-
+              
               <div className="interactionItem" onClick={() => toggleLike(post._id)}>
                 
                   <img
@@ -110,12 +110,16 @@ const PostList = (props) => {
                   </span>
                 
               </div>
+              
 
               <div className="interactionItem">
                 <img src="/icons8-comment-50.png" alt="Comments" />
                 <span>{post.comment || 0}</span>
               </div>
             </div>
+          )}
+            
+            
           </div>
         );
       })}

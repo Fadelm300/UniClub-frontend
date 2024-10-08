@@ -17,6 +17,7 @@ import SigninForm from './components/SigninForm/SigninForm'
 import PostList from './components/PostList/PostList';
 import PostDetails from './components/PostDetails/PostDetails';
 import PostForm from './components/PostForm/PostForm';
+import FileDetails from './components/FileDetails/FileDetails'
 import FileForm from './components/FileForm/FileForm';
 
 import Footer from './components/footer/footer';
@@ -45,10 +46,13 @@ const App = () => {
   const [user, setUser] = useState(authService.getUser());
   const [posts, setPosts] = useState([]);
   const [files, setFiles] = useState([]);
-  const [change, setChange] = useState(true);
 
   const navigate = useNavigate();
 
+  const handleDeleteFile = async (fileId, path) => {
+    await FileService.delete(fileId, path);
+    navigate(path);    
+  };
 
   const handleSignout = () => {
     authService.signout();
@@ -86,12 +90,7 @@ const App = () => {
     navigate(path);
   };
 
-  const handleDeleteFile = async (fileId, path) => {
-    const deletedFile = await FileService.delete(fileId, path);
-
-    setFiles(files.filter((file) => file._id !== deletedFile._id));
-
-  };
+  
 
 
   const handleUpdateFile = async (formData, fileId, path) => {
@@ -191,6 +190,45 @@ const App = () => {
             path="/:uni/:college/:major/:course/newfile"
             element={<FileForm handleAddFile={handleAddFile} />}
           />
+
+          {/* view file */}
+          <Route
+            path="/:uni/file/:fileid"
+            element={
+              <FileDetails user={user} handleDeletePost={handleDeletePost}  
+              />
+            }
+          />
+          <Route
+            path="/:uni/:college/file/:fileid"
+            element={
+              <FileDetails user={user} handleDeletePost={handleDeletePost} 
+              />
+            }
+          />
+          <Route
+            path="/:uni/:college/:major/file/:fileid"
+            element={
+              <FileDetails user={user} handleDeletePost={handleDeletePost} 
+              />
+            }
+          />
+          <Route
+            path="/:uni/:college/:major/:course/file/:fileid"
+            element={
+              <FileDetails user={user} handleDeletePost={handleDeletePost} 
+              />
+            }
+          />
+          <Route
+            path="/:uni/:college/:major/:course/:event/file/:fileid"
+            element={
+              <FileDetails user={user} handleDeletePost={handleDeletePost} 
+              />
+            }
+          />
+
+          
      </>
      :
       <>

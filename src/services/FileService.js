@@ -38,7 +38,7 @@ const create = async (formData ,path) => {
 
 const deleteFile = async (FileId, path) => {
   try {
-    const res = await fetch(`${BASE_URL}/${path}/${FileId}`, {
+    const res = await fetch(`${BASE_URL}${path}/${FileId}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
