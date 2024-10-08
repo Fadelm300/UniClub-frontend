@@ -75,7 +75,9 @@ const PostDetails = ({ user, handleDeletePost }) => {
               </>
             )}
             <section>
-              <CommentForm handleAddComment={handleAddComment} />
+              {user&&(
+              <CommentForm handleAddComment={handleAddComment} user={user} />
+            )}
               {!post.comments.length && <p>There are no comments.</p>}
               <div className="commentShow">
                 <h4>Replies</h4>
