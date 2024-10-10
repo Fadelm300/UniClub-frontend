@@ -105,6 +105,14 @@ const PostList = (props) => {
                     <span>{post.views || 0}</span>
                   </div>
 
+                  
+                  <div className="interactionItem">
+                    <Link to={`${props.path}/post/${post._id}`}>
+                      <img src="/icons8-comment-50.png" alt="Comments" />
+                      <span>{post.comments.length || 0}</span>
+                    </Link>
+                  </div>
+                  
                   <div className="interactionItem" onClick={() => toggleLike(post._id)}>
                     <img
                       src={
@@ -123,12 +131,6 @@ const PostList = (props) => {
                     </span>
                   </div>
 
-                  <div className="interactionItem">
-                    <Link to={`${props.path}/post/${post._id}`}>
-                      <img src="/icons8-comment-50.png" alt="Comments" />
-                      <span>{post.comments.length || 0}</span>
-                    </Link>
-                  </div>
                 </div>
               )}
             </div>

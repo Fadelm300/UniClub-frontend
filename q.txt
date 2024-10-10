@@ -1,83 +1,29 @@
-// // SigninForm
+     <div key={idx} className="card2">
+            <Link to={`${props.path}/file/${file._id}`}>
+            <div className="topCard2">
+              <h1 className="fileTitle2">{file.title}</h1>
+              <a className="fileLink2" href={file.link}>{file.link}</a>
+              <p className="fileDescription2">{file.description}</p>
+              <p className="fileUsername2">{file.user.username}</p>
+              <p className="fileDate2">
+                {fileDate.toLocaleDateString()} {fileDate.toLocaleTimeString()}{" "}
+              </p>
+            </div>
+            </Link>
+       
 
-// import { useState } from 'react';
-// import { Link, useNavigate } from 'react-router-dom';
-// import authService from '../../services/authService';
-// import './SigninForm.css'
-// const SigninForm = (props) => {
-//   const navigate = useNavigate();
-
-
-//   const [message, setMessage] = useState(['']);
-
-
-//   const [formData, setFormData] = useState({
-//     username: '',
-//     password: '',
-//   });
-
-//   const updateMessage = (msg) => {
-//     setMessage(msg);
-//   };
-
-//   const handleChange = (e) => {
-//     updateMessage('');
-//     setFormData({ ...formData, [e.target.name]: e.target.value });
-//   };
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     try {
-//       const user = await authService.signin(formData);
-
-//       props.setUser(user);
-//       navigate('/');
-//     } catch (err) {
-//       updateMessage(err.message);
-//     }
-//   };
-
-//   return (
-//     <main className="signMain">
-//       <p className='logintxt'>Log In</p>
-//       <p>{message}</p>
-//       <form autoComplete="off" onSubmit={handleSubmit}>
-//         <div className='inputs'>
-//           <div className="username">
-//             <label htmlFor="email">Username</label>
-//             <input
-//               type="text"
-//               placeholder="Username"
-//               autoComplete="off"
-//               id="username"
-//               value={formData.username}
-//               name="username"
-//               onChange={handleChange}
-//               className="usernameinput"
-
-//             />
-//           </div>
-//           <div className="password">
-//             <label htmlFor="password">Password</label>
-//             <input
-//               type="password"
-//               placeholder="Password"
-//               autoComplete="off"
-//               id="password"
-//               value={formData.password}
-//               name="password"
-//               onChange={handleChange}
-//               className="passwordinput"
-
-//             />
-//           </div>
-//         <div className='buttons'>
-//           <button>Log In</button>
-//         </div>
-//         </div>
-//       </form>
-//     </main>
-//   );
-// };
-
-// export default SigninForm;
+            
+            <div className="dawnCard2">
+              <button
+                className="deleteButton2"
+                onClick={() => {
+                  props.handleDeleteFile(file._id, props.path);
+                }}
+              >
+                Delete
+              </button>
+              <Link to={`${props.path}/newfile`}>
+                <button className="deleteButton22">Edit File</button>
+              </Link>
+            </div>
+          </div>

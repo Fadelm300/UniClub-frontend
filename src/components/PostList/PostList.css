@@ -142,6 +142,7 @@ a {
 }
 
 .interactionItem:nth-child(1):hover, /* Share */
+
 .interactionItem:nth-child(2):hover { /* Save */
   background-color: rgba(0, 123, 255, 0.2); 
 }
@@ -150,18 +151,19 @@ a {
   background-color: rgba(0, 0, 255, 0.2); 
 }
 
-.interactionItem:nth-child(4):hover { /* Likes */
-  background-color: rgba(255, 0, 0, 0.2); 
-}
-
-.interactionItem:nth-child(5):hover { /* Comments */
+.interactionItem:nth-child(4):hover { /* Comments */
   background-color: rgba(0, 255, 0, 0.2); 
 }
 
+.interactionItem:nth-child(5):hover { /* Likes */
+  background-color: rgba(255, 0, 0, 0.2); 
+}
+
+
 .interactionItem img {
-  width: 24px; /* Adjust icon size for better fit */
-  height: 24px; /* Adjust icon size for better fit */
-  margin-right: 5px; /* Space between icon and text */
+  width: 24px; 
+  height: 24px; 
+  margin-right: 5px; 
 }
 
 .interactionItem span {

@@ -34,12 +34,33 @@ const Landing = (props) => {
     <main>
       <div className="LandingPageMain">
         <button className="toggleSidebarBtn" onClick={toggleSidebar}>
-          {isSidebarOpen ? <img className="closNavLogo" src="https://img.icons8.com/?id=111057&format=png&color=000000" alt="closNavLogo" /> :  <img className="OpenNavLogo" src="https://img.icons8.com/?id=rMW5POudfbBJ&format=png&color=000000" alt="OpenNavLogo" /> }
+          {isSidebarOpen ? <img className="closNavLogo" src="https://img.icons8.com/?&id=13903&format=png&color=000000" alt="closNavLogo" /> :  <img className="OpenNavLogo" src="https://img.icons8.com/?id=Idvk8HDG8UEG&format=png&color=000000" alt="OpenNavLogo" /> }
         </button>
 
         {/* sidebar */}
         <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
           <div className="channelsNAV">
+            
+          <Link to={`${path}/newpost`}>
+                <button className="channelButton2">Add Post</button>
+              </Link>
+
+
+              {props.user.admin &&(
+              <Link to={`${path}/newchannel`}>
+                <button className="channelButton2">Add Channel</button>
+              </Link>
+
+              )}
+
+
+              <Link to={`${path}/newfile`}>
+                <button className="channelButton2">Add File</button>
+              </Link>
+              <span></span>
+
+<hr className="separatorLine" />
+
             {channel.subchannels?.map((subchannel) => (
               <Link key={subchannel.name} to={`${path}/${subchannel.name}`}>
                 <button className="channelButton">{subchannel.name}</button>
@@ -54,30 +75,40 @@ const Landing = (props) => {
 
           {props.user && (
             <div className="addbtn">
+
+               <Link>
               <button
                 className="buttonsfiles"
-                onClick={() => handleViewChange("files")}
-              >
-                Files
-              </button>
+                onClick={() => handleViewChange("files")}>Files</button>
+              </Link>
+
+
+              <Link>
               <button
                 className="buttonsposts"
-                onClick={() => handleViewChange("posts")}
-              >
-                Posts
-              </button>
+                onClick={() => handleViewChange("posts")}>Posts</button>
+              </Link>
               
+
+
               <Link to={`${path}/newpost`}>
                 <button className="buttonsAddPost">Add Post</button>
               </Link>
+
+
               {props.user.admin &&(
               <Link to={`${path}/newchannel`}>
                 <button className="buttonsAddChannel">Add Channel</button>
               </Link>
+
               )}
+
+
               <Link to={`${path}/newfile`}>
                 <button className="buttonsAddFile">Add File</button>
               </Link>
+
+
             </div>
           )}
 

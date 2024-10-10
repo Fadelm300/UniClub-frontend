@@ -6,41 +6,59 @@ const FileList = (props) => {
 
   return (
     <>
-      {props.files.map((file, idx) => {
-        const fileDate = new Date(file.createdAt);
-        return (
-          
-          <div key={idx} className="card2">
-            <Link to={`${props.path}/file/${file._id}`}>
-            <div className="topCard2">
-              <h1 className="fileTitle2">{file.title}</h1>
-              <a className="fileLink2" href={file.link}>{file.link}</a>
-              <p className="fileDescription2">{file.description}</p>
-              <p className="fileUsername2">{file.user.username}</p>
-              <p className="fileDate2">
-                {fileDate.toLocaleDateString()} {fileDate.toLocaleTimeString()}{" "}
-              </p>
-            </div>
-            </Link>
-       
+      <div className="FileContanir">
+        <div className="cardsWrapper">
+          {props.files.map((file, idx) => {
+            const fileDate = new Date(file.createdAt);
+            return (
+              <div key={idx} className="card2">
+                <Link to={`${props.path}/file/${file._id}`}>
+                
+                  <div className="topCard2">
+             {/* //// */}
+             <h1>111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111</h1>
+             <h1 className="fileTitle2">{file.title}</h1>
 
-            
-            <div className="dawnCard2">
-              <button
-                className="deleteButton2"
-                onClick={() => {
-                  props.handleDeleteFile(file._id, props.path);
-                }}
-              >
-                Delete
-              </button>
-              <Link to={`${props.path}/newfile`}>
-                <button className="deleteButton22">Edit File</button>
-              </Link>
-            </div>
-          </div>
-        );
-      })}
+                  </div>
+                </Link>
+                <div className="dawnCard2">
+                            <Link>
+                              <button
+                                className="iconButton"
+                                onClick={() => {
+                                  props.handleDeleteFile(file._id, props.path);
+                                }}
+                              >
+                                <img 
+                                  src="https://img.icons8.com/?size=40&id=T5dnyLNPujOw&format=png&color=000000" 
+                                  alt="Delete file" 
+                                  className="buttonIcon" 
+                                />
+                              </button></Link>
+
+                              <Link to={`${props.path}/newfile`}>
+                                <button className="iconButton">
+                                  <img 
+                                    src="https://img.icons8.com/?size=40&id=XPJ22YD4LrLc&format=png&color=000000" 
+                                    alt="Edit file" 
+                                    className="buttonIcon" 
+                                  />
+                                </button>
+                              </Link>
+                            </div>
+
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="radomFiles">
+          <div className="randomcards"><h1>111</h1></div>
+          <div className="randomcards"><h1>111</h1></div>
+          <div className="randomcards"><h1>111</h1></div>
+          <div className="randomcards"><h1>111</h1></div>
+        </div>
+      </div>
     </>
   );
 };
