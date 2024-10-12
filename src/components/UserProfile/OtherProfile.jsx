@@ -5,7 +5,6 @@ import './OtherProfile.css';
 
 const UserProfile = ({userUser}) => {
   const { userId } = useParams();
-  console.log(userId)
   
   const [user, setUser] = useState(null);
   const [posts, setPosts] = useState([]);

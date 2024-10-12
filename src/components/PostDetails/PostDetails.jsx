@@ -88,7 +88,10 @@ const PostDetails = ({ user, handleDeletePost }) => {
         <div className="postform">
           <div className="postContener">
             <div className="PostShow">
+            <Link to={`/userlist/${post.user._id}`}>
               <h4>{post.user.username}</h4>
+            </Link>
+              
               {isEditing ? (
                 <div>
                   <textarea

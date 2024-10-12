@@ -62,19 +62,21 @@ const PostList = (props) => {
 
           return (
             <div className="card" key={idx}>
-              <Link to={`${props.path}/post/${post._id}`}>
+              
                 <div className="dawnCard">
+                  <Link to={`/userlist/${post.user._id}`}>
                   <div className="dawnCardpostimg">
                     <img src={post.user.image || DEFAULT_IMAGE_URL} alt="Post Image" />
                     <div className="dawncardusername">{post.user.username}</div>
                   </div>
+                  </Link>
                   <div className="dawnCardText">
                     <div className="dawncardDate">
                       {postDate.toLocaleDateString()} <span> | </span> {postDate.toLocaleTimeString()}
                     </div>
                   </div>
                 </div>
-
+                <Link to={`${props.path}/post/${post._id}`}>
                 <div className="topCard">
                   <div className="topcardtex">
                     <div className="topcardTextContent">

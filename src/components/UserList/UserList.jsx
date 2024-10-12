@@ -66,7 +66,10 @@ function UserList({userUser}) {
                 <tbody>
                     {filteredUsers.map((user) => (
                         <tr key={user._id}>
-                            <td>{user.username}</td>
+                            <Link to={`/userlist/${user._id}`}>
+                                    {user.username}
+                            </Link>
+                            
                             <td>{user.email}</td>
                             <td>{user.phone}</td>
                             <td>{user.admin ? 'Admin' : 'User'}</td>
