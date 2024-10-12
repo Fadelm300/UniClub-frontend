@@ -3,11 +3,11 @@ import adminService from '../../services/adminService';
 import { useEffect, useState } from 'react';
 import './UserList.css'; 
 import authService from '../../services/authService';
-import { Link } from 'react-router-dom';
+import { isRouteErrorResponse, Link } from 'react-router-dom';
 
 function UserListUser({userUser}) {
     const [users, setUsers] = useState([]);
-    const [change, setChange] = useState(true);
+    const [follow, setFollow] = useState([]);
   
     const [searchQuery, setSearchQuery] = useState(''); 
 
@@ -22,7 +22,7 @@ function UserListUser({userUser}) {
         };
 
         fetchUsers();
-    }, [change]);
+    },[]);
 
     
 
@@ -33,10 +33,17 @@ function UserListUser({userUser}) {
     );
 
     const toggleFollow = async (userId) => {
-        await authService.toggleFollow(userId);
-        setChange(!change);
-    };
 
+          if (follow.includes(userId)) {
+            setFollow(follow.filter(id => id !== userId));
+          } else {
+            setFollow([...follow, userId]);
+          }
+        authService.toggleFollow(userId);
+        
+    };
+    let followed = false;
+    let newFollow = false;
     return (
         <div className="user-list-container">
             <div className="search-container">
@@ -61,19 +68,35 @@ function UserListUser({userUser}) {
                 </thead>
                 <tbody>
                     {filteredUsers.map((user) => (
+
+
                         <tr key={user._id}>
                             <td>
                                 <Link to={`/userlist/${user._id}`}>
                                     {user.username}
                                 </Link>
+                                {followed = user.followers.includes(userUser.id)}
+                                {newFollow = follow.includes(user._id)}
                             </td>
                             
                             <td>{user.admin ? 'Admin' : 'User'}</td>
-                            <td className='followers-nu'>{user.followers.length}</td>
+
+                            <td className='followers-nu'>
+                                {newFollow
+                                    ? followed
+                                        ? user.followers.length - 1
+                                        : user.followers.length + 1
+                                        : user.followers.length}
+                            </td>
+
                             <td>
                                 
                                 <button onClick={() => toggleFollow(user._id)}>
-                                    {user.followers.includes(userUser.id) ? 'unfollow' : 'Follow'}
+                                {
+                        (!followed && newFollow) || (followed && !newFollow)
+                          ? "unfollow"
+                          : "follow"
+                      }
                                 </button>
                             </td>
                         </tr>

@@ -1,6 +1,7 @@
 import React from 'react';
 import adminService from '../../services/adminService';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './UserList.css'; 
 import authService from '../../services/authService';
 
@@ -69,7 +70,7 @@ function UserList({userUser}) {
                             <Link to={`/userlist/${user._id}`}>
                                     {user.username}
                             </Link>
-                            
+
                             <td>{user.email}</td>
                             <td>{user.phone}</td>
                             <td>{user.admin ? 'Admin' : 'User'}</td>
