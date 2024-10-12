@@ -16,13 +16,14 @@ const PostList = (props) => {
 
   const toggleLike = async (postId) => {
     try {
-      await postService.toggleLike(postId);
 
       if (LikedPosts.includes(postId)) {
         setLikedPosts(LikedPosts.filter(id => id !== postId));
       } else {
         setLikedPosts([...LikedPosts, postId]);
       }
+      postService.toggleLike(postId);
+
     } catch (error) {
       console.error("Error toggling like:", error.message);
     }

@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams , useResolvedPath} from "react-router-dom";
 import { useEffect, useState } from "react";
 import './PostDetails.css';
 import postService from "../../services/postService";
@@ -15,6 +15,10 @@ const PostDetails = ({ user, handleDeletePost }) => {
   const path = deriveChannelPath({ uni, college, major, course, event });
   const [isEditing, setIsEditing] = useState(false);
   const [editText, setEditText] = useState('');
+  const [liked, setLiked] = useState(false);
+  const [showPopUp, setShowPopUp] = useState(false); 
+
+
 
   useEffect(() => {
     async function getPost() {
@@ -42,8 +46,44 @@ const PostDetails = ({ user, handleDeletePost }) => {
     return <main><h3>Loading...</h3></main>;
   }
 
+  const toggleLike = async () => {
+    try {
+      if (liked){
+        setLiked(false)
+      }else {
+        setLiked(true)
+      }
+
+      postService.toggleLike(post._id);
+    } catch (error) {
+      console.error("Error toggling like:", error.message);
+    }
+  };
+
+  const handleShare = (postId) => {
+    const postLink = `${window.location.origin}${path}/post/${postId}`;
+    navigator.clipboard.writeText(postLink)
+      .then(() => {
+        setShowPopUp(true);  
+        setTimeout(() => {
+          setShowPopUp(false);  
+        }, 3000);
+      })
+      .catch((error) => {
+        console.error('Failed to copy the link:', error);
+      });
+  };
+  const hasUserLikedPost = post.likes.includes(user?.id)    
+
+  
   return (
+    
     <main>
+      {showPopUp && (
+        <div className="popup-message">
+          Link copied to clipboard!
+        </div>
+    )}
       <div className="postmain">
         <div className="postform">
           <div className="postContener">
@@ -72,6 +112,50 @@ const PostDetails = ({ user, handleDeletePost }) => {
               }
                 <button className="deleteButton" onClick={() => handleDeletePost(postid, path)}>Delete</button>
                 </div>
+{/* Social Interaction Section */}
+{user && (
+                <div className="interactionBar">
+                  <div className="interactionItem" onClick={() => handleShare(post._id)}>
+                    <img src="/icons8-share-50.png" alt="Share" />
+                    <span>Share</span>
+                  </div>
+
+                  <div className="interactionItem">
+                    <img src="/icons8-save-48.png" alt="Save" />
+                    <span>{post.saves || 0}</span>
+                  </div>
+
+                  <div className="interactionItem">
+                    <img src="/icons8-results-24.png" alt="Views" />
+                    <span>{post.views || 0}</span>
+                  </div>
+
+                  
+                  <div className="interactionItem">
+                      <img src="/icons8-comment-50.png" alt="Comments" />
+                      <span>{post.comments.length || 0}</span>
+                  </div>
+                  
+                  <div className="interactionItem" onClick={() => toggleLike(post._id)}>
+                    <img
+                      src={(!hasUserLikedPost && liked) || (hasUserLikedPost && !liked)
+                        ? "/like.png"
+                        : "/icons8-like-50.png"
+                      
+                      }
+                      alt="Likes"
+                    />
+                    <span>
+                    {liked
+                        ? hasUserLikedPost
+                          ? post.likes.length - 1
+                          : post.likes.length + 1
+                        : post.likes.length}
+                    </span>
+                  </div>
+
+                </div>
+              )}
               </>
             )}
             <section>
