@@ -55,7 +55,7 @@ function UserListUser({userUser}) {
                     <tr>
                         <th>Username</th>
                         <th>Role</th>
-                        <th className='followers-nu'>Nu followers</th>
+                        <th className='followers-nu'>followers</th>
                         <th></th>
                     </tr>
                 </thead>
