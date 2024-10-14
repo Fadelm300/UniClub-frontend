@@ -15,9 +15,26 @@ const PostDetails = ({ user, handleDeletePost }) => {
   const path = deriveChannelPath({ uni, college, major, course, event });
   const [isEditing, setIsEditing] = useState(false);
   const [editText, setEditText] = useState('');
-  const [liked, setLiked] = useState(false);
   const [showPopUp, setShowPopUp] = useState(false); 
 
+
+  const [liked, setLiked] = useState(false);
+  const [LikedComments, setLikedComments] = useState([]);
+
+  const toggleLikeComment = async (commentId , postId) => {
+    try {
+
+      if (LikedComments.includes(commentId)) {
+        setLikedComments(LikedComments.filter(id => id !== commentId));
+      } else {
+        setLikedComments([...LikedComments, commentId]);
+      }
+      postService.toggleCommentLike(commentId , postId );
+
+    } catch (error) {
+      console.error("Error toggling like:", error.message);
+    }
+  };
 
 
   useEffect(() => {
@@ -168,8 +185,11 @@ const PostDetails = ({ user, handleDeletePost }) => {
               {!post.comments.length && <p>There are no comments.</p>}
               <div className="commentShow">
                 <h4>Replies</h4>
-                {post.comments.map((comment) => (
-                  <div className="comments" key={comment._id}>
+                {post.comments.map((comment) => {
+                  const isCommentLiked = LikedComments.includes(comment._id);
+                  const hasUserLikedComment = comment.likes.includes(user?.id);
+
+                  return (<div className="comments" key={comment._id}>
                     <article>
                       <header>
                         <div className="usernamecontener">
@@ -177,10 +197,30 @@ const PostDetails = ({ user, handleDeletePost }) => {
                           <div>{new Date(comment.createdAt).toLocaleDateString()}</div>
                         </div>
                         <div className="usercomment">{comment.text}</div>
+                        {user && (
+                        <div className="interactionItem" onClick={() => toggleLikeComment(comment._id ,post._id)}>
+                          <img
+                            src={(!hasUserLikedComment && isCommentLiked) || (hasUserLikedComment && !isCommentLiked)
+                              ? "/like.png"
+                              : "/icons8-like-50.png"
+                            
+                            }
+                            alt="Likes"
+                          />
+
+                          <span>
+                          {isCommentLiked
+                            ? hasUserLikedComment
+                            ? comment.likes.length - 1
+                            : comment.likes.length + 1
+                            : comment.likes.length}
+                          </span>
+                        </div>
+                        )}
                       </header>
                     </article>
-                  </div>
-                ))}
+                  </div>)
+                })}
               </div>
             </section>
           </div>

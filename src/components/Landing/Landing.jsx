@@ -46,7 +46,7 @@ const Landing = (props) => {
               </Link>
 
 
-              {props.user.admin &&(
+              {props.user?.admin &&(
               <Link to={`${path}/newchannel`}>
                 <button className="channelButton2">Add Channel</button>
               </Link>
