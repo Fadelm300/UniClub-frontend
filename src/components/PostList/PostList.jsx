@@ -64,7 +64,7 @@ const PostList = (props) => {
             <div className="card" key={idx}>
               
                 <div className="dawnCard">
-                  <Link to={`/userlist/${post.user._id}`}>
+                  <Link to={post.user._id==props.user?.id?`/profile/${post.user._id}`:`/userlist/${post.user._id}`}>
                   <div className="dawnCardpostimg">
                     <img src={post.user.image || DEFAULT_IMAGE_URL} alt="Post Image" />
                     <div className="dawncardusername">{post.user.username}</div>
