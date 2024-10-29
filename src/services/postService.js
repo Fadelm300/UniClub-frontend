@@ -90,9 +90,24 @@ const updatePost = async (postId, formData, path) => {
   }
 };
 
-const toggleLike = async (userId) => {
+const toggleLike = async (postId) => {
   const token = localStorage.getItem('token');
-  const response = await fetch(`${BASE_URL}/like/${userId}`, {
+  const response = await fetch(`${BASE_URL}/like/${postId}`, {
+    method: 'PUT',
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  });
+  if (!response.ok) {
+    throw new Error('Failed');
+  }
+
+  return await response.json();
+};
+
+const toggleCommentLike = async (commentId,postId) => {
+  const token = localStorage.getItem('token');
+  const response = await fetch(`${BASE_URL}/like/${postId}/${commentId}`, {
     method: 'PUT',
     headers: {
       'Authorization': `Bearer ${token}`
@@ -106,4 +121,4 @@ const toggleLike = async (userId) => {
 };
 
 
-export default { index, show, create, delete: deletePost, getPostsByUser, update: updatePost , toggleLike};
+export default { index, show, create, delete: deletePost, getPostsByUser, update: updatePost , toggleLike , toggleCommentLike};

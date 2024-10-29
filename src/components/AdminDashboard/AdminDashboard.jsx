@@ -109,6 +109,8 @@ const AdminDashboard = ({user}) => {
                                       </div>
                                 </div>
                         </div>
+
+                        
                
 
              
@@ -117,7 +119,7 @@ const AdminDashboard = ({user}) => {
                            
 
                 
-                      <Link to="/AddEvent">
+                          <Link to="/AddEvent">
                                 <button className="channelButtonun1">AddEvent</button>
                           </Link>
     
