@@ -43,18 +43,18 @@
 }
 .imgside {
   display: flex;
-  flex-direction: column; /* Stack the image and messages vertically */
-  align-items: center;    /* Center the items horizontally */
+  flex-direction: column; 
+  align-items: center;    
 }
 
 .status-message {
-  margin-top: 10px; /* Add some space between the image and messages */
-  text-align: center; /* Center the text */
+  margin-top: 10px; 
+  text-align: center; 
 }
 
 .loading, .error {
-  color: #ff0000; /* Optional: set color for the error message */
-  font-size: 14px; /* Adjust font size as needed */
+  color: #ff0000; 
+  font-size: 14px; 
 }
 
 .profile-info h1 {
@@ -74,6 +74,7 @@
   max-width: 600px;
   border-radius: 12px;
   padding: 20px;
+  overflow-wrap: break-word;  
 }
 
 .user-posts h2 {
@@ -208,6 +209,24 @@
 .user-posts {
   margin-top: 20px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .EandD {
   display: flex;               

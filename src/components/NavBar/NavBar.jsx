@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import './NavBar.css';
+import React from 'react';
 
 const NavBar = ({ user, handleSignout }) => { 
   const DEFAULT_IMAGE_URL = "https://img.icons8.com/?size=40&id=z-JBA_KtSkxG&format=png&color=000000";
@@ -13,7 +14,7 @@ const NavBar = ({ user, handleSignout }) => {
           <div className="topNav">
             <Link className="logoHome" to="/">
               <div className="Navimg">
-                <img className="imginthenav" src="/logo.png" alt="UoB Logo" />
+                <img className="imginthenav" src="/newlogo.png" alt="UoB Logo" />
               </div>
             </Link>
 

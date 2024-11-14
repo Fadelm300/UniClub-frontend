@@ -167,7 +167,6 @@ const UserProfile = () => {
   return (
     <div className="user-profile">
       <div className="profile-header">
-        {/* Conditionally display either the user's image or a default image */}
         <div className="imgside">
         <img
           className="profile-picture"
@@ -213,7 +212,6 @@ const UserProfile = () => {
                 placeholder="URL img"
               />
             <div className='Save_and_Cancel'>
-            {/* Reset to Default button */}
             <button className="reset-button" onClick={resetToDefaultImage}> <img src="https://img.icons8.com/?id=K2njhUKeLfle&format=png&color=000000" alt="" /> </button>
               <button onClick={() => setShowEditConfirm(true)}> 
                 <img src="https://img.icons8.com/?size=50&id=18764&format=png&color=000000" alt="save" /> 
@@ -289,7 +287,7 @@ const UserProfile = () => {
         </div>
       )}
 
-      {/* Confirmation Modal for Edit */}
+
       {showEditConfirm && (
         <div className="modal">
           <div className="modal-content">

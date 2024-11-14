@@ -1,56 +1,58 @@
-import { useParams ,useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-
 import './FileDetails.css';
-// Services
+
 import FileService from "../../services/FileService";
-import commentService from "../../services/commentService";
-
-// Router
-import { Link } from 'react-router-dom';
-
-
-// Components
-
-//func 
 import { deriveChannelPath } from "../../utils/helpers/urlHelpers";
 
-const FileDetails = ({user}) => {
-  const { fileid } = useParams();
+const FileDetails = ({ user }) => {
+  const { fileid, uni, college, major, course, event } = useParams();
   const [file, setFile] = useState(null);
-  const { uni, college, major, course, event } = useParams();
   const path = deriveChannelPath({ uni, college, major, course, event });
   const navigate = useNavigate();
 
-
-  useEffect(()=>{
-    async function getFile(){
-      const fileData = await FileService.show(path , fileid)
-      setFile(fileData)
+  useEffect(() => {
+    async function getFile() {
+      try {
+        const fileData = await FileService.show(path, fileid);
+        setFile(fileData);
+      } catch (error) {
+        console.error("Error fetching file:", error);
+      }
     }
-    getFile()
-  },[fileid])
+    getFile();
+  }, [fileid, path]);
 
-  const handleDeleteFile = async (fileId) => {
-    await FileService.delete(fileId , path);
-    navigate(path);    
+  const handleDeleteFile = async () => {
+    try {
+      await FileService.delete(fileid, path);
+      navigate(path);
+    } catch (error) {
+      console.error("Error deleting file:", error);
+    }
   };
 
-  if(!file){
-    return <main><h3>404...</h3></main>
+  if (!file) {
+    return (
+      <main>
+        <h3>404 - File Not Found</h3>
+      </main>
+    );
   }
+
   return (
-<div className="topCard2">
-              <p className="">{file.user.username}</p>
-              <h1 className="">{file.title}</h1>
-              <a className="" href={file.link}>{file.link}</a>
-              <p className="">{file.description}</p>
-              <p className="">
-              </p>
-              {user?.id == file.user._id&&(
-              <button onClick={()=>handleDeleteFile(file._id)}>delete</button>
-            )}
-            </div>
+    <div className="topCard3">
+      <p>Uploaded by: {file.user.username}</p>
+      <h1>{file.title}</h1>
+      <a href={file.link} target="_blank" rel="noopener noreferrer">
+        View File
+      </a>
+      <p>{file.description}</p>
+
+      {user?.id === file.user._id.toString() && (
+        <button onClick={handleDeleteFile}>Delete</button>
+      )}
+    </div>
   );
 };
 

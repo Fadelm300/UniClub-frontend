@@ -1,7 +1,28 @@
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import ModalDelet from './ModalDelet'; 
 import './FileList.css';
 
 const FileList = (props) => {
+  const [showModalDelet, setShowModalDelet] = useState(false);
+  const [fileToDelete, setFileToDelete] = useState(null);
+
+  const handleDeleteConfirmation = (fileId) => {
+    setFileToDelete(fileId);
+    setShowModalDelet(true);
+  };
+
+  const handleConfirmDelete = () => {
+    props.handleDeleteFile(fileToDelete, props.path);
+    setShowModalDelet(false); 
+    window.location.reload();
+  };
+
+  const handleCancelDelete = () => {
+    setShowModalDelet(false);
+    setFileToDelete(null);
+  };
+
   if (!props.files || props.files.length === 0) return <main>No files yet</main>;
 
   return (
@@ -9,48 +30,72 @@ const FileList = (props) => {
       <div className="FileContanir">
         <div className="cardsWrapper">
           {props.files.map((file, idx) => {
-            const fileDate = new Date(file.createdAt);
             return (
               <div key={idx} className="card2">
-                <Link to={`${props.path}/file/${file._id}`}>
-                
+              
                   <div className="topCard2">
-             {/* //// */}
-             <h1>111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111</h1>
-             <h1 className="fileTitle2">{file.title}</h1>
 
-                  </div>
-                </Link>
-                <div className="dawnCard2">
-                            <Link>
-                              <button
-                                className="iconButton"
-                                onClick={() => {
-                                  props.handleDeleteFile(file._id, props.path);
-                                }}
-                              >
+                        <div className='username'> 
+                        <div className="fileimg"><img src={file.user.image} alt="" /></div>
+                            <text className='usernametxt'>{file.user.username}</text>
+                            </div>
+                           
+                        <div className='deleteandEdit'>
+
+                              
+
+                          <Link to={`${props.path}/newfile`}>
+                              <button className="iconButton">
                                 <img 
-                                  src="https://img.icons8.com/?size=40&id=T5dnyLNPujOw&format=png&color=000000" 
-                                  alt="Delete file" 
+                                  src="https://img.icons8.com/?size=40&id=XPJ22YD4LrLc&format=png&color=000000" 
+                                  alt="Edit file" 
                                   className="buttonIcon" 
                                 />
-                              </button></Link>
+                              </button>
+                          </Link>
 
-                              <Link to={`${props.path}/newfile`}>
-                                <button className="iconButton">
-                                  <img 
-                                    src="https://img.icons8.com/?size=40&id=XPJ22YD4LrLc&format=png&color=000000" 
-                                    alt="Edit file" 
-                                    className="buttonIcon" 
-                                  />
-                                </button>
-                              </Link>
-                            </div>
+                              <button
+                                    className="iconButton"
+                                    onClick={() => handleDeleteConfirmation(file._id)}
+                                  >
+                                    <img 
+                                      src="/trash.png" 
+                                      alt="Delete file" 
+                                      className="buttonIcon" 
+                                    />
+                              </button>   
 
+
+                        </div>
+                  </div>
+                
+
+        <Link to={`${props.path}/file/${file._id}`}>
+                   <div className="dawnCard2">
+                    <h2 className="fileTitle2">{file.title}</h2>
+                    <img src="/pdf.png" alt="pdf.png" className='PDFPng' />
+
+
+
+
+
+
+                     </div>
+
+
+          </Link>
               </div>
             );
           })}
         </div>
+
+        {showModalDelet && (
+          <ModalDelet
+            message="Do you really want to delete this file?"
+            onConfirm={handleConfirmDelete}
+            onCancel={handleCancelDelete}
+          />
+        )}
 
         <div className="radomFiles">
           <div className="randomcards"><h1>111</h1></div>
