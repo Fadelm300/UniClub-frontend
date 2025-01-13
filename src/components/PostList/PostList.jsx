@@ -86,7 +86,34 @@ const PostList = (props) => {
                   </div>
                   <div className='topcardimage'>
                     <img src={post.image} alt="" />
+
+
                   </div>
+                    {post.file && (
+                  <div className="file-preview" style={{ textAlign: 'center', margin: '20px 0' }}>
+                    <a
+                      href={post.file.replace("/upload/", "/upload/f_auto,q_auto/")}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        src={post.file.replace("/upload/", "/upload/f_auto,q_auto,w_200/")} // Generate thumbnail with reduced width
+                        alt="File Preview"
+                        style={{
+                          width: '150px', 
+                          height: '200px', 
+                          objectFit: 'cover', 
+                          border: '1px solid #ccc', 
+                          borderRadius: '8px',
+                          cursor: 'pointer',
+                        }}
+                      />
+                    </a>
+                    <p style={{ marginTop: '10px', fontSize: '14px', color: '#555' }}>
+                      Click to view the full file
+                    </p>
+                  </div>
+                )}
                 </div>
               </Link>
 

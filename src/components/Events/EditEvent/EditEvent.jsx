@@ -81,9 +81,9 @@ const EditEvent = () => {
 
         <label htmlFor="location">Location</label>
         <input id="location" name="location" value={formData.location} onChange={handleChange} required />
-
+    {/* احذفه او تاكد منه عدل اذا تحتاجه  */}
         <label htmlFor="logo">Logo URL</label>
-        <input id="logo" name="logo" value={formData.logo} onChange={handleChange} required />
+        <input id="logo" name="logo" value={formData.logo} onChange={handleChange}  />
 
         <div className="button-container">
           <button type="submit" className='UpdateEvent'>Update Event</button>

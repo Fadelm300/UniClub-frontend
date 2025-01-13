@@ -180,3 +180,45 @@
     display: block; /* Prevents bottom whitespace */
   }
   
+
+
+
+
+
+
+
+
+  /* File Preview */
+
+
+  .file-preview-container {
+    text-align: center;
+    margin: 20px 0;
+    
+  }
+  
+  .file-preview-link {
+    text-decoration: none;
+  }
+  
+  .file-preview-image {
+    width: 150px; /* Thumbnail width */
+    height: 200px; /* Thumbnail height */
+    object-fit: cover;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .file-preview-text {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+  }
+  
+
+
+
+
+
+

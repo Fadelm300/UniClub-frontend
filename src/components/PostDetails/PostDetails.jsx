@@ -1,4 +1,4 @@
-import { useParams , useResolvedPath} from "react-router-dom";
+import { useParams, useResolvedPath } from "react-router-dom";
 import { useEffect, useState } from "react";
 import './PostDetails.css';
 import postService from "../../services/postService";
@@ -66,9 +66,9 @@ const PostDetails = ({ user, handleDeletePost }) => {
   const toggleLike = async () => {
     try {
       if (liked){
-        setLiked(false)
+        setLiked(false);
       }else {
-        setLiked(true)
+        setLiked(true);
       }
 
       postService.toggleLike(post._id);
@@ -81,34 +81,55 @@ const PostDetails = ({ user, handleDeletePost }) => {
     const postLink = `${window.location.origin}${path}/post/${postId}`;
     navigator.clipboard.writeText(postLink)
       .then(() => {
-        setShowPopUp(true);  
+        setShowPopUp(true);
         setTimeout(() => {
-          setShowPopUp(false);  
+          setShowPopUp(false);
         }, 3000);
       })
       .catch((error) => {
         console.error('Failed to copy the link:', error);
       });
   };
-  const hasUserLikedPost = post.likes.includes(user?.id)    
 
+  const hasUserLikedPost = post.likes.includes(user?.id);
+
+  // Function to download the file
+  const downloadFile = (fileUrl) => {
+    // Ensure the URL is a Cloudinary link
+    if (fileUrl.includes("res.cloudinary.com")) {
+      // Insert the required transformation segment into the URL
+      const transformedUrl = fileUrl.replace(
+        "/upload/",
+        "/upload/f_auto,q_auto/"
+      );
   
+      const anchor = document.createElement('a');
+      anchor.href = transformedUrl; // Use the transformed URL
+      anchor.download = transformedUrl.split('/').pop(); // Extract file name
+      anchor.target = '_blank';
+      anchor.rel = 'noopener noreferrer';
+      anchor.click();
+    } else {
+      console.error("The provided URL is not a valid Cloudinary link:", fileUrl);
+    }
+  };
+  
+
   return (
-    
     <main>
       {showPopUp && (
         <div className="popup-message">
           Link copied to clipboard!
         </div>
-    )}
+      )}
       <div className="postmain">
         <div className="postform">
           <div className="postContener">
             <div className="PostShow">
-            <Link to={`/userlist/${post.user._id}`}>
-              <h4>{post.user.username}</h4>
-            </Link>
-              
+              <Link to={`/userlist/${post.user._id}`}>
+                <h4>{post.user.username}</h4>
+              </Link>
+
               {isEditing ? (
                 <div>
                   <textarea
@@ -120,68 +141,94 @@ const PostDetails = ({ user, handleDeletePost }) => {
                 </div>
               ) : (
                 <p>{post.text} </p>
-                
               )}
               <div className="postimg"><img src={post.image} alt="" /></div>
+              
+
+
+              
+                    {post.file && (
+                        <div className="file-preview-container">
+                          <a
+                            href={post.file.replace("/upload/", "/upload/f_auto,q_auto/")}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="file-preview-link"
+                          >
+                            <img
+                              src={post.file.replace("/upload/", "/upload/f_auto,q_auto,w_200/")}
+                              alt="File Preview"
+                              className="file-preview-image"
+                            />
+                          </a>
+                          <p className="file-preview-text">
+                            Click to view the full file
+                          </p>
+                        </div>
+                      )}
+
+
             </div>
+
+
+
             {(post.user._id === user?.id || user?.admin) && (
               <>
-              <div className="buttonContainer">
-              {(post.user._id === user?.id)&&
-                <button className="editButton" onClick={() => setIsEditing(true)}>Edit</button>
-              }
-                <button className="deleteButton" onClick={() => handleDeletePost(postid, path)}>Delete</button>
+                <div className="buttonContainer">
+                  {(post.user._id === user?.id) &&
+                    <button className="editButton" onClick={() => setIsEditing(true)}>Edit</button>
+                  }
+                  <button className="deleteButton" onClick={() => handleDeletePost(postid, path)}>Delete</button>
                 </div>
-{/* Social Interaction Section */}
-{user && (
-                <div className="interactionBar">
-                  <div className="interactionItem" onClick={() => handleShare(post._id)}>
-                    <img src="/icons8-share-50.png" alt="Share" />
-                    <span>Share</span>
-                  </div>
 
-                  <div className="interactionItem">
-                    <img src="/icons8-save-48.png" alt="Save" />
-                    <span>{post.saves || 0}</span>
-                  </div>
+                {/* Social Interaction Section */}
+                {user && (
+                  <div className="interactionBar">
+                    <div className="interactionItem" onClick={() => handleShare(post._id)}>
+                      <img src="/icons8-share-50.png" alt="Share" />
+                      <span>Share</span>
+                    </div>
 
-                  <div className="interactionItem">
-                    <img src="/icons8-results-24.png" alt="Views" />
-                    <span>{post.views || 0}</span>
-                  </div>
+                    <div className="interactionItem">
+                      <img src="/icons8-save-48.png" alt="Save" />
+                      <span>{post.saves || 0}</span>
+                    </div>
 
-                  
-                  <div className="interactionItem">
+                    <div className="interactionItem">
+                      <img src="/icons8-results-24.png" alt="Views" />
+                      <span>{post.views || 0}</span>
+                    </div>
+
+                    <div className="interactionItem">
                       <img src="/icons8-comment-50.png" alt="Comments" />
                       <span>{post.comments.length || 0}</span>
-                  </div>
-                  
-                  <div className="interactionItem" onClick={() => toggleLike(post._id)}>
-                    <img
-                      src={(!hasUserLikedPost && liked) || (hasUserLikedPost && !liked)
-                        ? "/like.png"
-                        : "/icons8-like-50.png"
-                      
-                      }
-                      alt="Likes"
-                    />
-                    <span>
-                    {liked
-                        ? hasUserLikedPost
-                          ? post.likes.length - 1
-                          : post.likes.length + 1
-                        : post.likes.length}
-                    </span>
-                  </div>
+                    </div>
 
-                </div>
-              )}
+                    <div className="interactionItem" onClick={() => toggleLike(post._id)}>
+                      <img
+                        src={(!hasUserLikedPost && liked) || (hasUserLikedPost && !liked)
+                          ? "/like.png"
+                          : "/icons8-like-50.png"
+                        }
+                        alt="Likes"
+                      />
+                      <span>
+                        {liked
+                          ? hasUserLikedPost
+                            ? post.likes.length - 1
+                            : post.likes.length + 1
+                          : post.likes.length}
+                      </span>
+                    </div>
+                  </div>
+                )}
               </>
             )}
+
             <section>
-              {user&&(
-              <CommentForm handleAddComment={handleAddComment} user={user} />
-            )}
+              {user && (
+                <CommentForm handleAddComment={handleAddComment} user={user} />
+              )}
               {!post.comments.length && <p>There are no comments.</p>}
               <div className="commentShow">
                 <h4>Replies</h4>
@@ -189,37 +236,37 @@ const PostDetails = ({ user, handleDeletePost }) => {
                   const isCommentLiked = LikedComments.includes(comment._id);
                   const hasUserLikedComment = comment.likes.includes(user?.id);
 
-                  return (<div className="comments" key={comment._id}>
-                    <article>
-                      <header>
-                        <div className="usernamecontener">
-                          <div>{comment.user?.username}</div>
-                          <div>{new Date(comment.createdAt).toLocaleDateString()}</div>
-                        </div>
-                        <div className="usercomment">{comment.text}</div>
-                        {user && (
-                        <div className="interactionItem" onClick={() => toggleLikeComment(comment._id ,post._id)}>
-                          <img
-                            src={(!hasUserLikedComment && isCommentLiked) || (hasUserLikedComment && !isCommentLiked)
-                              ? "/like.png"
-                              : "/icons8-like-50.png"
-                            
-                            }
-                            alt="Likes"
-                          />
-
-                          <span>
-                          {isCommentLiked
-                            ? hasUserLikedComment
-                            ? comment.likes.length - 1
-                            : comment.likes.length + 1
-                            : comment.likes.length}
-                          </span>
-                        </div>
-                        )}
-                      </header>
-                    </article>
-                  </div>)
+                  return (
+                    <div className="comments" key={comment._id}>
+                      <article>
+                        <header>
+                          <div className="usernamecontener">
+                            <div>{comment.user?.username}</div>
+                            <div>{new Date(comment.createdAt).toLocaleDateString()}</div>
+                          </div>
+                          <div className="usercomment">{comment.text}</div>
+                          {user && (
+                            <div className="interactionItem" onClick={() => toggleLikeComment(comment._id, post._id)}>
+                              <img
+                                src={(!hasUserLikedComment && isCommentLiked) || (hasUserLikedComment && !isCommentLiked)
+                                  ? "/like.png"
+                                  : "/icons8-like-50.png"
+                                }
+                                alt="Likes"
+                              />
+                              <span>
+                                {isCommentLiked
+                                  ? hasUserLikedComment
+                                    ? comment.likes.length - 1
+                                    : comment.likes.length + 1
+                                  : comment.likes.length}
+                              </span>
+                            </div>
+                          )}
+                        </header>
+                      </article>
+                    </div>
+                  );
                 })}
               </div>
             </section>
