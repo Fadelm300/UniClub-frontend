@@ -1,11 +1,31 @@
 import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import './Dashboard.css'; 
 import UpcomingEvents from '../Events/UpcomingEvents/UpcomingEvents';
 import UserList from "../UserList/UserList";
 import AddEvent from "../Events/AddEvent/AddEvent";
+import AddChannelForm from "../Channel/AddChannelForm";
+import channelService from "../../services/channelService";
+ 
+const AdminDashboard = ({ user }) => {
+  const [Channels, setChannels] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-const AdminDashboard = ({user}) => {
+  useEffect(() => {
+    const fetchChannels = async () => {
+      try {
+        const data = await channelService.getbasechannel();console.log(data)
+        setChannels(data);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
 
+    fetchChannels();
+  }, []);
 
   return (
 
@@ -23,7 +43,38 @@ const AdminDashboard = ({user}) => {
                 </div>
     
            
-    
+    <AddChannelForm />
+
+        {/* Render Channels Dynamically */}
+      <div className="channel-list">
+        {loading ? (
+          <p>Loading channels...</p>
+        ) : error ? (
+          <p>Error loading channels: {error}</p>
+        ) : (
+          Channels.map((channel) => (
+            <div className="uobabout" key={channel._id}>
+              <div className="liftbox">
+                <img
+                  className="imgintherightbox"
+                  src={channel.image || "/default-channel-img.jpg"} // Fallback image if no image provided
+                  alt={channel.name}
+                />
+              </div>
+              <div className="rightbox">
+                <h1>{channel.name}</h1>
+                <p>{channel.description}</p>
+                <div className="unbutton">
+                  <Link to={`/${channel.path}`}>
+                    <button className="channelButtonun1">Learn More</button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          ))
+        )}
+      </div>
+     
     
                  <div className="uobabout">
                        <div className="liftbox">
@@ -114,7 +165,7 @@ const AdminDashboard = ({user}) => {
                
 
              
-
+                        
             
                            
 

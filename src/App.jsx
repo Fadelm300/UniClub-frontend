@@ -46,7 +46,7 @@ const App = () => {
   const [user, setUser] = useState(authService.getUser());
   const [posts, setPosts] = useState([]);
   const [files, setFiles] = useState([]);
-
+  
   const navigate = useNavigate();
 
   const handleDeleteFile = async (fileId, path) => {

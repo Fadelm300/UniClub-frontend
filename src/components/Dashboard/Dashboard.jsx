@@ -104,7 +104,7 @@ const Dashboard = ({user}) => {
     
                  <UpcomingEvents user={user}/>
                  
-    
+               
     
     
           
