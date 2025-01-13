@@ -1,7 +1,7 @@
 import { useState } from "react";
 import channelService from "../../services/channelService";
 
-const AddChannelForm = ({ path }) => {
+const AddChannelForm = ({ onChannelAdded, closeModal }) => {
   const [formData, setFormData] = useState({ name: "", description: "" });
   const [message, setMessage] = useState("");
 
@@ -12,8 +12,15 @@ const AddChannelForm = ({ path }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const newChannel = await channelService.create(formData, path || "");
+      const newChannel = await channelService.create(formData);  // Assuming create method handles channel creation
       setMessage(`Channel '${newChannel.name}' created successfully!`);
+      
+      // Trigger the callback to refresh the channels list
+      if (onChannelAdded) onChannelAdded();
+
+      // Close the modal after successful channel creation
+      if (closeModal) closeModal();
+
     } catch (error) {
       console.error(error);
       setMessage(error.message || "Failed to create channel.");

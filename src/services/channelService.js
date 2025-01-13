@@ -43,25 +43,27 @@ const create = async (formData ,path) => {
   return res.json()
 }
 
-
-
-const remove = async (path) => {
-  const options = {
-    method: 'DELETE',
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
-    },
-  };
-
-  const res = await fetch(`${BASE_URL}${path}`, options);
-  if (!res.ok) throw new Error('Failed to delete channel');
-
-  return res.json();
+const deleteChannel = async (path) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${path}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    });
+    if (!res.ok) throw new Error('Failed to delete channel');
+    return res.json();
+  } catch (error) {
+    console.error('Error deleting channel:', error);
+    throw error;
+  }
 };
+
+
 
 export default {
   index,
   create,
-  remove,
+  deleteChannel,
   getbasechannel
 };
