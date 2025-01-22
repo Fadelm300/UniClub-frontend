@@ -34,7 +34,7 @@ import AffiliateProgram from "./components/AffiliateProgram/AffiliateProgram"
 import OurServices from "./components/OurServices/OurServices"
 import FAQ from "./components/FAQ/FAQ"
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
-
+import OtpVerification from './components/otp/OtpVerification';
 
 import GPAStudent from "./components/GPA/GPAStudent";
 import UserList from "./components/UserList/UserList";
@@ -344,6 +344,7 @@ const App = () => {
 
         <Route path="/UserList" element={<UserList />} />
         <Route path="/AddEvent" element={<AddEvent />} />
+        <Route path="/otp" element={<OtpVerification />} />
 
 
 

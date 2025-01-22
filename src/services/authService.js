@@ -41,6 +41,29 @@ const signup = async (formData) => {
   }
 };
 
+const verifyOtp = async ({ email, otp }) => {
+  try {
+    const response = await fetch(`${BACKEND_URL}/users/verify`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, otp }),
+    });
+
+    const json = await response.json();
+    console.log("Response from server:", json);  // Log the server's response
+
+    if (response.ok) {
+      return json;  // Return user data and token if success
+    } else {
+      throw new Error(json.error || 'Failed to verify OTP');
+    }
+  } catch (error) {
+    console.error('Error verifying OTP:', error);
+    throw new Error('Error verifying OTP: ' + error.message);
+  }
+};
+
+
 const signin = async (user) => {
   try {
     const res = await fetch(`${BACKEND_URL}/users/signin`, {
@@ -171,5 +194,6 @@ export default {
   getOtherUserProfile,
   updateUserProfile,
   deleteUserProfile,
-  toggleFollow
+  toggleFollow,
+  verifyOtp
 };

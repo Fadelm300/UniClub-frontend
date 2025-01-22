@@ -13,7 +13,7 @@ const SigninForm = (props) => {
   const navigate = useNavigate();
  const [message, setMessage] = useState(['']);
 const [error, setError] = useState("");
-  
+const [submitted, setSubmitted] = useState(false);
 
   const [formData, setFormData] = useState({
     username: "",
@@ -48,12 +48,18 @@ const [error, setError] = useState("");
 
   const handleSubmitSignUp = async (e) => {
     e.preventDefault();
+    setSubmitted(true);
     try {
       if (formData.password === formData.passwordConf) {
         const newUserResponse = await authService.signup(formData);
+        if (newUserResponse.error) {
+          setError(newUserResponse.error);
+          return;
+        }
         props.setUser(newUserResponse.user);
-        navigate("/signin");
-        window.location.reload();
+        // navigate("/signin");
+        navigate("/otp", { state: { email: formData.email } });
+        // window.location.reload();
       } else {
         setError("Passwords do not match");  // Display error if passwords don't match
       }
@@ -69,6 +75,10 @@ const [error, setError] = useState("");
 
 
   return (
+
+
+//====================================Sign Up============================================================
+
     
     <div className="fullContainer">
       
@@ -86,17 +96,15 @@ const [error, setError] = useState("");
                 required
               />
              
-             {
-              formData.username.trim() === "" ? (
-                <p className="error-messag">Username is required</p>
-              ) : formData.username.includes(" ") ? (
-                <p className="error-message">Username cannot contain spaces.</p>
-              ) : !/^[a-zA-Z0-9_]{3,}$/.test(formData.username) ? (
-                <p className="error-message">
-                  Username must be at least 3 characters and can only contain letters, numbers, and underscores.
-                </p>
-              ) : null
-            }
+          {submitted && formData.username.trim() === "" ? (
+  <p className="error-message">Username is required</p>
+) : submitted && formData.username.includes(" ") ? (
+  <p className="error-message">Username cannot contain spaces.</p>
+) :submitted && !/^[a-zA-Z0-9_]{3,}$/.test(formData.username) ? (
+  <p className="error-message">
+    Username must be at least 3 characters and can only contain letters, numbers, and underscores.
+  </p>
+) : null}
 
 
                 <input
@@ -160,6 +168,11 @@ const [error, setError] = useState("");
             </div>
 
 
+        {/* ====================================end of Sign Up============================================================ */}
+
+
+
+
 
 
 
@@ -188,6 +201,12 @@ const [error, setError] = useState("");
             <button type="submit">Sign In</button>
           </form>
         </div>
+
+
+
+
+
+
         <div className="toggle-container">
           <div className="toggle">
             <div className="toggle-panel toggle-left">
