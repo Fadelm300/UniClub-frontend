@@ -51,6 +51,10 @@ const [error, setError] = useState("");
     try {
       if (formData.password === formData.passwordConf) {
         const newUserResponse = await authService.signup(formData);
+        if (newUserResponse.error) {
+          setError(newUserResponse.error);
+          return;
+        }
         props.setUser(newUserResponse.user);
         // navigate("/signin");
         navigate("/otp", { state: { email: formData.email } });
