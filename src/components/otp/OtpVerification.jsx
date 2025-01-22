@@ -9,11 +9,11 @@ const OtpVerification = () => {
   const [otp, setOtp] = useState("");
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
-  const [timer, setTimer] = useState(180); // 3 minutes timer
+  const [timer, setTimer] = useState(180); // 3 minutes
   const email = location.state?.email;
 
+  // Start  timer 
   useEffect(() => {
-    // Start the countdown timer when the component mounts
     if (timer > 0) {
       const countdown = setInterval(() => {
         setTimer((prevTimer) => prevTimer - 1);
@@ -25,6 +25,8 @@ const OtpVerification = () => {
   const handleOtpSubmit = async (e) => {
     e.preventDefault();
     try {
+      setError("");
+      setMessage("");
       const response = await authService.verifyOtp({ email, otp });
       if (response.user) {
         setMessage("OTP Verified Successfully! Redirecting to Sign In...");
@@ -36,6 +38,18 @@ const OtpVerification = () => {
       }
     } catch (err) {
       setError(err.message || "Failed to verify OTP. Please try again.");
+    }
+  };
+
+  const handleResendOtp = async () => {
+    try {
+      setError("");
+      setMessage("");
+      const successMessage = await authService.resendOtp(email);
+      setMessage(successMessage);
+      setTimer(180); // 3 minutes
+    } catch (err) {
+      setError(err.message || "Failed to resend OTP. Please try again.");
     }
   };
 
@@ -61,7 +75,9 @@ const OtpVerification = () => {
             onChange={(e) => setOtp(e.target.value)}
             required
           />
-          <button onClick={handleOtpSubmit}>Verify OTP</button>
+          <button onClick={handleOtpSubmit} disabled={timer <= 0}>
+            Verify OTP
+          </button>
         </div>
         <div className="timer">
           {timer > 0 ? (
@@ -70,6 +86,11 @@ const OtpVerification = () => {
             <p style={{ color: "red" }}>OTP Expired. Please request a new one.</p>
           )}
         </div>
+        { (
+          <div className="resend-otp">
+            <button onClick={handleResendOtp}>Resend OTP</button>
+          </div>
+        )}
         {message && <p className="success-message">{message}</p>}
         {error && <p className="error-message">{error}</p>}
       </div>

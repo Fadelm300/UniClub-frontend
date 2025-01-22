@@ -95,6 +95,25 @@ const signin = async (user) => {
   }
 };
 
+const resendOtp = async (email) => {
+  try {
+    const response = await fetch(`${BACKEND_URL}/users/resendotp`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }),
+    });
+
+    const json = await response.json();
+    if (response.ok) {
+      return json.message; // Return success message
+    } else {
+      throw new Error(json.error || 'Failed to resend OTP');
+    }
+  } catch (error) {
+    console.error('Error resending OTP:', error.message);
+    throw error;
+  }
+};
 
 
 const getUserProfile = async (userId) => {
@@ -195,5 +214,6 @@ export default {
   updateUserProfile,
   deleteUserProfile,
   toggleFollow,
-  verifyOtp
+  verifyOtp,
+  resendOtp
 };
