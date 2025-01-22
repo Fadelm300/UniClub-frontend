@@ -52,8 +52,9 @@ const [error, setError] = useState("");
       if (formData.password === formData.passwordConf) {
         const newUserResponse = await authService.signup(formData);
         props.setUser(newUserResponse.user);
-        navigate("/signin");
-        window.location.reload();
+        // navigate("/signin");
+        navigate("/otp", { state: { email: formData.email } });
+        // window.location.reload();
       } else {
         setError("Passwords do not match");  // Display error if passwords don't match
       }
@@ -69,6 +70,10 @@ const [error, setError] = useState("");
 
 
   return (
+
+
+//====================================Sign Up============================================================
+
     
     <div className="fullContainer">
       
@@ -160,6 +165,11 @@ const [error, setError] = useState("");
             </div>
 
 
+        {/* ====================================end of Sign Up============================================================ */}
+
+
+
+
 
 
 
@@ -188,6 +198,12 @@ const [error, setError] = useState("");
             <button type="submit">Sign In</button>
           </form>
         </div>
+
+
+
+
+
+
         <div className="toggle-container">
           <div className="toggle">
             <div className="toggle-panel toggle-left">
