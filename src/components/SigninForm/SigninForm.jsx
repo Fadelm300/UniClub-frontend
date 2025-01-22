@@ -13,7 +13,7 @@ const SigninForm = (props) => {
   const navigate = useNavigate();
  const [message, setMessage] = useState(['']);
 const [error, setError] = useState("");
-  
+const [submitted, setSubmitted] = useState(false);
 
   const [formData, setFormData] = useState({
     username: "",
@@ -48,6 +48,7 @@ const [error, setError] = useState("");
 
   const handleSubmitSignUp = async (e) => {
     e.preventDefault();
+    setSubmitted(true);
     try {
       if (formData.password === formData.passwordConf) {
         const newUserResponse = await authService.signup(formData);
@@ -95,17 +96,15 @@ const [error, setError] = useState("");
                 required
               />
              
-             {
-              formData.username.trim() === "" ? (
-                <p className="error-messag">Username is required</p>
-              ) : formData.username.includes(" ") ? (
-                <p className="error-message">Username cannot contain spaces.</p>
-              ) : !/^[a-zA-Z0-9_]{3,}$/.test(formData.username) ? (
-                <p className="error-message">
-                  Username must be at least 3 characters and can only contain letters, numbers, and underscores.
-                </p>
-              ) : null
-            }
+          {submitted && formData.username.trim() === "" ? (
+  <p className="error-message">Username is required</p>
+) : submitted && formData.username.includes(" ") ? (
+  <p className="error-message">Username cannot contain spaces.</p>
+) :submitted && !/^[a-zA-Z0-9_]{3,}$/.test(formData.username) ? (
+  <p className="error-message">
+    Username must be at least 3 characters and can only contain letters, numbers, and underscores.
+  </p>
+) : null}
 
 
                 <input
