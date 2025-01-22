@@ -42,7 +42,7 @@ const [submitted, setSubmitted] = useState(false);
       props.setUser(user);
       navigate("/");
     } catch (err) {
-      updateMessage(err.message);
+      setMessage(' invalid credentials please try again.');
     }
   };
 

@@ -279,7 +279,20 @@ const PostForm = ({ handleAddPost }) => {
                 style={{ maxWidth: "50%", height: "auto" }}
               />
             )}
-            {loading && <p>Uploading image...</p>}
+                {loading && (
+                  <div className="loading-container">
+                    <video 
+                      className="loading-animation" 
+                      autoPlay 
+                      loop 
+                      muted 
+                      playsInline
+                    >
+                      <source src="../../../public/img/loading2.mp4" type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                )}
             {error && <p style={{ color: "red" }}>{error}</p>}
           </div>
           <button type="submit" className="submitpost" disabled={loading}>
