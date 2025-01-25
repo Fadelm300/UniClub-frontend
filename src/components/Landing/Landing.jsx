@@ -5,12 +5,14 @@ import { useParams, Link } from "react-router-dom";
 import { deriveChannelPath } from "../../utils/helpers/urlHelpers";
 import PostList from "../PostList/PostList";
 import FileList from "../FileList/FileList";
+import { use } from "react";
 
 const Landing = (props) => {
   const [channel, setChannel] = useState({});
   const [viewType, setViewType] = useState("posts"); 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isMember, setIsMember] = useState(false); 
+  const [isMember, setIsMember] = useState(false);
+  const [members, setMembers] = useState(0);
   const { uni, college, major, course, event } = useParams();
   const path = deriveChannelPath({ uni, college, major, course, event });
 
@@ -19,6 +21,7 @@ const Landing = (props) => {
       const channelData = await channelService.index(path);
       setChannel(channelData);
       setIsMember(channelData.members?.includes(props.user.id)); 
+      setMembers(channelData.members.length);
     }
     getChannel();
   }, [path, props.user]);
@@ -34,7 +37,12 @@ const Landing = (props) => {
   
     try {
       setIsToggling(true); 
-      setIsMember(!isMember); 
+      setIsMember(!isMember);
+      if (isMember) {
+        setMembers(members-1);
+      } else {
+        setMembers(members+1);
+      } 
       await channelService.toggleMembership(props.user.id, channel._id);
     } catch (error) {
       console.error("Error toggling membership:", error);
@@ -88,6 +96,7 @@ const Landing = (props) => {
         <div className="mainContent">
           <h1 className="titlename">{channel.name}</h1>
           <p>{channel.description}</p>
+          <div>{members} {members==1?'member':'members'}</div>
 
           {props.user && (
             <div className="addbtn">
@@ -117,7 +126,7 @@ const Landing = (props) => {
 
               
               <button onClick={toggleMembership} className="toggleMembershipBtn">
-                {isMember ? 'Unjoin Channel' : 'Join Channel'}
+                {isMember ? 'Leave Channel' : 'Join Channel'}
               </button>
             </div>
           )}
