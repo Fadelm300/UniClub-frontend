@@ -41,6 +41,7 @@ import UserList from "./components/UserList/UserList";
 import UserListUser from './components/UserList/UserListUser';
 import AddEvent from './components/Events/AddEvent/AddEvent';
 import EditEvent from './components/Events/EditEvent/EditEvent';
+import ResetPassword from './components/ResetPassword/ResetPassword';
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser());
@@ -95,6 +96,8 @@ const App = () => {
   const handleUpdateFile = async (formData, fileId, path) => {
     const updateFile = await FileService.updateFile(formData, fileId, path);
   };
+
+  
 
   
 
@@ -345,6 +348,7 @@ const App = () => {
         <Route path="/UserList" element={<UserList />} />
         <Route path="/AddEvent" element={<AddEvent />} />
         <Route path="/otp" element={<OtpVerification />} />
+        <Route path="/resetpassword" element={<ResetPassword />} />
 
 
 

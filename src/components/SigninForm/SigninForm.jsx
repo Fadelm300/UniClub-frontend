@@ -42,7 +42,7 @@ const [submitted, setSubmitted] = useState(false);
       props.setUser(user);
       navigate("/");
     } catch (err) {
-      updateMessage(err.message);
+      setMessage(' invalid credentials please try again.');
     }
   };
 
@@ -199,6 +199,7 @@ const [submitted, setSubmitted] = useState(false);
               onChange={handleChange}
             />
             <button type="submit">Sign In</button>
+            <Link to="/resetpassword">forgot password</Link>
           </form>
         </div>
 
