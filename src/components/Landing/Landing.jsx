@@ -10,6 +10,7 @@ const Landing = (props) => {
   const [channel, setChannel] = useState({});
   const [viewType, setViewType] = useState("posts"); 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isMember, setIsMember] = useState(false); 
   const { uni, college, major, course, event } = useParams();
   const path = deriveChannelPath({ uni, college, major, course, event });
 
@@ -17,15 +18,26 @@ const Landing = (props) => {
     async function getChannel() {
       const channelData = await channelService.index(path);
       setChannel(channelData);
+      setIsMember(channelData.members?.includes(props.user.id)); 
     }
     getChannel();
-  }, [path]);
+  }, [path, props.user]);
 
   const handleViewChange = (type) => {
     setViewType(type); 
   };
 
-  // Toggle the sidebar
+  const toggleMembership = async () => {
+    try {
+      console.log('User ID:', props.user.id);
+      console.log('Channel ID:', channel._id);
+      await channelService.toggleMembership(props.user.id, channel._id);
+      setIsMember(!isMember);
+    } catch (error) {
+      console.error("Error toggling membership:", error);
+    }
+  };
+  
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
@@ -41,25 +53,22 @@ const Landing = (props) => {
         <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
           <div className="channelsNAV">
             
-          <Link to={`${path}/newpost`}>
-                <button className="channelButton2">Add Post</button>
-              </Link>
+            <Link to={`${path}/newpost`}>
+              <button className="channelButton2">Add Post</button>
+            </Link>
 
-
-              {props.user?.admin &&(
+            {props.user?.admin &&(
               <Link to={`${path}/newchannel`}>
                 <button className="channelButton2">Add Channel</button>
               </Link>
+            )}
 
-              )}
+            <Link to={`${path}/newfile`}>
+              <button className="channelButton2">Add File</button>
+            </Link>
+            <span></span>
 
-
-              <Link to={`${path}/newfile`}>
-                <button className="channelButton2">Add File</button>
-              </Link>
-              <span></span>
-
-<hr className="separatorLine" />
+            <hr className="separatorLine" />
 
             {channel.subchannels?.map((subchannel) => (
               <Link key={subchannel.name} to={`${path}/${subchannel.name}`}>
@@ -75,40 +84,34 @@ const Landing = (props) => {
 
           {props.user && (
             <div className="addbtn">
-
-               <Link>
-              <button
-                className="buttonsfiles"
-                onClick={() => handleViewChange("files")}>Files</button>
+              
+              <Link>
+                <button className="buttonsfiles" onClick={() => handleViewChange("files")}>Files</button>
               </Link>
-
 
               <Link>
-              <button
-                className="buttonsposts"
-                onClick={() => handleViewChange("posts")}>Posts</button>
+                <button className="buttonsposts" onClick={() => handleViewChange("posts")}>Posts</button>
               </Link>
+
               
-
-
               <Link to={`${path}/newpost`}>
                 <button className="buttonsAddPost">Add Post</button>
               </Link>
 
-
-              {props.user.admin &&(
-              <Link to={`${path}/newchannel`}>
-                <button className="buttonsAddChannel">Add Channel</button>
-              </Link>
-
+              {props.user.admin && (
+                <Link to={`${path}/newchannel`}>
+                  <button className="buttonsAddChannel">Add Channel</button>
+                </Link>
               )}
-
 
               <Link to={`${path}/newfile`}>
                 <button className="buttonsAddFile">Add File</button>
               </Link>
 
-
+              
+              <button onClick={toggleMembership} className="toggleMembershipBtn">
+                {isMember ? 'Unjoin Channel' : 'Join Channel'}
+              </button>
             </div>
           )}
 
@@ -119,7 +122,6 @@ const Landing = (props) => {
               path={path}
               toggleLike={props.toggleLike}
               user={props.user}
-              
             />
           ) : (
             <FileList
