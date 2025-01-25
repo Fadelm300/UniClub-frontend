@@ -27,16 +27,23 @@ const Landing = (props) => {
     setViewType(type); 
   };
 
+  const [isToggling, setIsToggling] = useState(false);
+
   const toggleMembership = async () => {
+    if (isToggling) return; // Prevent duplicate calls while toggling
+  
     try {
-      console.log('User ID:', props.user.id);
-      console.log('Channel ID:', channel._id);
+      setIsToggling(true); 
+      setIsMember(!isMember); 
       await channelService.toggleMembership(props.user.id, channel._id);
-      setIsMember(!isMember);
     } catch (error) {
       console.error("Error toggling membership:", error);
+      setIsMember(isMember); 
+    } finally {
+      setIsToggling(false); 
     }
   };
+  
   
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
