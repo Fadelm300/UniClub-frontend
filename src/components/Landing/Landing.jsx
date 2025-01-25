@@ -6,6 +6,8 @@ import { deriveChannelPath } from "../../utils/helpers/urlHelpers";
 import PostList from "../PostList/PostList";
 import FileList from "../FileList/FileList";
 import { use } from "react";
+import RightNav  from '../rightNav/rightNav'
+
 
 const Landing = (props) => {
   const [channel, setChannel] = useState({});
@@ -92,7 +94,7 @@ const Landing = (props) => {
             ))}
           </div>
         </div>
-
+        <div className="mainContentWithRightNav">
         <div className="mainContent">
           <h1 className="titlename">{channel.name}</h1>
           <p>{channel.description}</p>
@@ -147,6 +149,10 @@ const Landing = (props) => {
               path={path}
             />
           )}
+
+</div>
+<RightNav />
+
         </div>
       </div>
     </main>

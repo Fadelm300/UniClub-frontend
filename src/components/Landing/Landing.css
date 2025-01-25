@@ -316,4 +316,15 @@ background-color: #ffffff;
   }
   
 
+/* 
+
+
+++++++++++++++++++++++++++++++++++++++++++++*/
+.mainContentWithRightNav {
+  display: flex;
+  position: relative;
+  width: 100%;
+  background-color: #24262b;
+}
+
 
