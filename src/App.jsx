@@ -41,7 +41,8 @@ import UserList from "./components/UserList/UserList";
 import UserListUser from './components/UserList/UserListUser';
 import AddEvent from './components/Events/AddEvent/AddEvent';
 import EditEvent from './components/Events/EditEvent/EditEvent';
-
+import AddAds from './components/Ads/AddAds/AddAds';
+import EditAds from './components/Ads/EditAds/EditAds';
 const App = () => {
   const [user, setUser] = useState(authService.getUser());
   const [posts, setPosts] = useState([]);
@@ -113,6 +114,9 @@ const App = () => {
 
        <Route path="/userlist" element={<UserList userUser={user} />}  />
        <Route path="/edit-event/:eventid" element={<EditEvent user={user} />} />
+       <Route path="/edit-Ads/:Adsid" element={<EditAds user={user} />} />
+
+
         {/* add channel */}
        <Route
         path="/:uni/newchannel"
@@ -170,7 +174,10 @@ const App = () => {
             path="/:uni/:college/:major/:course/:event/newpost"
             element={<PostForm handleAddPost={handleAddPost} />}
           />
-
+          <Route
+            path="/:uni/:college/:major/:course/:Ads/newpost"
+            element={<PostForm handleAddPost={handleAddPost} />}
+          />
 
           {/* add file */}
           <Route
@@ -226,6 +233,13 @@ const App = () => {
               />
             }
           />
+          <Route
+          path="/:uni/:college/:major/:course/:Ads/file/:fileid"
+          element={
+            <FileDetails user={user} handleDeletePost={handleDeletePost} 
+            />
+          }
+        />
 
           
      </>
@@ -295,7 +309,17 @@ const App = () => {
                 />
               }
             />
-
+              <Route
+              path="/:uni/:college/:major/:course/:Ads"
+              element={
+                <Landing
+                  user={user}
+                  handleDeleteFile={handleDeleteFile}
+                  handleUpdateFile={handleUpdateFile}
+                  
+                />
+              }
+            />
             {/* view post */}
             <Route
               path="/:uni/post/:postid"
@@ -332,6 +356,13 @@ const App = () => {
                 />
               }
             />
+            <Route
+              path="/:uni/:college/:major/:course/:Ads/post/:postid"
+              element={
+                <PostDetails user={user} handleDeletePost={handleDeletePost} 
+                />
+              }
+            />
         {/* other stuff */}
         <Route path="/help" element={<Help />} />
         <Route path="/about" element={<About />} />
@@ -345,7 +376,7 @@ const App = () => {
         <Route path="/UserList" element={<UserList />} />
         <Route path="/AddEvent" element={<AddEvent />} />
         <Route path="/otp" element={<OtpVerification />} />
-
+        <Route path="/AddAds" element={<AddAds />} />
 
 
 

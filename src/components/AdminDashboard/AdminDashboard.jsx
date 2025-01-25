@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import './Dashboard.css'; 
 import UpcomingEvents from '../Events/UpcomingEvents/UpcomingEvents';
+import UpcomingAds from '../Ads/UpcomingAds/UpcomingAds'
 import AddChannelForm from "../Channel/AddChannelForm";
 import channelService from "../../services/channelService";
  
@@ -264,8 +265,11 @@ const refreshChannels = async () => {
                                 <button className="channelButtonun1">AddEvent</button>
                           </Link>
     
+                          <Link to="/AddAds">
+                                <button className="channelButtonun1">Add Ads</button>
+                          </Link>
                                <UpcomingEvents user={user}/>   
-    
+                               <UpcomingAds user={user}/>
           
       </div>
           

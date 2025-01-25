@@ -1,0 +1,112 @@
+.events-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .events-h1 {
+    font-size: 32px;
+    margin-bottom: 30px;
+    color: #2c3e50;
+    border-bottom: 2px solid black;
+    display: inline-block;
+  }
+  
+  .event-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+  }
+  
+  .event-card {
+    width: 300px;
+    height: 350px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    position: relative;
+background-color: #2c3e50;
+
+  }
+  
+  .event-details {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    width: 100%;
+  }
+  
+  .event-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .event-description {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .event-info p {
+    font-size: 14px;
+  }
+  /* Container for the action buttons */
+.event-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+/* Shared styling for both buttons */
+.event-actions .edit-button,
+.event-actions .delete-button {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Edit button styling */
+.event-actions .edit-button {
+  background-color: #4CAF50;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.event-actions .edit-button:hover {
+  background-color: #45a049;
+}
+
+/* Delete button styling */
+.event-actions .delete-button {
+  background-color: #f44336;
+  color: white;
+}
+
+.event-actions .delete-button:hover {
+  background-color: #e53935;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  .event-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .event-actions .edit-button,
+  .event-actions .delete-button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
