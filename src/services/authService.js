@@ -95,6 +95,68 @@ const signin = async (user) => {
   }
 };
 
+const resetPasswordStep1 = async (formData) => {
+  try {
+    const res = await fetch(`${BACKEND_URL}/users/resetpasswordstep1`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    });
+
+    const json = await res.json();
+
+    if (json.error) {
+      throw new Error(json.error);
+    }
+
+    return json;
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
+}
+
+const resetPasswordStep2 = async (formData) => {
+  try {
+    const res = await fetch(`${BACKEND_URL}/users/resetpasswordstep2`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    });
+
+    const json = await res.json();
+
+    if (json.error) {
+      throw new Error(json.error);
+    }
+
+    return json;
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
+}
+
+const resetPasswordStep3 = async (formData) => {try {
+  const res = await fetch(`${BACKEND_URL}/users/resetpasswordstep3`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(formData),
+  });
+
+  const json = await res.json();
+
+  if (json.error) {
+    throw new Error(json.error);
+  }
+
+  return json;
+} catch (err) {
+  console.log(err);
+  throw err;
+}
+}
+
 const resendOtp = async (email) => {
   try {
     const response = await fetch(`${BACKEND_URL}/users/resendotp`, {
@@ -215,5 +277,8 @@ export default {
   deleteUserProfile,
   toggleFollow,
   verifyOtp,
-  resendOtp
+  resendOtp,
+  resetPasswordStep1,
+  resetPasswordStep2,
+  resetPasswordStep3
 };

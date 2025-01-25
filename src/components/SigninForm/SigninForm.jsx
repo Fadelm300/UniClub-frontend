@@ -199,6 +199,7 @@ const [submitted, setSubmitted] = useState(false);
               onChange={handleChange}
             />
             <button type="submit">Sign In</button>
+            <Link to="/resetpassword">forgot password</Link>
           </form>
         </div>
 
