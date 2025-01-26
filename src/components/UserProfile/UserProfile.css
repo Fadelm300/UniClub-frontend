@@ -441,3 +441,13 @@
   background-color: #e63946;
   transform: scale(1.05);
 }
+.clickable {
+  cursor: pointer;
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.clickable:hover {
+  text-decoration: none;
+  color: #0056b3;
+}
