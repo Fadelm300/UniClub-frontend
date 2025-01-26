@@ -337,3 +337,107 @@
 .Confirmation_but button:hover {
   transform: scale(1.05);       
 }
+
+
+
+
+
+
+
+
+
+
+
+
+/* Followers and Following Modal Styles */
+.showFollowersModal, .showFollowingModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Dimmed background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it's above other elements */
+}
+
+.showFollowersModal .modal-content, 
+.showFollowingModal .modal-content {
+  background-color: #ffffff; /* White background */
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%; /* Responsive width */
+  max-width: 500px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Soft shadow */
+  text-align: center;
+  overflow-y: auto; /* Allow scrolling if content is long */
+  max-height: 80vh; /* Prevent overflowing vertically */
+}
+
+/* Modal Header */
+.showFollowersModal .modal-header, 
+.showFollowingModal .modal-header {
+  font-size: 24px;
+  font-weight: bold;
+  color: #2b2d42; /* Dark text */
+  margin-bottom: 15px;
+  text-align: center;
+  border-bottom: 1px solid #ddd; /* Separator line */
+  padding-bottom: 10px;
+}
+
+/* List of Followers/Following */
+.modal-content ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.modal-content ul li {
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.modal-content ul li:hover {
+  background-color: #e9f5ff; /* Light blue on hover */
+  transform: translateY(-3px); /* Slight lift effect */
+}
+
+.modal-content ul li img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.modal-content ul li .username {
+  font-size: 16px;
+  font-weight: bold;
+  color: #2b2d42;
+}
+
+/* Close Button */
+.modal-content .close-modal {
+  background-color: #ff6b6b;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-top: 15px;
+}
+
+.modal-content .close-modal:hover {
+  background-color: #e63946;
+  transform: scale(1.05);
+}

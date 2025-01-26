@@ -26,6 +26,15 @@ const UserProfile = () => {
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [showEditConfirm, setShowEditConfirm] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
+
+
+    // Followers and Following modals
+    const [showFollowersModal, setShowFollowersModal] = useState(false);
+    const [showFollowingModal, setShowFollowingModal] = useState(false);
+    const [followers, setFollowers] = useState([]);
+    const [following, setFollowing] = useState([]);
+
+
   const navigate = useNavigate();
   const BASE_URL = import.meta.env.VITE_BACKEND_URL;
   const DEFAULT_IMAGE_URL = "https://img.icons8.com/?size=100&id=kfZajSPygW1l&format=png&color=000000"; // Default image URL
@@ -46,6 +55,31 @@ const UserProfile = () => {
     };
     fetchUserData();
   }, [userId]);
+
+
+  const fetchFollowers = async () => {
+    try {
+      const response = await axios.get(`${BASE_URL}/users/${userId}/followers`);
+      setFollowers(response.data);
+      setShowFollowersModal(true);
+    } catch (error) {
+      setError(error.message);
+      setShowErrorModal(true);
+    }
+  };
+
+  const fetchFollowing = async () => {
+    try {
+      const response = await axios.get(`${BASE_URL}/users/${userId}/following`);
+      setFollowing(response.data);
+      setShowFollowingModal(true);
+    } catch (error) {
+      setError(error.message);
+      setShowErrorModal(true);
+    }
+  };
+
+
 
   const togglePostVisibility = (postId) => {
     setExpandedPosts((prev) => ({
@@ -161,8 +195,8 @@ const UserProfile = () => {
         }
       });
   };
-  if (loading) return <div className=""></div>;
-  if (error) return <div className=""></div>;
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <div className="user-profile">
@@ -227,8 +261,8 @@ const UserProfile = () => {
             <p>Phone: {user?.phone}</p>
             <p>Email: {user?.email}</p>
             <div className="follow-stats2">
-              <div>Followers: {user.followers.length}</div>
-              <div>Following: {user.following.length}</div>
+              <div onClick={fetchFollowers} className="clickable" >Followers: {user.followers.length}</div>
+              <div onClick={fetchFollowing} className="clickable" >Following: {user.following.length}</div>
               
             </div>
             <div className='EandD'>
@@ -242,6 +276,48 @@ const UserProfile = () => {
           </div>
         )}
       </div>
+      
+        {/* Followers Modal */}
+        {showFollowersModal && (
+                <div className="modal">
+                  <div className="modal-content">
+                    <h2>Followers</h2>
+                    <ul>
+                      {followers.map((follower) => (
+                        <li key={follower._id}>
+                          <img src={follower.image || DEFAULT_IMAGE_URL} alt={follower.username} />
+                          <span>{follower.username}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <button onClick={() => setShowFollowersModal(false)}>Close</button>
+                  </div>
+                </div>
+              )}
+
+                {showFollowingModal && (
+                        <div className="modal">
+                          <div className="modal-content">
+                            <h2>Following</h2>
+                            <ul>
+                              {following.map((followedUser) => (
+                                <li key={followedUser._id}>
+                                  <img src={followedUser.image || DEFAULT_IMAGE_URL} alt={followedUser.username} />
+                                  <span>{followedUser.username}</span>
+                                </li>
+                              ))}
+                            </ul>
+                            <button onClick={() => setShowFollowingModal(false)}>Close</button>
+                          </div>
+                        </div>
+                      )}
+
+
+
+
+
+
+
 
       <div className="user-posts">
         <h2>Posts</h2>
