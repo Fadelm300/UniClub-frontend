@@ -61,9 +61,34 @@ const deleteChannel = async (path) => {
 
 
 
+const toggleMembership = async (userId, channelId) => {
+  if (!userId || !channelId) {
+    throw new Error('Channel ID or User ID is missing.');
+  }
+
+  try {
+    const res = await fetch(`${basebase}/users/togglechannel/${userId}/${channelId}`, {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    });
+
+    if (!res.ok) throw new Error('Failed to toggle channel membership');
+    return res.json();
+  } catch (error) {
+    console.error('Error toggling channel membership:', error);
+    throw error;
+  }
+};
+
+
+
+
 export default {
   index,
   create,
   deleteChannel,
-  getbasechannel
+  getbasechannel,
+  toggleMembership 
 };

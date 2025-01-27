@@ -5,11 +5,16 @@ import { useParams, Link } from "react-router-dom";
 import { deriveChannelPath } from "../../utils/helpers/urlHelpers";
 import PostList from "../PostList/PostList";
 import FileList from "../FileList/FileList";
+import { use } from "react";
+import RightNav  from '../rightNav/rightNav'
+
 
 const Landing = (props) => {
   const [channel, setChannel] = useState({});
   const [viewType, setViewType] = useState("posts"); 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isMember, setIsMember] = useState(false);
+  const [members, setMembers] = useState(0);
   const { uni, college, major, course, event } = useParams();
   const path = deriveChannelPath({ uni, college, major, course, event });
 
@@ -17,15 +22,39 @@ const Landing = (props) => {
     async function getChannel() {
       const channelData = await channelService.index(path);
       setChannel(channelData);
+      setIsMember(channelData.members?.includes(props.user.id)); 
+      setMembers(channelData.members.length);
     }
     getChannel();
-  }, [path]);
+  }, [path, props.user]);
 
   const handleViewChange = (type) => {
     setViewType(type); 
   };
 
-  // Toggle the sidebar
+  const [isToggling, setIsToggling] = useState(false);
+
+  const toggleMembership = async () => {
+    if (isToggling) return; // Prevent duplicate calls while toggling
+  
+    try {
+      setIsToggling(true); 
+      setIsMember(!isMember);
+      if (isMember) {
+        setMembers(members-1);
+      } else {
+        setMembers(members+1);
+      } 
+      await channelService.toggleMembership(props.user.id, channel._id);
+    } catch (error) {
+      console.error("Error toggling membership:", error);
+      setIsMember(isMember); 
+    } finally {
+      setIsToggling(false); 
+    }
+  };
+  
+  
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
@@ -41,25 +70,22 @@ const Landing = (props) => {
         <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
           <div className="channelsNAV">
             
-          <Link to={`${path}/newpost`}>
-                <button className="channelButton2">Add Post</button>
-              </Link>
+            <Link to={`${path}/newpost`}>
+              <button className="channelButton2">Add Post</button>
+            </Link>
 
-
-              {props.user?.admin &&(
+            {props.user?.admin &&(
               <Link to={`${path}/newchannel`}>
                 <button className="channelButton2">Add Channel</button>
               </Link>
+            )}
 
-              )}
+            <Link to={`${path}/newfile`}>
+              <button className="channelButton2">Add File</button>
+            </Link>
+            <span></span>
 
-
-              <Link to={`${path}/newfile`}>
-                <button className="channelButton2">Add File</button>
-              </Link>
-              <span></span>
-
-<hr className="separatorLine" />
+            <hr className="separatorLine" />
 
             {channel.subchannels?.map((subchannel) => (
               <Link key={subchannel.name} to={`${path}/${subchannel.name}`}>
@@ -68,47 +94,42 @@ const Landing = (props) => {
             ))}
           </div>
         </div>
-
+        <div className="mainContentWithRightNav">
         <div className="mainContent">
           <h1 className="titlename">{channel.name}</h1>
           <p>{channel.description}</p>
+          <div>{members} {members==1?'member':'members'}</div>
 
           {props.user && (
             <div className="addbtn">
-
-               <Link>
-              <button
-                className="buttonsfiles"
-                onClick={() => handleViewChange("files")}>Files</button>
+              
+              <Link>
+                <button className="buttonsfiles" onClick={() => handleViewChange("files")}>Files</button>
               </Link>
-
 
               <Link>
-              <button
-                className="buttonsposts"
-                onClick={() => handleViewChange("posts")}>Posts</button>
+                <button className="buttonsposts" onClick={() => handleViewChange("posts")}>Posts</button>
               </Link>
+
               
-
-
               <Link to={`${path}/newpost`}>
                 <button className="buttonsAddPost">Add Post</button>
               </Link>
 
-
-              {props.user.admin &&(
-              <Link to={`${path}/newchannel`}>
-                <button className="buttonsAddChannel">Add Channel</button>
-              </Link>
-
+              {props.user.admin && (
+                <Link to={`${path}/newchannel`}>
+                  <button className="buttonsAddChannel">Add Channel</button>
+                </Link>
               )}
-
 
               <Link to={`${path}/newfile`}>
                 <button className="buttonsAddFile">Add File</button>
               </Link>
 
-
+              
+              <button onClick={toggleMembership} className="toggleMembershipBtn">
+                {isMember ? 'Leave Channel' : 'Join Channel'}
+              </button>
             </div>
           )}
 
@@ -119,7 +140,6 @@ const Landing = (props) => {
               path={path}
               toggleLike={props.toggleLike}
               user={props.user}
-              
             />
           ) : (
             <FileList
@@ -129,6 +149,10 @@ const Landing = (props) => {
               path={path}
             />
           )}
+
+        </div>
+        <RightNav />
+
         </div>
       </div>
     </main>

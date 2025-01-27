@@ -120,5 +120,15 @@ const toggleCommentLike = async (commentId,postId) => {
   return await response.json();
 };
 
+const search = async (query) => {
+  try {
+    const res = await fetch(`${BASE_URL}/search?query=${encodeURIComponent(query)}`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+    });
+    return res.json();
+  } catch (error) {
+    console.error('Error searching posts:', error);
+  }
+};
 
-export default { index, show, create, delete: deletePost, getPostsByUser, update: updatePost , toggleLike , toggleCommentLike};
+export default { index, show, create, delete: deletePost, getPostsByUser, update: updatePost, toggleLike, toggleCommentLike, search };
