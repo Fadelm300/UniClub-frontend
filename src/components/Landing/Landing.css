@@ -318,13 +318,14 @@ background-color: #ffffff;
 
 /* 
 
-
+moved to RightNav.css
 ++++++++++++++++++++++++++++++++++++++++++++*/
-.mainContentWithRightNav {
+/* .mainContentWithRightNav {
   display: flex;
   position: relative;
   width: 100%;
-  background-color: #24262b;
-}
+  background-color: #4565b6;
 
+}
+ */
 

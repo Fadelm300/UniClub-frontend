@@ -150,8 +150,8 @@ const Landing = (props) => {
             />
           )}
 
-</div>
-<RightNav />
+        </div>
+        <RightNav />
 
         </div>
       </div>
