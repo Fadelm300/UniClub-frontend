@@ -23,7 +23,6 @@ function MemberList({userUser}) {
      :
         'G';
 
-    console.log(Role);
     useEffect(() => {
         const fetchUsers = async (path) => {
             try {
