@@ -36,7 +36,7 @@ const [submitted, setSubmitted] = useState(false);
     e.preventDefault();
     try {
       const user = await authService.signin({
-        username: formData.username,
+        username: formData.username.toLowerCase(),
         password: formData.password,
       });
       props.setUser(user);
@@ -51,6 +51,8 @@ const [submitted, setSubmitted] = useState(false);
     setSubmitted(true);
     try {
       if (formData.password === formData.passwordConf) {
+        formData.username = formData.username.toLowerCase();
+        formData.email = formData.email.toLowerCase();
         const newUserResponse = await authService.signup(formData);
         if (newUserResponse.error) {
           setError(newUserResponse.error);
