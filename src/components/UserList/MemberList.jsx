@@ -15,6 +15,7 @@ function MemberList({userUser}) {
     
     const [isToggling, setIsToggling] = useState(false);
     
+    const [Role, setRole] = useState(userUser?.admin ? 'A' : channel.moderators?.includes(userUser?.id)?'M':userUser?'U':'G');
 
     useEffect(() => {
         const fetchUsers = async (path) => {
@@ -48,10 +49,10 @@ function MemberList({userUser}) {
         setIsToggling(true);
         setUsers(users.map(user => {
             if (user._id === userId) {
-                if (user.followers.includes(userUser.id)) {
-                    user.followers.pop(userUser.id);
+                if (user.followers.includes(userUser?.id)) {
+                    user.followers.pop(userUser?.id);
                 } else {
-                    user.followers.push(userUser.id);
+                    user.followers.push(userUser?.id);
                 }
             }
             return user;
@@ -98,6 +99,7 @@ function MemberList({userUser}) {
                 />
             </div>
 
+            <h2>Members of {channel.name}</h2>
             
             <table className="user-table">
                 <thead>
@@ -106,9 +108,15 @@ function MemberList({userUser}) {
                         <th>Email</th>
                         <th>Phone</th>
                         <th>Role</th>
+                        {Role == 'A' && (
                         <th>admin</th>
+                        )}
+                        {Role == 'A' || Role == 'M' && (
                         <th>moderator</th>
+                        )}
+                        {Role == 'A' || Role == 'M' || Role == 'U' && (
                         <th>follow</th>
+                        )}
                     </tr>
                 </thead>
                 <tbody>
@@ -123,7 +131,7 @@ function MemberList({userUser}) {
                             <td>{user.email}</td>
                             <td>{user.phone}</td>
                             <td>{user.admin ? 'Admin' : channel.moderators?.includes(user._id)?'Moderator':'User'}</td>
-                            {userUser.id == user._id ? (
+                            {userUser?.id == user._id ? (
                                 <>
                                     <td></td>
                                     <td></td>
@@ -144,31 +152,34 @@ function MemberList({userUser}) {
                                         {channel?.moderators.includes(user._id) ? 'Demote from moderator' : 'Promote to Moderator'}
                                     </button>
                                     </td>
+                                    <td>
+                                        <button onClick={() => toggleFollow(user._id)}>
+                                            {user.followers.includes(userUser?.id) ? 'Unfollow' : 'Follow'}
+                                        </button>
+                                    </td>
                                     </>
                                     ):(
-                                        channel?.moderators.includes(userUser.id) ? (
+                                        channel?.moderators.includes(userUser?.id) ? (
                                             <>
                                             <td>
                                                 <button onClick={() => toggleModerator(user._id)}>
                                                     {channel?.moderators.includes(user._id) ? 'Demote to User' : 'Promote to Moderator'}
                                                 </button>
-                                                <td></td>
+                                            </td>
+                                            <td>
+                                                <button onClick={() => toggleFollow(user._id)}>
+                                                    {user.followers.includes(userUser?.id) ? 'Unfollow' : 'Follow'}
+                                                </button>
                                             </td>
                                             </>
                                         ):(
                                             <>
                                                 <td></td>
                                                 <td></td>
+                                                <td></td>
                                             </>
                                         )
                                     )}
-
-                                    
-                                    <td>
-                                        <button onClick={() => toggleFollow(user._id)}>
-                                            {user.followers.includes(userUser?.id) ? 'Unfollow' : 'Follow'}
-                                        </button>
-                                    </td>
                                 </>
                             )}
                             
