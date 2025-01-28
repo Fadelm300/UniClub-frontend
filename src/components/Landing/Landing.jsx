@@ -98,8 +98,9 @@ const Landing = (props) => {
         <div className="mainContent">
           <h1 className="titlename">{channel.name}</h1>
           <p>{channel.description}</p>
+          <Link to={`${path}/members`}>
           <div>{members} {members==1?'member':'members'}</div>
-
+          </Link>
           {props.user && (
             <div className="addbtn">
               

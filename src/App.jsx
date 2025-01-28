@@ -42,6 +42,7 @@ import UserListUser from './components/UserList/UserListUser';
 import AddEvent from './components/Events/AddEvent/AddEvent';
 import EditEvent from './components/Events/EditEvent/EditEvent';
 import ResetPassword from './components/ResetPassword/ResetPassword';
+import MemberList from './components/UserList/MemberList';
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser());
@@ -101,8 +102,8 @@ const App = () => {
 
   
 
+  const pathArr = ['/:uni/:college/:major/:course/:event' , '/:uni/:college/:major/:course' , '/:uni/:college/:major' , '/:uni/:college' , '/:uni']
   
-
   return (
     <>
       <NavBar user={user} handleSignout={handleSignout} />
@@ -335,6 +336,17 @@ const App = () => {
                 />
               }
             />
+
+            {/* view members */}
+            {pathArr.map((path, index) => (
+            <Route
+              key={index}
+              path={`${path}/members`}
+              element={<MemberList userUser={user} />}
+            />
+          ))}
+
+            
         {/* other stuff */}
         <Route path="/help" element={<Help />} />
         <Route path="/about" element={<About />} />
