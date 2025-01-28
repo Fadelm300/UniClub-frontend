@@ -117,7 +117,7 @@ const Landing = (props) => {
                 <button className="buttonsAddPost">Add Post</button>
               </Link>
 
-              {props.user.admin && (
+              {props.user?.admin || channel.moderators?.includes(props.user?.id)&& (
                 <Link to={`${path}/newchannel`}>
                   <button className="buttonsAddChannel">Add Channel</button>
                 </Link>

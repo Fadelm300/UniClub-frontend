@@ -9,16 +9,16 @@ import { deriveChannelPath } from '../../utils/helpers/urlHelpers';
 function MemberList({userUser}) {
     const [users, setUsers] = useState([]);
     const [channel, setChannel] = useState({});
-    const [change, setChange] = useState(true);
     const [searchQuery, setSearchQuery] = useState(''); // New state for search input
     const { uni, college, major, course, event } = useParams();
     const path = deriveChannelPath({ uni, college, major, course, event });
+    
+    const [isToggling, setIsToggling] = useState(false);
     
 
     useEffect(() => {
         const fetchUsers = async (path) => {
             try {
-                console.log(path);
                 const channel = await channelService.getJoinedUsers(path);
                 setChannel(channel);
                 setUsers(channel?.members);
@@ -28,21 +28,53 @@ function MemberList({userUser}) {
         };
 
         fetchUsers(path);
-    }, [change]);
+    }, []);
 
     const toggleAdmin = async (userId) => {
-        await adminService.toggleAdmin(userId);
-        setChange(!change);
+        if (isToggling) return; 
+        setIsToggling(true);
+        setUsers(users.map(user => {
+            if (user._id === userId) {
+                user.admin = !user.admin;
+            }
+            return user;
+        }));
+        adminService.toggleAdmin(userId);
+        setIsToggling(false);
     };
 
     const toggleFollow = async (userId) => {
-        await authService.toggleFollow(userId);
-        setChange(!change);
+        if (isToggling) return;
+        setIsToggling(true);
+        setUsers(users.map(user => {
+            if (user._id === userId) {
+                if (user.followers.includes(userUser.id)) {
+                    user.followers.pop(userUser.id);
+                } else {
+                    user.followers.push(userUser.id);
+                }
+            }
+            return user;
+        }));
+        authService.toggleFollow(userId);
+        setIsToggling(false);
     };
 
     const toggleModerator = async (userId) => {
-        await channelService.toggleModerator(path,userId);
-        setChange(!change);
+        if (isToggling) return;
+        setIsToggling(true);
+        setUsers(users.map(user => {
+            if (user._id === userId) {
+                if (channel.moderators.includes(user._id)) {
+                    channel.moderators.pop(user._id);
+                } else {
+                    channel.moderators.push(user._id);
+                }
+            }
+            return user;
+        }));
+        channelService.toggleModerator(path,userId);
+        setIsToggling(false);
     }
 
     // Filter the users based on the search query
@@ -54,6 +86,7 @@ function MemberList({userUser}) {
 
     return (
         <div className="user-list-container">
+            
             <div className="search-container">
                 <i className="fa fa-search search-icon"></i> {/* Search icon */}
                 <input
@@ -65,6 +98,7 @@ function MemberList({userUser}) {
                 />
             </div>
 
+            
             <table className="user-table">
                 <thead>
                     <tr>
@@ -72,21 +106,23 @@ function MemberList({userUser}) {
                         <th>Email</th>
                         <th>Phone</th>
                         <th>Role</th>
-                        <th>Action</th>
-                        <th>Action</th>
-                        <th>Action</th>
+                        <th>admin</th>
+                        <th>moderator</th>
+                        <th>follow</th>
                     </tr>
                 </thead>
                 <tbody>
                     {filteredUsers.map((user) => (
                         <tr key={user._id}>
-                            <Link to={`/userlist/${user._id}`}>
+                            <td>
+                            <Link to={userUser?.id == user._id?`/profile/${user._id}`:`/userlist/${user._id}`}>
                                     {user.username}
                             </Link>
+                            </td>
 
                             <td>{user.email}</td>
                             <td>{user.phone}</td>
-                            <td>{user.admin ? 'Admin' : 'User'}</td>
+                            <td>{user.admin ? 'Admin' : channel.moderators?.includes(user._id)?'Moderator':'User'}</td>
                             {userUser.id == user._id ? (
                                 <>
                                     <td></td>
@@ -100,12 +136,12 @@ function MemberList({userUser}) {
                                     <>
                                     <td>
                                         <button onClick={() => toggleAdmin(user._id)}>
-                                            {user.admin ? 'Demote to User' : 'Promote to Admin'}
+                                            {user.admin ? 'Demote from admin' : 'Promote to Admin'}
                                         </button>
                                     </td>
                                     <td>
                                     <button onClick={() => toggleModerator(user._id)}>
-                                        {channel?.moderators.includes(user._id) ? 'Demote to User' : 'Promote to Moderator'}
+                                        {channel?.moderators.includes(user._id) ? 'Demote from moderator' : 'Promote to Moderator'}
                                     </button>
                                     </td>
                                     </>
@@ -140,6 +176,7 @@ function MemberList({userUser}) {
                     ))}
                 </tbody>
             </table>
+            
         </div>
     );
 }
