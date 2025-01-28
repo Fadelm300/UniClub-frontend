@@ -15,7 +15,14 @@ function MemberList({userUser}) {
     
     const [isToggling, setIsToggling] = useState(false);
     
-    const Role = userUser?.admin ? 'A' : channel.moderators?.includes(userUser?.id)?'M':userUser?'U':'G';
+    const Role = userUser?.admin ? 'A' 
+     :
+        channel.moderators?.includes(userUser?.id)?'M'
+     :
+        userUser?'U'
+     :
+        'G';
+
     console.log(Role);
     useEffect(() => {
         const fetchUsers = async (path) => {
@@ -140,7 +147,7 @@ function MemberList({userUser}) {
                             ) : (
                                 <>
                                     
-                                    {userUser?.admin ? (
+                                    {Role == 'A' ? (
                                     <>
                                     <td>
                                         <button onClick={() => toggleAdmin(user._id)}>
@@ -159,12 +166,14 @@ function MemberList({userUser}) {
                                     </td>
                                     </>
                                     ):(
-                                        channel?.moderators.includes(userUser?.id) ? (
+                                        Role=='M' ? (
                                             <>
                                             <td>
+                                                {!user.admin&&(
                                                 <button onClick={() => toggleModerator(user._id)}>
                                                     {channel?.moderators.includes(user._id) ? 'Demote to User' : 'Promote to Moderator'}
                                                 </button>
+                                                )}
                                             </td>
                                             <td>
                                                 <button onClick={() => toggleFollow(user._id)}>
@@ -174,9 +183,7 @@ function MemberList({userUser}) {
                                             </>
                                         ):(
                                             <>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                
                                             </>
                                         )
                                     )}
