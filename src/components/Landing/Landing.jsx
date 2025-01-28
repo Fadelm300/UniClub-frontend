@@ -22,7 +22,7 @@ const Landing = (props) => {
     async function getChannel() {
       const channelData = await channelService.index(path);
       setChannel(channelData);
-      setIsMember(channelData.members?.includes(props.user.id)); 
+      setIsMember(channelData.members?.includes(props.user?.id)); 
       setMembers(channelData.members.length);
     }
     getChannel();

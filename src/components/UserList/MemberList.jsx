@@ -15,8 +15,8 @@ function MemberList({userUser}) {
     
     const [isToggling, setIsToggling] = useState(false);
     
-    const [Role, setRole] = useState(userUser?.admin ? 'A' : channel.moderators?.includes(userUser?.id)?'M':userUser?'U':'G');
-
+    const Role = userUser?.admin ? 'A' : channel.moderators?.includes(userUser?.id)?'M':userUser?'U':'G';
+    console.log(Role);
     useEffect(() => {
         const fetchUsers = async (path) => {
             try {
@@ -111,10 +111,10 @@ function MemberList({userUser}) {
                         {Role == 'A' && (
                         <th>admin</th>
                         )}
-                        {Role == 'A' || Role == 'M' && (
+                        {(Role == 'A' || Role == 'M') && (
                         <th>moderator</th>
                         )}
-                        {Role == 'A' || Role == 'M' || Role == 'U' && (
+                        {(Role == 'A' || Role == 'M' || Role == 'U') && (
                         <th>follow</th>
                         )}
                     </tr>
