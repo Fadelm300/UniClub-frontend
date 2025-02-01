@@ -82,6 +82,45 @@ const toggleMembership = async (userId, channelId) => {
   }
 };
 
+const getJoinedUsers = async (path) => {
+  try {
+    const res = await fetch(`${basebase}/users/members${path}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+      
+    });
+
+    if (!res.ok) throw new Error('Failed to fetch joined channels');
+    return res.json();
+  } catch (error) {
+    console.error('Error fetching joined channels:', error);
+    throw error;
+  }
+};
+
+const toggleModerator = async (path,userId) => {
+  if (!userId) {
+    throw new Error('User is missing.');
+  }
+
+  try {
+    const res = await fetch(`${basebase}/users/togglemoderator${path}`, {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({'userId': userId}),
+    });
+    if (!res.ok) throw new Error('Failed to toggle moderator');
+    return res.json();
+  } catch (error) {
+    console.error('Error toggling moderator:', error);
+    throw error;
+  }
+};
+
 
 
 
@@ -90,5 +129,7 @@ export default {
   create,
   deleteChannel,
   getbasechannel,
-  toggleMembership 
+  toggleMembership,
+  getJoinedUsers,
+  toggleModerator
 };
