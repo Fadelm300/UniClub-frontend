@@ -22,6 +22,17 @@ const show = async (path , postId) => {
   }
 };
 
+const upload = async (path) =>{
+  const url = `${BASE_URL}/posts${path}/upload`
+    const response = await fetch(url, { 
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    });
+    return response;
+}
+
 const create = async (formData, path) => {
   const isFormData = formData instanceof FormData; // Check if data includes a file
 
@@ -29,9 +40,9 @@ const create = async (formData, path) => {
     method: "POST",
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
-      
+      'Content-Type': 'application/json',
     },
-    body: formData,
+    body: JSON.stringify(formData),
   };
 
   const res = await fetch(`${BASE_URL}${path}`, options);
@@ -124,4 +135,15 @@ const toggleCommentLike = async (commentId,postId) => {
 };
 
 
-export default { index, show, create, delete: deletePost, getPostsByUser, update: updatePost , toggleLike , toggleCommentLike};
+export default 
+{ 
+  index,
+  show,
+  create,
+  delete: deletePost,
+  getPostsByUser,
+  update: updatePost ,
+  toggleLike ,
+  toggleCommentLike,
+  upload
+};

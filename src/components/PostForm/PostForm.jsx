@@ -145,6 +145,7 @@ import { useParams } from "react-router-dom";
 import { deriveChannelPath } from "../../utils/helpers/urlHelpers";
 import axios from "axios";
 import ErrorModal from "../Events/ErrorModal/ErrorModal";
+import postService from "../../services/postService"
 const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 const BAD_WORDS_API_URL = "https://api.apilayer.com/bad_words"; // Bad Words API endpoint
 const API_KEY = "j6Nztvto2ujilpZ5GrcFV7RXIyUU4Ll5"; // Your API key
@@ -171,22 +172,6 @@ const PostForm = ({ handleAddPost }) => {
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
     setFile(file); 
-    const url = `${BASE_URL}/posts${path}`
-    const response = await fetch(url, { 
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
-      },
-    });
-    console.log(response);
-
-    const { url: uploadUrl } = await response.json()
-
-    const r2 = await fetch(uploadUrl, { 
-      method: 'PUT',
-      body: file,
-     });
-     console.log(r2);
   };
 
   const checkForBadWords = async (text) => {
@@ -222,14 +207,22 @@ const PostForm = ({ handleAddPost }) => {
       setLoading(false);
       return;
     }
-    const formDataToSend = new FormData();
-    formDataToSend.append("text", formData.text); // Add text
-    if (file) formDataToSend.append("file", file);
+    if (file){
+    
+    const response = await postService.upload(path)
 
+    const { url: uploadUrl } = await response.json()
+
+    const r2 = await fetch(uploadUrl, { 
+      method: 'PUT',
+      body: file,
+     });
+    }
+    handleAddPost(formData, path);
     setError(null);
     setLoading(false);
 
-    handleAddPost(formDataToSend, path);
+    
   };
 
 
