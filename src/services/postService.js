@@ -22,19 +22,22 @@ const show = async (path , postId) => {
   }
 };
 
-const create = async (formData ,path) => {
-  const options = {
-    method: 'POST',
-    headers: {
-              Authorization: `Bearer ${localStorage.getItem('token')}`,
-              'Content-Type': 'application/json',
-            },
-    body: JSON.stringify(formData)
-  }
-  const res = await fetch(`${BASE_URL}${path}`,options)
+const create = async (formData, path) => {
+  const isFormData = formData instanceof FormData; // Check if data includes a file
 
-  return res.json()
-}
+  const options = {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      
+    },
+    body: formData,
+  };
+
+  const res = await fetch(`${BASE_URL}${path}`, options);
+  return res.json();
+};
+
 
 const deletePost = async (postId, path) => {
   try {
