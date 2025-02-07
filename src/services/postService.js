@@ -23,14 +23,19 @@ const show = async (path , postId) => {
 };
 
 const upload = async (path) =>{
-  const url = `${BASE_URL}/posts${path}/upload`
+  const url = `${BASE_URL}${path}/upload`
     const response = await fetch(url, { 
       method: 'POST',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     });
-    return response;
+    if (!response.ok) {
+      throw new Error(`Upload failed: ${response.status} ${response.statusText}`);
+    }
+  
+    const data = await response.json(); // Parse JSON response
+    return data; 
 }
 
 const create = async (formData, path) => {

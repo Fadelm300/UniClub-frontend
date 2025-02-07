@@ -85,7 +85,7 @@ const PostList = (props) => {
                     </div>
                   </div>
                   <div className='topcardimage'>
-                    <img src={post.image} alt="" />
+                    <img src={post?.link} alt="" />
                   </div>
                 </div>
               </Link>

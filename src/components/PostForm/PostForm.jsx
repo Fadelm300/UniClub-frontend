@@ -158,7 +158,7 @@ const PostForm = ({ handleAddPost }) => {
   const [error, setError] = useState(null);
   const [formData, setFormData] = useState({
     text: "",
-    file: "",
+    link: "",
   });
   const [file, setFile] = useState(null);
   
@@ -210,19 +210,24 @@ const PostForm = ({ handleAddPost }) => {
     if (file){
     
     const response = await postService.upload(path)
-
-    const { url: uploadUrl } = await response.json()
+    const formDataLink = { ...formData, link: response.publicUrl };
+    const { url: uploadUrl } = response;
+    
 
     const r2 = await fetch(uploadUrl, { 
       method: 'PUT',
       body: file,
      });
-    }
-    handleAddPost(formData, path);
-    setError(null);
-    setLoading(false);
 
-    
+      handleAddPost(formDataLink, path);
+      setError(null);
+      setLoading(false);
+
+    }else{
+      handleAddPost(formData, path);
+      setError(null);
+      setLoading(false);
+    }
   };
 
 
