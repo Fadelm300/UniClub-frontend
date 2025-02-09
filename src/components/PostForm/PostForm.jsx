@@ -137,9 +137,7 @@
 
 
 
-
-import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
-import "@cyntler/react-doc-viewer/dist/index.css";
+import Iframe from 'react-iframe'
 import { useState } from "react";
 import { useMemo } from "react";
 
@@ -188,7 +186,7 @@ const PostForm = ({ handleAddPost }) => {
 
   };
   const fileDocument = useMemo(() => {
-    return file ? [{ uri: window.URL.createObjectURL(file) }] : [];
+    return file ? window.URL.createObjectURL(file) : "";
   }, [file]);
 
   const checkForBadWords = async (text) => {
@@ -276,12 +274,14 @@ const PostForm = ({ handleAddPost }) => {
             {file && (
               <div className="file-preview">
                 
-                  <DocViewer 
-                    documents={fileDocument}
-                    pluginRenderers={DocViewerRenderers} 
-                    
-                    
-                    fileName={'file'}
+                  <Iframe
+                    url={fileDocument}
+                    width="100%"
+                    height="100%"
+                    id="myId"
+                    className="myClassname"
+                    display="initial"
+                    position="relative"
                   />
                  
               </div>
