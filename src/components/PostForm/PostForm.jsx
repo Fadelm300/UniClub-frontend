@@ -140,8 +140,11 @@
 
 import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
 import "@cyntler/react-doc-viewer/dist/index.css";
-
 import { useState } from "react";
+import { useMemo } from "react";
+
+
+
 import "./PostForm.css";
 import { useParams } from "react-router-dom";
 import { deriveChannelPath } from "../../utils/helpers/urlHelpers";
@@ -167,6 +170,7 @@ const PostForm = ({ handleAddPost }) => {
     link: "",
   });
   const [file, setFile] = useState(null);
+    
   
 
   const handleChange = (evt) => {
@@ -175,10 +179,17 @@ const PostForm = ({ handleAddPost }) => {
     setFormData({ ...formData, [name]: value });
   };
 
+  
+
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
     setFile(file); 
+    
+
   };
+  const fileDocument = useMemo(() => {
+    return file ? [{ uri: window.URL.createObjectURL(file) }] : [];
+  }, [file]);
 
   const checkForBadWords = async (text) => {
     try {
@@ -261,19 +272,18 @@ const PostForm = ({ handleAddPost }) => {
               id="file"
               name="file"
               onChange={handleFileChange}
-              accept="image/*,application/pdf"
             />
             {file && (
               <div className="file-preview">
-                {file.type === "application/pdf" ? (
-                  <DocViewer documents={[{uri : URL.createObjectURL(file)},]} pluginRenderers={DocViewerRenderers} />
-                 ) : (
-                  <img
-                    src={URL.createObjectURL(file)}
-                    alt="File Preview"
-                    style={{ maxWidth: "50%", height: "auto" }}
+                
+                  <DocViewer 
+                    documents={fileDocument}
+                    pluginRenderers={DocViewerRenderers} 
+                    
+                    
+                    fileName={'file'}
                   />
-                )}
+                 
               </div>
             )}
             {loading && (
