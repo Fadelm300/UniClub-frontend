@@ -138,6 +138,8 @@
 
 
 
+import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
+import "@cyntler/react-doc-viewer/dist/index.css";
 
 import { useState } from "react";
 import "./PostForm.css";
@@ -146,6 +148,10 @@ import { deriveChannelPath } from "../../utils/helpers/urlHelpers";
 import axios from "axios";
 import ErrorModal from "../Events/ErrorModal/ErrorModal";
 import postService from "../../services/postService"
+
+
+
+
 const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 const BAD_WORDS_API_URL = "https://api.apilayer.com/bad_words"; // Bad Words API endpoint
 const API_KEY = "j6Nztvto2ujilpZ5GrcFV7RXIyUU4Ll5"; // Your API key
@@ -260,13 +266,8 @@ const PostForm = ({ handleAddPost }) => {
             {file && (
               <div className="file-preview">
                 {file.type === "application/pdf" ? (
-                  <embed
-                    src={URL.createObjectURL(file)}
-                    type="application/pdf"
-                    width="100%"
-                    height="500px"
-                  />
-                ) : (
+                  <DocViewer documents={[{uri : URL.createObjectURL(file)},]} pluginRenderers={DocViewerRenderers} />
+                 ) : (
                   <img
                     src={URL.createObjectURL(file)}
                     alt="File Preview"
