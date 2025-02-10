@@ -168,7 +168,7 @@ const PostForm = ({ handleAddPost }) => {
     link: "",
   });
   const [file, setFile] = useState(null);
-    
+  const [openPreview, setOpenPreview] = useState(true);
   
 
   const handleChange = (evt) => {
@@ -245,6 +245,7 @@ const PostForm = ({ handleAddPost }) => {
     }
   };
 
+  
 
   return (
     <main>
@@ -272,17 +273,33 @@ const PostForm = ({ handleAddPost }) => {
               onChange={handleFileChange}
             />
             {file && (
+            <button
+              type="button"
+              onClick={() => setOpenPreview(!openPreview)}
+              className="preview-button"  
+            >
+              {openPreview ? "Hide" : "Show"} Preview
+            </button>
+            )}
+            {(file&&openPreview)  && (
               <div className="file-preview">
-                  
-                    <iframe
-                      src={fileDocument}
-                      width="100%"
-                      height="100%"
-                      id="myId"
-                      className="myClassname"
-                      display="initial"
-                      position="relative"
-                    />
+                    {file.type === "application/pdf" ? (
+                      <iframe
+                        src={fileDocument}
+                        width="100%"
+                        height="100%"
+                        className="file-preview-iframe"
+                        display="initial"
+                        position="relative"
+                      />
+                    ):(
+                      <img
+                        src={fileDocument}
+                        alt="File to upload"
+                        className="file-preview-image"
+                      />
+                    )}
+                    
                   
                   
                  
