@@ -273,16 +273,18 @@ const PostForm = ({ handleAddPost }) => {
             />
             {file && (
               <div className="file-preview">
-                
-                  <Iframe
-                    url={fileDocument}
-                    width="100%"
-                    height="100%"
-                    id="myId"
-                    className="myClassname"
-                    display="initial"
-                    position="relative"
-                  />
+                  
+                    <iframe
+                      src={fileDocument}
+                      width="100%"
+                      height="100%"
+                      id="myId"
+                      className="myClassname"
+                      display="initial"
+                      position="relative"
+                    />
+                  
+                  
                  
               </div>
             )}

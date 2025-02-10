@@ -76,6 +76,15 @@
   background-image: linear-gradient(to right, #01bfff, #01bfff);
 }
 
+.file-preview {
+  width: 100%;
+  height: 450px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
 /* Responsive Media Queries */
 @media (max-width: 768px) {
   .postform {
@@ -106,4 +115,6 @@
     font-size: 0.8rem;
     padding: 6px 12px;
   }
+
+  
 }
