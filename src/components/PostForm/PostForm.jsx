@@ -166,6 +166,9 @@ const PostForm = ({ handleAddPost }) => {
   const [formData, setFormData] = useState({
     text: "",
     link: "",
+    title: "",
+    description: "",
+    type: ""
   });
   const [file, setFile] = useState(null);
   const [openPreview, setOpenPreview] = useState(true);
@@ -173,7 +176,7 @@ const PostForm = ({ handleAddPost }) => {
 
   const handleChange = (evt) => {
     const { name, value } = evt.target;
-    console.log('r1');
+    
     setFormData({ ...formData, [name]: value });
   };
 
@@ -181,10 +184,11 @@ const PostForm = ({ handleAddPost }) => {
 
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
+    console.log(file);
+    setFormData({ ...formData, type: file.type, title : file.name });
     setFile(file); 
-    
-
   };
+
   const fileDocument = useMemo(() => {
     return file ? window.URL.createObjectURL(file) : "";
   }, [file]);
@@ -261,8 +265,8 @@ const PostForm = ({ handleAddPost }) => {
               required
             />
             <input
-              id="image"
-              name="image"
+              id="url"
+              name="url"
               onChange={handleChange}
               placeholder="URL"
             />

@@ -17,6 +17,7 @@ const PostDetails = ({ user, handleDeletePost }) => {
   const [editText, setEditText] = useState('');
   const [showPopUp, setShowPopUp] = useState(false); 
 
+  const [showFile , setShowFile] = useState(false);
 
   const [liked, setLiked] = useState(false);
   const [LikedComments, setLikedComments] = useState([]);
@@ -119,7 +120,13 @@ const PostDetails = ({ user, handleDeletePost }) => {
                   <button onClick={() => setIsEditing(false)}>Cancel</button>
                 </div>
               ) : (
+                <>
                 <p>{post.text} </p>
+                <button onClick={() => setShowFile(!showFile)}>Show File</button>
+                {showFile && post.file && (
+                <iframe src={post?.file?.link} title="post" width="100%" height="300px"></iframe>
+                )}
+                </>
                 
               )}
               <div className="postimg"><img src={post.image} alt="" /></div>
