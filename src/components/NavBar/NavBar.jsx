@@ -57,7 +57,7 @@ const NavBar = ({ user, handleSignout }) => {
           <div className="topNav">
             <Link className="logoHome" to="/">
               <div className="Navimg">
-                <img className="imginthenav" src="/logo.png" alt="UoB Logo" />
+                <img className="imginthenav" src="/newlogo.png" alt="UoB Logo" />
               </div>
             </Link>
             <div className="otherNav">

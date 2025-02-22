@@ -98,7 +98,7 @@ const LandingReal = ({user}) => {
                         </div>
 
 
-             <UpcomingEvents user={user}/>
+          
 
 
 

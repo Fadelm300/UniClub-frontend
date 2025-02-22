@@ -16,14 +16,12 @@ const PostList = (props) => {
 
   const toggleLike = async (postId) => {
     try {
-
       if (LikedPosts.includes(postId)) {
         setLikedPosts(LikedPosts.filter(id => id !== postId));
       } else {
         setLikedPosts([...LikedPosts, postId]);
       }
       postService.toggleLike(postId);
-
     } catch (error) {
       console.error("Error toggling like:", error.message);
     }
@@ -63,20 +61,21 @@ const PostList = (props) => {
           return (
             <div className="card" key={idx}>
               
-                <div className="dawnCard">
-                  <Link to={post.user._id==props.user?.id?`/profile/${post.user._id}`:`/userlist/${post.user._id}`}>
+              <div className="dawnCard">
+                <Link to={post.user._id === props.user?.id ? `/profile/${post.user._id}` : `/userlist/${post.user._id}`}>
                   <div className="dawnCardpostimg">
                     <img src={post.user.image || DEFAULT_IMAGE_URL} alt="Post Image" />
                     <div className="dawncardusername">{post.user.username}</div>
                   </div>
-                  </Link>
-                  <div className="dawnCardText">
-                    <div className="dawncardDate">
-                      {postDate.toLocaleDateString()} <span> | </span> {postDate.toLocaleTimeString()}
-                    </div>
+                </Link>
+                <div className="dawnCardText">
+                  <div className="dawncardDate">
+                    {postDate.toLocaleDateString()} <span> | </span> {postDate.toLocaleTimeString()}
                   </div>
                 </div>
-                <Link to={`${props.path}/post/${post._id}`}>
+              </div>
+
+              <Link to={`${props.path}/post/${post._id}`}>
                 <div className="topCard">
                   <div className="topcardtex">
                     <div className="topcardTextContent">
@@ -120,21 +119,18 @@ const PostList = (props) => {
                     <span>{post.views || 0}</span>
                   </div>
 
-                  
                   <div className="interactionItem">
                     <Link to={`${props.path}/post/${post._id}`}>
                       <img src="/icons8-comment-50.png" alt="Comments" />
                       <span>{post.comments.length || 0}</span>
                     </Link>
                   </div>
-                  
+
                   <div className="interactionItem" onClick={() => toggleLike(post._id)}>
                     <img
-                      src={
-                        (!hasUserLikedPost && isPostLiked) || (hasUserLikedPost && !isPostLiked)
-                          ? "/like.png"
-                          : "/icons8-like-50.png"
-                      }
+                      src={(!hasUserLikedPost && isPostLiked) || (hasUserLikedPost && !isPostLiked)
+                        ? "/like.png"
+                        : "/icons8-like-50.png"}
                       alt="Likes"
                     />
                     <span>

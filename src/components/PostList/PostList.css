@@ -131,6 +131,17 @@ a {
     margin-bottom: 20px;
     font-size: 20px;
   }
+
+  .searchBarContainer {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  .searchButton {
+    margin-left: 0;
+    margin-top: 10px;
+    width: 100%;
+  }
 }
 
 .interactionBar {
@@ -222,3 +233,6 @@ a {
     opacity: 0;
   }
 }
+
+
+
