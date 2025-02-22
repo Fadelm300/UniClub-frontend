@@ -20,11 +20,26 @@
   font-size: 15px;
 }
 
+
 .topCard {
   padding: 20px;
   width: 100%;
   height: 75%;
   color: #fff; /* White text */
+}
+
+.topcardimage {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  width: 100%; /* Ensure the image container takes full width */
+}
+
+.topcardimage img, .topcardimage video {
+  border-radius: 20px;
+  width: auto; /* Maintain the aspect ratio */
+  max-width: 100%; /* Ensure the media is responsive */
+  height: auto; /* Ensure the media is not cropped */
 }
 
 a {

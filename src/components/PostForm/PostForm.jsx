@@ -137,14 +137,21 @@
 
 
 
-
-
+import Iframe from 'react-iframe'
 import { useState } from "react";
+import { useMemo } from "react";
+
+
+
 import "./PostForm.css";
 import { useParams } from "react-router-dom";
 import { deriveChannelPath } from "../../utils/helpers/urlHelpers";
 import axios from "axios";
 import ErrorModal from "../Events/ErrorModal/ErrorModal";
+import postService from "../../services/postService"
+
+
+
 
 const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 const BAD_WORDS_API_URL = "https://api.apilayer.com/bad_words"; // Bad Words API endpoint
@@ -158,15 +165,33 @@ const PostForm = ({ handleAddPost }) => {
   const [error, setError] = useState(null);
   const [formData, setFormData] = useState({
     text: "",
-    image: "",
+    link: "",
+    title: "",
+    description: "",
+    type: ""
   });
-  const [preview, setPreview] = useState(null);
+  const [file, setFile] = useState(null);
+  const [openPreview, setOpenPreview] = useState(true);
+  
 
   const handleChange = (evt) => {
     const { name, value } = evt.target;
-
+    
     setFormData({ ...formData, [name]: value });
   };
+
+  
+
+  const handleFileChange = async (event) => {
+    const file = event.target.files[0];
+    console.log(file);
+    setFormData({ ...formData, type: file.type, title : file.name });
+    setFile(file); 
+  };
+
+  const fileDocument = useMemo(() => {
+    return file ? window.URL.createObjectURL(file) : "";
+  }, [file]);
 
   const checkForBadWords = async (text) => {
     try {
@@ -201,49 +226,30 @@ const PostForm = ({ handleAddPost }) => {
       setLoading(false);
       return;
     }
+    if (file){
+    
+    const response = await postService.upload(path)
+    const formDataLink = { ...formData, link: response.publicUrl };
+    const { url: uploadUrl } = response;
+    
 
-    setError(null);
-    setLoading(false);
-    handleAddPost(formData, path);
-  };
+    const r2 = await fetch(uploadUrl, { 
+      method: 'PUT',
+      body: file,
+     });
 
-  const convertBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file);
+      handleAddPost(formDataLink, path);
+      setError(null);
+      setLoading(false);
 
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      };
-
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
-  };
-
-  const uploadImage = async (event) => {
-    const files = event.target.files[0];
-    if (!files) return;
-
-    setError("");
-    setLoading(true);
-
-    try {
-      const base64 = await convertBase64(files);
-      setPreview(base64); // Set the image preview
-      const res = await axios.post(`${BASE_URL}/uploadImg`, { image: base64 });
-      setFormData({ ...formData, image: res.data.url });
-      setError("");
-    } catch (err) {
-      if (err.response && err.response.status === 413) {
-        setError("The image is too large. Please upload a smaller file.");
-      }
-      setShowErrorModal(true);
-    } finally {
+    }else{
+      handleAddPost(formData, path);
+      setError(null);
       setLoading(false);
     }
   };
+
+  
 
   return (
     <main>
@@ -259,40 +265,64 @@ const PostForm = ({ handleAddPost }) => {
               required
             />
             <input
-              id="image"
-              name="image"
+              id="url"
+              name="url"
               onChange={handleChange}
               placeholder="URL"
             />
             <input
               type="file"
-              id="image"
-              name="image"
-              accept="image/*"
-              onChange={uploadImage}
+              id="file"
+              name="file"
+              onChange={handleFileChange}
             />
-
-            {preview && (
-              <img
-                src={preview}
-                alt="Image Preview"
-                style={{ maxWidth: "50%", height: "auto" }}
-              />
+            {file && (
+            <button
+              type="button"
+              onClick={() => setOpenPreview(!openPreview)}
+              className="preview-button"  
+            >
+              {openPreview ? "Hide" : "Show"} Preview
+            </button>
             )}
-                {loading && (
-                  <div className="loading-container">
-                    <video 
-                      className="loading-animation" 
-                      autoPlay 
-                      loop 
-                      muted 
-                      playsInline
-                    >
-                      <source src="../../../public/img/loading2.mp4" type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
-                  </div>
-                )}
+            {(file&&openPreview)  && (
+              <div className="file-preview">
+                    {file.type === "application/pdf" ? (
+                      <iframe
+                        src={fileDocument}
+                        width="100%"
+                        height="100%"
+                        className="file-preview-iframe"
+                        display="initial"
+                        position="relative"
+                      />
+                    ):(
+                      <img
+                        src={fileDocument}
+                        alt="File to upload"
+                        className="file-preview-image"
+                      />
+                    )}
+                    
+                  
+                  
+                 
+              </div>
+            )}
+            {loading && (
+              <div className="loading-container">
+                <video 
+                  className="loading-animation" 
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline
+                >
+                  <source src="../../../public/img/loading2.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            )}
             {error && <p style={{ color: "red" }}>{error}</p>}
           </div>
           <button type="submit" className="submitpost" disabled={loading}>

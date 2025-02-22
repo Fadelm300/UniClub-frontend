@@ -22,19 +22,38 @@ const show = async (path , postId) => {
   }
 };
 
-const create = async (formData ,path) => {
-  const options = {
-    method: 'POST',
-    headers: {
-              Authorization: `Bearer ${localStorage.getItem('token')}`,
-              'Content-Type': 'application/json',
-            },
-    body: JSON.stringify(formData)
-  }
-  const res = await fetch(`${BASE_URL}${path}`,options)
-
-  return res.json()
+const upload = async (path) =>{
+  const url = `${BASE_URL}${path}/upload`
+    const response = await fetch(url, { 
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    });
+    if (!response.ok) {
+      throw new Error(`Upload failed: ${response.status} ${response.statusText}`);
+    }
+  
+    const data = await response.json(); // Parse JSON response
+    return data; 
 }
+
+const create = async (formData, path) => {
+  const isFormData = formData instanceof FormData; // Check if data includes a file
+
+  const options = {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(formData),
+  };
+
+  const res = await fetch(`${BASE_URL}${path}`, options);
+  return res.json();
+};
+
 
 const deletePost = async (postId, path) => {
   try {
@@ -131,4 +150,16 @@ const search = async (query) => {
   }
 };
 
-export default { index, show, create, delete: deletePost, getPostsByUser, update: updatePost, toggleLike, toggleCommentLike, search };
+export default 
+{ 
+  index,
+  show,
+  create,
+  delete: deletePost,
+  getPostsByUser,
+  update: updatePost ,
+  toggleLike ,
+  toggleCommentLike,
+  upload
+};
+
