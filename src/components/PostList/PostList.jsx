@@ -83,6 +83,19 @@ const PostList = (props) => {
                       {truncatedText}
                       {isLongText && <span className="readMore"> Click to read more</span>}
                     </div>
+                    <div className="topcardimage">
+                      {post.file &&
+                      post.file?.type?.includes('image') ? (
+                        <img src={post.file.link} alt="Post" />
+                      ) : 
+                      post.file?.type?.includes('video') ? (
+                        <video controls>
+                          <source src={post.file.link} type="video/mp4" />
+                        </video>
+                      ) : <></>
+
+                      }
+                    </div>
                   </div>
                   <div className='topcardimage'>
                   </div>

@@ -30,6 +30,20 @@
 
 }
 
+.postfile {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  width: 100%; /* Ensure the image container takes full width */
+}
+
+.postfile img, .postfile video {
+  border-radius: 20px;
+  width: auto; /* Maintain the aspect ratio */
+  max-width: 100%; /* Ensure the media is responsive */
+  height: auto; /* Ensure the media is not cropped */
+}
+
 .commentShow {
     background-image: linear-gradient(to right, #2cc1fb, #2cc1fb);
     padding: 20px;

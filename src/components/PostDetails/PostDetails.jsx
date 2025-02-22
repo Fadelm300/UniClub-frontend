@@ -123,9 +123,28 @@ const PostDetails = ({ user, handleDeletePost }) => {
                 <>
                 <p>{post.text} </p>
                 <button onClick={() => setShowFile(!showFile)}>Show File</button>
+                <div className="postfile">
                 {showFile && post.file && (
-                <iframe src={post?.file?.link} title="post" width="100%" height="300px"></iframe>
+                post.file?.type?.includes('image') ? (
+                  <img src={post.file.link} alt="Post" />
+                ) : 
+                post.file?.type?.includes('video') ? (
+                  <video controls>
+                    <source src={post.file.link} type="video/mp4" />
+                  </video>
+                ) : post.file?.type?.includes('pdf') ? (  
+                  <iframe 
+                    src={post.file.link} 
+                    width="100%" 
+                    height="100%" 
+                    title={post.file.title}
+                    className="file-preview-iframe"
+                    display="initial"
+                    position="relative" 
+                    />
+                ) : <> </>
                 )}
+                </div>
                 </>
                 
               )}
