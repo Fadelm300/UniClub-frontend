@@ -43,7 +43,7 @@ import AddEvent from './components/Events/AddEvent/AddEvent';
 import EditEvent from './components/Events/EditEvent/EditEvent';
 import ResetPassword from './components/ResetPassword/ResetPassword';
 import MemberList from './components/UserList/MemberList';
-
+import Reports from './components/Reports/Reports';
 const App = () => {
   const [user, setUser] = useState(authService.getUser());
   const [posts, setPosts] = useState([]);
@@ -342,8 +342,18 @@ const App = () => {
             <Route
               key={index}
               path={`${path}/members`}
-              element={<MemberList userUser={user} />}
+              element={<MemberList userUser={user}  />}
             />
+
+          ))}
+          {/* report page */}
+          {pathArr.map((path, index) => (
+            <Route
+              key={index}
+              path={`${path}/reports`}
+              element={<Reports userUser={user} />}
+            />
+
           ))}
 
             

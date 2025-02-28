@@ -13,7 +13,7 @@ const index = async () => {
 
 const show = async (path , postId) => {
   try {
-    const res = await fetch(`${BASE_URL}${path}/${postId}`, {
+    const res = await fetch(`${BASE_URL}/getpost${path}/${postId}`, {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
     });
     return res.json();
@@ -150,6 +150,54 @@ const search = async (query) => {
   }
 };
 
+
+
+const reportPost = async (postId, reason) => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await fetch(`${BASE_URL}/report/${postId}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ reason }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || "Failed to report post");
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error reporting post:", error);
+    throw error;
+  }
+};
+
+
+const getReportedPosts = async (path) => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await fetch(`${BASE_URL}/reported${path}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || "Failed to fetch reported posts");
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching reported posts:", error);
+    throw error;
+  }
+};
+
 export default 
 { 
   index,
@@ -160,6 +208,8 @@ export default
   update: updatePost ,
   toggleLike ,
   toggleCommentLike,
-  upload
+  upload,
+  reportPost, 
+  getReportedPosts 
 };
 

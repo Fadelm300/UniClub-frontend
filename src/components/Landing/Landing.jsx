@@ -117,20 +117,28 @@ const Landing = (props) => {
                 <button className="buttonsAddPost">Add Post</button>
               </Link>
 
-              {props.user?.admin || channel.moderators?.includes(props.user?.id)&& (
+              {(props.user?.admin || channel.moderators?.includes(props.user?.id))&& (
+                <>
                 <Link to={`${path}/newchannel`}>
                   <button className="buttonsAddChannel">Add Channel</button>
                 </Link>
+                <Link to={`${path}/reports`}>
+                  <button className="buttonsAddChannel">REPORTS</button>
+                </Link>
+                </>
+
               )}
 
               <Link to={`${path}/newfile`}>
                 <button className="buttonsAddFile">Add File</button>
               </Link>
 
-              
-              <button onClick={toggleMembership} className="toggleMembershipBtn">
+              <Link to={``}>
+              <button onClick={toggleMembership} className=" buttonsAddChannel">
                 {isMember ? 'Leave Channel' : 'Join Channel'}
               </button>
+              </Link>
+
             </div>
           )}
 
