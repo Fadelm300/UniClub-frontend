@@ -8,11 +8,12 @@ const PostList = (props) => {
 
   const sortedPosts = [...props.posts].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
   const DEFAULT_IMAGE_URL = "https://img.icons8.com/?size=100&id=kfZajSPygW1l&format=png&color=000000";
-
   const MAX_TEXT_LENGTH = 200;
 
   const [LikedPosts, setLikedPosts] = useState([]);
   const [showPopUp, setShowPopUp] = useState(false); 
+  const [reportingPost, setReportingPost] = useState(null);
+  const [reportReason, setReportReason] = useState("");
 
   const toggleLike = async (postId) => {
     try {
@@ -41,6 +42,34 @@ const PostList = (props) => {
       });
   };
 
+
+  const reportReasons = [
+    "Inappropriate Content",
+    "Harassment",
+    "Fake News",
+    "Offensive Language",
+  ];
+  
+  const toggleReport = (postId) => {
+    setReportingPost(reportingPost === postId ? null : postId);
+    setReportReason("");
+  };
+
+  const submitReport = async (postId) => {
+      if (!reportReason) return alert("Please select a reason.");
+  
+    try {
+      const response = await postService.reportPost(postId, reportReason);
+      alert("Report submitted successfully");
+      setReportingPost(null); // Hide the report form after submission
+      setReportReason(""); // Reset the reason field
+    } catch (error) {
+      console.error("Error reporting post:", error.message);
+      alert(`Failed to submit report: ${error.message || "Unknown error"}`);
+    }
+  };
+  
+  
   return (
     <>
       {showPopUp && (
@@ -57,6 +86,7 @@ const PostList = (props) => {
 
           const isPostLiked = LikedPosts.includes(post._id);
           const hasUserLikedPost = post.likes.includes(props.user?.id);
+          const isReporting = reportingPost === post._id;
 
           return (
             <div className="card" key={idx}>
@@ -71,12 +101,55 @@ const PostList = (props) => {
                 <div className="dawnCardText">
                   <div className="dawncardDate">
                     {postDate.toLocaleDateString()} <span> | </span> {postDate.toLocaleTimeString()}
+                    <button onClick={() => toggleReport(post._id)}>
+                    {isReporting ? (
+                      <img src="/close.png" alt="Cancel Report" />
+                    ) : (
+                      <img src="/dots.png" alt="Report" />
+                    )}
+                    </button>
                   </div>
                 </div>
               </div>
 
-              <Link to={`${props.path}/post/${post._id}`}>
-                <div className="topCard">
+              <div className="topCard">
+                  {isReporting && (
+                    <div className={`reportContainer ${isReporting ? "show" : ""}`}>
+                      <h4>Report Post</h4>
+                      {/* طريقة الاولى */}
+                      {/* <select
+                    value={reportReason}
+                    onChange={(e) => setReportReason(e.target.value)}
+                  >
+                    <option value="">Select a reason</option>
+                    {reportReasons.map((reason, idx) => (
+                      <option key={idx} value={reason}>{reason}</option>
+                    ))}
+                  </select> */}
+
+                  {/* الطريقة الثانية  */}
+                  <div className="report-reasons">
+                    {reportReasons.map((reason, idx) => (
+                      <div key={idx} className="report-reason">
+                        <input
+                          type="radio"
+                          id={`reason-${idx}`}
+                          name="reportReason"
+                          value={reason}
+                          checked={reportReason === reason}
+                          onChange={(e) => setReportReason(e.target.value)}
+                        />
+                        <label htmlFor={`reason-${idx}`}>{reason}</label>
+                      </div>
+                    ))}
+                  </div>
+                        <button onClick={() => submitReport(post._id)}>Submit Report</button>
+                        <button onClick={() => toggleReport(post._id)}>Cancel</button>
+                    </div>
+                  )}
+
+                {/* Post Content */}
+                <Link to={`${props.path}/post/${post._id}`}>
                   <div className="topcardtex">
                     <div className="topcardTextContent">
                       {truncatedText}
@@ -93,14 +166,11 @@ const PostList = (props) => {
                           <source src={post.file.link} type="video/mp4" />
                         </video>
                       ) : <></>
-
                       }
                     </div>
                   </div>
-                  <div className='topcardimage'>
-                  </div>
-                </div>
-              </Link>
+                </Link>
+              </div>
 
               {/* Social Interaction Section */}
               {props.user && (

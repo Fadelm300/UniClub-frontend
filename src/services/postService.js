@@ -10,17 +10,23 @@ const index = async () => {
     console.log(error);
   }
 };
-
-const show = async (path , postId) => {
+const show = async (path, postId) => {
   try {
     const res = await fetch(`${BASE_URL}/getpost${path}/${postId}`, {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
     });
+
+    if (!res.ok) {
+      throw new Error(`Error fetching post: ${res.status}`);
+    }
+
     return res.json();
   } catch (error) {
-    console.log(error);
+    console.error('Error fetching post:', error);
+    return null;
   }
 };
+
 
 const upload = async (path) =>{
   const url = `${BASE_URL}${path}/upload`
@@ -149,10 +155,9 @@ const search = async (query) => {
     console.error('Error searching posts:', error);
   }
 };
-
-
-
 const reportPost = async (postId, reason) => {
+  console.log("🛠️ Debug - Reason before sending:", reason, "Type:", typeof reason);
+
   try {
     const token = localStorage.getItem("token");
     const response = await fetch(`${BASE_URL}/report/${postId}`, {
@@ -161,7 +166,7 @@ const reportPost = async (postId, reason) => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ reason }),
+      body: JSON.stringify({ reason }), // Make sure it's properly formatted
     });
 
     if (!response.ok) {
@@ -173,6 +178,20 @@ const reportPost = async (postId, reason) => {
   } catch (error) {
     console.error("Error reporting post:", error);
     throw error;
+  }
+};
+
+const submitReport = async (postId) => {
+  if (!reportReason.trim()) return alert("Please enter a reason.");
+
+  try {
+    const response = await postService.reportPost(postId, reportReason); // Just pass reportReason
+    alert("Report submitted successfully");
+    setReportingPost(null);
+    setReportReason("");
+  } catch (error) {
+    console.error("Error reporting post:", error.message);
+    alert(`Failed to submit report: ${error.message || "Unknown error"}`);
   }
 };
 
@@ -198,18 +217,39 @@ const getReportedPosts = async (path) => {
   }
 };
 
-export default 
-{ 
-  index,
-  show,
-  create,
-  delete: deletePost,
-  getPostsByUser,
-  update: updatePost ,
-  toggleLike ,
-  toggleCommentLike,
-  upload,
-  reportPost, 
-  getReportedPosts 
+const deleteReportedPost = async (postId) => {
+  try {
+    const token = localStorage.getItem('token');
+    const response = await fetch(`${BASE_URL}/report/${postId}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to delete post');
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Error deleting post:', error);
+    throw error;
+  }
 };
 
+export default { 
+  index, 
+  show, 
+  create, 
+  delete: deletePost, 
+  getPostsByUser, 
+  update: updatePost, 
+  toggleLike, 
+  toggleCommentLike, 
+  upload, 
+  reportPost, 
+  getReportedPosts, 
+  submitReport,
+  deleteReportedPost // Add this function to the service
+};
