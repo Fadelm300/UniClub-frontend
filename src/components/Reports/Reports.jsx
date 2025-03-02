@@ -20,24 +20,41 @@ const Reports = (props) => {
     fetchReports();
   }, [path]);
 
-  const handleDeletePost = async (postId) => {
-    try {
-      const result = await postService.deleteReportedPost(postId);
-      // Remove the deleted post from the state
-      setReportedPosts(reportedPosts.filter(post => post._id !== postId));
-      alert("Post deleted successfully");
-    } catch (err) {
-      console.error("Error deleting post:", err);
-      alert("Failed to delete post");
-    }
-  };
-
   // Check if the user is admin or moderator
   const isAdminOrModerator = props.userUser?.admin || channel.moderators?.includes(props.userUser?.id);
 
   if (!isAdminOrModerator) {
     return <div>404</div>;
   }
+
+
+  
+  const handleDeleteReport = async (postId) => {
+    try {
+      await postService.deleteReport(postId);
+      
+      setReportedPosts(
+        reportedPosts
+          .map((post) =>
+            post._id === postId ? { ...post, report: post.report.slice(1) } : post
+          )
+          .filter((post) => post.report.length > 0) // Remove posts with no reports
+      );
+    } catch (err) {
+      console.error("Error deleting report:", err);
+    }
+  };
+  
+  const handleDeleteallReportOnThisPost = async (postId) => {
+    try {
+      await postService.deleteAllReports(postId);
+      
+      setReportedPosts(reportedPosts.filter((post) => post._id !== postId));
+    } catch (err) {
+      console.error("Error deleting all reports:", err);
+    }
+  };
+  
 
   return (
     <div>
@@ -70,7 +87,11 @@ const Reports = (props) => {
                 </td>
                 <td>
                   {isAdminOrModerator && (
-                    <button onClick={() => handleDeletePost(post._id)}>Delete</button>
+                    <>
+      <button onClick={() => handleDeletePostrx7(post._id)}>Delete Post</button>
+      <button onClick={() => handleDeleteReport(post._id)}>Delete Report</button>
+                      <button onClick={() => handleDeleteallReportOnThisPost(post._id)}>Delete All Reports</button>
+                    </>
                   )}
                 </td>
               </tr>

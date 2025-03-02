@@ -156,7 +156,6 @@ const search = async (query) => {
   }
 };
 const reportPost = async (postId, reason) => {
-  console.log("🛠️ Debug - Reason before sending:", reason, "Type:", typeof reason);
 
   try {
     const token = localStorage.getItem("token");
@@ -216,27 +215,53 @@ const getReportedPosts = async (path) => {
     throw error;
   }
 };
-
-const deleteReportedPost = async (postId) => {
+const deleteReport = async (postId) => {
   try {
-    const token = localStorage.getItem('token');
-    const response = await fetch(`${BASE_URL}/report/${postId}`, {
-      method: 'DELETE',
+    const res = await fetch(`${BASE_URL}/report/${postId}`, {
+      method: "DELETE",
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    return res.json();
+  } catch (error) {
+    console.error("Error deleting report:", error);
+  }
+};
+
+const deleteAllReports = async (postId) => {
+  try {
+    const res = await fetch(`${BASE_URL}/report/all/${postId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    return res.json();
+  } catch (error) {
+    console.error("Error deleting all reports:", error);
+  }
+};
+const deletePostAreReported = async () => {
+  try {
+    const res = await fetch(`${BASE_URL}/reported/delete-all`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
 
-    if (!response.ok) {
-      throw new Error('Failed to delete post');
+    if (!res.ok) {
+      throw new Error("Failed to delete reported posts");
     }
 
-    return await response.json();
+    return res.json();
   } catch (error) {
-    console.error('Error deleting post:', error);
+    console.error("Error deleting reported posts:", error);
     throw error;
   }
 };
+
 
 export default { 
   index, 
@@ -251,5 +276,7 @@ export default {
   reportPost, 
   getReportedPosts, 
   submitReport,
-  deleteReportedPost // Add this function to the service
+  deleteAllReports,
+  deleteReport ,
+
 };
