@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import postService from "../../services/postService";
 import { deriveChannelPath } from "../../utils/helpers/urlHelpers";
+import './Reports.css';
 
 const Reports = (props) => {
   const [reportedPosts, setReportedPosts] = useState([]);
@@ -27,8 +28,6 @@ const Reports = (props) => {
     return <div>404</div>;
   }
 
-
-  
   const handleDeleteReport = async (postId) => {
     try {
       await postService.deleteReport(postId);
@@ -44,7 +43,7 @@ const Reports = (props) => {
       console.error("Error deleting report:", err);
     }
   };
-  
+
   const handleDeleteallReportOnThisPost = async (postId) => {
     try {
       await postService.deleteAllReports(postId);
@@ -54,52 +53,68 @@ const Reports = (props) => {
       console.error("Error deleting all reports:", err);
     }
   };
-  
 
   return (
-    <div>
-      <h2>Reported Posts</h2>
-      {reportedPosts.length === 0 ? (
-        <p>No reported posts found.</p>
-      ) : (
-        <table>
-          <thead>
-            <tr>
-              <th>Post</th>
-              <th>Reported By</th>
-              <th>Reason</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {reportedPosts.map((post) => (
-              <tr key={post._id}>
-                <td>{post.content}</td>
-                <td>
+    <div className="reports-container">
+    <h2>Reported Posts</h2>
+    {reportedPosts.length === 0 ? (
+      <p className="empty-state-message">No reported posts found.</p>
+    ) : (
+      <table className="reports-table">
+        <thead>
+          <tr>
+            <th>Post</th>
+            <th>Reported By</th>
+            <th>Reason</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {reportedPosts.map((post) => (
+            <tr key={post._id}>
+              <td>
+                <Link to={`${path}/post/${post._id}`} className="report-link">
+                  {post.text}
+                </Link>
+              </td>
+              <td>
+                <div className="reported-users">
+                <Link to={`/userlist/${post.user._id}`}>
                   {post.report.map((r) => (
                     <div key={r.user._id}>{r.user.username}</div>
                   ))}
-                </td>
-                <td>
+                  </Link>
+                </div>
+              </td>
+              <td>
+                <div className="reported-users">
                   {post.report.map((r) => (
                     <div key={r.user._id}>{r.reason}</div>
                   ))}
-                </td>
-                <td>
-                  {isAdminOrModerator && (
-                    <>
-      <button onClick={() => handleDeletePostrx7(post._id)}>Delete Post</button>
-      <button onClick={() => handleDeleteReport(post._id)}>Delete Report</button>
-                      <button onClick={() => handleDeleteallReportOnThisPost(post._id)}>Delete All Reports</button>
-                    </>
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-    </div>
+                </div>
+              </td>
+              <td>
+                {isAdminOrModerator && (
+                  <div className="action-buttons">
+                    <button onClick={() => handleDeletePost(post._id)}>
+                      Delete Post
+                    </button>
+                    <button onClick={() => handleDeleteReport(post._id)}>
+                      Delete Report
+                    </button>
+                    <button onClick={() => handleDeleteallReportOnThisPost(post._id)}>
+                      Delete All Reports
+                    </button>
+                  </div>
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    )}
+  </div>
+  
   );
 };
 
