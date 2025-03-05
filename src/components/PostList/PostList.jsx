@@ -156,7 +156,7 @@ const PostList = (props) => {
                       {isLongText && <span className="readMore"> Click to read more</span>}
                     </div>
                     <div className="topcardimage">
-                      <img src={post.image} alt="" />
+                      {/* <img src={post.image} alt="" /> */}
                       {post.file &&
                       post.file?.type?.includes('image') ? (
                         <img src={post.file.link} alt="Post" />

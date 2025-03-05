@@ -1,0 +1,108 @@
+.leftNav22 {
+  flex: 0 0 200px;
+  background-color: #dbe4fc;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  padding-top: 100px;
+  border-top-right-radius: 1000px;
+  overflow-y: auto;
+}
+
+.events-h1-22 {
+  font-size: 20px;
+  color: #000000;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.event-cards22 {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.event-card22 {
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  color: white;
+  position: relative;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.event-card22::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+}
+
+.event-details22 {
+  position: relative;
+  z-index: 2;
+}
+
+.event-title22 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.event-description22 {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.event-info22 p {
+  font-size: 12px;
+  margin: 5px 0;
+}
+
+.event-actions22 {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.edit-button22,
+.delete-button22 {
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.edit-button22 {
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+}
+
+.edit-button22:hover {
+  background-color: #0056b3;
+}
+
+.delete-button22 {
+  background-color: #e91e63;
+  color: white;
+}
+
+.delete-button22:hover {
+  background-color: #c2185b;
+}

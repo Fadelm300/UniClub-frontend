@@ -122,6 +122,21 @@ const toggleModerator = async (path,userId) => {
 };
 
 
+const deleteSubchannel = async (subchannelId) => {
+  try {
+    const res = await fetch(`${BASE_URL}/subchannel/${subchannelId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    if (!res.ok) throw new Error("Failed to delete subchannel");
+    return res.json();
+  } catch (error) {
+    console.error("Error deleting subchannel:", error);
+    throw error;
+  }
+};
 
 
 export default {
@@ -131,5 +146,6 @@ export default {
   getbasechannel,
   toggleMembership,
   getJoinedUsers,
-  toggleModerator
+  toggleModerator,
+  deleteSubchannel
 };
