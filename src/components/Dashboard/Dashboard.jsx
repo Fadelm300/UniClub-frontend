@@ -101,8 +101,11 @@ const Dashboard = ({user}) => {
                                 </div>
                         </div>
                         
-    
+    <div className="UpcomingEvents">
                  <UpcomingEvents user={user}/>
+                 
+                 
+                 </div>
                  
                
     

@@ -1,5 +1,6 @@
-import React from 'react';
-import './FAQ.css';
+import React, { useState } from "react";
+import "./FAQ.css";
+import { motion } from "framer-motion";
 
 const FAQ = () => {
   const faqs = [
@@ -29,18 +30,48 @@ const FAQ = () => {
     }
   ];
 
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const toggleFAQ = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
   return (
-    <div className="faq-container">
+    <motion.div 
+      className="faq-container"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <h1>Frequently Asked Questions</h1>
       <div className="faq-list">
         {faqs.map((item, index) => (
-          <div className="faq-item" key={index}>
-            <h3>{item.question}</h3>
-            <p>{item.answer}</p>
-          </div>
+          <motion.div 
+            className="faq-item" 
+            key={index} 
+            onClick={() => toggleFAQ(index)}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1 }}
+          >
+            <div className="faq-question">
+              <h3>{item.question}</h3>
+              <span className="faq-toggle">{openIndex === index ? "−" : "+"}</span>
+            </div>
+            {openIndex === index && (
+              <motion.p 
+                className="faq-answer"
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                transition={{ duration: 0.3 }}
+              >
+                {item.answer}
+              </motion.p>
+            )}
+          </motion.div>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

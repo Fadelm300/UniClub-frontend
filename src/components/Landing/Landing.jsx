@@ -5,9 +5,8 @@ import { useParams, Link } from "react-router-dom";
 import { deriveChannelPath } from "../../utils/helpers/urlHelpers";
 import PostList from "../PostList/PostList";
 import FileList from "../FileList/FileList";
-import { use } from "react";
-import RightNav  from '../rightNav/rightNav'
-
+import RightNav  from '../rightNav/rightNav';
+import LeftNav from '../LeftNav/LeftNav';
 
 const Landing = (props) => {
   const [channel, setChannel] = useState({});
@@ -17,6 +16,8 @@ const Landing = (props) => {
   const [members, setMembers] = useState(0);
   const { uni, college, major, course, event } = useParams();
   const path = deriveChannelPath({ uni, college, major, course, event });
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [subchannelToDelete, setSubchannelToDelete] = useState(null);
 
   useEffect(() => {
     async function getChannel() {
@@ -59,6 +60,28 @@ const Landing = (props) => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
+
+ const confirmDeleteSubchannel = (subchannelId) => {
+    setSubchannelToDelete(subchannelId);
+    setShowDeleteModal(true);
+  };
+
+  const handleDeleteSubchannel = async () => {
+    if (!subchannelToDelete) return;
+
+    try {
+      await channelService.deleteSubchannel(subchannelToDelete);
+      setChannel((prevChannel) => ({
+        ...prevChannel,
+        subchannels: prevChannel.subchannels.filter((sub) => sub._id !== subchannelToDelete),
+      }));
+      setShowDeleteModal(false);
+    } catch (error) {
+      console.error("Error deleting subchannel:", error);
+      alert("Failed to delete the subchannel.");
+    }
+  };
+  
   return (
     <main>
       <div className="LandingPageMain">
@@ -69,37 +92,62 @@ const Landing = (props) => {
         {/* sidebar */}
         <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
           <div className="channelsNAV">
-            
-            <Link to={`${path}/newpost`}>
-              <button className="channelButton2">Add Post</button>
-            </Link>
+             <Link className="logoHomeLandin" to="/">
+                          <div className="NavimgLanding">
+                            <img className="imginthenav22" src="/newlogo.png" alt="UoB Logo" />
+                          </div>
+                        </Link>
+              {props.user?.admin &&(
+                          <Link to={`${path}/newchannel`}>
+                            <button className="channelButton2">Add Channel</button>
+                          </Link>
+                        )}
 
-            {props.user?.admin &&(
-              <Link to={`${path}/newchannel`}>
-                <button className="channelButton2">Add Channel</button>
-              </Link>
-            )}
+                        
+                      <div className="navBar">
+                        <Link to={`${path}/newpost`} className="navItem">
+                          <img className="navIcon" src="/icons8-add-94.png" alt="Add Post" />
+                          <span>New Post</span>
+                        </Link>
 
-            <Link to={`${path}/newfile`}>
-              <button className="channelButton2">Add File</button>
-            </Link>
+                        <Link to={`${path}/newfile`} className="navItem">
+                          <img className="navIcon" src="/icons8-add-file-50.png" alt="Add File" />
+                          <span>New File</span>
+                        </Link>
+                      </div>
+
+
             <span></span>
 
             <hr className="separatorLine" />
-
             {channel.subchannels?.map((subchannel) => (
-              <Link key={subchannel.name} to={`${path}/${subchannel.name}`}>
-                <button className="channelButton">{subchannel.name}</button>
-              </Link>
-            ))}
+                  <div key={subchannel._id} className="subchannel-container">
+                    <Link to={`${path}/${subchannel.name}`}>
+                      <button className="channelButton">{subchannel.name}</button>
+                    </Link>
+                    {props.user?.admin && (
+                      <button
+                        className="deleteButtonconfirmDeleteSubchannel"
+                        onClick={() => confirmDeleteSubchannel(subchannel._id)}
+                      >
+                        Delete
+                      </button>
+                      
+                    )}
+
+                  </div>
+                  
+                ))}
+
           </div>
         </div>
         <div className="mainContentWithRightNav">
+          <LeftNav/>
         <div className="mainContent">
           <h1 className="titlename">{channel.name}</h1>
           <p>{channel.description}</p>
           <Link to={`${path}/members`}>
-          <div>{members} {members==1?'member':'members'}</div>
+          <div>{members} {members==1?'member':'members'} </div>
           </Link>
           {props.user && (
             <div className="addbtn">
@@ -113,24 +161,33 @@ const Landing = (props) => {
               </Link>
 
               
-              <Link to={`${path}/newpost`}>
+              {/* <Link to={`${path}/newpost`}>
                 <button className="buttonsAddPost">Add Post</button>
               </Link>
+            <Link to={`${path}/newfile`}>
+                            <button className="buttonsAddFile">Add File</button>
+                          </Link> */}
 
-              {props.user?.admin || channel.moderators?.includes(props.user?.id)&& (
+              {(props.user?.admin || channel.moderators?.includes(props.user?.id))&& (
+                <>
                 <Link to={`${path}/newchannel`}>
                   <button className="buttonsAddChannel">Add Channel</button>
                 </Link>
+                <Link to={`${path}/reports`}>
+                  <button className="buttonsAddChannel">REPORTS</button>
+                </Link>
+                </>
+
               )}
 
-              <Link to={`${path}/newfile`}>
-                <button className="buttonsAddFile">Add File</button>
-              </Link>
+             
 
-              
-              <button onClick={toggleMembership} className="toggleMembershipBtn">
+              <Link to={``}>
+              <button onClick={toggleMembership} className=" buttonsAddChannel">
                 {isMember ? 'Leave Channel' : 'Join Channel'}
               </button>
+              </Link>
+
             </div>
           )}
 
@@ -156,6 +213,15 @@ const Landing = (props) => {
 
         </div>
       </div>
+      {showDeleteModal && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <p>Are you sure you want to delete this subchannel?</p>
+            <button onClick={handleDeleteSubchannel}>Confirm</button>
+            <button onClick={() => setShowDeleteModal(false)}>Cancel</button>
+          </div>
+        </div>
+      )}
     </main>
   );
 };

@@ -10,17 +10,23 @@ const index = async () => {
     console.log(error);
   }
 };
-
-const show = async (path , postId) => {
+const show = async (path, postId) => {
   try {
-    const res = await fetch(`${BASE_URL}${path}/${postId}`, {
+    const res = await fetch(`${BASE_URL}/getpost${path}/${postId}`, {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
     });
+
+    if (!res.ok) {
+      throw new Error(`Error fetching post: ${res.status}`);
+    }
+
     return res.json();
   } catch (error) {
-    console.log(error);
+    console.error('Error fetching post:', error);
+    return null;
   }
 };
+
 
 const upload = async (path) =>{
   const url = `${BASE_URL}${path}/upload`
@@ -149,17 +155,128 @@ const search = async (query) => {
     console.error('Error searching posts:', error);
   }
 };
+const reportPost = async (postId, reason) => {
 
-export default 
-{ 
-  index,
-  show,
-  create,
-  delete: deletePost,
-  getPostsByUser,
-  update: updatePost ,
-  toggleLike ,
-  toggleCommentLike,
-  upload
+  try {
+    const token = localStorage.getItem("token");
+    const response = await fetch(`${BASE_URL}/report/${postId}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ reason }), // Make sure it's properly formatted
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || "Failed to report post");
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error reporting post:", error);
+    throw error;
+  }
 };
 
+const submitReport = async (postId) => {
+  if (!reportReason.trim()) return alert("Please enter a reason.");
+
+  try {
+    const response = await postService.reportPost(postId, reportReason); // Just pass reportReason
+    alert("Report submitted successfully");
+    setReportingPost(null);
+    setReportReason("");
+  } catch (error) {
+    console.error("Error reporting post:", error.message);
+    alert(`Failed to submit report: ${error.message || "Unknown error"}`);
+  }
+};
+
+
+const getReportedPosts = async (path) => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await fetch(`${BASE_URL}/reported${path}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || "Failed to fetch reported posts");
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching reported posts:", error);
+    throw error;
+  }
+};
+const deleteReport = async (postId) => {
+  try {
+    const res = await fetch(`${BASE_URL}/report/${postId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    return res.json();
+  } catch (error) {
+    console.error("Error deleting report:", error);
+  }
+};
+
+const deleteAllReports = async (postId) => {
+  try {
+    const res = await fetch(`${BASE_URL}/report/all/${postId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    return res.json();
+  } catch (error) {
+    console.error("Error deleting all reports:", error);
+  }
+};
+const deletePostAreReported = async () => {
+  try {
+    const res = await fetch(`${BASE_URL}/reported/delete-all`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to delete reported posts");
+    }
+
+    return res.json();
+  } catch (error) {
+    console.error("Error deleting reported posts:", error);
+    throw error;
+  }
+};
+
+
+export default { 
+  index, 
+  show, 
+  create, 
+  delete: deletePost, 
+  getPostsByUser, 
+  update: updatePost, 
+  toggleLike, 
+  toggleCommentLike, 
+  upload, 
+  reportPost, 
+  getReportedPosts, 
+  submitReport,
+  deleteAllReports,
+  deleteReport ,
+
+};

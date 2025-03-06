@@ -67,12 +67,16 @@ const FileList = (props) => {
 
 
                         </div>
+                        
                   </div>
+                  <div className='fileTitle2'>                
+                           <text className='TitleforFile'>Title :</text>   <text className="fileTitle2">{file.title}</text>
+                        </div>
                 
 
         <Link to={`${props.path}/file/${file._id}`}>
                    <div className="dawnCard2">
-                    <h2 className="fileTitle2">{file.title}</h2>
+                    {/* <h6 className="fileTitle2">{file.title}</h6> */}
                     <img src="/pdf.png" alt="pdf.png" className='PDFPng' />
 
 

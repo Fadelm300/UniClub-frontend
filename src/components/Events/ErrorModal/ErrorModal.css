@@ -17,6 +17,8 @@
     border-radius: 5px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    
+   
   }
   
   .modal-content h2 {
@@ -24,6 +26,7 @@
   }
   
   .modal-content button {
+    margin: 10px;
     margin-top: 10px;
     padding: 10px 20px;
     background-color: #f44336;
@@ -31,6 +34,7 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    
   }
   
   .modal-content button:hover {

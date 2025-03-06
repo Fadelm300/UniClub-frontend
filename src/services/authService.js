@@ -72,7 +72,9 @@ const signin = async (user) => {
       body: JSON.stringify(user),
     });
 
+    
     const json = await res.json();
+    console.log(json);
 
     if (json.error) {
       throw new Error(json.error);
