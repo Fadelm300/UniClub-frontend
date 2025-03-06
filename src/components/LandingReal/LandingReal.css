@@ -98,7 +98,7 @@
 
 
 
-/* =---------------------------- */
+/* =--------------event -------------- */
 
 
 
@@ -108,60 +108,6 @@
 
 
 
-
-
-
-/* --------------event cards --------------- */
-.eventscontanir {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  text-align: center;
-}
-
-.eventscontanir h1 {
-  font-size: 32px;
-  margin-bottom: 30px;
-  color:2c3e50;
-   border-bottom: 2px solid black;
-  display: inline-block;
-
-}
-
-.evintcards {
-  display: flex;
-  flex-wrap: wrap; 
-  justify-content: space-around;
-  gap: 20px; 
-}
-
-.card1ev {
-  width: 300px; 
-  height:300px ;
-  background-color: #edf2f4;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-}
-
-.topcardev {
-  background-color: #2b2d42;
-  padding: 20px;
-  color: #edf2f4;
-  font-size: 20px;
-  font-weight: bold;
-  text-align: center;
-}
-
-.buttomcardev {
-  height:100% ;
-  padding: 20px;
-  font-size: 16px;
-  color: #2b2d42;
-  background-color: #ffffff;
-  text-align: left;
-}
 
 
 
@@ -311,14 +257,6 @@
     right: auto;
   }
 
-  .eventscontanir {
-    width: 60%;
-  }
-
-  .card1ev {
-    width: 100%;
-    margin-bottom: 20px;
-  }
 
 
 }
@@ -363,18 +301,8 @@
   border-bottom-right-radius: 15px; 
   }
 
-  .eventscontanir h1 {
-    font-size:20px;
-  }
 
-  .evintcards {
-    flex-direction: column;
-  }
 
-  .card1ev {
-    width: 100%;
-    margin-bottom: 20px;
-  }
   .landingimg {
     height: 300px; 
   }
@@ -439,18 +367,8 @@
   }
 
 
-  .eventscontanir {
-    width: 80%; 
-  }
 
-  .evintcards {
-    justify-content: space-around;
-  }
 
-  .card1ev {
-    width: 350px; 
-    height: 350px; 
-  }
 
 
   .channelButtonun1 {

@@ -10,8 +10,7 @@ const AdminDashboard = ({ user }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showAddChannelModal, setShowAddChannelModal] = useState(false); // State to control modal visibility
-  const [showDeleteModal33, setShowDeleteModal33] = useState(false);
-  const [channelToDelete33, setChannelToDelete33] = useState(null);
+
   useEffect(() => {
     const fetchChannels = async () => {
       try {
@@ -35,18 +34,19 @@ const refreshChannels = async () => {
       console.error("Error refreshing channels:", err);
     }
   };
-  const handleDeleteChannel33 = (path) => {
-    setChannelToDelete33(path);
-    setShowDeleteModal33(true);
-  };
+  
+  const handleDeleteChannel = async (path) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this channel? This action cannot be undone."
+    );
 
-  const handleConfirmDelete33 = async () => {
-    if (!channelToDelete33) return;
+    if (!confirmDelete) return;
+
     try {
-      await channelService.deleteChannel(channelToDelete33);
-      setChannels((prevChannels) => prevChannels.filter((channel) => channel.path !== channelToDelete33));
-      setShowDeleteModal33(false);
-      setChannelToDelete33(null);
+      await channelService.deleteChannel(path);  // Call the delete method from service
+      setChannels((prevChannels) =>
+        prevChannels.filter((channel) => channel.path !== path)
+      );
       alert("Channel deleted successfully.");
     } catch (error) {
       console.error("Error deleting channel:", error);
@@ -54,9 +54,12 @@ const refreshChannels = async () => {
     }
   };
 
+
   const toggleAddChannelModal = () => {
-    setShowAddChannelModal(!showAddChannelModal);
+    setShowAddChannelModal(!showAddChannelModal); // Toggle modal visibility
   };
+
+
   
   return (
 
@@ -125,7 +128,7 @@ const refreshChannels = async () => {
                          </Link>
                          <button
                            className="deleteButton"
-                           onClick={() => handleDeleteChannel33(channel.path)}
+                           onClick={() => handleDeleteChannel(channel.path)}
                          >
                            Delete
                          </button>
@@ -136,15 +139,7 @@ const refreshChannels = async () => {
                )}
              </div>
      
-             {showDeleteModal33 && (
-  <div className="modal-overlay11">
-    <div className="modal-content11">
-      <p>Are you sure you want to delete this channel?</p>
-      <button className="confirm-button11" onClick={handleConfirmDelete33}>Confirm</button>
-      <button className="cancel-button11" onClick={() => setShowDeleteModal33(false)}>Cancel</button>
-    </div>
-  </div>
-)}
+
 
 
 

@@ -134,7 +134,6 @@ const Landing = (props) => {
                       </button>
                       
                     )}
-                                <hr className="separatorLinedeleteButtonconfirmDeleteSubchannel" />
 
                   </div>
                   

@@ -1,0 +1,92 @@
+
+
+.expect-container {
+    margin: 0 auto;
+    text-align: left;
+    padding: 40px 20px;
+    display: flex;
+  }
+  .expect{
+    width: 50%;
+  }
+  
+  .expect-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  .expect-header {
+    display: flex;
+    align-items: center; 
+    gap: 10px; 
+  }
+  
+  .expect-header img {
+    width: 30px; 
+    height: 30px;
+  }
+  
+  
+  .video-link {
+    display: inline-block;
+    color: #2563eb;
+    font-weight: 600;
+    text-decoration: none;
+    margin-bottom: 30px;
+  }
+  
+  .video-link:hover {
+    text-decoration: underline;
+  }
+  
+  .expect-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .expect-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+  }
+  
+  .expect-item:hover {
+    transform: translateY(-5px);
+  }
+  
+  .expect-icon {
+    font-size: 2rem;
+    color: #2563eb;
+    margin-bottom: 10px;
+  }
+  
+  .expect-item h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  .expect-item h3 {
+    display: flex;
+    align-items: center; 
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  .expect-item img {
+    width: 30px; 
+    height: 30px;
+    margin-right: 10px; 
+  }
+  .expect-item p {
+    color: #666;
+    font-size: 0.95rem;
+  }
+  
+  

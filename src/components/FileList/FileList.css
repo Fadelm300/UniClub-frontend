@@ -87,7 +87,7 @@
     padding: 10px;
 }
 .PDFPng{
-  width :90%;
+  width :80%;
 }
 
 .topCard2 {
@@ -97,6 +97,8 @@
     overflow: hidden; 
     display: flex;
     border-bottom: 1px solid rgb(255, 255, 255)  ; 
+
+   
 }
 
 
@@ -109,7 +111,18 @@ padding: 0px;
   /* background-image: linear-gradient(to right, #90cbdd, #73b5ce); */
 }
 
-
+.fileTitle2 {
+  margin-top: 5px; 
+  text-align: center;
+  font-size: 11px;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+}
+.TitleforFile{
+  color: rgb(33, 10, 244);
+  font-weight: bold;
+  font-size: 14px;
+}
 
 
 
