@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./FAQ.css";
+import { motion } from "framer-motion";
 
 const FAQ = () => {
   const faqs = [

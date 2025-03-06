@@ -137,11 +137,11 @@ const refreshChannels = async () => {
              </div>
      
              {showDeleteModal33 && (
-  <div className="modal-overlay11">
-    <div className="modal-content11">
+  <div className="modal-overlay">
+    <div className="modal-content">
       <p>Are you sure you want to delete this channel?</p>
-      <button className="confirm-button11" onClick={handleConfirmDelete33}>Confirm</button>
-      <button className="cancel-button11" onClick={() => setShowDeleteModal33(false)}>Cancel</button>
+      <button className="confirm-button" onClick={handleConfirmDelete33}>Confirm</button>
+      <button className="cancel-button" onClick={() => setShowDeleteModal33(false)}>Cancel</button>
     </div>
   </div>
 )}
