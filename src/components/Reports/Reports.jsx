@@ -54,6 +54,15 @@ const Reports = (props) => {
     }
   };
 
+  const handleDeletePost = async (postId) => {
+    try {
+      await postService.delete(postId ,path);
+      setReportedPosts(reportedPosts.filter((post) => post._id !== postId));
+    } catch (err) {
+      console.error("Error deleting post:", err);
+    }
+  }
+
   return (
     <div className="reports-container">
     <h2>Reported Posts</h2>
