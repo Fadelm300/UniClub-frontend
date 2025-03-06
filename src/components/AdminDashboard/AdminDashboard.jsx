@@ -4,13 +4,14 @@ import './Dashboard.css';
 import UpcomingEvents from '../Events/UpcomingEvents/UpcomingEvents';
 import AddChannelForm from "../Channel/AddChannelForm";
 import channelService from "../../services/channelService";
- 
+ import ExpectSection from "../ExpectSection/ExpectSection"
 const AdminDashboard = ({ user }) => {
   const [Channels, setChannels] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showAddChannelModal, setShowAddChannelModal] = useState(false); // State to control modal visibility
-
+  const [showDeleteModal33, setShowDeleteModal33] = useState(false);
+  const [channelToDelete33, setChannelToDelete33] = useState(null);
   useEffect(() => {
     const fetchChannels = async () => {
       try {
@@ -34,19 +35,18 @@ const refreshChannels = async () => {
       console.error("Error refreshing channels:", err);
     }
   };
-  
-  const handleDeleteChannel = async (path) => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this channel? This action cannot be undone."
-    );
+  const handleDeleteChannel33 = (path) => {
+    setChannelToDelete33(path);
+    setShowDeleteModal33(true);
+  };
 
-    if (!confirmDelete) return;
-
+  const handleConfirmDelete33 = async () => {
+    if (!channelToDelete33) return;
     try {
-      await channelService.deleteChannel(path);  // Call the delete method from service
-      setChannels((prevChannels) =>
-        prevChannels.filter((channel) => channel.path !== path)
-      );
+      await channelService.deleteChannel(channelToDelete33);
+      setChannels((prevChannels) => prevChannels.filter((channel) => channel.path !== channelToDelete33));
+      setShowDeleteModal33(false);
+      setChannelToDelete33(null);
       alert("Channel deleted successfully.");
     } catch (error) {
       console.error("Error deleting channel:", error);
@@ -54,12 +54,9 @@ const refreshChannels = async () => {
     }
   };
 
-
   const toggleAddChannelModal = () => {
-    setShowAddChannelModal(!showAddChannelModal); // Toggle modal visibility
+    setShowAddChannelModal(!showAddChannelModal);
   };
-
-
   
   return (
 
@@ -82,7 +79,7 @@ const refreshChannels = async () => {
 
 
       {/* Add New Channel Button */}
-      <button className="channelButtonun1" onClick={toggleAddChannelModal}>
+      <button className="channelButtonunadd" onClick={toggleAddChannelModal}>
         Add New Channel
       </button>
 
@@ -128,7 +125,7 @@ const refreshChannels = async () => {
                          </Link>
                          <button
                            className="deleteButton"
-                           onClick={() => handleDeleteChannel(channel.path)}
+                           onClick={() => handleDeleteChannel33(channel.path)}
                          >
                            Delete
                          </button>
@@ -139,7 +136,15 @@ const refreshChannels = async () => {
                )}
              </div>
      
-
+             {showDeleteModal33 && (
+  <div className="modal-overlay11">
+    <div className="modal-content11">
+      <p>Are you sure you want to delete this channel?</p>
+      <button className="confirm-button11" onClick={handleConfirmDelete33}>Confirm</button>
+      <button className="cancel-button11" onClick={() => setShowDeleteModal33(false)}>Cancel</button>
+    </div>
+  </div>
+)}
 
 
 
@@ -260,12 +265,29 @@ const refreshChannels = async () => {
                            
 
                 
+    
+    
+            <div className="UpcomingEvents">
                           <Link to="/AddEvent">
-                                <button className="channelButtonun1">AddEvent</button>
+                                <button className="channelButtonunadd">Add New Event</button>
                           </Link>
-    
-                               <UpcomingEvents user={user}/>   
-    
+                 <UpcomingEvents user={user}/>
+                 
+                 
+                 </div>
+
+
+                 
+
+<ExpectSection/>
+
+
+
+
+
+
+
+          
           
       </div>
           
