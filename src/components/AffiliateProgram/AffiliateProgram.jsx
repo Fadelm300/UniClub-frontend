@@ -1,9 +1,15 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import './AffiliateProgram.css';
 
 function AffiliateProgram() {
   return (
-    <div className="affiliate-program">
+    <motion.div 
+      className="affiliate-program"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <h2>Affiliate Program</h2>
       <p>
         Join our Affiliate Program and partner with us to help students access essential academic resources. Earn commissions by promoting our platform.
@@ -24,7 +30,17 @@ function AffiliateProgram() {
       <p>
         Apply today to become an affiliate and start earning by helping students succeed. For more information, contact our support team.
       </p>
-    </div>
+      <motion.a 
+        href="/"
+        className="get-started-button"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2 }}
+      >
+
+        Get Started
+      </motion.a>
+    </motion.div>
   ); 
 }
 

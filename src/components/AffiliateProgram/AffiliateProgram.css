@@ -1,25 +1,22 @@
 .affiliate-program {
     max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    color: #444;
-    line-height: 1.6;
-
+    margin: 50px auto;
+    padding: 30px;
+    border-radius: 16px;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    text-align: center;
+    background-color: #fff;
 }
 
 .affiliate-program h2 {
-    font-size: 2rem;
-    color: #2b2d42;
-    text-align: center;
+    font-size: 2.5rem;
+    color: #2563eb;
     margin-bottom: 20px;
 }
 
 .affiliate-program h3 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     color: #0077b6;
     margin-bottom: 15px;
 }
@@ -28,6 +25,7 @@
     color: #555;
     font-size: 1.1rem;
     margin-bottom: 20px;
+    line-height: 1.6;
 }
 
 .affiliate-program ul, 
@@ -35,6 +33,7 @@
     color: #666;
     margin-left: 20px;
     margin-bottom: 20px;
+    text-align: left;
 }
 
 .affiliate-program ul {
@@ -65,6 +64,7 @@
     text-align: center;
     margin-top: 20px;
     text-decoration: none;
+    transition: all 0.3s ease;
 }
 
 .affiliate-program .get-started-button:hover {
@@ -73,8 +73,12 @@
 
 /* Responsive Styling */
 @media (max-width: 768px) {
+    .affiliate-program {
+        padding: 20px;
+    }
+
     .affiliate-program h2 {
-        font-size: 1.8rem;
+        font-size: 2rem;
     }
 
     .affiliate-program h3 {
