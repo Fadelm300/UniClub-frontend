@@ -130,7 +130,9 @@ const deleteSubchannel = async (subchannelId) => {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
+
     if (!res.ok) throw new Error("Failed to delete subchannel");
+
     return res.json();
   } catch (error) {
     console.error("Error deleting subchannel:", error);
