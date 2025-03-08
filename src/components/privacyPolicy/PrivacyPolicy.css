@@ -1,49 +1,102 @@
 .privacy-policy {
   max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  font-family: 'Helvetica Neue', Arial, sans-serif;
-  color: #444;
-  line-height: 1.6;
+  margin: 50px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 12px;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  line-height: 1.7;
+  transition: all 0.3s ease-in-out;
 }
 
 .privacy-policy h2 {
-  font-size: 2rem;
-  color: #2b2d42;
+  font-size: 2.5rem;
+  color: #2563eb;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 700;
+  position: relative;
+}
+
+.privacy-policy h2::after {
+  content: "";
+  width: 100px;
+  height: 4px;
+  background: #2563eb;
+  display: block;
+  margin: 8px auto 0;
+  border-radius: 2px;
+}
+
+.policy-date {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #555;
   text-align: center;
   margin-bottom: 20px;
 }
 
 .privacy-policy h3 {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   color: #0077b6;
-  margin-bottom: 15px;
+  margin-top: 25px;
+  font-weight: 600;
 }
 
 .privacy-policy p {
-  color: #555;
+  color: #444;
   font-size: 1.1rem;
   margin-bottom: 20px;
+  text-align: justify;
 }
 
 .privacy-policy ul {
-  color: #666;
-  margin-left: 20px;
-  margin-bottom: 20px;
-  list-style-type: disc;
+  color: #555;
+  margin-left: 25px;
+  padding-left: 15px;
+  border-left: 4px solid #2563eb;
+  list-style-type: none;
 }
 
 .privacy-policy ul li {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   font-size: 1rem;
-  color: #444;
+  color: #333;
+  position: relative;
 }
 
-/* Responsive Styling */
+.privacy-policy ul li::before {
+  content: "✔";
+  color: #2563eb;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
 @media (max-width: 768px) {
+  .privacy-policy {
+      padding: 20px;
+  }
+
+  .privacy-policy h2 {
+      font-size: 2rem;
+  }
+
+  .privacy-policy h3 {
+      font-size: 1.4rem;
+  }
+
+  .privacy-policy p, 
+  .privacy-policy ul li {
+      font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .privacy-policy {
+      padding: 15px;
+  }
+
   .privacy-policy h2 {
       font-size: 1.8rem;
   }
@@ -52,29 +105,8 @@
       font-size: 1.3rem;
   }
 
-  .privacy-policy p {
-      font-size: 1rem;
-  }
-
-  .privacy-policy ul {
-      margin-left: 15px;
-  }
-}
-
-@media (max-width: 480px) {
-  .privacy-policy h2 {
-      font-size: 1.5rem;
-  }
-
-  .privacy-policy h3 {
-      font-size: 1.2rem;
-  }
-
-  .privacy-policy p {
+  .privacy-policy p, 
+  .privacy-policy ul li {
       font-size: 0.9rem;
-  }
-
-  .privacy-policy ul {
-      margin-left: 10px;
   }
 }

@@ -1,16 +1,38 @@
-import React from 'react';
-import './about.css';
-
+import React from "react";
+import { motion } from "framer-motion";
+import "./about.css";
 
 const AboutUs = () => {
   return (
-    <div className="about-container">
+    <motion.div 
+      className="about-container"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+    >
       <h1>About Us</h1>
-      <p>We are a group of 4 friends working together on an exciting project aimed at providing the best website for students. Our platform is designed to be a valuable resource for university students, helping them access everything they need to make their studies easier.</p>
-      <p>Whether it's academic resources, important information, or tools to stay organized, we strive to bring all the essential resources into one place. Our goal is to support students from different universities, ensuring they have a centralized platform for all their academic needs.</p>
-      <p>Founded in 2024, we are committed to delivering a high-quality experience with easy navigation, useful tools, and excellent support. Our mission is to make studying more manageable and less stressful for students everywhere.</p>
-      <p>We believe that by simplifying access to information and resources, students can focus more on learning and achieving their goals. Join us on this journey to improve the way students interact with their academic life!</p>
-    </div>
+      <motion.p 
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.3 }}
+      >
+        We are a team of four friends working together on an exciting project to create the best platform for university students. Our mission is to make studying easier by providing a centralized hub for academic resources and essential student tools.
+      </motion.p>
+      <motion.p 
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.4 }}
+      >
+        Founded in 2024, our goal is to offer a seamless, well-organized, and user-friendly experience. We believe that simplifying access to information helps students focus more on learning and achieving their goals.
+      </motion.p>
+      <motion.p 
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.4 }}
+      >
+        Join us on our journey to enhance student life through innovation and collaboration!
+      </motion.p>
+    </motion.div>
   );
 };
 
