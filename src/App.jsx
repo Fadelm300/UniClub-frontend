@@ -48,6 +48,8 @@ const App = () => {
   const [user, setUser] = useState(authService.getUser());
   const [posts, setPosts] = useState([]);
   const [files, setFiles] = useState([]);
+  const [channel, setChannel] = useState({});
+  
   
   const navigate = useNavigate();
 
@@ -231,6 +233,17 @@ const App = () => {
             }
           />
 
+          {/* report page */}
+          {pathArr.map((path, index) => (
+            <Route
+              key={index}
+              path={`${path}/reports`}
+              element={<Reports userUser={user} channel={channel} />}
+              
+            />
+
+          ))}
+
           
      </>
      :
@@ -250,6 +263,8 @@ const App = () => {
                   user={user}
                   handleDeleteFile={handleDeleteFile}
                   handleUpdateFile={handleUpdateFile}
+                  channel={channel}
+                  setChannel={setChannel}
                  
                 />
               }
@@ -261,6 +276,8 @@ const App = () => {
                   user={user}
                   handleDeleteFile={handleDeleteFile}
                   handleUpdateFile={handleUpdateFile}
+                  channel={channel}
+                  setChannel={setChannel}
                   
                 />
               }
@@ -272,6 +289,8 @@ const App = () => {
                   user={user}
                   handleDeleteFile={handleDeleteFile}
                   handleUpdateFile={handleUpdateFile}
+                  channel={channel}
+                  setChannel={setChannel}
                   
                 />
               }
@@ -283,6 +302,9 @@ const App = () => {
                   user={user}
                   handleDeleteFile={handleDeleteFile}
                   handleUpdateFile={handleUpdateFile}
+                  channel={channel}
+                  setChannel={setChannel}
+                  
                  
 
                 />
@@ -295,6 +317,8 @@ const App = () => {
                   user={user}
                   handleDeleteFile={handleDeleteFile}
                   handleUpdateFile={handleUpdateFile}
+                  channel={channel}
+                  setChannel={setChannel}
                   
                 />
               }
@@ -346,15 +370,7 @@ const App = () => {
             />
 
           ))}
-          {/* report page */}
-          {pathArr.map((path, index) => (
-            <Route
-              key={index}
-              path={`${path}/reports`}
-              element={<Reports userUser={user} />}
-            />
-
-          ))}
+          
 
             
         {/* other stuff */}
