@@ -33,7 +33,7 @@ const UserProfile = () => {
     const [showFollowingModal, setShowFollowingModal] = useState(false);
     const [followers, setFollowers] = useState([]);
     const [following, setFollowing] = useState([]);
-
+    const [blockStatus, setBlockStatus] = useState(null);
 
   const navigate = useNavigate();
   const BASE_URL = import.meta.env.VITE_BACKEND_URL;
@@ -44,7 +44,18 @@ const UserProfile = () => {
       try {
         const { user, posts } = await authService.getUserProfile(userId);
         setUser(user);
-        setPosts(posts);
+
+        if (user.blockedUntil) {
+          const blockDate = new Date(user.blockedUntil);
+          const now = new Date();
+
+          if (blockDate > now) {
+            setBlockStatus(`Blocked from posting until: ${blockDate.toLocaleString()}`);
+          } else {
+            setBlockStatus(null); // Unblock if the date has passed
+          }
+        }
+
         setEditData({ username: user.username, phone: user.phone, email: user.email });
       } catch (error) {
         setError(error.message);
@@ -195,6 +206,20 @@ const UserProfile = () => {
         }
       });
   };
+
+  const formatBlockedDate = (dateString) => {
+    if (!dateString) return null;
+    const date = new Date(dateString);
+    return date.toLocaleString('en-US', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  };
+  
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
@@ -258,6 +283,12 @@ const UserProfile = () => {
         ) : (
           <div className="profile-info">
             <h1>{user?.username}</h1>
+            {user?.blockedUntil && (
+                <p className="blocked-info">
+                  🛑 <strong>Posting Blocked Until:</strong> {formatBlockedDate(user.blockedUntil)}
+                </p>
+              )}
+
             <p>Phone: {user?.phone}</p>
             <p>Email: {user?.email}</p>
             <div className="follow-stats2">

@@ -1,4 +1,5 @@
 const BASE_URL = `${import.meta.env.VITE_BACKEND_URL}/posts`;
+const USER_URL = `${import.meta.env.VITE_BACKEND_URL}/users`; 
 
 const index = async () => {
   try {
@@ -263,6 +264,33 @@ const deletePostAreReported = async () => {
 };
 
 
+
+
+const blockUser = async (userId, duration) => {
+  try {
+    const response = await fetch(`${USER_URL}/blockUser`, { // Corrected API URL
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify({ userId, duration }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || "Failed to block user");
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error blocking user:", error);
+    throw error;
+  }
+};
+
+
+
 export default { 
   index, 
   show, 
@@ -277,6 +305,6 @@ export default {
   getReportedPosts, 
   submitReport,
   deleteAllReports,
-  deleteReport ,
-
+  deleteReport,
+  blockUser, // Added blockUser function to the service
 };
