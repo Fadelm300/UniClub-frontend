@@ -9,7 +9,6 @@ import RightNav  from '../rightNav/rightNav';
 import LeftNav from '../LeftNav/LeftNav';
 
 const Landing = (props) => {
-  const [channel, setChannel] = useState({});
   const [viewType, setViewType] = useState("posts"); 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isMember, setIsMember] = useState(false);
@@ -22,7 +21,7 @@ const Landing = (props) => {
   useEffect(() => {
     async function getChannel() {
       const channelData = await channelService.index(path);
-      setChannel(channelData);
+      props.setChannel(channelData);
       setIsMember(channelData.members?.includes(props.user?.id)); 
       setMembers(channelData.members.length);
     }
@@ -46,7 +45,7 @@ const Landing = (props) => {
       } else {
         setMembers(members+1);
       } 
-      await channelService.toggleMembership(props.user.id, channel._id);
+      await channelService.toggleMembership(props.user.id, props.channel._id);
     } catch (error) {
       console.error("Error toggling membership:", error);
       setIsMember(isMember); 
@@ -120,7 +119,7 @@ const Landing = (props) => {
             <span></span>
 
             <hr className="separatorLine" />
-            {channel.subchannels?.map((subchannel) => (
+            {props.channel.subchannels?.map((subchannel) => (
                   <div key={subchannel._id} className="subchannel-container">
                     <Link to={`${path}/${subchannel.name}`}>
                       <button className="channelButton">{subchannel.name}</button>
@@ -144,8 +143,8 @@ const Landing = (props) => {
         <div className="mainContentWithRightNav">
           <LeftNav/>
         <div className="mainContent">
-          <h1 className="titlename">{channel.name}</h1>
-          <p>{channel.description}</p>
+          <h1 className="titlename">{props.channel.name}</h1>
+          <p>{props.channel.description}</p>
           <Link to={`${path}/members`}>
           <div>{members} {members==1?'member':'members'} </div>
           </Link>
@@ -168,7 +167,7 @@ const Landing = (props) => {
                             <button className="buttonsAddFile">Add File</button>
                           </Link> */}
 
-              {(props.user?.admin || channel.moderators?.includes(props.user?.id))&& (
+              {(props.user?.admin || props.channel.moderators?.includes(props.user?.id))&& (
                 <>
                 <Link to={`${path}/newchannel`}>
                   <button className="buttonsAddChannel">Add Channel</button>
@@ -193,7 +192,7 @@ const Landing = (props) => {
 
           {viewType === "posts" ? (
             <PostList
-              posts={channel.posts}
+              posts={props.channel.posts}
               handleDeletePost={props.handleDeletePost}
               path={path}
               toggleLike={props.toggleLike}
@@ -201,7 +200,7 @@ const Landing = (props) => {
             />
           ) : (
             <FileList
-              files={channel.files}
+              files={props.channel.files}
               handleDeleteFile={props.handleDeleteFile}
               handleUpdateFile={props.handleUpdateFile}
               path={path}
