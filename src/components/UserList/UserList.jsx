@@ -35,10 +35,11 @@ function UserList({userUser}) {
 
     // Filter the users based on the search query
     const filteredUsers = users.filter(user => 
-        user.username.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        user.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        user.phone.includes(searchQuery)
+        (user.username?.toLowerCase() || "").includes(searchQuery.toLowerCase()) ||
+        (user.email?.toLowerCase() || "").includes(searchQuery.toLowerCase()) ||
+        (user.phone || "").includes(searchQuery)
     );
+    
 
     return (
         <div className="user-list-container">
@@ -67,24 +68,26 @@ function UserList({userUser}) {
                 <tbody>
                     {filteredUsers.map((user) => (
                         <tr key={user._id}>
+                        <td>
                             <Link to={`/userlist/${user._id}`}>
-                                    {user.username}
+                                {user.username}
                             </Link>
-
-                            <td>{user.email}</td>
-                            <td>{user.phone}</td>
-                            <td>{user.admin ? 'Admin' : 'User'}</td>
-                            <td>
-                                <button onClick={() => toggleAdmin(user._id)}>
-                                    {user.admin ? 'Demote to User' : 'Promote to Admin'}
-                                </button>
-                            </td>
-                            <td>
-                                <button onClick={() => toggleFollow(user._id)}>
-                                    {user.followers.includes(userUser.id) ? 'unfollow' : 'Follow'}
-                                </button>
-                            </td>
-                        </tr>
+                        </td>
+                        <td>{user.email}</td>
+                        <td>{user.phone}</td>
+                        <td>{user.admin ? 'Admin' : 'User'}</td>
+                        <td>
+                            <button onClick={() => toggleAdmin(user._id)}>
+                                {user.admin ? 'Demote to User' : 'Promote to Admin'}
+                            </button>
+                        </td>
+                        <td>
+                            <button onClick={() => toggleFollow(user._id)}>
+                                {user.followers && user.followers.includes(userUser.id) ? 'Unfollow' : 'Follow'}
+                            </button>
+                        </td>
+                    </tr>
+                    
                     ))}
                 </tbody>
             </table>

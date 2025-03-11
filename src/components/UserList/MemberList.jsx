@@ -86,10 +86,11 @@ function MemberList({userUser}) {
 
     // Filter the users based on the search query
     const filteredUsers = users.filter(user => 
-        user.username?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        user.email?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        user.phone?.includes(searchQuery)
-    );
+    (user.username?.toLowerCase() || "").includes(searchQuery.toLowerCase()) ||
+    (user.email?.toLowerCase() || "").includes(searchQuery.toLowerCase()) ||
+    (user.phone || "").includes(searchQuery)
+);
+
 
     return (
         <div className="user-list-container">
