@@ -451,3 +451,16 @@
   text-decoration: none;
   color: #0056b3;
 }
+
+
+.blocked-info {
+  background-color: #ffe6e6; 
+  border: 1px solid #ff4d4d; 
+  color: #d8000c; 
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+  margin: 10px 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
