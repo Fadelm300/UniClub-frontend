@@ -149,7 +149,7 @@ import { deriveChannelPath } from "../../utils/helpers/urlHelpers";
 import axios from "axios";
 import ErrorModal from "../Events/ErrorModal/ErrorModal";
 import postService from "../../services/postService"
-
+import { useEffect } from "react";
 
 
 
@@ -186,8 +186,13 @@ const PostForm = ({ handleAddPost }) => {
     const file = event.target.files[0];
     console.log(file);
     setFormData({ ...formData, type: file.type, title : file.name });
-    setFile(file); 
+    setFile(file);
+    
   };
+  useEffect(() => {
+    console.log(formData);
+  }, [formData]); // This will log the updated formData whenever it changes
+
 
   const fileDocument = useMemo(() => {
     return file ? window.URL.createObjectURL(file) : "";
@@ -287,6 +292,21 @@ const PostForm = ({ handleAddPost }) => {
             )}
             {(file&&openPreview)  && (
               <div className="file-preview">
+                    <div className="file-preview-info">
+                    <input
+                    id="title"
+                    name="title"
+                    value={formData.title}
+                    onChange={handleChange}
+                    placeholder="file title"
+                    />
+                    <input
+                    id="description"
+                    name="description"
+                    onChange={handleChange}
+                    placeholder="file description"
+                    />
+                    </div>
                     {file.type === "application/pdf" ? (
                       <iframe
                         src={fileDocument}

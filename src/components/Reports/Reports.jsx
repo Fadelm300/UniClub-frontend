@@ -23,7 +23,6 @@ const Reports = (props) => {
     };
     fetchReports();
   }, [path]);
-  console.log(props.channel);
   const isAdminOrModerator = props.userUser?.admin || props.channel.moderators?.includes(props.userUser?.id);
 
   if (!isAdminOrModerator) {
