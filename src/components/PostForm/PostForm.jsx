@@ -189,9 +189,6 @@ const PostForm = ({ handleAddPost }) => {
     setFile(file);
     
   };
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]); // This will log the updated formData whenever it changes
 
 
   const fileDocument = useMemo(() => {

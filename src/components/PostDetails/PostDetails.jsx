@@ -223,6 +223,32 @@ const PostDetails = ({ user, handleDeletePost }) => {
                           <div>{new Date(comment.createdAt).toLocaleDateString()}</div>
                         </div>
                         <div className="usercomment">{comment.text}</div>
+                        
+
+                        {
+                          comment.file?.type?.includes('image') ? (
+                            <img src={comment.file.link} alt="Post" />
+                          ) : 
+                          comment.file?.type?.includes('video') ? (
+                            <video controls>
+                              <source src={comment.file.link} type="video/mp4" />
+                            </video>
+                          ) : comment.file?.type?.includes('pdf') ? (  
+                            <iframe 
+                              src={comment.file.link} 
+                              width="100%" 
+                              height="100%" 
+                              title={comment.file.title}
+                              className="file-preview-iframe"
+                              display="initial"
+                              position="relative" 
+                              />
+                          ) : <> </>
+                          }
+
+
+
+
                         {user && (
                         <div className="interactionItem" onClick={() => toggleLikeComment(comment._id ,post._id)}>
                           <img
