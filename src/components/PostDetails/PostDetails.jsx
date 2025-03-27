@@ -133,15 +133,15 @@ const PostDetails = ({ user, handleDeletePost }) => {
                     <source src={post.file.link} type="video/mp4" />
                   </video>
                 ) : post.file?.type?.includes('pdf') ? (  
+                  <div className="pdf-container"> 
                   <iframe 
                     src={post.file.link} 
                     width="100%" 
                     height="100%" 
-                    title={post.file.title}
-                    className="file-preview-iframe"
-                    display="initial"
-                    position="relative" 
-                    />
+                    title={post.file.title} 
+                    className="file-preview-iframe" 
+                  />
+                </div>
                 ) : <> </>
                 )}
                 </div>

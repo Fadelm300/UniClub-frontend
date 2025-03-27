@@ -2,13 +2,13 @@
     display: flex;
     width: 100%;
     position: relative;
-    background-color: #f83a3a; 
+    background-color: #ff4d4d; 
     
   }
   
   .sidebar {
     width: 200px;
-    background-color: #484b6e; 
+    background-color: #3c3f5c; 
     padding: 10px;
     position: fixed;
     left: -250px;
@@ -44,7 +44,7 @@
   .channelButton {
     padding: 12px 20px;
     margin: 1px 0;
-    background-color: #484b6e; 
+    background-color: #3c3f5c; 
     color: white;
     border: none;
     border-radius: 5px;
@@ -53,7 +53,7 @@
     transition: background-color 0.3s ease;
     text-transform: uppercase;
     font-size: 13px ;
-    border-bottom: 2px solid ;
+    border-bottom: 2px solid #1a73e8;
   }
   
   .channelButton:hover {
@@ -68,7 +68,7 @@
     align-items: start;
     padding: 10px 20px;
     margin: 5px 0;
-    background-color: #007bff; 
+    background-color: #1a73e8; 
     color: white;
     border: none;
     border-radius: 5px;
@@ -79,7 +79,7 @@
   }
   
   .channelButton2:hover {
-    background-color: #007bff;
+    background-color: #1257b7;
     transition: background-color 0.4s ease-in-out;
     text-transform: uppercase;
     font-size: 15px ;
@@ -96,7 +96,7 @@
     align-items: center;
     min-height: 90vh;
     color: #000000; 
-    background-color: #ffffff;
+    background-color: #f9f9f9;
     /* background-image: url(/background.png); */
 
   }
@@ -141,6 +141,8 @@
     border: 2px solid #67c1e7;
     font-size: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    min-width: 140px;
+
   }
   
   .addbtn {
@@ -161,7 +163,7 @@
     border-radius: 6px;
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    min-width: 150px;
+    min-width: 140px;
     text-align: center;
   }
   
@@ -188,7 +190,7 @@
   text-transform: uppercase;
   font-size: 32px;
   font-weight: bold;
-  background-color: #1da1f2;           
+  background-color: #1a73e8;           
   color: white;                        
   padding: 20px 60px;
   border-radius: 140px 60px 140px 40px; 
@@ -205,7 +207,7 @@
 @keyframes floatAnimation {
   0% {
     transform: translateY(0) scale(1);
-    background-color: #1da1f2;
+    background-color: #1665c1;
     box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
     border-radius: 140px 60px 140px 40px;
   }
@@ -394,6 +396,7 @@ moved to RightNav.css
   text-decoration: none;
   color: rgb(255, 255, 255);
   margin-top: 10px;
+  
 }
 
 .iconContainer {
