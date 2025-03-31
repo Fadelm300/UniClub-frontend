@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './FileForm.css';
 import { useParams, Link } from "react-router-dom";
 import { deriveChannelPath } from "../../utils/helpers/urlHelpers";
+import postService from '../../services/postService';
 
 const FileForm = ({handleAddFile}) => {
   const { uni, college, major, course, event } = useParams();
@@ -12,18 +13,42 @@ const FileForm = ({handleAddFile}) => {
     link: '',
    
   });
+  const [file, setFile] = useState(null);
 
   const handleChange = (evt) => {
     setFormData({ ...formData, [evt.target.name]: evt.target.value });
   };
 
   const handleFileChange = async (event) => {
-    const file = event.target.files[0];
+    const filefile = event.target.files[0];
+    setFile(filefile);
+    setFormData({ ...formData, type: file.type, title : file.name });
   };
 
-  const handleSubmit = (evt) => {
+  const handleSubmit =  async(evt) => {
     evt.preventDefault();
-    handleAddFile(formData,path);
+    if (file){
+        
+      const response = await postService.upload()
+      const formDataLink = { ...formData, link: response.publicUrl };
+      const { url: uploadUrl } = response;
+
+      const r2 = await fetch(uploadUrl, { 
+        method: 'PUT',
+        body: file,
+      });
+
+      handleAddFile(formDataLink, path);
+    }else{
+      handleAddFile(formData, path);
+    }
+  };
+
+  const [showLinkInput, setShowLinkInput] = useState(true);
+
+  const toggleInputType = () => {
+    setShowLinkInput(!showLinkInput);
+    setFormData({ ...formData, link: '', file: null }); // Reset the other field when toggling
   };
 
   return (
@@ -32,16 +57,26 @@ const FileForm = ({handleAddFile}) => {
         <form onSubmit={handleSubmit} className='Fileform'>
           <div className="FileContener">
             <label htmlFor="title">Title</label>
-            <input name='title' type="text" className='addFile' onChange={handleChange} />
+            <input name='title' type="text" className='addFile' onChange={handleChange} value={formData.title} />
 
             <label htmlFor="description">Description</label>
-            <input name='description' type="text" className='addFile' onChange={handleChange} />
+            <input name='description' type="text" className='addFile' onChange={handleChange} value={formData.description} />
 
-            <label htmlFor="link">Link</label>
-            <input name='link' type="text" className='addFile' onChange={handleChange} />
+            <button type="button" onClick={toggleInputType} className="toggleButton">
+              {showLinkInput ? "Switch to File" : "Switch to Link"}
+            </button>
 
-            <label htmlFor="file">File</label>
-            <input type="file" id="file" name="file" onChange={handleFileChange} />
+            {showLinkInput ? (
+              <>
+                <label htmlFor="link">Link</label>
+                <input name='link' type="text" className='addFile' onChange={handleChange} />
+              </>
+            ) : (
+              <>
+                <label htmlFor="file">File</label>
+                <input type="file" id="file" name="file" onChange={handleFileChange} />
+              </>
+            )}
           </div>
 
           <button type="submit" className="submitFileButton">

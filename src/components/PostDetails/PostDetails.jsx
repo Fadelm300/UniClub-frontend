@@ -21,6 +21,7 @@ const PostDetails = ({ user, handleDeletePost }) => {
 
   const [liked, setLiked] = useState(false);
   const [LikedComments, setLikedComments] = useState([]);
+  const [showCommentForm, setShowCommentForm] = useState(false);
 
   const toggleLikeComment = async (commentId , postId) => {
     try {
@@ -106,9 +107,9 @@ const PostDetails = ({ user, handleDeletePost }) => {
         <div className="postform">
           <div className="postContener">
             <div className="PostShow">
-            <Link to={`/userlist/${post.user._id}`}>
-              <h4>{post.user.username}</h4>
-            </Link>
+              <Link to={`/userlist/${post.user._id}`}>
+                <h4>{post.user.username}</h4>
+              </Link>
               
               {isEditing ? (
                 <div>
@@ -120,32 +121,38 @@ const PostDetails = ({ user, handleDeletePost }) => {
                   <button onClick={() => setIsEditing(false)}>Cancel</button>
                 </div>
               ) : (
-                <>
-                <p>{post.text} </p>
-                <button onClick={() => setShowFile(!showFile)}>Show File</button>
-                <div className="postfile">
-                {showFile && post.file && (
-                post.file?.type?.includes('image') ? (
-                  <img src={post.file.link} alt="Post" />
-                ) : 
-                post.file?.type?.includes('video') ? (
-                  <video controls>
-                    <source src={post.file.link} type="video/mp4" />
-                  </video>
-                ) : post.file?.type?.includes('pdf') ? (  
-                  <iframe 
-                    src={post.file.link} 
-                    width="100%" 
-                    height="100%" 
-                    title={post.file.title}
-                    className="file-preview-iframe"
-                    display="initial"
-                    position="relative" 
-                    />
-                ) : <> </>
-                )}
+                <div className="PostText">
+                  <p>{post.text}</p>
+
+                  {post.file && (
+                    <div className="file-container">
+                      <button className="showfilebutton" onClick={() => setShowFile(!showFile)}>
+                        {showFile ? "Hide File" : "Show File"}
+                      </button>
+
+                      {showFile && (
+                        <div className="file-preview">
+                          {post.file?.type?.includes('image') ? (
+                            <img src={post.file.link} alt="Post" />
+                          ) : post.file?.type?.includes('video') ? (
+                            <video controls>
+                              <source src={post.file.link} type="video/mp4" />
+                            </video>
+                          ) : post.file?.type?.includes('pdf') ? (
+                            <iframe 
+                              src={post.file.link} 
+                              width="100%" 
+                              height="100%" 
+                              title={post.file.title}
+                            />
+                          ) : null}
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
-                </>
+
+
                 
               )}
               <div className="postimg"><img src={post.image} alt="" /></div>
@@ -158,6 +165,9 @@ const PostDetails = ({ user, handleDeletePost }) => {
               }
                 <button className="deleteButton" onClick={() => handleDeletePost(postid, path)}>Delete</button>
                 </div>
+                </>
+            )}
+            
 {/* Social Interaction Section */}
 {user && (
                 <div className="interactionBar">
@@ -202,10 +212,12 @@ const PostDetails = ({ user, handleDeletePost }) => {
 
                 </div>
               )}
-              </>
-            )}
+             
             <section>
-              {user&&(
+              <button className="commentFormButton" onClick={() => setShowCommentForm(!showCommentForm)}>
+                {showCommentForm?'hide comment form':'Add Comment'}
+                </button>
+              {(user&&showCommentForm)&&(
               <CommentForm handleAddComment={handleAddComment} user={user} />
             )}
               {!post.comments.length && <p>There are no comments.</p>}

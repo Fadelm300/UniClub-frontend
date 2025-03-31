@@ -1,8 +1,10 @@
 import { useState } from "react";
 import channelService from "../../services/channelService";
+import postService from "../../services/postService";
 
 const AddChannelForm = ({ onChannelAdded, closeModal, path }) => {
-  const [formData, setFormData] = useState({ name: "", description: "" });
+  const [formData, setFormData] = useState({ name: "", description: ""  , picture: ""});
+  const [file, setFile] = useState(null);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false); 
 
@@ -15,21 +17,45 @@ const AddChannelForm = ({ onChannelAdded, closeModal, path }) => {
     setLoading(true); 
     setMessage(""); 
     try {
-      const newChannel = await channelService.create(formData, path || ""); 
-      setMessage(`Channel '${newChannel.name}' created successfully!`);
-   
-      if (onChannelAdded) onChannelAdded();
-
+      if (file){
+          
+          const response = await postService.upload('')
+          const formDataLink = { ...formData, picture: response.publicUrl };
+          const { url: uploadUrl } = response;
+          
       
-      if (closeModal) closeModal();
-
-      setFormData({ name: "", description: "" });
+          const r2 = await fetch(uploadUrl, { 
+            method: 'PUT',
+            body: file,
+           });
+           const newChannel = await channelService.create(formDataLink, path || ""); 
+           setMessage(`Channel '${newChannel.name}' created successfully!`);
+   
+            if (onChannelAdded) onChannelAdded();           
+            if (closeModal) closeModal();
+            setFormData({ name: "", description: "" });
+          }else{
+            const newChannel = await channelService.create(formData, path || ""); 
+            setMessage(`Channel '${newChannel.name}' created successfully!`);
+   
+            if (onChannelAdded) onChannelAdded();
+            if (closeModal) closeModal();
+            setFormData({ name: "", description: "" });
+          }
+      
     } catch (error) {
       console.error(error);
       setMessage(error.message || "Failed to create channel.");
     } finally {
       setLoading(false); 
     }
+  };
+
+  const handleFileChange = async (event) => {
+    const filefile = event.target.files[0];
+    setFile(filefile);
+    console.log(file);
+    
   };
 
   return (
@@ -58,6 +84,11 @@ const AddChannelForm = ({ onChannelAdded, closeModal, path }) => {
               required
             />
           </label>
+          <input
+            type="file"
+            onChange={(e) => handleFileChange(e)}
+            accept="image/*"
+          />
         </div>
         <button type="submit" disabled={loading}>
           {loading ? "Creating..." : "Create Channel"}

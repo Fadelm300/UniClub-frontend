@@ -178,6 +178,7 @@ const PostForm = ({ handleAddPost }) => {
     const { name, value } = evt.target;
     
     setFormData({ ...formData, [name]: value });
+    console.table(formData)
   };
 
   
@@ -228,9 +229,10 @@ const PostForm = ({ handleAddPost }) => {
       setLoading(false);
       return;
     }
+    
     if (file){
     
-    const response = await postService.upload(path)
+    const response = await postService.upload()
     const formDataLink = { ...formData, link: response.publicUrl };
     const { url: uploadUrl } = response;
     
@@ -239,7 +241,6 @@ const PostForm = ({ handleAddPost }) => {
       method: 'PUT',
       body: file,
      });
-
       handleAddPost(formDataLink, path);
       setError(null);
       setLoading(false);

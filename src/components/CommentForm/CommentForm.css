@@ -37,7 +37,7 @@
 }
 
 .comsubmit {
-    width: 150px;
+    width: 75px;
     background-image: linear-gradient(to right, #99def8 ,#90cbdd); 
     color: white;
     padding: 10px 15px;
@@ -62,7 +62,7 @@
     }
 
     .comsubmit {
-        width: 150px;
+        width: 75px;
     background-image: linear-gradient(to right, #d6eff7, #d6eff7); 
         color: white;
         padding: 10px 15px;
