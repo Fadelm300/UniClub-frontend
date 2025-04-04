@@ -32,10 +32,10 @@ const LeftNav = ({ user }) => {
         await EventService.deleteEvent(eventIdToDelete);
         setEvents(events.filter(event => event._id !== eventIdToDelete));
         setIsModalOpen(false);
-        setEventIdToDelete(null); 
+        setEventIdToDelete(null);
       } catch (error) {
         console.error('Error deleting event:', error);
-        setError('Failed to delete event. Please try again.'); 
+        setError('Failed to delete event. Please try again.');
       }
     }
   };
@@ -47,16 +47,11 @@ const LeftNav = ({ user }) => {
 
   const closeModal = () => {
     setIsModalOpen(false);
-    setEventIdToDelete(null); 
+    setEventIdToDelete(null);
   };
 
-  if (loading) {
-    return <p>Loading events...</p>;
-  }
-
-  if (error) {
-    return <p>Error: {error}</p>;
-  }
+  if (loading) return <p>Loading events...</p>;
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <div className="leftNav22">
@@ -68,15 +63,15 @@ const LeftNav = ({ user }) => {
               <h2 className="event-title22">{event.title}</h2>
               <p className="event-description22">{event.description}</p>
               <div className="event-info22">
-                <p><strong>Date:</strong> {event.date}</p>
+                <p><strong>Date:</strong> {new Date(event.date).toLocaleDateString()}</p>
                 <p><strong>Time:</strong> {event.time}</p>
                 <p><strong>Location:</strong> {event.location}</p>
               </div>
 
               {user?.admin && (
-                <div className="event-actions\">
-                  <Link to={`/edit-event/${event._id}`} className="edit-button\">Edit</Link>
-                  <button className="delete-button\" onClick={() => openModal(event._id)}>Delete</button>
+                <div className="event-actions22">
+                  <Link to={`/edit-event/${event._id}`} className="edit-button22">Edit</Link>
+                  <button className="delete-button22" onClick={() => openModal(event._id)}>Delete</button>
                 </div>
               )}
             </div>

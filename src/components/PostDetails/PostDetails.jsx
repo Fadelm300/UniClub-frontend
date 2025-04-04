@@ -121,35 +121,32 @@ const PostDetails = ({ user, handleDeletePost }) => {
                   <button onClick={() => setIsEditing(false)}>Cancel</button>
                 </div>
               ) : (
-                <div className="PostText">
-                  <p>{post.text}</p>
 
-                  {post.file && (
-                    <div className="file-container">
-                      <button className="showfilebutton" onClick={() => setShowFile(!showFile)}>
-                        {showFile ? "Hide File" : "Show File"}
-                      </button>
+                <>
+                <p>{post.text} </p>
+                <button onClick={() => setShowFile(!showFile)}>Show File</button>
+                <div className="postfile">
+                {showFile && post.file && (
+                post.file?.type?.includes('image') ? (
+                  <img src={post.file.link} alt="Post" />
+                ) : 
+                post.file?.type?.includes('video') ? (
+                  <video controls>
+                    <source src={post.file.link} type="video/mp4" />
+                  </video>
+                ) : post.file?.type?.includes('pdf') ? (  
+                  <div className="pdf-container"> 
+                  <iframe 
+                    src={post.file.link} 
+                    width="100%" 
+                    height="100%" 
+                    title={post.file.title} 
+                    className="file-preview-iframe" 
+                  />
+                </div>
+                ) : <> </>
+                )}
 
-                      {showFile && (
-                        <div className="file-preview">
-                          {post.file?.type?.includes('image') ? (
-                            <img src={post.file.link} alt="Post" />
-                          ) : post.file?.type?.includes('video') ? (
-                            <video controls>
-                              <source src={post.file.link} type="video/mp4" />
-                            </video>
-                          ) : post.file?.type?.includes('pdf') ? (
-                            <iframe 
-                              src={post.file.link} 
-                              width="100%" 
-                              height="100%" 
-                              title={post.file.title}
-                            />
-                          ) : null}
-                        </div>
-                      )}
-                    </div>
-                  )}
                 </div>
 
 

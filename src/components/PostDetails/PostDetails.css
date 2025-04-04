@@ -1,22 +1,25 @@
-/* Global Styles */
+
 body {
   background-color: #EDF2F4; /* Background Color */
   color: #2B2D42; /* Text Color */
   font-family: Arial, sans-serif;
 }
 
+
+
 .postmain {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
-  background-color: #EDF2F4;
+  background-color: #f4f4f4;
 }
 
 .postform {
   width: 100%;
   max-width: 800px;
-  background-image: linear-gradient(to right, #2B2D42, #8D99AE); 
+  background-image: linear-gradient(to right, #2cc1fb, #0197d3);
+
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -32,7 +35,9 @@ body {
   background-color: #ffffff;
   padding: 20px;
   border-radius: 8px;
-  min-height: 200px;
+
+  min-height: 300px;
+
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -40,23 +45,26 @@ body {
   display: flex;
   justify-content: center;
   margin-top: 10px;
-  width: 100%; /* Ensure the image container takes full width */
+  width: 100%;
 }
 
-.postfile img, .postfile video {
-  border-radius: 10px;
-  width: auto; /* Maintain aspect ratio */
-  max-width: 100%; /* Ensure the media is responsive */
-  height: auto; /* Ensure the media is not cropped */
+
+.postfile img, .postfile video, .file-preview-iframe {
+  border-radius: 20px;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+
 }
 
 /* Comment Section */
 .commentShow {
-  background-color: #8D99AE;
+
+  background-image: linear-gradient(to right, #2cc1fb, #2cc1fb);
   padding: 20px;
   border-radius: 8px;
   max-height: 400px;
-  overflow-y: scroll;
+  overflow-y: auto;
   margin-top: 20px;
 }
 
@@ -75,67 +83,59 @@ body {
 .usernamecontener {
   display: flex;
   justify-content: space-between;
+
   color: #858181;
   border-bottom: 1px solid #333;
 }
 
 .usercomment {
   line-height: 1.5;
+
+  padding: 0px;
+  color: #858181;
+  border-bottom: 0.1px solid #333;
+}
+
+.deleteButton, .deleteButton2, .editButton {
+  width: 150px;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  align-self: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
 }
 
 /* Buttons */
 .deleteButton {
-  background-color: #EF233C; /* Accent 1 Color */
-  width: 150px;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 6px;
-  font-size: 1rem;
-  cursor: pointer;
-  align-self: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+  background-color: #ff4c4c;
 }
 
 .deleteButton2 {
-  background-color: #D90429; /* Accent 2 Color */
-  width: 150px;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 6px;
-  font-size: 1rem;
-  cursor: pointer;
-  align-self: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: #ffc800;
 }
 
 .editButton {
-  background-color: #4c73ff; /* Default Blue */
-  width: 150px;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 6px;
-  font-size: 1rem;
-  cursor: pointer;
-  align-self: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: #4c73ff;
 }
 
 .deleteButton:hover {
-  background-color: #d81f2c; /* Slightly darker shade of Accent 1 */
+  background-color: #ff1a1a;
+  transform: scale(1.05);
 }
 
 .deleteButton2:hover {
-  background-color: #e04c3b; /* Slightly darker shade of Accent 2 */
+  background-color: #e0a500;
+  transform: scale(1.05);
 }
 
 .editButton:hover {
-  background-color: #3e62d4; /* Darker shade of the blue */
+  background-color: #0eb73e;
+  transform: scale(1.05);
 }
 
 .buttonContainer {
@@ -145,82 +145,11 @@ body {
   margin-top: 40px;
 }
 
-.editButton, .deleteButton {
-  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+.usercomment {
+  line-height: 1.5;
+  color: #2b2d42;
 }
 
-.editButton:hover,
-.deleteButton:hover {
-  transform: scale(1.05);
-}
-
-/* File Section */
-.PostShow {
-  display: flex;
-  flex-direction: column;
-  min-height: 300px;
-  justify-content: flex-start;
-  position: relative;
-  /* background-color: blue; */
-}
-
-.postText{
-  display: flex;
-  flex-direction: column;
-  min-height: 300px;
-  justify-content: flex-start;
-  position: relative;
-}
-
-.file-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  margin-top: auto; 
-  padding-bottom: 10px; 
-}
-
-.showfilebutton {
-  background-image: linear-gradient(to right, #2B2D42, #8D99AE);
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 6px;
-  font-size: 1rem;
-  cursor: pointer;
-  margin-top: auto; /* Push button down */
-}
-
-.commentFormButton {
-  background-image: linear-gradient(to right, #2B2D42, #8D99AE);
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 6px;
-  font-size: 1rem;
-  cursor: pointer;
-  margin-top: auto; /* Push button down */
-  display: block;
-  margin: 0 auto;
-}
-
-.file-preview {
-  width: 100%;
-  max-width: 500px;
-  text-align: center;
-  margin-top: 10px;
-}
-
-.file-preview img,
-.file-preview video,
-.file-preview iframe {
-  width: 100%;
-  max-height: 400px;
-  border-radius: 10px;
-}
-
-/* Responsiveness */
 @media (max-width: 768px) {
   .postform {
       padding: 15px;
@@ -237,6 +166,7 @@ body {
 
 .postimg {
   width: 100%;
+  max-width: 300px;
   overflow: hidden;
 }
 
@@ -244,4 +174,20 @@ body {
   width: 100%;
   height: auto;
   display: block;
+}
+
+.pdf-container {
+  width: 100%;
+  max-height: 90vh; 
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.file-preview-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+
 }

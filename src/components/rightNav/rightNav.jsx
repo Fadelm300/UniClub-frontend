@@ -1,8 +1,20 @@
 import { Link } from 'react-router-dom';
-import { navLinks } from '../links/links'; // Import the same data
+import { navLinks } from '../links/links';
 import './rightNav.css';
 
 export default function RightNav() {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+
+    // Delay the refresh slightly to ensure smooth scrolling finishes
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
+  };
+
   return (
     <div className="rightNav">
       {navLinks.map((section, index) => (
@@ -25,6 +37,11 @@ export default function RightNav() {
           </ul>
         </div>
       ))}
+
+      {/* Back to Top Button */}
+      <button className="backToTop" onClick={scrollToTop}>
+        ⬆️ Top
+      </button>
     </div>
   );
 }
