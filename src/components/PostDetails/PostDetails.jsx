@@ -21,7 +21,6 @@ const PostDetails = ({ user, handleDeletePost }) => {
 
   const [liked, setLiked] = useState(false);
   const [LikedComments, setLikedComments] = useState([]);
-  const [showCommentForm, setShowCommentForm] = useState(false);
 
   const toggleLikeComment = async (commentId , postId) => {
     try {
@@ -107,9 +106,9 @@ const PostDetails = ({ user, handleDeletePost }) => {
         <div className="postform">
           <div className="postContener">
             <div className="PostShow">
-              <Link to={`/userlist/${post.user._id}`}>
-                <h4>{post.user.username}</h4>
-              </Link>
+            <Link to={`/userlist/${post.user._id}`}>
+              <h4>{post.user.username}</h4>
+            </Link>
               
               {isEditing ? (
                 <div>
@@ -121,7 +120,6 @@ const PostDetails = ({ user, handleDeletePost }) => {
                   <button onClick={() => setIsEditing(false)}>Cancel</button>
                 </div>
               ) : (
-
                 <>
                 <p>{post.text} </p>
                 <button onClick={() => setShowFile(!showFile)}>Show File</button>
@@ -146,10 +144,8 @@ const PostDetails = ({ user, handleDeletePost }) => {
                 </div>
                 ) : <> </>
                 )}
-
                 </div>
-
-
+                </>
                 
               )}
               <div className="postimg"><img src={post.image} alt="" /></div>
@@ -162,9 +158,6 @@ const PostDetails = ({ user, handleDeletePost }) => {
               }
                 <button className="deleteButton" onClick={() => handleDeletePost(postid, path)}>Delete</button>
                 </div>
-                </>
-            )}
-            
 {/* Social Interaction Section */}
 {user && (
                 <div className="interactionBar">
@@ -209,12 +202,10 @@ const PostDetails = ({ user, handleDeletePost }) => {
 
                 </div>
               )}
-             
+              </>
+            )}
             <section>
-              <button className="commentFormButton" onClick={() => setShowCommentForm(!showCommentForm)}>
-                {showCommentForm?'hide comment form':'Add Comment'}
-                </button>
-              {(user&&showCommentForm)&&(
+              {user&&(
               <CommentForm handleAddComment={handleAddComment} user={user} />
             )}
               {!post.comments.length && <p>There are no comments.</p>}
@@ -232,32 +223,6 @@ const PostDetails = ({ user, handleDeletePost }) => {
                           <div>{new Date(comment.createdAt).toLocaleDateString()}</div>
                         </div>
                         <div className="usercomment">{comment.text}</div>
-                        
-
-                        {
-                          comment.file?.type?.includes('image') ? (
-                            <img src={comment.file.link} alt="Post" />
-                          ) : 
-                          comment.file?.type?.includes('video') ? (
-                            <video controls>
-                              <source src={comment.file.link} type="video/mp4" />
-                            </video>
-                          ) : comment.file?.type?.includes('pdf') ? (  
-                            <iframe 
-                              src={comment.file.link} 
-                              width="100%" 
-                              height="100%" 
-                              title={comment.file.title}
-                              className="file-preview-iframe"
-                              display="initial"
-                              position="relative" 
-                              />
-                          ) : <> </>
-                          }
-
-
-
-
                         {user && (
                         <div className="interactionItem" onClick={() => toggleLikeComment(comment._id ,post._id)}>
                           <img
