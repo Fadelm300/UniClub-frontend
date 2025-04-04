@@ -112,7 +112,7 @@ const refreshChannels = async () => {
                      <div className="liftbox">
                        <img
                          className="imgintherightbox"
-                         src={channel.image || "/default-channel-img.jpg"} // Fallback image if no image provided
+                         src={channel.picture || "/default-channel-img.jpg"} // Fallback image if no image provided
                          alt={channel.name}
                        />
                      </div>

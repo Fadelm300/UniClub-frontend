@@ -6,6 +6,7 @@ import './FileList.css';
 const FileList = (props) => {
   const [showModalDelet, setShowModalDelet] = useState(false);
   const [fileToDelete, setFileToDelete] = useState(null);
+  const [filesinside, setFilesinside] = useState(props.files);
 
   const handleDeleteConfirmation = (fileId) => {
     setFileToDelete(fileId);
@@ -23,13 +24,31 @@ const FileList = (props) => {
     setFileToDelete(null);
   };
 
+  const filterFiles = (type) => {
+    if (type === "files") {
+      setFilesinside(props.files.filter((file) => file.type?.includes("application")));
+    } else if (type === "media") {
+      setFilesinside(props.files.filter((file) => file.type?.includes("image") || file.type?.includes("video")));
+    } else if (type === "links") {
+      setFilesinside(props.files.filter((file) => file.type?.includes("link")));
+    }
+  };
+
   if (!props.files || props.files.length === 0) return <main>No files yet</main>;
 
   return (
     <>
+      <div className="filter-buttons">
+          <button className="btn-filter" onClick={() => filterFiles("files")}>Files</button>
+          <button className="btn-filter" onClick={() => filterFiles("media")}>Media</button>
+          <button className="btn-filter" onClick={() => filterFiles("links")}>Links</button>
+      </div>
       <div className="FileContanir">
+      
         <div className="cardsWrapper">
-          {props.files.map((file, idx) => {
+        
+
+          {filesinside.map((file, idx) => {
             return (
               <div key={idx} className="card2">
               

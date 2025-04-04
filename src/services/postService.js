@@ -29,8 +29,8 @@ const show = async (path, postId) => {
 };
 
 
-const upload = async (path) =>{
-  const url = `${BASE_URL}${path}/upload`
+const upload = async () =>{
+  const url = `${BASE_URL}/upload`
     const response = await fetch(url, { 
       method: 'POST',
       headers: {
@@ -57,7 +57,7 @@ const create = async (formData, path) => {
     body: JSON.stringify(formData),
   };
 
-  const res = await fetch(`${BASE_URL}${path}`, options);
+  const res = await fetch(`${BASE_URL}/postpost${path}`, options);
   return res.json();
 };
 
