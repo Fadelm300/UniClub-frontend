@@ -1,27 +1,28 @@
 .user-list-container {
-    width: 90%; 
-    max-width: 1200px; 
-    height: auto; 
-    margin: 40px auto; 
+    width: 90%;
+    max-width: 1200px;
+    height: auto;
+    margin: 40px auto;
     font-family: Arial, sans-serif;
-    padding: 20px; 
+    padding: 20px;
     padding-top: 90px;
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .search-container {
     position: relative;
-    width: 50%; 
+    width: 50%;
     margin-bottom: 20px;
-    display: flex; 
-    justify-content: center; 
+    display: flex;
+    justify-content: center;
 }
+
 .followers-nu {
     text-align: center;
-  }
-  
+}
+
 .search-bar {
     width: 100%;
     padding: 10px 40px;
@@ -50,11 +51,13 @@
     background-color: #f4f4f4;
     padding: 12px;
     border-bottom: 2px solid #ccc;
+    text-align: center; 
 }
 
 .user-table td {
     padding: 10px;
     border-bottom: 1px solid #ddd;
+    text-align: center; 
 }
 
 .user-table tbody tr:nth-child(even) {
@@ -68,15 +71,26 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    margin: 5px; 
 }
 
 .user-table button:hover {
     background-color: #0056b3;
 }
 
+.user-table select {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 5px; 
+    width: 160px; 
+}
+
+
 @media screen and (max-width: 768px) {
     .user-list-container {
-        width: 95%; 
+        width: 95%;
     }
 
     .user-table th, .user-table td {
@@ -84,36 +98,45 @@
     }
 
     .user-table button {
-        padding: 4px 8px;
+        padding: 6px 10px;
+    }
+
+    .user-table select {
+        width: 160px; 
     }
 }
 
 @media screen and (max-width: 480px) {
     .user-list-container {
-        width: 100%; 
-        padding: 10px; 
+        width: 100%;
+        padding: 10px;
     }
 
     .search-bar {
-        padding: 8px 30px; 
-        font-size: 14px; 
+        padding: 8px 30px;
+        font-size: 14px;
     }
 
     .search-icon {
-        font-size: 16px; 
+        font-size: 16px;
     }
 
     .user-table th, .user-table td {
-        padding: 6px; 
-        font-size: 14px; 
+        padding: 6px;
+        font-size: 14px;
     }
 
     .user-table button {
-        padding: 3px 6px; 
-        font-size: 12px; 
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+
+    .user-table select {
+        width: 140px; 
+        font-size: 12px;
     }
 
     .user-table {
-        font-size: 14px; 
+        font-size: 14px;
     }
 }

@@ -2,14 +2,14 @@
   display: flex;
   position: relative;
   width: 100%;
-  background-color: #ffffff;
+  background-color: #f9f9f9;
   height: 100%; 
   min-height: 100vh; 
 }
 
 .rightNav {
-  flex: 0 0 250px; 
-  background-color: #24262b;
+  flex: 0 0 210px; 
+  background-color: #1f2937;
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
@@ -29,7 +29,7 @@
   
   .rightNav-section h4 {
 	font-size: 18px;
-	color: #ffffff;
+	color: #f3f4f6;
 	text-transform: capitalize;
 	margin-bottom: 20px;
 	font-weight: 500;
@@ -40,7 +40,7 @@
 	position: absolute;
 	left:1;
 	bottom: -10px;
-	background-color: #e91e63;
+	background-color: #ef4444;
 	height: 2px;
 	box-sizing: border-box;
 	width: 50px;
@@ -60,11 +60,33 @@
   
   .rightNav-section ul li a {
     text-decoration: none;
-    color: #007bff;
+    color: #2e7dfb;
     transition: color 0.3s;
     display: inline-block; 
   }
   .rightNav-section ul li a:hover {
-    color: #0056b3;
+    color: #2449c2;
+  }
+  .backToTop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgb(1, 166, 255);
+    color: #ffffff;
+    border: none;
+    border-radius: 50px;
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .backToTop:hover {
+    background-color: rgb(4, 118, 179);
   }
   

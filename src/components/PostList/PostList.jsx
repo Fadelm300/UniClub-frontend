@@ -100,8 +100,20 @@ const PostList = (props) => {
                 </Link>
                 <div className="dawnCardText">
                   <div className="dawncardDate">
-                    {postDate.toLocaleDateString()} <span> | </span> {postDate.toLocaleTimeString()}
-                    <button onClick={() => toggleReport(post._id)}>
+                  <div className="date">
+                    {postDate.toLocaleDateString(
+                      navigator.language.startsWith('ar') ? 'ar-EG' : 'en-US',
+                      { year: 'numeric', month: 'long', day: 'numeric' }
+                    )}
+                  </div>
+                  <div className="time">
+                    {postDate.toLocaleTimeString(
+                      navigator.language.startsWith('ar') ? 'ar-EG' : 'en-US',
+                      { hour: '2-digit', minute: '2-digit' }
+                    )}
+                  </div>
+                  
+                      <button onClick={() => toggleReport(post._id)}>
                     {isReporting ? (
                       <img src="/close.png" alt="Cancel Report" />
                     ) : (
