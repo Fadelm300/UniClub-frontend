@@ -102,7 +102,8 @@ const Landing = (props) => {
                           </Link>
                         )}
 
-                        
+            {props.user && (
+
                       <div className="navBar">
                         <Link to={`${path}/newpost`} className="navItem">
                           <img className="navIcon" src="/icons8-add-94.png" alt="Add Post" />
@@ -114,7 +115,7 @@ const Landing = (props) => {
                           <span>New File</span>
                         </Link>
                       </div>
-
+                        )}
 
             <span></span>
 
@@ -145,7 +146,7 @@ const Landing = (props) => {
         <div className="mainContentWithRightNav">
           <LeftNav/>
         <div className="mainContent">
-          <h1 className="titlename">{props.channel.name}</h1>
+          <h1 className="titlename">{props.channel.titel}</h1>
           <p>{props.channel.description}</p>
           <Link to={`${path}/members`}>
           <div>{members} {members==1?'member':'members'} </div>

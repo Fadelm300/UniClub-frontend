@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import EventService from '../../../services/EventService';
 import { useParams, useNavigate } from 'react-router-dom';
 import './EditEvent.css';
@@ -16,7 +17,7 @@ const EditEvent = () => {
   });
   const [oldData, setOldData] = useState({});
   const [error, setError] = useState(null);
-  const [showModal, setShowModal] = useState(false); // Control the visibility of the modal
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const fetchEvent = async () => {
@@ -27,7 +28,7 @@ const EditEvent = () => {
           date: event.date ? new Date(event.date).toISOString().split('T')[0] : '',
         };
         setFormData(formattedEvent);
-        setOldData(formattedEvent); // Store the old data
+        setOldData(formattedEvent);
       } catch (err) {
         setError(err.message);
       }
@@ -45,7 +46,7 @@ const EditEvent = () => {
     e.preventDefault();
     try {
       await EventService.editEvent(eventid, formData);
-      setShowModal(true); // Show the modal after successful update
+      setShowModal(true);
     } catch (err) {
       setError(err.message);
     }
@@ -53,46 +54,60 @@ const EditEvent = () => {
 
   const handleOk = () => {
     setShowModal(false);
-    navigate('/'); 
+    navigate('/');
   };
 
   const handleCancel = () => {
-    setShowModal(false); 
+    setShowModal(false);
   };
 
   const hasChanged = (field) => oldData[field] !== formData[field];
 
   return (
-    <div className="edit-event-container">
+    <motion.div 
+      className="edit-event-container"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <h2>Edit Event</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Title</label>
-        <input id="title" name="title" value={formData.title} onChange={handleChange} required />
+        <motion.input id="title" name="title" value={formData.title} onChange={handleChange} required 
+          whileHover={{ scale: 1.02, transition: { duration: 0.15 } }} />
 
         <label htmlFor="description">Description</label>
-        <input id="description" name="description" value={formData.description} onChange={handleChange} required />
+        <motion.input id="description" name="description" value={formData.description} onChange={handleChange} required 
+          whileHover={{ scale: 1.02, transition: { duration: 0.15 } }} />
 
         <label htmlFor="date">Date</label>
-        <input type="date" id="date" name="date" value={formData.date} onChange={handleChange} required />
+        <motion.input type="date" id="date" name="date" value={formData.date} onChange={handleChange} required 
+          whileHover={{ scale: 1.02, transition: { duration: 0.15 } }} />
 
         <label htmlFor="time">Time</label>
-        <input type="time" id="time" name="time" value={formData.time} onChange={handleChange} required />
+        <motion.input type="time" id="time" name="time" value={formData.time} onChange={handleChange} required 
+          whileHover={{ scale: 1.02, transition: { duration: 0.15 } }} />
 
         <label htmlFor="location">Location</label>
-        <input id="location" name="location" value={formData.location} onChange={handleChange} required />
+        <motion.input id="location" name="location" value={formData.location} onChange={handleChange} required 
+          whileHover={{ scale: 1.02, transition: { duration: 0.15 } }} />
 
         <label htmlFor="logo">Logo URL</label>
-        <input id="logo" name="logo" value={formData.logo} onChange={handleChange} required />
+        <motion.input id="logo" name="logo" value={formData.logo} onChange={handleChange} required 
+          whileHover={{ scale: 1.02, transition: { duration: 0.15 } }} />
 
         <div className="button-container">
-          <button type="submit" className='UpdateEvent'>Update Event</button>
+          <motion.button type="submit" className='UpdateEvent'
+            whileHover={{ scale: 1.05, transition: { duration: 0.15 } }}>
+            Update Event
+          </motion.button>
         </div>
       </form>
 
       {showModal && (
-        <div className="modal">
-          <div className="modal-content">
+        <motion.div className="modal" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+          <motion.div className="modal-content" initial={{ scale: 0.8 }} animate={{ scale: 1 }} transition={{ duration: 0.3 }}>
             <h3>Event Updated Successfully!</h3>
             {hasChanged('title') && (
               <div>
@@ -131,13 +146,19 @@ const EditEvent = () => {
               </div>
             )}
             <div className="modal-buttons">
-              <button onClick={handleOk} className="save-btn">Save</button>
-              <button onClick={handleCancel} className="cancel-btn">Cancel</button>
+              <motion.button onClick={handleOk} className="save-btn"
+                whileHover={{ scale: 1.05, transition: { duration: 0.15 } }}>
+                Save
+              </motion.button>
+              <motion.button onClick={handleCancel} className="cancel-btn"
+                whileHover={{ scale: 1.05, transition: { duration: 0.15 } }}>
+                Cancel
+              </motion.button>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       )}
-    </div>
+    </motion.div>
   );
 };
 

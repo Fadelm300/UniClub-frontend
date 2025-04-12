@@ -63,8 +63,11 @@ const LeftNav = ({ user }) => {
               <h2 className="event-title22">{event.title}</h2>
               <p className="event-description22">{event.description}</p>
               <div className="event-info22">
-                <p><strong>Date:</strong> {new Date(event.date).toLocaleDateString()}</p>
-                <p><strong>Time:</strong> {event.time}</p>
+                <p className="event-date-time">
+                  <strong>Date:</strong> {new Date(event.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                  <br />
+                  <strong>Time:</strong> {new Date(event.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}
+                </p>
                 <p><strong>Location:</strong> {event.location}</p>
               </div>
 

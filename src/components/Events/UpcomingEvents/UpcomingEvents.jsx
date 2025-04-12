@@ -4,10 +4,8 @@ import { Link } from 'react-router-dom';
 import ConfirmDeleteModal from '../ConfirmDelete/ConfirmDeleteModal';
 import './UpcomingEvents.css';
 
-const UpcomingEvents = ({user}) => {
+const UpcomingEvents = ({ user }) => {
   const [events, setEvents] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [eventIdToDelete, setEventIdToDelete] = useState(null);
 
@@ -16,10 +14,8 @@ const UpcomingEvents = ({user}) => {
       try {
         const data = await EventService.getEvents();
         setEvents(data);
-        setLoading(false);
       } catch (err) {
-        setError(err.message);
-        setLoading(false);
+        console.error(err);
       }
     };
 
@@ -32,10 +28,9 @@ const UpcomingEvents = ({user}) => {
         await EventService.deleteEvent(eventIdToDelete);
         setEvents(events.filter(event => event._id !== eventIdToDelete));
         setIsModalOpen(false);
-        setEventIdToDelete(null); 
+        setEventIdToDelete(null);
       } catch (error) {
         console.error('Error deleting event:', error);
-        setError('Failed to delete event. Please try again.'); 
       }
     }
   };
@@ -47,49 +42,80 @@ const UpcomingEvents = ({user}) => {
 
   const closeModal = () => {
     setIsModalOpen(false);
-    setEventIdToDelete(null); 
+    setEventIdToDelete(null);
   };
 
-  if (loading) {
-    return <p>Loading events...</p>;
-  }
+  const handleMouseMove = (e, index) => {
+    const card = document.getElementById(`card-${index}`);
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
 
-  if (error) {
-    return <p>Error: {error}</p>;
-  }
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const rotateX = ((y - centerY) / centerY) * 8;
+    const rotateY = ((x - centerX) / centerX) * -8;
+
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+  };
+
+  const handleMouseLeave = (index) => {
+    const card = document.getElementById(`card-${index}`);
+    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+  };
 
   return (
     <div className="events-container">
       <h1 className="events-h1">Upcoming Events</h1>
       <div className="event-cards">
-        {events.map((event) => (
-          <div className="event-card" key={event._id} style={{ backgroundImage: `url(${event.image})` }}>
+        {events.map((event, index) => (
+          <div
+            id={`card-${index}`}
+            key={event._id}
+            className="event-card"
+            style={{ backgroundImage: `url(${event.image})` }}
+            onMouseMove={(e) => handleMouseMove(e, index)}
+            onMouseLeave={() => handleMouseLeave(index)}
+          >
             <div className="event-details">
               <h2 className="event-title">{event.title}</h2>
               <p className="event-description">{event.description}</p>
               <div className="event-info">
-                <p><strong>Date:</strong> {event.date}</p>
-                <p><strong>Time:</strong> {event.time}</p>
-                <p><strong>Location:</strong> {event.location}</p>
+                <p className="event-date-time_main">
+                  <strong>Date:</strong>{' '}
+                  {new Date(event.date).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                  <br />
+                  <strong>Time:</strong>{' '}
+                  {new Date(event.date).toLocaleTimeString('en-US', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                  })}
+                </p>
+                <p>
+                  <strong>Location:</strong> {event.location}
+                </p>
               </div>
 
-              {user?.admin &&(
-
-              <div className="event-actions">
-                <Link to={`/edit-event/${event._id}`} className="edit-button">Edit</Link>
-                <button className="delete-button" onClick={() => openModal(event._id)}>Delete</button>
-              </div>
-              )
-              }
+              {user?.admin && (
+                <div className="event-actions">
+                  <Link to={`/edit-event/${event._id}`} className="edit-button">Edit</Link>
+                  <button className="delete-button" onClick={() => openModal(event._id)}>Delete</button>
+                </div>
+              )}
             </div>
           </div>
         ))}
       </div>
 
-      <ConfirmDeleteModal 
-        isOpen={isModalOpen} 
-        onConfirm={handleDelete} 
-        onCancel={closeModal} 
+      <ConfirmDeleteModal
+        isOpen={isModalOpen}
+        onConfirm={handleDelete}
+        onCancel={closeModal}
       />
     </div>
   );
