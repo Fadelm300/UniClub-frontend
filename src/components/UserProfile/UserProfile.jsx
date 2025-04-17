@@ -44,6 +44,7 @@ const UserProfile = () => {
       try {
         const { user, posts } = await authService.getUserProfile(userId);
         setUser(user);
+        setPosts(posts);
 
         if (user.blockedUntil) {
           const blockDate = new Date(user.blockedUntil);

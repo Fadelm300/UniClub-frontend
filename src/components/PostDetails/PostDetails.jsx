@@ -167,8 +167,13 @@ const PostDetails = ({ user, handleDeletePost }) => {
               }
                   <button className="deleteButton" onClick={() => setShowDeleteModal(true)}>Delete</button>
                   </div>
-{/* Social Interaction Section */}
-{user && (
+     
+              </>
+            )}
+
+
+             {/* Social Interaction Section */}
+      {user && (
                 <div className="interactionBar">
                   <div className="interactionItem" onClick={() => handleShare(post._id)}>
                     <img src="/icons8-share-50.png" alt="Share" />
@@ -211,8 +216,9 @@ const PostDetails = ({ user, handleDeletePost }) => {
 
                 </div>
               )}
-              </>
-            )}
+
+
+              
             <section>
               {user&&(
               <CommentForm handleAddComment={handleAddComment} user={user} />
