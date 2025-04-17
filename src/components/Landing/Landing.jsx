@@ -76,8 +76,11 @@ const Landing = (props) => {
       }));
       setShowDeleteModal(false);
     } catch (error) {
-      console.error("Error deleting subchannel:", error);
-      alert("Failed to delete the subchannel.");
+// need some fix did not find the error
+      // console.error("Error deleting subchannel:", error);
+      // alert("Failed to delete the subchannel.");
+      window.location.reload();
+      setShowDeleteModal(false);
     }
   };
   
@@ -172,9 +175,9 @@ const Landing = (props) => {
 
               {(props.user?.admin || props.channel.moderators?.includes(props.user?.id))&& (
                 <>
-                <Link to={`${path}/newchannel`}>
+                {/* <Link to={`${path}/newchannel`}>
                   <button className="buttonsAddChannel">Add Channel</button>
-                </Link>
+                </Link> */}
                 <Link to={`${path}/reports`}>
                   <button className="buttonsAddChannel">REPORTS</button>
                 </Link>

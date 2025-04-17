@@ -21,6 +21,7 @@ const PostDetails = ({ user, handleDeletePost }) => {
 
   const [liked, setLiked] = useState(false);
   const [LikedComments, setLikedComments] = useState([]);
+  const [showDeleteModal, setShowDeleteModal] = useState(false); 
 
   const toggleLikeComment = async (commentId , postId) => {
     try {
@@ -111,41 +112,49 @@ const PostDetails = ({ user, handleDeletePost }) => {
             </Link>
               
               {isEditing ? (
-                <div>
-                  <textarea
-                    value={editText}
-                    onChange={(e) => setEditText(e.target.value)}
-                  />
-                  <button onClick={handleEditPost}>Save</button>
-                  <button onClick={() => setIsEditing(false)}>Cancel</button>
-                </div>
+              <div className="editBox">
+              <textarea
+                value={editText}
+                onChange={(e) => setEditText(e.target.value)}
+              />
+              <div className="editButtons">
+                <button onClick={handleEditPost}>Save</button>
+                <button onClick={() => setIsEditing(false)}>Cancel</button>
+              </div>
+            </div>
               ) : (
                 <>
-                <p>{post.text} </p>
-                <button onClick={() => setShowFile(!showFile)}>Show File</button>
-                <div className="postfile">
-                {showFile && post.file && (
-                post.file?.type?.includes('image') ? (
-                  <img src={post.file.link} alt="Post" />
-                ) : 
-                post.file?.type?.includes('video') ? (
-                  <video controls>
-                    <source src={post.file.link} type="video/mp4" />
-                  </video>
-                ) : post.file?.type?.includes('pdf') ? (  
-                  <div className="pdf-container"> 
-                  <iframe 
-                    src={post.file.link} 
-                    width="100%" 
-                    height="100%" 
-                    title={post.file.title} 
-                    className="file-preview-iframe" 
-                  />
-                </div>
-                ) : <> </>
+                <p>{post.text}</p>
+                {post.file && (
+                  <div className="postfile">
+                    <button className="toggleFileButton" onClick={() => setShowFile(!showFile)}>
+                      {showFile ? "Hide File" : "Show File"}
+                    </button>
+                    
+                    {showFile && (
+                      post.file.type.includes('image') ? (
+                        <img src={post.file.link} alt="Post" />
+                      ) : post.file.type.includes('video') ? (
+                        <video controls>
+                          <source src={post.file.link} type="video/mp4" />
+                        </video>
+                      ) : post.file.type.includes('pdf') ? (
+                        <div className="pdf-container">
+                          <iframe
+                            src={post.file.link}
+                            width="100%"
+                            height="500px"
+                            title={post.file.title}
+                            className="file-preview-iframe"
+                          />
+                        </div>
+                      ) : null
+                    )}
+                    
+                  </div>
                 )}
-                </div>
-                </>
+              </>
+              
                 
               )}
               <div className="postimg"><img src={post.image} alt="" /></div>
@@ -156,8 +165,8 @@ const PostDetails = ({ user, handleDeletePost }) => {
               {(post.user._id === user?.id)&&
                 <button className="editButton" onClick={() => setIsEditing(true)}>Edit</button>
               }
-                <button className="deleteButton" onClick={() => handleDeletePost(postid, path)}>Delete</button>
-                </div>
+                  <button className="deleteButton" onClick={() => setShowDeleteModal(true)}>Delete</button>
+                  </div>
 {/* Social Interaction Section */}
 {user && (
                 <div className="interactionBar">
@@ -185,7 +194,7 @@ const PostDetails = ({ user, handleDeletePost }) => {
                   <div className="interactionItem" onClick={() => toggleLike(post._id)}>
                     <img
                       src={(!hasUserLikedPost && liked) || (hasUserLikedPost && !liked)
-                        ? "/like.png"
+                        ? "/icons8-love-48.png"
                         : "/icons8-like-50.png"
                       
                       }
@@ -220,15 +229,23 @@ const PostDetails = ({ user, handleDeletePost }) => {
                       <header>
                         <div className="usernamecontener">
                           <div>{comment.user?.username}</div>
-                          <div>{new Date(comment.createdAt).toLocaleDateString()}</div>
+
+                          <div>
+                            {new Date(comment.createdAt).toLocaleDateString(
+                             navigator.language.startsWith('ar') ? 'ar-EG' : 'en-US',
+                            { year: 'numeric', month: 'long', day: 'numeric' 
+                        
+                            })}
+                         </div>
+
                         </div>
                         <div className="usercomment">{comment.text}</div>
                         {user && (
                         <div className="interactionItem" onClick={() => toggleLikeComment(comment._id ,post._id)}>
                           <img
                             src={(!hasUserLikedComment && isCommentLiked) || (hasUserLikedComment && !isCommentLiked)
-                              ? "/like.png"
-                              : "/icons8-like-50.png"
+                              ? "/icons8-love-48.png"
+                              : "/icons8-love-circled-50.png"
                             
                             }
                             alt="Likes"
@@ -252,6 +269,20 @@ const PostDetails = ({ user, handleDeletePost }) => {
           </div>
         </div>
       </div>
+      {showDeleteModal && (
+        <div className="modal-overlay">
+          <div className="modal-rtx">
+            <h3>Are you sure you want to delete this post?</h3>
+            <div className="modal-buttons">
+              <button className="confirm" onClick={() => {
+                handleDeletePost(postid, path);
+                setShowDeleteModal(false);
+              }}>Yes, Delete</button>
+              <button className="cancel" onClick={() => setShowDeleteModal(false)}>Cancel</button>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 };

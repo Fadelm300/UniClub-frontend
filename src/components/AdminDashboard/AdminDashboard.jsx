@@ -91,7 +91,7 @@ const refreshChannels = async () => {
     {/* Modal for adding new channel */}
       {showAddChannelModal && (
         <div className="modal-overlay">
-          <div className="modal-content">
+          <div className="modal-content1">
             <button className="close-modal" onClick={toggleAddChannelModal}>
               X
             </button>

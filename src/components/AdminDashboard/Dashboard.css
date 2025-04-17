@@ -3,7 +3,7 @@
 
 /* =-----------event ----------------- */
 .UpcomingEvents{
-  background-color: rgb(245, 244, 248);
+  background-color: rgb(255, 255, 255);
   width: 100%;
 }
 
@@ -47,8 +47,8 @@
   z-index: 1000;
 }
 
-.modal-content {
-  background-color: white;
+.modal-content1 {
+  background-color: rgba(227, 217, 217, 0);
   padding: 20px;
   border-radius: 10px;
   width: 400px;
