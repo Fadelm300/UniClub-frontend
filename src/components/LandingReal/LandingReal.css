@@ -98,19 +98,6 @@
 
 
 
-/* =--------------event -------------- */
-
-
-
-
-
-
-
-
-
-
-
-
 /* ----------landingimg------------------- */
 .landingimg {
   position: relative;
@@ -131,7 +118,7 @@
   background-color: rgba(105, 105, 105, 0.5);
   padding: 20px;
   border-radius: 8px;
-  font-size: 24px;
+  font-size: 17px;
   line-height: 1.4;
 }
 
@@ -173,7 +160,7 @@
 }
 
 .channelButtonun1 {
-  padding: 12px 25px;
+  padding: 10px 20px;
   background-image: linear-gradient(to right, #aadbee, #64caf1);
   border: none;
   border-radius: 8px;
@@ -182,6 +169,7 @@
   font-size: 1.2rem;
   color: #fff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  margin-right: 15px;
 }
 
 .channelButtonun1:hover {
@@ -194,14 +182,6 @@
 
 
 
-
-
-
-
-
-
-
-/* Responsive Design */
 
 
 

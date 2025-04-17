@@ -1,0 +1,95 @@
+.add-channel-container {
+  max-width: 420px;
+  margin: 30px auto;
+  padding: 24px 28px;
+  border-radius: 12px;
+  background: linear-gradient(to bottom right, #f9fafb, #ffffff);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  font-family: 'Poppins', sans-serif;
+  color: #1f2937;
+}
+
+.add-channel-container h2 {
+  font-size: 1.4rem;
+  text-align: center;
+  color: #2563eb;
+  font-weight: 700;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.add-channel-container h2::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: #2563eb;
+  margin: 8px auto 0;
+  border-radius: 2px;
+}
+
+.add-channel-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.add-channel-container label {
+  font-weight: 500;
+  margin-bottom: 5px;
+  display: block;
+  font-size: 0.9rem;
+}
+
+.add-channel-container input[type="text"],
+.add-channel-container textarea,
+.add-channel-container input[type="file"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.add-channel-container textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.add-channel-container input:focus,
+.add-channel-container textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.12);
+  outline: none;
+}
+
+.add-channel-container button {
+  padding: 10px 20px;
+  background-color: #2563eb;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-channel-container button:hover {
+  background-color: #1e40af;
+}
+
+.add-channel-container button:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.add-channel-container p {
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: #16a34a;
+  font-weight: 500;
+  text-align: center;
+}

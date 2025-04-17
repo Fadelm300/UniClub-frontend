@@ -1,193 +1,385 @@
-
-body {
-  background-color: #EDF2F4; /* Background Color */
-  color: #2B2D42; /* Text Color */
-  font-family: Arial, sans-serif;
-}
-
-
-
 .postmain {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
-  background-color: #f4f4f4;
+  padding: 30px;
+  background: linear-gradient(to right, #eef2f3, #d9e2ec);
+  min-height: 100vh;
 }
 
 .postform {
   width: 100%;
-  max-width: 800px;
-  background-image: linear-gradient(to right, #2cc1fb, #0197d3);
+  max-width: 850px;
+  background: linear-gradient(135deg, #ffffff, #f1f9ff);
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
 
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.postform:hover {
+  transform: scale(1.01);
 }
 
 .postContener {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
 }
 
 .PostShow {
   background-color: #ffffff;
   padding: 20px;
-  border-radius: 8px;
-
-  min-height: 300px;
-
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
-}
-
-.postfile {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-  width: 100%;
-}
-
-
-.postfile img, .postfile video, .file-preview-iframe {
-  border-radius: 20px;
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-
-}
-
-/* Comment Section */
-.commentShow {
-
-  background-image: linear-gradient(to right, #2cc1fb, #2cc1fb);
-  padding: 20px;
-  border-radius: 8px;
-  max-height: 400px;
-  overflow-y: auto;
-  margin-top: 20px;
-}
-
-.commentShow::-webkit-scrollbar {
-  display: none;
-}
-
-.comments {
-  background-color: #fff;
-  padding: 10px;
-  border-radius: 4px;
-  margin-top: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.usernamecontener {
-  display: flex;
-  justify-content: space-between;
-
-  color: #858181;
-  border-bottom: 1px solid #333;
-}
-
-.usercomment {
-  line-height: 1.5;
-
-  padding: 0px;
-  color: #858181;
-  border-bottom: 0.1px solid #333;
-}
-
-.deleteButton, .deleteButton2, .editButton {
-  width: 150px;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 6px;
-  font-size: 1rem;
-  cursor: pointer;
-  align-self: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
-}
-
-/* Buttons */
-.deleteButton {
-
-  background-color: #ff4c4c;
-}
-
-.deleteButton2 {
-  background-color: #ffc800;
-}
-
-.editButton {
-  background-color: #4c73ff;
-}
-
-.deleteButton:hover {
-  background-color: #ff1a1a;
-  transform: scale(1.05);
-}
-
-.deleteButton2:hover {
-  background-color: #e0a500;
-  transform: scale(1.05);
-}
-
-.editButton:hover {
-  background-color: #0eb73e;
-  transform: scale(1.05);
-}
-
-.buttonContainer {
-  display: flex;
-  gap: 40px;
-  justify-content: center;
-  margin-top: 40px;
-}
-
-.usercomment {
-  line-height: 1.5;
-  color: #2b2d42;
-}
-
-@media (max-width: 768px) {
-  .postform {
-      padding: 15px;
-  }
-
-  .PostShow, .commentShow {
-      padding: 15px;
-  }
-
-  .comments {
-      padding: 10px;
-  }
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  position: relative;
+  transition: all 0.3s ease;
 }
 
 .postimg {
   width: 100%;
   max-width: 300px;
-  overflow: hidden;
+  margin-top: 20px;
 }
 
 .postimg img {
   width: 100%;
-  height: auto;
+  border-radius: 12px;
   display: block;
+  object-fit: cover;
+}
+
+.interactionBar {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  background-color: #284c67;
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+  flex-wrap: wrap;
+}
+
+.interactionItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.interactionItem img {
+  width: 24px;
+  height: 24px;
+}
+
+.interactionItem:hover {
+  transform: scale(1.1);
+}
+
+.postfile {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.postfile img,
+.postfile video,
+.file-preview-iframe {
+  border-radius: 10px;
+  width: 100%;
+  max-width: 100%;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
 }
 
 .pdf-container {
   width: 100%;
-  max-height: 90vh; 
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  max-height: 90vh;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .file-preview-iframe {
+  border: none;
+  width: 100%;
+  height: 500px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.deleteButton,
+.editButton {
+  width: 130px;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.deleteButton {
+  background-color: #e63946;
+}
+.deleteButton:hover {
+  background-color: #d62828;
+  transform: scale(1.05);
+}
+
+.editButton {
+  background-color: #1d3557;
+}
+.editButton:hover {
+  background-color: #457b9d;
+  transform: scale(1.05);
+}
+
+.commentShow {
+  background: linear-gradient(to right, #f8fbff, #e1f0ff);
+  padding: 20px;
+  border-radius: 12px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.commentShow::-webkit-scrollbar {
+  width: 6px;
+}
+.commentShow::-webkit-scrollbar-thumb {
+  background-color: #bbb;
+  border-radius: 6px;
+}
+
+.comments {
+  background-color: #ffffff;
+  padding: 14px;
+  border-radius: 10px;
+  margin-top: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.usernamecontener {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: #666;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 6px;
+}
+
+.usercomment {
+  padding: 8px 0;
+  color: #333;
+  line-height: 1.6;
+}
+
+.comments .interactionItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  background-color: #ffffff;
+  padding: 6px 10px;
+  border-radius: 8px;
+  width: fit-content;
+  transition: transform 0.2s ease;
+  color: #31383f;
+}
+
+.comments .interactionItem:hover {
+  transform: scale(1.05);
+}
+
+.toggleFileButton {
+  background-color: #06b6d4;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.toggleFileButton:hover {
+  background-color: #0284c7;
+  transform: scale(1.05);
+}
+
+.popup-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* This centers the box */
+  
+  background-color: #4ade80;
+  color: white;
+  padding: 16px 24px;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  animation: fadeInOut 3s ease-in-out;
+  z-index: 10000;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translate(-50%, -60%); }
+  10% { opacity: 1; transform: translate(-50%, -50%); }
+  90% { opacity: 1; transform: translate(-50%, -50%); }
+  100% { opacity: 0; transform: translate(-50%, -40%); }
+}
+
+
+@media (max-width: 768px) {
+  .postform {
+    padding: 15px;
+  }
+
+  .PostShow,
+  .commentShow {
+    padding: 15px;
+  }
+
+  .interactionBar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .buttonContainer {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+
+.editBox {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 15px;
+  padding: 16px;
+  border: 2px solid #d1d5db;
+  border-radius: 10px;
+  background-color: #f9fafb;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.editBox textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  resize: vertical;
+  font-family: inherit;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.03);
+  background-color: #fff;
+}
+
+.editButtons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.editButtons button {
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.editButtons button:first-child {
+  background-color: #10b981; /* Save - green */
+  color: white;
+}
+.editButtons button:first-child:hover {
+  background-color: #059669;
+  transform: scale(1.05);
+}
+
+.editButtons button:last-child {
+  background-color: #f87171; /* Cancel - red */
+  color: white;
+}
+.editButtons button:last-child:hover {
+  background-color: #ef4444;
+  transform: scale(1.05);
+}
+.modal-overlay {
+  
+
   width: 100%;
   height: 100%;
-  border: none;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
 
+.modal-rtx {
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  text-align: center;
+  
+  background:  #31383f;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal h3 {
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.modal-buttons .confirm,
+.modal-buttons .cancel {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.modal-buttons .confirm {
+  background-color: #e63946;
+  color: white;
+}
+
+.modal-buttons .confirm:hover {
+  background-color: #d62828;
+}
+
+.modal-buttons .cancel {
+  background-color: #6c757d;
+  color: white;
+}
+
+.modal-buttons .cancel:hover {
+  background-color: #495057;
 }

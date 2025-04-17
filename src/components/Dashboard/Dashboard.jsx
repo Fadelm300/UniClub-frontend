@@ -1,10 +1,36 @@
 import { Link } from "react-router-dom";
-import './Dashboard.css';  
+import React, { useState, useEffect } from "react";
+// import './Dashboard.css'; 
 import UpcomingEvents from '../Events/UpcomingEvents/UpcomingEvents';
+import channelService from "../../services/channelService";
+ import ExpectSection from "../ExpectSection/ExpectSection"
+const Dashboard = ({ user }) => {
+  const [Channels, setChannels] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  useEffect(() => {
+    const fetchChannels = async () => {
+      try {
+        const data = await channelService.getbasechannel();
+        setChannels(data);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
 
+    fetchChannels();
+  }, []);
 
-const Dashboard = ({user}) => {
-
+const refreshChannels = async () => {
+    try {
+      const data = await channelService.getbasechannel(); // Re-fetch channels
+      setChannels(data);  // Update the state to trigger re-render
+    } catch (err) {
+      console.error("Error refreshing channels:", err);
+    }
+  };
 
   return (
 
@@ -22,95 +48,57 @@ const Dashboard = ({user}) => {
                 </div>
     
            
-    
-    
-                 <div className="uobabout">
-                       <div className="liftbox">
-                               <img className="imgintherightbox" src="/UOB1.jpg" alt="UoB pic" />
-                       </div>
-                       
-                       <div className="rightbox">
-                              <h1>About University of BAHRAIN</h1>
-                                 <p>
-                                   Learn more about the history, mission, and values of the University of B.
-                                 </p>
-                           <div className="unbutton">
-                                <Link to="/uob">
-                                 <button className="channelButtonun1">Learn More</button>
-                              </Link>
-                           </div>
-                        </div>
-                 </div>
-                 
-                 <div className="uobabout">
-                       <div className="liftbox">
-                               <img className="imgintherightbox" src="/OxfordImg.jpg" alt="OxfordImg" />
-                       </div>
-                       
-                       <div className="rightbox">
-                              <h1>About University of Oxford</h1>
-                                 <p>
-                                   Learn more about the history, mission, and values of the University of Oxford.
-                                 </p>
-                                 
-                           <div className="unbutton">
-                                <Link to="/oxf">
-                                 <button className="channelButtonun1">Learn More</button>
-                              </Link>
-                           </div>
-                        </div>
-                 </div>
-                 <div className="uobabout">
-                       <div className="liftbox">
-                               <img className="imgintherightbox" src="/ScienceUniversity.jpg" alt="ScienceUniversity" />
-                       </div>
-                       
-                          <div className="rightbox">
-                                    <h1>About University of Science University</h1>
-                                      <p>
-                                        Learn more about the history, mission, and values of the University of Science University.
-                                      </p>
-                                      
-                                <div className="unbutton">
-                                      <Link to="/oxf">
-                                      <button className="channelButtonun1">Learn More</button>
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
 
-{/* Polytechnic */}
+             <div className="channel-list">
+               {loading ? (
+                 <p>Loading channels...</p>
+               ) : error ? (
+                 <p>Error loading channels: {error}</p>
+               ) : (
+                 Channels.map((channel) => (
+                   <div className="uobabout" key={channel._id}>
+                     <div className="liftbox">
+                       <img
+                         className="imgintherightbox"
+                         src={channel.picture || "/default-channel-img.jpg"} // Fallback image if no image provided
+                         alt={channel.name}
+                       />
+                     </div>
+                     <div className="rightbox">
 
+                     <h1>{channel.titel}</h1>
+                       <h2>{channel.name}</h2>
+                       <p>{channel.description}</p>
 
-                        <div className="uobabout">
-                              <div className="liftbox">
-                                      <img className="imgintherightbox" src="/PT15.jpg" alt="PT15" />
-                              </div>
-                              
-                              <div className="rightbox">
-                                          <h1>About University of Bahrain Polytechnic</h1>
-                                            <p>
-                                              Learn more about the history, mission, and values of the University of Bahrain Polytechnic.
-                                            </p>
-                                            
-                                      <div className="unbutton">
-                                            <Link to="/poly">
-                                            <button className="channelButtonun1">Learn More</button>
-                                          </Link>
-                                      </div>
-                                </div>
-                        </div>
+                       <div className="unbutton">
+                         <Link to={`/${channel.path}`}>
+                           <button className="channelButtonun1">View More</button>
+                         </Link>
                         
-    <div className="UpcomingEvents">
+                       </div>
+                     </div>
+                   </div>
+                 ))
+               )}
+             </div>
+     
+
+
+    
+            <div className="UpcomingEvents">
+                          
                  <UpcomingEvents user={user}/>
                  
                  
                  </div>
+
+
                  
-               
-    
-    
-          
+
+            <ExpectSection/>
+
+
+
       </div>
           
       );

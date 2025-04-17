@@ -76,8 +76,11 @@ const Landing = (props) => {
       }));
       setShowDeleteModal(false);
     } catch (error) {
-      console.error("Error deleting subchannel:", error);
-      alert("Failed to delete the subchannel.");
+// need some fix did not find the error
+      // console.error("Error deleting subchannel:", error);
+      // alert("Failed to delete the subchannel.");
+      window.location.reload();
+      setShowDeleteModal(false);
     }
   };
   
@@ -102,7 +105,8 @@ const Landing = (props) => {
                           </Link>
                         )}
 
-                        
+            {props.user && (
+
                       <div className="navBar">
                         <Link to={`${path}/newpost`} className="navItem">
                           <img className="navIcon" src="/icons8-add-94.png" alt="Add Post" />
@@ -114,7 +118,7 @@ const Landing = (props) => {
                           <span>New File</span>
                         </Link>
                       </div>
-
+                        )}
 
             <span></span>
 
@@ -145,7 +149,7 @@ const Landing = (props) => {
         <div className="mainContentWithRightNav">
           <LeftNav/>
         <div className="mainContent">
-          <h1 className="titlename">{props.channel.name}</h1>
+          <h1 className="titlename">{props.channel.titel}</h1>
           <p>{props.channel.description}</p>
           <Link to={`${path}/members`}>
           <div>{members} {members==1?'member':'members'} </div>
@@ -171,9 +175,9 @@ const Landing = (props) => {
 
               {(props.user?.admin || props.channel.moderators?.includes(props.user?.id))&& (
                 <>
-                <Link to={`${path}/newchannel`}>
+                {/* <Link to={`${path}/newchannel`}>
                   <button className="buttonsAddChannel">Add Channel</button>
-                </Link>
+                </Link> */}
                 <Link to={`${path}/reports`}>
                   <button className="buttonsAddChannel">REPORTS</button>
                 </Link>

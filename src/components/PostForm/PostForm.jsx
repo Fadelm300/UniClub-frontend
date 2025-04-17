@@ -1,165 +1,21 @@
-// import { useState } from "react";
-// import "./PostForm.css";
-// import { useParams } from "react-router-dom";
-// import { deriveChannelPath } from "../../utils/helpers/urlHelpers";
-// import axios from "axios";
-// import ErrorModal from "../Events/ErrorModal/ErrorModal";
-
-// const BASE_URL = import.meta.env.VITE_BACKEND_URL;
-
-// const PostForm = ({ handleAddPost }) => {
-//   const { uni, college, major, course, event } = useParams();
-//   const path = deriveChannelPath({ uni, college, major, course, event });
-//   const [showErrorModal, setShowErrorModal] = useState(false);
-//   const [loading, setLoading] = useState(false);
-//   const [error, setError] = useState(null);
-//   const [formData, setFormData] = useState({
-//     text: "",
-//     image: "",
-//   });
-//   const [preview, setPreview] = useState(null);
-
-//   const handleChange = (evt) => {
-//     setFormData({ ...formData, [evt.target.name]: evt.target.value });
-//   };
-
-//   const handleSubmit = (evt) => {
-//     evt.preventDefault();
-//     handleAddPost(formData, path);
-//   };
-
-//   const convertBase64 = (file) => {
-//     return new Promise((resolve, reject) => {
-//       const fileReader = new FileReader();
-//       fileReader.readAsDataURL(file);
-
-//       fileReader.onload = () => {
-//         resolve(fileReader.result);
-//       };
-
-//       fileReader.onerror = (error) => {
-//         reject(error);
-//       };
-//     });
-//   };
-
-//   const uploadImage = async (event) => {
-//     const files = event.target.files[0];
-//     if (!files) return;
-
-//     setError("");
-//     setLoading(true);
-
-//     try {
-//       const base64 = await convertBase64(files);
-//       setPreview(base64); // Set the image preview
-//       const res = await axios.post(`${BASE_URL}/uploadImg`, { image: base64 });
-//       setFormData({ ...formData, image: res.data.url });
-//       setError("");
-//     } catch (err) {
-//       if (err.response && err.response.status === 413) {
-//         setError("The image is too large. Please upload a smaller file.");
-//       }
-//       setShowErrorModal(true);
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-
-//   return (
-//     <main>
-//       <div className="Postmain">
-//         <form onSubmit={handleSubmit} className="postform">
-//           <div className="postContener">
-//             <label htmlFor="">Add text for post</label>
-//             <input
-//               name="text"
-//               type="text"
-//               className="addpost"
-//               onChange={handleChange}
-//               required
-//             />
-//             <input
-//               id="image"
-//               name="image"
-//               onChange={handleChange}
-//               placeholder="URL"
-//             />
-//             <input
-//               type="file"
-//               id="image"
-//               name="image"
-//               accept="image/*"
-//               onChange={uploadImage}
-//             />
-
-//             {preview && (
-//               <img
-//                 src={preview}
-//                 alt="Image Preview"
-//                 style={{ maxWidth: "50%", height: "auto" }}
-//               />
-//             )}
-//             {loading && <p>Uploading image...</p>}
-//             {error && <p style={{ color: "red" }}>{error}</p>}
-//           </div>
-//           <button type="submit" className="submitpost">
-//             <img
-//               src="https://img.icons8.com/?size=70&id=24717&format=png&color=000000"
-//               alt="submit logo"
-//             />
-//           </button>
-//         </form>
-//         <ErrorModal
-//           show={showErrorModal}
-//           message={error}
-//           onClose={() => setShowErrorModal(false)}
-//         />
-//       </div>
-//     </main>
-//   );
-// };
-
-// export default PostForm;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-import Iframe from 'react-iframe'
-import { useState } from "react";
-import { useMemo } from "react";
-
-
-
+import Iframe from 'react-iframe';
+import { useState, useMemo, useEffect } from "react";
+import { motion } from 'framer-motion';
 import "./PostForm.css";
 import { useParams } from "react-router-dom";
 import { deriveChannelPath } from "../../utils/helpers/urlHelpers";
 import axios from "axios";
 import ErrorModal from "../Events/ErrorModal/ErrorModal";
-import postService from "../../services/postService"
-import { useEffect } from "react";
-
-
+import postService from "../../services/postService";
 
 const BASE_URL = import.meta.env.VITE_BACKEND_URL;
-const BAD_WORDS_API_URL = "https://api.apilayer.com/bad_words"; // Bad Words API endpoint
-const API_KEY = "j6Nztvto2ujilpZ5GrcFV7RXIyUU4Ll5"; // Your API key
+const BAD_WORDS_API_URL = "https://api.apilayer.com/bad_words";
+const API_KEY = "j6Nztvto2ujilpZ5GrcFV7RXIyUU4Ll5";
 
 const PostForm = ({ handleAddPost }) => {
   const { uni, college, major, course, event } = useParams();
   const path = deriveChannelPath({ uni, college, major, course, event });
+
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -172,25 +28,17 @@ const PostForm = ({ handleAddPost }) => {
   });
   const [file, setFile] = useState(null);
   const [openPreview, setOpenPreview] = useState(true);
-  
 
   const handleChange = (evt) => {
     const { name, value } = evt.target;
-    
     setFormData({ ...formData, [name]: value });
-    console.table(formData)
   };
 
-  
-
-  const handleFileChange = async (event) => {
+  const handleFileChange = (event) => {
     const file = event.target.files[0];
-    console.log(file);
-    setFormData({ ...formData, type: file.type, title : file.name });
+    setFormData({ ...formData, type: file.type, title: file.name });
     setFile(file);
-    
   };
-
 
   const fileDocument = useMemo(() => {
     return file ? window.URL.createObjectURL(file) : "";
@@ -216,11 +64,9 @@ const PostForm = ({ handleAddPost }) => {
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
-
     setLoading(true);
 
     const badWordsResult = await checkForBadWords(formData.text);
-
     if (badWordsResult?.bad_words_total > 0) {
       setError(
         `Your post contains inappropriate language: "${badWordsResult.censored_content}"`
@@ -252,88 +98,87 @@ const PostForm = ({ handleAddPost }) => {
     }
   };
 
-  
-
   return (
     <main>
       <div className="Postmain">
-        <form onSubmit={handleSubmit} className="postform">
+        <motion.form
+          onSubmit={handleSubmit}
+          className="postform"
+          initial={{ opacity: 0, y: 80, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
           <div className="postContener">
-            <label htmlFor="">Add text for post</label>
+            <label>Add text for post</label>
             <input
               name="text"
               type="text"
               className="addpost"
               onChange={handleChange}
               required
+              placeholder="What's on your mind?"
             />
-            <input
-              id="url"
-              name="url"
-              onChange={handleChange}
-              placeholder="URL"
-            />
+
             <input
               type="file"
               id="file"
               name="file"
               onChange={handleFileChange}
             />
+
             {file && (
-            <button
-              type="button"
-              onClick={() => setOpenPreview(!openPreview)}
-              className="preview-button"  
-            >
-              {openPreview ? "Hide" : "Show"} Preview
-            </button>
+              <button
+                type="button"
+                onClick={() => setOpenPreview(!openPreview)}
+                className="preview-button"
+              >
+                {openPreview ? "Hide" : "Show"} Preview
+              </button>
             )}
-            {(file&&openPreview)  && (
+
+            {file && openPreview && (
               <div className="file-preview">
-                    <div className="file-preview-info">
-                    <input
+                <div className="file-preview-info">
+                  <label htmlFor="">Title</label>
+                  <input
                     id="title"
                     name="title"
                     value={formData.title}
                     onChange={handleChange}
-                    placeholder="file title"
-                    />
-                    <input
+                    placeholder="File Title"
+                  />
+                  <label htmlFor="">description</label>
+                  <input
                     id="description"
                     name="description"
                     onChange={handleChange}
-                    placeholder="file description"
-                    />
-                    </div>
-                    {file.type === "application/pdf" ? (
-                      <iframe
-                        src={fileDocument}
-                        width="100%"
-                        height="100%"
-                        className="file-preview-iframe"
-                        display="initial"
-                        position="relative"
-                      />
-                    ):(
-                      <img
-                        src={fileDocument}
-                        alt="File to upload"
-                        className="file-preview-image"
-                      />
-                    )}
-                    
-                  
-                  
-                 
+                    placeholder="File Description"
+                  />
+                </div>
+                {file.type === "application/pdf" ? (
+                  <iframe
+                    src={fileDocument}
+                    width="100%"
+                    height="100%"
+                    className="file-preview-iframe"
+                  />
+                ) : (
+                  <img
+                    src={fileDocument}
+                    alt="File to upload"
+                    className="file-preview-image"
+                  />
+                )}
               </div>
             )}
+
             {loading && (
               <div className="loading-container">
-                <video 
-                  className="loading-animation" 
-                  autoPlay 
-                  loop 
-                  muted 
+                <video
+                  className="loading-animation"
+                  autoPlay
+                  loop
+                  muted
                   playsInline
                 >
                   <source src="../../../public/img/loading2.mp4" type="video/mp4" />
@@ -341,15 +186,26 @@ const PostForm = ({ handleAddPost }) => {
                 </video>
               </div>
             )}
+
             {error && <p style={{ color: "red" }}>{error}</p>}
           </div>
-          <button type="submit" className="submitpost" disabled={loading}>
-            <img
+
+          <motion.button
+            type="submit"
+            className="submitpost"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            disabled={loading}
+          >
+           <img
               src="https://img.icons8.com/?size=70&id=24717&format=png&color=000000"
-              alt="submit logo"
+              alt="submit"
+              className="submit-icon"
             />
-          </button>
-        </form>
+
+          </motion.button>
+        </motion.form>
+
         <ErrorModal
           show={showErrorModal}
           message={error}

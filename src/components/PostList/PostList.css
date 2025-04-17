@@ -130,7 +130,7 @@ a {
   width: 30px; 
   height: 30px; 
   cursor: pointer;
-  mix-blend-mode: multiply; /* Helps remove white */
+  mix-blend-mode: multiply; 
   filter: contrast(1.2) brightness(1.1);
 }
 .dawnCardText button {
@@ -142,7 +142,7 @@ a {
   cursor: pointer;    
 }
 .dawnCardText button img:hover {
-  transform: scale(1.1); /* تكبير بسيط عند التحويم */
+  transform: scale(1.1); 
 }
 
 @media (max-width: 768px) {
@@ -190,21 +190,21 @@ a {
   transform: translateY(-2px); 
 }
 
-.interactionItem:nth-child(1):hover, /* Share */
+.interactionItem:nth-child(1):hover, 
 
-.interactionItem:nth-child(2):hover { /* Save */
+.interactionItem:nth-child(2):hover { 
   background-color: rgba(0, 123, 255, 0.2); 
 }
 
-.interactionItem:nth-child(3):hover { /* Views */
-  background-color: rgba(0, 0, 255, 0.2); 
+.interactionItem:nth-child(3):hover { 
+  background-color: rgba(153, 153, 168, 0.2); 
 }
 
-.interactionItem:nth-child(4):hover { /* Comments */
+.interactionItem:nth-child(4):hover { 
   background-color: rgba(0, 255, 0, 0.2); 
 }
 
-.interactionItem:nth-child(5):hover { /* Likes */
+.interactionItem:nth-child(5):hover { 
   background-color: rgba(255, 0, 0, 0.2); 
 }
 
@@ -374,7 +374,6 @@ a {
   font-weight: bold;
   color: #007bff;
 }
-/* Styling for the buttons inside the reportContainer */
 .reportContainer button {
   background-color: #007bff;
   color: white;
@@ -417,6 +416,6 @@ a {
 
 .dawncardDate .date,
 .dawncardDate .time {
-  direction: rtl; /* For proper Arabic text alignment */
+  direction: rtl; 
   font-weight: bold;
 }

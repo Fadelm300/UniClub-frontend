@@ -1,58 +1,54 @@
-.FileContanir {
-  display: flex;
-  width: 100%; 
-  height: auto;
-  padding-top: 70px;
-}
-
-.cardsWrapper {
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.radomFiles {
-  width: 20%; 
-  background-color: #5aa9e6;
-  padding: 20px;
+/* Card Styles with Animation */
+.card2 {
+  width: 220px;
+  height: 320px;
+  background-image: linear-gradient(to right, #84d9ff, #57b7e6);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  align-items: center;
-}
-.dawnCard2 button{
-  background: none;            
-  border: none;                
-  cursor: pointer;            
-  transition: transform 0.3s; 
-}
-
-.deleteandEdit {
-  width: 25%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  border-radius: 20px;
+  margin: 10px;
   padding: 10px;
-  
-}
-.usernametxt{
-  font-size: 25px; 
-  color: white; 
-  padding-left: 10px;
-}
-.username {
-  width: 85%;
-  display: flex;
-  align-items: center;
-  padding: 5px;
+  border: 1.5px solid rgba(0, 0, 0, 0.2);
+  transition: transform 0.4s ease, box-shadow 0.3s ease;
+  animation: fadeSlideIn 0.6s ease forwards;
+  opacity: 0;
 }
 
-.fileimg img {
-  width: 50px; 
-  height: 50px; 
-  border-radius: 50%; 
-  background-color: #d0e2f0;
+.card2:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Animation for card appearance */
+@keyframes fadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px) scale(1);
+  }
+}
+
+/* File Icon image (pdf) */
+.PDFPng {
+  width: 100%;
+  max-width: 140px;
+  margin: auto;
+  transition: transform 0.3s ease;
+}
+
+.dawnCard2:hover .PDFPng {
+  transform: scale(1.1);
+}
+
+/* Icon Button Styles */
+.iconButton img.buttonIcon {
+  width: 4vh;
+  height: 4vh;
 }
 
 .iconButton {
@@ -67,69 +63,137 @@
   transform: scale(1.1);
 }
 
-.iconButton img.buttonIcon {
-  width: 5vh;
-  height: 5vh;
-}
-
-.card2 {
-  width: 200px;
-  height: 300px;
-  background-image: linear-gradient(to right, #84d9ff, #57b7e6);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+/* Filter Buttons */
+.filter-buttons {
   display: flex;
-  flex-direction:column;
-    border: 2px solid black;
-
-
-    border-radius: 20px;
-    margin: 6px;
-    padding: 10px;
-}
-.PDFPng{
-  width :80%;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  margin-top: 10px;
 }
 
-.topCard2 {
+.btn-filter {
+  padding: 10px 25px;
+  background-image: linear-gradient(to right, #84d9ff, #57b7e6);
+  color: white;
+  border: 2px solid #ffffff;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.btn-filter:hover {
+  background-image: linear-gradient(to right, #5aa9e6, #3b82f6);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-filter:active {
+  transform: scale(0.97);
+}
+
+/* File Container */
+.FileContanir {
+  display: flex;
   width: 100%;
-  height:11vh;
-  word-wrap: break-word;
-    overflow: hidden; 
-    display: flex;
-    border-bottom: 1px solid rgb(255, 255, 255)  ; 
-    
-
-   
+  height: auto;
+  padding-top: 70px;
 }
 
+/* Cards Wrapper */
+.cardsWrapper {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
 
+/* Random Files Section */
+.radomFiles {
+  width: 20%;
+  background-color: #5aa9e6;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Card Inner Content */
 .dawnCard2 {
   display: flex;
   justify-content: space-between;
   height: 100%;
-  flex-direction:column;
-padding: 0px;
-  /* background-image: linear-gradient(to right, #90cbdd, #73b5ce); */
+  flex-direction: column;
+  padding: 0px;
 }
 
 .fileTitle2 {
-  margin-top: 5px; 
+  margin-top: 5px;
   text-align: center;
   font-size: 11px;
   font-weight: bold;
   color: rgb(0, 0, 0);
 }
-.TitleforFile{
+
+.TitleforFile {
   color: rgb(33, 10, 244);
   font-weight: bold;
   font-size: 14px;
 }
 
+/* Top of the Card */
+.topCard2 {
+  width: 100%;
+  height: 11vh;
+  word-wrap: break-word;
+  overflow: hidden;
+  display: flex;
+  border-bottom: 1px solid rgb(255, 255, 255);
+}
 
+/* Username and Image */
+.username {
+  width: 85%;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
 
+.fileimg img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #d0e2f0;
+}
 
+.usernametxt {
+  font-size: 25px;
+  color: white;
+  padding-left: 10px;
+}
 
+/* Button Style */
+.deleteandEdit {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.dawnCard2 button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+/* Random Cards */
 .randomcards {
   background-color: white;
   width: 100%;
@@ -142,23 +206,10 @@ padding: 0px;
 }
 
 .randomcards h1 {
-  color: #00aaff ;
+  color: #00aaff;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* حق يطلع المسج في نص الصفحة  */
+/* Modal Styles */
 .modalOverlay {
   position: fixed;
   top: 0;
@@ -173,14 +224,14 @@ padding: 0px;
 
 .modalContent {
   background: #ffffff;
-  padding: 40px;                   
-  width: 80%;                      
-  max-width: 600px;               
-  border-radius: 12px;             
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); 
+  padding: 40px;
+  width: 80%;
+  max-width: 600px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   text-align: center;
-  position: relative;             
-  animation: fadeIn 0.3s ease-in;  
+  position: relative;
+  animation: fadeIn 0.3s ease-in;
 }
 
 .modalContent .closeButton {
@@ -190,25 +241,28 @@ padding: 0px;
   background: none;
   border: none;
   font-size: 20px;
-    cursor: pointer;
+  cursor: pointer;
   color: #666;
   transition: color 0.2s ease;
 }
 
 .modalContent .closeButton:hover {
-  color: #ff6b6b; 
+  color: #ff6b6b;
 }
 
-/* Animation for the modal appearance */
 @keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
-
 
 .modalActions {
   margin-top: 20px;
-  
 }
 
 .confirmButton, .cancelButton {
@@ -230,11 +284,29 @@ padding: 0px;
 }
 
 .confirmButton:hover {
-  background-color: #f80404; 
-  transform: scale(1.05);    
+  background-color: #f80404;
+  transform: scale(1.05);
 }
 
 .cancelButton:hover {
-  background-color: #c0c0c0; 
-  transform: scale(1.05);    
+  background-color: #c0c0c0;
+  transform: scale(1.05);
+}
+
+/* Media Query for responsiveness */
+@media (max-width: 768px) {
+  .cardsWrapper {
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card2 {
+    width: 90%;
+    height: auto;
+  }
+
+  .radomFiles {
+    display: none;
+  }
 }

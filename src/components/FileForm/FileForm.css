@@ -1,74 +1,104 @@
-.Filemain {
+.channel-main {
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-}
-
-.Fileform {
-    background-image: linear-gradient(to right, #82bdf8, #01bfff); /* Bright blue gradient */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    background: linear-gradient(120deg, #f0f4ff, #ffffff);
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /* Neumorphic style container */
+  .form-3d-container {
+    background: #e8ecf1;
+    border-radius: 20px;
+    padding: 40px 30px;
     width: 100%;
-    max-width: 600px;
+    max-width: 480px;
+    text-align: center;
+    box-shadow: 8px 8px 20px #d1d9e6, -8px -8px 20px #ffffff;
+  }
+  
+  .form-3d-container h2 {
+    color: #2d3a4b;
+    margin-bottom: 25px;
+  }
+  
+  .channel-form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-}
-
-.FileContener {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.Fileform label {
-    font-size: 1rem;
-    font-weight: bold;
-    color: #2b2d42;
-    margin-bottom: 5px;
-}
-
-.addFile {
-    padding: 10px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    width: 100%;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    transition: border-color 0.3s ease;
-}
-
-.addFile:focus {
-    background-image: linear-gradient(to right, #01bfff, #01bfff); /* Bright blue gradient */
-    outline: none;
-    box-shadow: 0 0 8px rgba(1, 151, 211, 0.2);
-}
-
-.Fileform button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    color: white;
-    background-image: linear-gradient(to right, #01bfff, #01bfff); /* Bright blue gradient */
+    gap: 18px;
+  }
+  
+  .channel-form input,
+  .channel-form textarea {
     border: none;
-    border-radius: 6px;
+    padding: 14px 18px;
+    border-radius: 14px;
+    background: #e8ecf1;
+    box-shadow: inset 4px 4px 10px #d1d9e6, inset -4px -4px 10px #ffffff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .channel-form input:focus,
+  .channel-form textarea:focus {
+    outline: none;
+    box-shadow: inset 2px 2px 6px #a1a9b1, inset -2px -2px 6px #ffffff;
+  }
+  
+  .submit-button {
+    background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 14px 20px;
+    border-radius: 25px;
     cursor: pointer;
-    align-self: center;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.Fileform button:hover {
-    background-color: #017bb3;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-@media (max-width: 768px) {
-    .Fileform {
-        padding: 15px;
-    }
-
-    .Fileform button {
-        width: 100%;
-    }
-}
+    transition: all 0.3s ease;
+  }
+  
+  .submit-button:hover {
+    background: linear-gradient(135deg, #0ea5e9, #0284c7);
+  }
+  
+  /* Modal */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+  }
+  
+  .modal-content {
+    background: #fff;
+    padding: 30px 50px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  }
+  
+  .modal-content h3 {
+    color: #16a34a;
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+  }
+  
+  .close-modal {
+    padding: 10px 22px;
+    background-color: #0ea5e9;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .close-modal:hover {
+    background-color: #0284c7;
+  }
+  

@@ -61,8 +61,8 @@ const PostList = (props) => {
     try {
       const response = await postService.reportPost(postId, reportReason);
       alert("Report submitted successfully");
-      setReportingPost(null); // Hide the report form after submission
-      setReportReason(""); // Reset the reason field
+      setReportingPost(null); 
+      setReportReason(""); 
     } catch (error) {
       console.error("Error reporting post:", error.message);
       alert(`Failed to submit report: ${error.message || "Unknown error"}`);

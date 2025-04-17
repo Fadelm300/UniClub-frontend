@@ -12,6 +12,8 @@ const AdminDashboard = ({ user }) => {
   const [showAddChannelModal, setShowAddChannelModal] = useState(false); // State to control modal visibility
   const [showDeleteModal33, setShowDeleteModal33] = useState(false);
   const [channelToDelete33, setChannelToDelete33] = useState(null);
+  const [deleteFeedbackMessage, setDeleteFeedbackMessage] = useState('');
+
   useEffect(() => {
     const fetchChannels = async () => {
       try {
@@ -44,15 +46,17 @@ const refreshChannels = async () => {
     if (!channelToDelete33) return;
     try {
       await channelService.deleteChannel(channelToDelete33);
-      setChannels((prevChannels) => prevChannels.filter((channel) => channel.path !== channelToDelete33));
-      setShowDeleteModal33(false);
+      setChannels((prevChannels) =>
+        prevChannels.filter((channel) => channel.path !== channelToDelete33)
+      );
+      setDeleteFeedbackMessage('✅ Channel has been deleted successfully.');
       setChannelToDelete33(null);
-      alert("Channel deleted successfully.");
     } catch (error) {
       console.error("Error deleting channel:", error);
-      alert("Failed to delete the channel.");
+      setDeleteFeedbackMessage('❌ Failed to delete the channel.');
     }
   };
+  
 
   const toggleAddChannelModal = () => {
     setShowAddChannelModal(!showAddChannelModal);
@@ -87,7 +91,7 @@ const refreshChannels = async () => {
     {/* Modal for adding new channel */}
       {showAddChannelModal && (
         <div className="modal-overlay">
-          <div className="modal-content">
+          <div className="modal-content1">
             <button className="close-modal" onClick={toggleAddChannelModal}>
               X
             </button>
@@ -117,11 +121,14 @@ const refreshChannels = async () => {
                        />
                      </div>
                      <div className="rightbox">
-                       <h1>{channel.name}</h1>
+                       <h1>{channel.titel}</h1>
+                       <h2>{channel.name}</h2>
                        <p>{channel.description}</p>
+
+
                        <div className="unbutton">
                          <Link to={`/${channel.path}`}>
-                           <button className="channelButtonun1">Learn More</button>
+                           <button className="channelButtonun1">View More</button>
                          </Link>
                          <button
                            className="deleteButton"
@@ -139,132 +146,36 @@ const refreshChannels = async () => {
              {showDeleteModal33 && (
   <div className="modal-overlay">
     <div className="modal-content">
-      <p>Are you sure you want to delete this channel?</p>
-      <button className="confirm-button" onClick={handleConfirmDelete33}>Confirm</button>
-      <button className="cancel-button" onClick={() => setShowDeleteModal33(false)}>Cancel</button>
+      {deleteFeedbackMessage ? (
+        <>
+          <p>{deleteFeedbackMessage}</p>
+          <button
+            className="confirm-button"
+            onClick={() => {
+              setShowDeleteModal33(false);
+              setDeleteFeedbackMessage('');
+            }}
+          >
+            Close
+          </button>
+        </>
+      ) : (
+        <>
+          <p>Are you sure you want to delete this channel?</p>
+          <button className="confirm-button" onClick={handleConfirmDelete33}>Confirm</button>
+          <button className="cancel-button" onClick={() => {
+            setShowDeleteModal33(false);
+            setChannelToDelete33(null);
+          }}>
+            Cancel
+          </button>
+        </>
+      )}
     </div>
   </div>
 )}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-                 <div className="uobabout">
-                       <div className="liftbox">
-                               <img className="imgintherightbox" src="/UOB1.jpg" alt="UoB pic" />
-                       </div>
-                       
-                       <div className="rightbox">
-                              <h1>About University of BAHRAINB</h1>
-                                 <p>
-                                   Learn more about the history, mission, and values of the University of B.
-                                 </p>
-                           <div className="unbutton">
-                                <Link to="/uob">
-                                 <button className="channelButtonun1">Learn More</button>
-                              </Link>
-                           </div>
-                        </div>
-                 </div>
-                 
-
-
-
-                 <div className="uobabout">
-                       <div className="liftbox">
-                               <img className="imgintherightbox" src="/OxfordImg.jpg" alt="OxfordImg" />
-                       </div>
-                       
-                       <div className="rightbox">
-                              <h1>About University of Oxford</h1>
-                                 <p>
-                                   Learn more about the history, mission, and values of the University of Oxford.
-                                 </p>
-                                 
-                           <div className="unbutton">
-                                <Link to="/oxf">
-                                 <button className="channelButtonun1">Learn More</button>
-                              </Link>
-                           </div>
-                        </div>
-                        
-                 </div>
-                 
-
-
-{/* Oxford */}
-                 <div className="uobabout">
-                       <div className="liftbox">
-                               <img className="imgintherightbox" src="/ScienceUniversity.jpg" alt="ScienceUniversity" />
-                       </div>
-                       
-                          <div className="rightbox">
-                                    <h1>About University of Science University</h1>
-                                      <p>
-                                        Learn more about the history, mission, and values of the University of Science University.
-                                      </p>
-                                      
-                                <div className="unbutton">
-                                      <Link to="/oxf">
-                                      <button className="channelButtonun1">Learn More</button>
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
-
-{/* Polytechnic */}
-
-
-                        <div className="uobabout">
-                              <div className="liftbox">
-                                      <img className="imgintherightbox" src="/PT15.jpg" alt="PT15" />
-                              </div>
-                              
-                              <div className="rightbox">
-                                          <h1>About University of Bahrain Polytechnic</h1>
-                                            <p>
-                                              Learn more about the history, mission, and values of the University of Bahrain Polytechnic.
-                                            </p>
-                                            
-                                      <div className="unbutton">
-                                            <Link to="/poly">
-                                            <button className="channelButtonun1">Learn More</button>
-                                          </Link>
-                                      </div>
-                                </div>
-                        </div>
-
-                        
-               
-
-             
-                        
-            
-                           
-
-                
     
     
             <div className="UpcomingEvents">
