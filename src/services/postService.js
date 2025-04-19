@@ -1,5 +1,6 @@
 const BASE_URL = `${import.meta.env.VITE_BACKEND_URL}/posts`;
 const USER_URL = `${import.meta.env.VITE_BACKEND_URL}/users`; 
+import { a } from "framer-motion/client";
 import { containsBannedWords } from "../utils/helpers/bannedwords";
 
 const index = async () => {
@@ -317,6 +318,46 @@ const checkImg = async (url) => {
   }
 };
 
+const allowPost = async (postId) => {
+  try {
+    const res = await fetch(`${BASE_URL}/allow/${postId}`, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to allow post");
+    }
+
+    return res.json();
+  } catch (error) {
+    console.error("Error allowing post:", error);
+    throw error;
+  }
+}
+
+const deleteFlagged = async (postId) => {
+  try {
+    const res = await fetch(`${BASE_URL}/deleteflagged/${postId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to delete flagged post");
+    }
+
+    return res.json();
+  } catch (error) {
+    console.error("Error deleting flagged post:", error);
+    throw error;
+  }
+}
+
 
 
 export default { 
@@ -336,4 +377,6 @@ export default {
   deleteReport,
   blockUser, // Added blockUser function to the service
   checkImg,
+  allowPost,
+  deleteFlagged
 };
