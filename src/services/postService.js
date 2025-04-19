@@ -1,5 +1,6 @@
 const BASE_URL = `${import.meta.env.VITE_BACKEND_URL}/posts`;
 const USER_URL = `${import.meta.env.VITE_BACKEND_URL}/users`; 
+import { containsBannedWords } from "../utils/helpers/bannedwords";
 
 const index = async () => {
   try {
@@ -46,8 +47,22 @@ const upload = async () =>{
 }
 
 const create = async (formData, path) => {
-  const isFormData = formData instanceof FormData; // Check if data includes a file
 
+  const options = {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(formData),
+  };
+
+  const res = await fetch(`${BASE_URL}/postpost${path}`, options);
+  return res.json();
+};
+
+const createFlaged = async (formData, path) => {
+  
   const options = {
     method: "POST",
     headers: {
@@ -289,6 +304,32 @@ const blockUser = async (userId, duration) => {
   }
 };
 
+const checkImg = async (url) => {
+  try {
+    console.log(import.meta.env.img_classifer_key);
+    const response = await fetch(`https://api.apilayer.com/image_labeling/url?url=${url}`, {
+      method: "GET",
+      headers: {
+        "apikey": import.meta.env.VITE_img_classifer_key,
+      },
+      
+    });
+    const TorF=containsBannedWords(await response.json());
+    console.log("TorF",TorF);
+
+
+    if (!response.ok) {
+      throw new Error("Failed to check image");
+    }
+
+    return TorF;
+  }
+  catch (error) {
+    console.error("Error checking image:", error);
+    throw error;
+  }
+};
+
 
 
 export default { 
@@ -307,4 +348,6 @@ export default {
   deleteAllReports,
   deleteReport,
   blockUser, // Added blockUser function to the service
+  checkImg,
+  createFlaged
 };

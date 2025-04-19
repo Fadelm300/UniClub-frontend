@@ -24,7 +24,7 @@ const PostForm = ({ handleAddPost }) => {
     link: "",
     title: "",
     description: "",
-    type: ""
+    type: "",
   });
   const [file, setFile] = useState(null);
   const [openPreview, setOpenPreview] = useState(true);
@@ -87,6 +87,14 @@ const PostForm = ({ handleAddPost }) => {
       method: 'PUT',
       body: file,
      });
+     if(formData.type.includes('image')){
+      const TorF=postService.checkImg(response.publicUrl);
+      if (TorF){
+        postService.createflaged(formDataLink, path);
+      }
+
+
+    }
       handleAddPost(formDataLink, path);
       setError(null);
       setLoading(false);

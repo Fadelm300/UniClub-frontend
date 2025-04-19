@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import './PostList.css';
 import postService from '../../services/postService';
 import { useState } from 'react';
+import { filter } from 'framer-motion/client';
 
 const PostList = (props) => {
   if (!props.posts || props.posts.length === 0) return <main>No posts yet...</main>;
@@ -171,7 +172,8 @@ const PostList = (props) => {
                       {/* <img src={post.image} alt="" /> */}
                       {post.file &&
                       post.file?.type?.includes('image') ? (
-                        <img src={post.file.link} alt="Post" />
+                        <img src={post.file.link} alt="Post"  style={{ filter: `blur(${0}px)` }}/>
+                        
                       ) : 
                       post.file?.type?.includes('video') ? (
                         <video controls>
