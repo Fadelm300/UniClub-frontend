@@ -61,20 +61,7 @@ const create = async (formData, path) => {
   return res.json();
 };
 
-const createFlaged = async (formData, path) => {
-  
-  const options = {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(formData),
-  };
 
-  const res = await fetch(`${BASE_URL}/postpost${path}`, options);
-  return res.json();
-};
 
 
 const deletePost = async (postId, path) => {
@@ -349,5 +336,4 @@ export default {
   deleteReport,
   blockUser, // Added blockUser function to the service
   checkImg,
-  createFlaged
 };
