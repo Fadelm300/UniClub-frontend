@@ -24,7 +24,8 @@ const PostForm = ({ handleAddPost }) => {
     link: "",
     title: "",
     description: "",
-    type: ""
+    type: "",
+    flag: false,
   });
   const [file, setFile] = useState(null);
   const [openPreview, setOpenPreview] = useState(true);
@@ -87,6 +88,17 @@ const PostForm = ({ handleAddPost }) => {
       method: 'PUT',
       body: file,
      });
+     if(formData.type.includes('image')){
+      const TorF=postService.checkImg(response.publicUrl);
+      if (TorF){
+        formDataLink.flag=true;
+        setLoading(false);
+        setError("Your post has been flagged for inappropriate content and is under review.");
+        setShowErrorModal(true);
+        handleAddPost(formDataLink, path);
+        return;
+      }
+    }
       handleAddPost(formDataLink, path);
       setError(null);
       setLoading(false);
