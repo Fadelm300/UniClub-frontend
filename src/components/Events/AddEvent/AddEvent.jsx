@@ -5,6 +5,7 @@ import axios from "axios";
 import EventService from "../../../services/EventService";
 import ErrorModal from "../ErrorModal/ErrorModal";
 import "./AddEvent.css";
+import postService from "../../../services/postService";
 
 const AddEvent = () => {
   const [formData, setFormData] = useState({
@@ -17,6 +18,7 @@ const AddEvent = () => {
   });
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [file, setFile] = useState(null);
   const [url, setUrl] = useState("");
   const [showErrorModal, setShowErrorModal] = useState(false);
   const BASE_URL = import.meta.env.VITE_BACKEND_URL;
@@ -26,8 +28,13 @@ const AddEvent = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
   
     const selectedDateTime = new Date(`${formData.date}T${formData.time}`);
     const now = new Date();
@@ -37,9 +44,21 @@ const AddEvent = () => {
       setShowErrorModal(true);
       return;
     }
+
+    if (file){
+      const response = await postService.upload();
+      const formDataLink=({ ...formData, image: response.publicUrl });
+      const { url: uploadUrl } = response;
+      
   
-    try {
+    const r2 = await fetch(uploadUrl, { 
+      method: 'PUT',
+      body: file,
+    });
+      await EventService.addEvent(formDataLink);
+    }else{
       await EventService.addEvent(formData);
+    }
       setFormData({
         title: '',
         description: '',
@@ -148,9 +167,9 @@ const AddEvent = () => {
         />
         <div className="file-upload">
           <label htmlFor="image" className="upload-label">
-            {loading ? "Uploading..." : formData.image ? "✅ Image Uploaded" : "Upload Image"}
+            {loading ? "Uploading..." : file ? "✅ Image Uploaded" : "Upload Image"}
           </label>
-          <input type="file" id="image" name="image" onChange={uploadImage} />
+          <input type="file" accept="image/*" id="image" name="image" onChange={handleFileChange} />
         </div>
         <motion.button
           type="submit"
