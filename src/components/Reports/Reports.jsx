@@ -169,6 +169,13 @@ const Reports = (props) => {
         </table>
       )}
 
+
+
+
+
+
+
+
       {/* Modal */}
       {modalData && (
         <div className="Report-modal-overlay">

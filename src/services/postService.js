@@ -306,5 +306,5 @@ export default {
   submitReport,
   deleteAllReports,
   deleteReport,
-  blockUser, // Added blockUser function to the service
+  blockUser, 
 };
