@@ -240,26 +240,7 @@
 }
 
 
-@media (max-width: 768px) {
-  .postform {
-    padding: 15px;
-  }
 
-  .PostShow,
-  .commentShow {
-    padding: 15px;
-  }
-
-  .interactionBar {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .buttonContainer {
-    flex-direction: column;
-    gap: 10px;
-  }
-}
 
 
 .editBox {
@@ -383,3 +364,39 @@
 .modal-buttons .cancel:hover {
   background-color: #495057;
 }
+
+
+.post-detail-user-image {
+  display: flex;
+  align-items: center;
+  gap: 12px; 
+  padding: 8px 16px;
+  border-radius: 12px;
+  transition: background-color 0.2s ease;
+  text-decoration: none;
+  color: inherit;
+  margin-bottom: 10px;
+}
+.post-detail-user-image:hover h4 {
+  text-decoration: underline #017bb3 0.1px ;
+}
+
+
+
+.post-detail-user-image img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #017bb3;
+
+}
+
+.post-detail-user-image h4 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 600;
+  color: #333;
+  
+}
+

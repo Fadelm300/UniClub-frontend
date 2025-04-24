@@ -4,6 +4,7 @@ import authService from '../../services/authService';
 import './UserProfile.css';
 import axios from 'axios';
 import ErrorModal  from '../Events/ErrorModal/ErrorModal'
+
 const UserProfile = () => {
   const { userId } = useParams();
   const [user, setUser] = useState(null);
@@ -11,6 +12,7 @@ const UserProfile = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [expandedPosts, setExpandedPosts] = useState({});
+  const [expandedComments, setExpandedComments] = useState({});
 
   // Edit state
   const [isEditing, setIsEditing] = useState(false);
@@ -99,6 +101,14 @@ const UserProfile = () => {
       [postId]: !prev[postId]
     }));
   };
+  
+  const toggleCommentVisibility = (commentId) => {
+    setExpandedComments((prev) => ({
+      ...prev,
+      [commentId]: !prev[commentId],
+    }));
+  };
+  
 
   const handleEditProfile = async () => {
     try {
@@ -162,6 +172,8 @@ const UserProfile = () => {
 
 
   const maxLength = 100;
+  const maxLengthForCommintSection = 60;
+  const commentMaxLength = 150;
 
   const convertBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -225,7 +237,12 @@ const UserProfile = () => {
   if (error) return <div>Error: {error}</div>;
 
   return (
+
     <div className="user-profile">
+   <div className="background-animation"></div>
+
+
+      <div className='profile-header-container'>
       <div className="profile-header">
         <div className="imgside">
         <img
@@ -283,7 +300,7 @@ const UserProfile = () => {
           </div>
         ) : (
           <div className="profile-info">
-            <h1>{user?.username}</h1>
+          <h1>{user?.username.charAt(0).toUpperCase() + user?.username.slice(1)}</h1>
             {user?.blockedUntil && (
                 <p className="blocked-info">
                   🛑 <strong>Posting Blocked Until:</strong> {formatBlockedDate(user.blockedUntil)}
@@ -308,7 +325,12 @@ const UserProfile = () => {
           </div>
         )}
       </div>
-      
+      </div>
+
+
+
+
+
         {/* Followers Modal */}
         {showFollowersModal && (
                 <div className="modal">
@@ -351,21 +373,66 @@ const UserProfile = () => {
 
 
 
+
+                        <div className='user-profile-body'>
+                        {/* <div className='user-profile-ads'>
+                                  <div className="randomcards"><h1>111</h1></div>
+                                  <div className="randomcards"><h1>111</h1></div>
+                                  <div className="randomcards"><h1>111</h1></div>
+                                  <div className="randomcards"><h1>111</h1></div>
+                              
+                            
+                        </div> */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       <div className="user-posts">
-        <h2>Posts</h2>
+        <h2>My Posts</h2>
         {posts.length === 0 ? (
           <p>No posts yet</p>
         ) : (
           <ul>
             {posts.map((post) => (
               <li key={post._id} className="post-item">
+                <span className="post-label">Post text:</span>{' '}
+
                 <Link to={`/${post.path}/post/${post._id}`}>
                   {expandedPosts[post._id]
                     ? post.text
                     : post.text.length > maxLength
-                    ? `${post.text.substring(0, maxLength)}...`
+                    ? `Post text: ${post.text.substring(0, maxLength)}...`
                     : post.text}
                 </Link>
+                {post.file && (
+                  <div className="post-media-wrapper">
+                    {post.file.type.includes('image') ? (
+                      <img
+                        src={post.file.link}
+                        alt="Post media"
+                        className="post-media-profile"
+                      />
+                    ) : post.file.type.includes('video') ? (
+                      <video controls className="post-media-profile">
+                        <source src={post.file.link} type="video/mp4" />
+                      </video>
+                    ) : null}
+                  </div>
+                )}
+
+            
+        
                 {post.text.length > maxLength && !expandedPosts[post._id] && (
                   <button className="see-more" onClick={() => togglePostVisibility(post._id)}>
                     Click to see more details
@@ -376,11 +443,124 @@ const UserProfile = () => {
                     Click to see less
                   </button>
                 )}
+
               </li>
             ))}
           </ul>
         )}
       </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{/* user profile comment  */}
+
+
+      <div className='user-profile-comments'>
+  <h2>Comments on my Posts</h2>
+  {posts.length === 0 ? (
+    <p>No posts or Comments  yet</p>
+  ) : (
+    <ul>
+      {posts
+        .filter((post) => post.comments && post.comments.length > 0)
+        .map((post) => (
+          <li key={post._id} className="post-item">
+          <div className="comment-section">
+            
+            <div className="post-item-for-comment">
+              <span className="post-label">Post text: </span>
+        
+              <Link to={`/${post.path}/post/${post._id}`} className="post-text-link">
+                {expandedPosts[post._id]
+                  ? post.text
+                  : post.text.length > maxLengthForCommintSection
+                  ? `${post.text.substring(0, maxLengthForCommintSection)}...`
+                  : post.text}
+              </Link>
+        
+              {post.text.length > maxLengthForCommintSection && !expandedPosts[post._id] && (
+                <button className="see-more" onClick={() => togglePostVisibility(post._id)}>
+                  Click to see more details
+                </button>
+              )}
+              {expandedPosts[post._id] && (
+                <button className="see-less" onClick={() => togglePostVisibility(post._id)}>
+                  Click to see less
+                </button>
+              )}
+            </div>
+        
+            {post.comments.map((comment) => (
+              <div key={comment._id} className="comment">
+                <div className="comment-header">
+                  <Link
+                    to={
+                      String(comment.user._id) === String(user?._id)
+                        ? `/profile/${comment.user._id}`
+                        : `/userlist/${comment.user._id}`
+                    }
+                    className="comment-user-link"
+                  >
+                    <img
+                      className="comment-avatar"
+                      src={comment.user?.image || DEFAULT_IMAGE_URL}
+                      alt="commenter"
+                    />
+                    <strong>{comment.user?.username || 'Unknown'}</strong>
+                  </Link>
+                </div>
+
+
+                <p className="comment-text">
+                    {expandedComments[comment._id]
+                      ? comment.text
+                      : comment.text.length > commentMaxLength
+                      ? `${comment.text.substring(0, commentMaxLength)}...`
+                      : comment.text}
+                  </p>
+
+                  {comment.text.length > commentMaxLength && !expandedComments[comment._id] && (
+                    <button className="see-more" onClick={() => toggleCommentVisibility(comment._id)}>
+                      Click to see more details
+                    </button>
+                  )}
+                  {expandedComments[comment._id] && (
+                    <button className="see-less" onClick={() => toggleCommentVisibility(comment._id)}>
+                      Click to see less
+                    </button>
+                  )}
+                </div>
+              
+            ))}
+          </div>
+        </li>
+        
+        ))}
+    </ul>
+  )}
+</div>
+
+
+
+
+
+
+</div>
+
+
+
 
       {showDeleteConfirm && (
         <div className="modal">
@@ -413,6 +593,8 @@ const UserProfile = () => {
         onClose={() => setShowErrorModal(false)}
         errorMessage={error}
       />
+
+
     </div>
   );
 };

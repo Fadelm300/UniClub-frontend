@@ -107,10 +107,21 @@ const PostDetails = ({ user, handleDeletePost }) => {
         <div className="postform">
           <div className="postContener">
             <div className="PostShow">
-            <Link to={`/userlist/${post.user._id}`}>
-              <h4>{post.user.username}</h4>
+
+
+
+              
+            <Link to={post.user._id === user?.id ? `/profile/${post.user._id}` : `/userlist/${post.user._id}`}>
+            <div className="post-detail-user-image">
+                    <img src={post.user.image || DEFAULT_IMAGE_URL} alt="Post Image" />
+                   <h4>{post.user.username}</h4>
+                  </div>
             </Link>
               
+
+
+
+
               {isEditing ? (
               <div className="editBox">
               <textarea
@@ -223,6 +234,7 @@ const PostDetails = ({ user, handleDeletePost }) => {
               {user&&(
               <CommentForm handleAddComment={handleAddComment} user={user} />
             )}
+            
               {!post.comments.length && <p>There are no comments.</p>}
               <div className="commentShow">
                 <h4>Replies</h4>
@@ -234,8 +246,10 @@ const PostDetails = ({ user, handleDeletePost }) => {
                     <article>
                       <header>
                         <div className="usernamecontener">
-                          <div>{comment.user?.username}</div>
+                        <Link to={comment.user._id === user?.id ? `/profile/${comment.user._id}` : `/userlist/${comment.user._id}`}>
 
+                          <div>{comment.user?.username}</div>
+                          </Link>
                           <div>
                             {new Date(comment.createdAt).toLocaleDateString(
                              navigator.language.startsWith('ar') ? 'ar-EG' : 'en-US',
