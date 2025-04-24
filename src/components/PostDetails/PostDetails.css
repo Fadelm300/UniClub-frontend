@@ -240,26 +240,7 @@
 }
 
 
-@media (max-width: 768px) {
-  .postform {
-    padding: 15px;
-  }
 
-  .PostShow,
-  .commentShow {
-    padding: 15px;
-  }
-
-  .interactionBar {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .buttonContainer {
-    flex-direction: column;
-    gap: 10px;
-  }
-}
 
 
 .editBox {
@@ -394,6 +375,7 @@
   transition: background-color 0.2s ease;
   text-decoration: none;
   color: inherit;
+  margin-bottom: 10px;
 }
 .post-detail-user-image:hover h4 {
   text-decoration: underline #017bb3 0.1px ;
@@ -417,3 +399,4 @@
   color: #333;
   
 }
+

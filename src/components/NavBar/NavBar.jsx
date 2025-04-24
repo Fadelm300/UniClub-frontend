@@ -36,7 +36,8 @@ const NavBar = ({ user, handleSignout }) => {
                         src={user?.image || DEFAULT_IMAGE_URL}
                         alt="User Avatar"
                       />
-                  <div className='username-nav'>{user.username}</div>
+                  <div className='username-nav'>{user.username.charAt(0).toUpperCase() + user?.username.slice(1)}</div>
+                  
                 </Link>
               </li>
               <li>
