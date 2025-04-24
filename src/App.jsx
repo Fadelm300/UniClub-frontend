@@ -66,7 +66,9 @@ const App = () => {
   const handleAddPost = async (formData,path) => {
     const newPost = await postService.create(formData , path);
     setPosts([...posts, newPost]);
+    if(!formData.flag) {
     navigate(path);
+    }
   }
   const handleAddFile = async (formData,path) => {
     const newFile = await FileService.create(formData , path);
