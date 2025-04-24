@@ -3,7 +3,8 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import authService from '../../services/authService';
 import './UserProfile.css';
 import axios from 'axios';
-import ErrorModal  from '../Events/ErrorModal/ErrorModal'
+import ErrorModal  from '../Events/ErrorModal/ErrorModal';
+import postService from '../../services/postService';
 const UserProfile = () => {
   const { userId } = useParams();
   const [user, setUser] = useState(null);
@@ -20,6 +21,7 @@ const UserProfile = () => {
     email: '',
     image: ''
   });
+  const [file, setFile] = useState(null);
   const [loading2, setLoading2] = useState(false);
   const [error2, setError2] = useState(null);
   // Confirmation modals
@@ -108,8 +110,23 @@ const UserProfile = () => {
         email: editData.email,
         image: editData.image
       };
-      const response = await authService.updateUserProfile(userId, updatedUser);
-      setUser(response.user);
+
+      if (file){
+        const response0 = await postService.upload();
+        const updatedUserLink=({ ...updatedUser, image: response0.publicUrl });
+        const { url: uploadUrl } = response0;
+        
+    
+        const r2 = await fetch(uploadUrl, { 
+        method: 'PUT',
+        body: file,
+        });
+        const response = await authService.updateUserProfile(userId, updatedUserLink);
+        setUser(response.user);
+      }else{
+        const response = await authService.updateUserProfile(userId, updatedUser);
+        setUser(response.user);
+      }
       setIsEditing(false); // Exit edit mode
       setShowEditConfirm(false); // Close modal
     } catch (error) {
@@ -137,6 +154,11 @@ const UserProfile = () => {
       [name]: value
     }));
   };
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+
 
   const resetToDefaultImage = async () => {
     try {
@@ -263,8 +285,10 @@ const UserProfile = () => {
             <input type="file" 
             id="image" 
             name="image" 
-            onChange={uploadImage} 
-            placeholder="URL img" />
+            onChange={handleFileChange} 
+            placeholder="URL img"
+            accept='image/*'
+            />
             <input
                 id="image" 
                 name="image" 
