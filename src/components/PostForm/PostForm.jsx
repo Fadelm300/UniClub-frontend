@@ -89,7 +89,7 @@ const PostForm = ({ handleAddPost }) => {
       body: file,
      });
      if(formData.type.includes('image')){
-      const TorF=postService.checkImg(response.publicUrl);
+      const TorF= await postService.checkImg(response.publicUrl);
       if (TorF){
         formDataLink.flag=true;
         setLoading(false);
