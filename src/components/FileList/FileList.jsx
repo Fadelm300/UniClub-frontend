@@ -105,10 +105,10 @@ const FileList = (props) => {
                     <img src="/pdf.png" alt="pdf" className='PDFPng' />
                   
                   ):(file.type?.includes("image")?(
-                    <img src={file.link} alt="pic"/>
+                    <img src={file.link} alt="pic" className='PDFPng'/>
                   ):(file.type?.includes("video")?(
                     <video controls>
-                    <source src={file.link} type="video/mp4" />
+                    <source src={file.link} type="video/mp4" className='PDFPng' />
                     </video>
                   ):(
                     <></>
