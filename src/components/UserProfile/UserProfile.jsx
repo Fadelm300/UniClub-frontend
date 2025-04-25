@@ -442,13 +442,13 @@ const UserProfile = () => {
                 </Link>
                 {post.file && (
                   <div className="post-media-wrapper">
-                    {post.file.type.includes('image') ? (
+                    {post.file.type?.includes('image') ? (
                       <img
                         src={post.file.link}
                         alt="Post media"
                         className="post-media-profile"
                       />
-                    ) : post.file.type.includes('video') ? (
+                    ) : post.file.type?.includes('video') ? (
                       <video controls className="post-media-profile">
                         <source src={post.file.link} type="video/mp4" />
                       </video>

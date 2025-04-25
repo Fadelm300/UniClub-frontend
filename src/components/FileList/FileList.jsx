@@ -7,7 +7,7 @@ const FileList = (props) => {
   const [showModalDelet, setShowModalDelet] = useState(false);
   const [fileToDelete, setFileToDelete] = useState(null);
   const [filesinside, setFilesinside] = useState(props.files);
-
+  console.log(props.user)
   const handleDeleteConfirmation = (fileId) => {
     setFileToDelete(fileId);
     setShowModalDelet(true);
@@ -67,6 +67,7 @@ const FileList = (props) => {
                   </div>
                   <span className='usernametxt'>{file.user.username}</span>
                 </div>
+                {(props.user.admin|| props.user.id == file.user._id) && (
                 <div className='deleteandEdit'>
                   <Link to={`${props.path}/editfile`}>
                     <button className="iconButton">
@@ -88,7 +89,9 @@ const FileList = (props) => {
                     />
                   </button>   
                 </div>
+                )}
               </div>
+                
 
               <div className='fileTitle2'>                
                 <span className='TitleforFile'>Title :</span>   
