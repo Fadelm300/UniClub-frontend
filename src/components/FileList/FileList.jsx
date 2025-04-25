@@ -34,7 +34,7 @@ const FileList = (props) => {
         setFilesinside(props.files.filter(file => file.type?.includes("image") || file.type?.includes("video")));
         break;
       case "links":
-        setFilesinside(props.files.filter(file => file.type?.includes("link")));
+        setFilesinside(props.files.filter(file => (!file.type)));
         break;
       default:
         setFilesinside(props.files);
@@ -67,7 +67,7 @@ const FileList = (props) => {
                   </div>
                   <span className='usernametxt'>{file.user.username}</span>
                 </div>
-                {(props.user.admin|| props.user.id == file.user._id) && (
+                {(props.user.admin || props.user.id == file.user._id) && (
                 <div className='deleteandEdit'>
                   <Link to={`${props.path}/editfile`}>
                     <button className="iconButton">
@@ -92,15 +92,27 @@ const FileList = (props) => {
                 )}
               </div>
                 
-
-              <div className='fileTitle2'>                
-                <span className='TitleforFile'>Title :</span>   
-                <span className="fileTitle2">{file.title}</span>
-              </div>
-
               <Link to={`${props.path}/file/${file._id}`}>
+                <div className='fileTitle2'>                
+                  <span className='TitleforFile'>Title :</span>   
+                  <span className="fileTitle2">{file.title}</span>
+                </div>
+
+              
                 <div className="dawnCard2">
-                  <img src="/pdf.png" alt="pdf.png" className='PDFPng' />
+                  {file.type?.includes("pdf")?(
+                  
+                    <img src="/pdf.png" alt="pdf" className='PDFPng' />
+                  
+                  ):(file.type?.includes("image")?(
+                    <img src={file.link} alt="pic"/>
+                  ):(file.type?.includes("video")?(
+                    <video controls>
+                    <source src={file.link} type="video/mp4" />
+                    </video>
+                  ):(
+                    <></>
+                  )))}
                 </div>
               </Link>
             </div>
