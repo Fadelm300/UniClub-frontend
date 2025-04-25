@@ -10,7 +10,7 @@ import postService from "../../services/postService";
 
 const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 const BAD_WORDS_API_URL = "https://api.apilayer.com/bad_words";
-const API_KEY = "j6Nztvto2ujilpZ5GrcFV7RXIyUU4Ll5";
+const API_KEY = import.meta.env.VITE_img_BAD_WORDS_API_key;
 
 const PostForm = ({ handleAddPost }) => {
   const { uni, college, major, course, event } = useParams();

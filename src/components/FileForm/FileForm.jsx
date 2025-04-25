@@ -17,7 +17,9 @@ const FileForm = ({ handleAddFile }) => {
 
   const [file, setFile] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   const [showLinkInput, setShowLinkInput] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (evt) => {
     setFormData({ ...formData, [evt.target.name]: evt.target.value });
@@ -26,12 +28,28 @@ const FileForm = ({ handleAddFile }) => {
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
     setFile(selectedFile);
-    setFormData({ ...formData, type: selectedFile.type, title: selectedFile.name });
+    setFormData({
+      ...formData,
+      type: selectedFile.type,
+      title: selectedFile.name
+    });
   };
 
-  const handleSubmit = async (evt) => {
+  const toggleInputType = () => {
+    setShowLinkInput(!showLinkInput);
+    setFormData({ ...formData, link: '' });
+    setFile(null);
+  };
+
+  const openConfirmModal = (evt) => {
     evt.preventDefault();
     if (!formData.title.trim()) return;
+    setShowModal(true);
+  };
+
+  const handleConfirmedSubmit = async () => {
+    setShowModal(false);
+    setIsLoading(true);
 
     try {
       if (file) {
@@ -44,23 +62,19 @@ const FileForm = ({ handleAddFile }) => {
         });
 
         const fileData = { ...formData, link: publicUrl };
-        handleAddFile(fileData, path);
+        await handleAddFile(fileData, path);
       } else {
-        handleAddFile(formData, path);
+        await handleAddFile(formData, path);
       }
 
       setFormData({ title: '', description: '', link: '' });
       setFile(null);
-      setShowModal(true);
+      setShowSuccess(true);
     } catch (error) {
       console.error('File upload failed:', error);
+    } finally {
+      setIsLoading(false);
     }
-  };
-
-  const toggleInputType = () => {
-    setShowLinkInput(!showLinkInput);
-    setFormData({ ...formData, link: '' });
-    setFile(null);
   };
 
   return (
@@ -72,13 +86,14 @@ const FileForm = ({ handleAddFile }) => {
         transition={{ duration: 0.6 }}
       >
         <h2>Upload New File</h2>
-        <form className="channel-form" onSubmit={handleSubmit}>
+        <form className="channel-form" onSubmit={openConfirmModal}>
           <label>Title</label>
           <input
             type="text"
             name="title"
             value={formData.title}
             onChange={handleChange}
+            disabled={isLoading}
           />
 
           <label>Description</label>
@@ -86,9 +101,15 @@ const FileForm = ({ handleAddFile }) => {
             name="description"
             value={formData.description}
             onChange={handleChange}
+            disabled={isLoading}
           />
 
-          <button type="button" className="submit-button" onClick={toggleInputType}>
+          <button
+            type="button"
+            className="submit-button"
+            onClick={toggleInputType}
+            disabled={isLoading}
+          >
             {showLinkInput ? "Switch to File" : "Switch to Link"}
           </button>
 
@@ -100,6 +121,7 @@ const FileForm = ({ handleAddFile }) => {
                 name="link"
                 value={formData.link}
                 onChange={handleChange}
+                disabled={isLoading}
               />
             </>
           ) : (
@@ -109,6 +131,7 @@ const FileForm = ({ handleAddFile }) => {
                 type="file"
                 name="file"
                 onChange={handleFileChange}
+                disabled={isLoading}
               />
             </>
           )}
@@ -118,8 +141,9 @@ const FileForm = ({ handleAddFile }) => {
             className="submit-button"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            disabled={isLoading}
           >
-            Submit File
+            {isLoading ? "Uploading..." : "Submit File"}
           </motion.button>
         </form>
       </motion.div>
@@ -133,14 +157,45 @@ const FileForm = ({ handleAddFile }) => {
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="modal-content"
+              className="modal-content-file"
               initial={{ y: '-50%', opacity: 0 }}
               animate={{ y: '0%', opacity: 1 }}
               exit={{ y: '-50%', opacity: 0 }}
               transition={{ duration: 0.6 }}
             >
+              <button className="modal-close-x" onClick={() => setShowModal(false)}>
+                &times;
+              </button>
+              <h3>Are you sure you want to upload this file?</h3>
+              <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+                <button onClick={handleConfirmedSubmit} className="confirm-button">Confirm Upload</button>
+                <button onClick={() => setShowModal(false)} className="cancel-button">Cancel</button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {showSuccess && (
+          <motion.div
+            className="modal-backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              className="modal-content-file"
+              initial={{ y: '-50%', opacity: 0 }}
+              animate={{ y: '0%', opacity: 1 }}
+              exit={{ y: '-50%', opacity: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <button className="modal-close-x" onClick={() => setShowSuccess(false)}>
+                &times;
+              </button>
               <h3>File Uploaded Successfully!</h3>
-              <button onClick={() => setShowModal(false)} className="close-modal">Close</button>
+              <button onClick={() => setShowSuccess(false)} className="cancel-button">Close</button>
             </motion.div>
           </motion.div>
         )}
