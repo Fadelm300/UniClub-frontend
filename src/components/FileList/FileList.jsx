@@ -28,16 +28,16 @@ const FileList = (props) => {
   const filterFiles = (type) => {
     switch (type) {
       case "files":
-        setFilesinside(props.files.filter(file => file.type?.includes("application")));
+        setFilesinside((props.files.filter(file => file.type?.includes("application"))).reverse());
         break;
       case "media":
-        setFilesinside(props.files.filter(file => file.type?.includes("image") || file.type?.includes("video")));
+        setFilesinside((props.files.filter(file => file.type?.includes("image") || file.type?.includes("video"))).reverse());
         break;
       case "links":
-        setFilesinside(props.files.filter(file => (!file.type)));
+        setFilesinside((props.files.filter(file => (!file.type))).reverse());
         break;
       default:
-        setFilesinside(props.files);
+        setFilesinside((props.files).reverse());
     }
   };
   
