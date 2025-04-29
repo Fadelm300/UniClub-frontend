@@ -13,6 +13,18 @@ const index = async () => {
     console.log(error);
   }
 };
+
+const getPosts = async (channelId, sortBy) => {
+  try {
+    const res = await fetch(`${BASE_URL}/posts/${channelId}/${sortBy}`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+    });
+    return res.json();
+  }catch (error) {
+    console.log(error);
+  }
+};
+
 const show = async (path, postId) => {
   try {
     const res = await fetch(`${BASE_URL}/getpost${path}/${postId}`, {
@@ -362,6 +374,7 @@ const deleteFlagged = async (postId) => {
 
 export default { 
   index, 
+  getPosts,
   show, 
   create, 
   delete: deletePost, 

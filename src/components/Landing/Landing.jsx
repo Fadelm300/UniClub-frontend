@@ -203,6 +203,7 @@ const Landing = (props) => {
               path={path}
               toggleLike={props.toggleLike}
               user={props.user}
+              channelId ={props.channel._id}
             />
           ) : (
             <FileList
