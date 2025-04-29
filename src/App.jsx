@@ -378,7 +378,7 @@ const App = () => {
         {/* other stuff */}
         <Route path="/help" element={<Help />} />
         <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/contact"  element={<Contact user={user}/>} />
         <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
         <Route path="/AffiliateProgram" element={<AffiliateProgram />} />
         <Route path="/OurServices" element={<OurServices />} />

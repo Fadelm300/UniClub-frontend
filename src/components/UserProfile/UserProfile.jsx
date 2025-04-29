@@ -429,7 +429,7 @@ const UserProfile = () => {
           <p>No posts yet</p>
         ) : (
           <ul>
-            {posts.map((post) => (
+            {posts.slice().reverse().map((post) => (
               <li key={post._id} className="post-item">
                 <span className="post-label">Post text:</span>{' '}
 
@@ -441,20 +441,33 @@ const UserProfile = () => {
                     : post.text}
                 </Link>
                 {post.file && (
-                  <div className="post-media-wrapper">
-                    {post.file.type?.includes('image') ? (
-                      <img
-                        src={post.file.link}
-                        alt="Post media"
-                        className="post-media-profile"
-                      />
-                    ) : post.file.type?.includes('video') ? (
-                      <video controls className="post-media-profile">
-                        <source src={post.file.link} type="video/mp4" />
-                      </video>
-                    ) : null}
-                  </div>
-                )}
+
+                      <div className="post-media-wrapper">
+                        {post.file.type.includes('image') ? (
+                          <img
+                            src={post.file.link}
+                            alt="Post media"
+                            className="post-media-profile"
+                          />
+                        ) : post.file.type.includes('video') ? (
+                          <video controls className="post-media-profile">
+                            <source src={post.file.link} type="video/mp4" />
+                          </video>
+                        ) : null}
+
+                        {post.file.type.includes('pdf') ? (
+                          <div className="pdf-container">
+                            <iframe
+                              src={post.file.link}
+                              width="100%"
+                              height="250px"
+                              title={post.file.title}
+                              className="file-preview-iframe"
+                            />
+                          </div>
+                        ) : null}
+                      </div>
+                    )}
 
             
         
