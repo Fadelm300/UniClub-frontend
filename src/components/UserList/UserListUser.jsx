@@ -25,13 +25,13 @@ function UserListUser({userUser}) {
     },[]);
 
     
-
-    const filteredUsers = users.filter(user => 
-        user.username.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        user.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        user.phone.includes(searchQuery)
-    );
-
+    const filteredUsers = users.filter(
+        (user) =>
+          (user.username?.toLowerCase() || "").includes(searchQuery.toLowerCase()) ||
+          (user.email?.toLowerCase() || "").includes(searchQuery.toLowerCase()) ||
+          (user.phone || "").includes(searchQuery)
+      );
+    
     const toggleFollow = async (userId) => {
 
           if (follow.includes(userId)) {

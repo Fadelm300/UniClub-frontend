@@ -44,6 +44,7 @@ import EditEvent from './components/Events/EditEvent/EditEvent';
 import ResetPassword from './components/ResetPassword/ResetPassword';
 import MemberList from './components/UserList/MemberList';
 import Reports from './components/Reports/Reports';
+import CreativeSpacesForm from './components/UserProfile/CreateCreativeSpace/CreateCreativeSpaceForm'
 const App = () => {
   const [user, setUser] = useState(authService.getUser());
   const [posts, setPosts] = useState([]);
@@ -389,6 +390,7 @@ const App = () => {
         <Route path="/AddEvent" element={<AddEvent />} />
         <Route path="/otp" element={<OtpVerification />} />
         <Route path="/resetpassword" element={<ResetPassword />} />
+        <Route path="/creativespaces" element={<CreativeSpacesForm user={user} />} />
 
 
 

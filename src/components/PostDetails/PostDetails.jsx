@@ -22,7 +22,7 @@ const PostDetails = ({ user, handleDeletePost }) => {
   const [liked, setLiked] = useState(false);
   const [LikedComments, setLikedComments] = useState([]);
   const [showDeleteModal, setShowDeleteModal] = useState(false); 
-
+  const DEFAULT_IMAGE_URL = "https://img.icons8.com/?size=40&id=z-JBA_KtSkxG&format=png&color=000000";
   const toggleLikeComment = async (commentId , postId) => {
     try {
 

@@ -6,7 +6,7 @@ import axios from 'axios';
 
 import ErrorModal  from '../Events/ErrorModal/ErrorModal';
 import postService from '../../services/postService';
-
+import UserCreativeSpaces from './CreateCreativeSpace/UserCreativeSpaces'
 const UserProfile = () => {
   const { userId } = useParams();
   const [user, setUser] = useState(null);
@@ -400,14 +400,20 @@ const UserProfile = () => {
 
 
                         <div className='user-profile-body'>
-                        {/* <div className='user-profile-ads'>
-                                  <div className="randomcards"><h1>111</h1></div>
-                                  <div className="randomcards"><h1>111</h1></div>
-                                  <div className="randomcards"><h1>111</h1></div>
-                                  <div className="randomcards"><h1>111</h1></div>
-                              
-                            
-                        </div> */}
+                     
+
+
+
+                        <div className='user-profile-ads'>
+                        <button
+                          onClick={() => navigate('/creativespaces')}
+                          className="create-space-button"
+                        >
+                          Create a New Creative Space
+                        </button>
+                        <UserCreativeSpaces userId={userId} />
+                      </div>
+
 
 
 
@@ -514,7 +520,7 @@ const UserProfile = () => {
       {posts
         .filter((post) => post.comments && post.comments.length > 0)
         .map((post) => (
-          <li key={post._id} className="post-item">
+          <li key={post._id} className="post-item-for-comment11">
           <div className="comment-section">
             
             <div className="post-item-for-comment">
