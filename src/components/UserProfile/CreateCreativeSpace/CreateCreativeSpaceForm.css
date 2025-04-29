@@ -1,4 +1,3 @@
-/* General container styling */
 .create-space-container {
   max-width: 600px;
   margin: 0 auto;
@@ -8,7 +7,6 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Title styling */
 .create-space-title {
   font-size: 2rem;
   font-weight: 700;
@@ -17,7 +15,6 @@
   text-align: center;
 }
 
-/* Error message styling */
 .error-message {
   color: #f87171;
   font-size: 1rem;
@@ -25,28 +22,24 @@
   text-align: center;
 }
 
-/* Form container */
 .create-space-form {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-/* Form group for each input */
 .form-group {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-/* Label styling */
 .form-label {
   font-size: 1rem;
   font-weight: 600;
   color: #333;
 }
 
-/* Input fields and text area */
 .form-input {
   width: 100%;
   padding: 12px;
@@ -63,7 +56,6 @@
   outline: none;
 }
 
-/* Submit button */
 .submit-button {
   background-color: #4f97ff;
   color: white;

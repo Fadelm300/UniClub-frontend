@@ -97,7 +97,6 @@ const UserProfile = ({userUser}) => {
         )}
       </div>
 
-      {/* ✅ Creative Spaces Section */}
       <UserCreativeSpaces userId={userId} />
     </div>
   );
