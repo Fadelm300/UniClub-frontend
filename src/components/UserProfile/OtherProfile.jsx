@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import authService from '../../services/authService';
 import './OtherProfile.css';
+import UserCreativeSpaces from './CreateCreativeSpace/UserCreativeSpaces';
 
 const UserProfile = ({userUser}) => {
   const { userId } = useParams();
@@ -47,7 +48,6 @@ const UserProfile = ({userUser}) => {
   if (error) return <div className="error2">Error: {error}</div>;
 
   const maxLength = 100;
-
   return (
     <div className="user-profile2">
       <div className="profile-header2">
@@ -96,6 +96,9 @@ const UserProfile = ({userUser}) => {
           </ul>
         )}
       </div>
+
+      {/* ✅ Creative Spaces Section */}
+      <UserCreativeSpaces userId={userId} />
     </div>
   );
 };
