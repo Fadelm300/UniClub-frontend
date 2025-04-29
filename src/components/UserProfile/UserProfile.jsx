@@ -441,6 +441,7 @@ const UserProfile = () => {
                     : post.text}
                 </Link>
                 {post.file && (
+
                       <div className="post-media-wrapper">
                         {post.file.type.includes('image') ? (
                           <img
@@ -467,7 +468,6 @@ const UserProfile = () => {
                         ) : null}
                       </div>
                     )}
-
 
             
         

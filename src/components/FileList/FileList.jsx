@@ -7,7 +7,7 @@ const FileList = (props) => {
   const [showModalDelet, setShowModalDelet] = useState(false);
   const [fileToDelete, setFileToDelete] = useState(null);
   const [filesinside, setFilesinside] = useState(props.files);
-
+  console.log(props.user)
   const handleDeleteConfirmation = (fileId) => {
     setFileToDelete(fileId);
     setShowModalDelet(true);
@@ -28,16 +28,16 @@ const FileList = (props) => {
   const filterFiles = (type) => {
     switch (type) {
       case "files":
-        setFilesinside(props.files.filter(file => file.type?.includes("application")));
+        setFilesinside((props.files.filter(file => file.type?.includes("application"))).reverse());
         break;
       case "media":
-        setFilesinside(props.files.filter(file => file.type?.includes("image") || file.type?.includes("video")));
+        setFilesinside((props.files.filter(file => file.type?.includes("image") || file.type?.includes("video"))).reverse());
         break;
       case "links":
-        setFilesinside(props.files.filter(file => file.type?.includes("link")));
+        setFilesinside((props.files.filter(file => (!file.type))).reverse());
         break;
       default:
-        setFilesinside(props.files);
+        setFilesinside((props.files).reverse());
     }
   };
   
@@ -67,6 +67,7 @@ const FileList = (props) => {
                   </div>
                   <span className='usernametxt'>{file.user.username}</span>
                 </div>
+                {(props.user.admin || props.user.id == file.user._id) && (
                 <div className='deleteandEdit'>
                   <Link to={`${props.path}/editfile`}>
                     <button className="iconButton">
@@ -88,16 +89,30 @@ const FileList = (props) => {
                     />
                   </button>   
                 </div>
+                )}
               </div>
-
-              <div className='fileTitle2'>                
-                <span className='TitleforFile'>Title :</span>   
-                <span className="fileTitle2">{file.title}</span>
-              </div>
-
+                
               <Link to={`${props.path}/file/${file._id}`}>
+                <div className='fileTitle2'>                
+                  <span className='TitleforFile'>Title :</span>   
+                  <span className="fileTitle2">{file.title}</span>
+                </div>
+
+              
                 <div className="dawnCard2">
-                  <img src="/pdf.png" alt="pdf.png" className='PDFPng' />
+                  {file.type?.includes("pdf")?(
+                  
+                    <img src="/pdf.png" alt="pdf" className='PDFPng' />
+                  
+                  ):(file.type?.includes("image")?(
+                    <img src={file.link} alt="pic" className='PDFPng'/>
+                  ):(file.type?.includes("video")?(
+                    <video controls>
+                    <source src={file.link} type="video/mp4" className='PDFPng' />
+                    </video>
+                  ):(
+                    <></>
+                  )))}
                 </div>
               </Link>
             </div>

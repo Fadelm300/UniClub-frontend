@@ -210,6 +210,7 @@ const Landing = (props) => {
               handleDeleteFile={props.handleDeleteFile}
               handleUpdateFile={props.handleUpdateFile}
               path={path}
+              user={props.user}
             />
           )}
 
