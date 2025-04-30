@@ -14,9 +14,9 @@ const index = async () => {
   }
 };
 
-const getPosts = async (channelId, sortBy) => {
+const getPosts = async (channelId, filter) => {
   try {
-    const res = await fetch(`${BASE_URL}/posts/${channelId}/${sortBy}`, {
+    const res = await fetch(`${BASE_URL}/posts/${channelId}?sortby=${filter.sortBy}&query=${filter.query}&course=${filter.course}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
     });
     return res.json();

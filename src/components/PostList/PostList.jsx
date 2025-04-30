@@ -17,18 +17,33 @@ const PostList = (props) => {
   const [showPopUp, setShowPopUp] = useState(false); 
   const [reportingPost, setReportingPost] = useState(null);
   const [reportReason, setReportReason] = useState("");
-  const [sortBy, setSortBy] = useState("n"); // Default sort by newest
+  const [filter, setFilter] = useState({
+    sortBy: 'n',
+    course: 'all',
+    query:'', 
+  });
+  const [tempQuery, setTempQuery] = useState('');
+
+  const courses = []
+  for(let i = new Date().getFullYear(); i >= 2024; i--){
+    courses.push(`${i}/${i+1}_First`);
+    courses.push(`${i}/${i+1}_Second`);
+    courses.push(`${i}/${i+1}_Summer`);
+  }
+
   useEffect(() => {
     async function fetchPosts() {
-      const fetchedPosts = await postService.getPosts(props.channelId , sortBy);
+      console.log(filter)
+      const fetchedPosts = await postService.getPosts(props.channelId , filter);
       setPosts(fetchedPosts);
     }
     fetchPosts();
-  }, [sortBy]); // <-- Correct place for dependency array
+  }, [filter]); // <-- Correct place for dependency array
   
 
-  const handleSortChange = (sortOption) => {
-    setSortBy(sortOption);
+  const handleSortChange = (e) => {
+    const { name, value } = e.target;
+    setFilter({...filter,  [name]: value});
     
   }
 
@@ -96,15 +111,54 @@ const PostList = (props) => {
       )}
 
       <div className="cardContaner">
+
+
+
+
+        
           <label htmlFor="sort-dropdown">Sort By: </label>
           <select
             id="sort-dropdown"
-            onChange={(e) => handleSortChange(e.target.value)}
+            name='sortBy'
+            onChange={handleSortChange}
           >
             <option value="n">Newest</option>
             <option value="m">Most Liked</option>
           </select>
-        {Posts.map((post, idx) => {
+          <label htmlFor="course-dropdown">Course: </label>
+          <select
+            id="course-dropdown"
+            name='course'
+            onChange={handleSortChange}
+          >
+            <option value="all">All</option>
+            {courses.map((course, idx) => (
+              <option key={idx} value={course}>{course}</option>
+            ))}
+          </select>
+          <div className="search-container">
+          <button
+            className="search-icon-button"
+            onClick={() => {
+              setFilter({ ...filter, query: tempQuery });
+            }
+            }
+          >
+            <i className="fa fa-search search-icon"></i>
+          </button>
+          <input
+          name="query"
+          type="text"
+          className="search-bar"
+          placeholder="Search by username, text, comment..."
+          value={tempQuery}
+          onChange={(e) => setTempQuery(e.target.value)}
+        />
+
+        
+
+        </div>
+        {Posts?.map((post, idx) => {
           const postDate = new Date(post.createdAt);
           const isLongText = post.text.length > MAX_TEXT_LENGTH;
           const truncatedText = isLongText ? post.text.slice(0, MAX_TEXT_LENGTH) + '...' : post.text;
