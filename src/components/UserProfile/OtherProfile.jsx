@@ -96,8 +96,8 @@ const UserProfile = ({userUser}) => {
           </ul>
         )}
       </div>
+      <UserCreativeSpaces userId={userId} isReadOnly={true} />
 
-      <UserCreativeSpaces userId={userId} />
     </div>
   );
 };

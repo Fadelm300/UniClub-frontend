@@ -2,10 +2,9 @@ import { useEffect, useState } from 'react';
 import creativeSpaceServices from '../../../services/creativeSpaceServices';
 import './UserCreativeSpaces.css';
 
-const UserCreativeSpaces = ({ userId }) => {
+const UserCreativeSpaces = ({ userId, isReadOnly = false }) => {  
   const [creativeSpaces, setCreativeSpaces] = useState([]);
   const [error, setError] = useState(null);
-
   const fetchSpaces = async () => {
     try {
       const spaces = await creativeSpaceServices.getUserCreativeSpaces(userId);
@@ -72,10 +71,12 @@ const UserCreativeSpaces = ({ userId }) => {
                 </a>
               )}
 
-              <div className="ucs-buttons">
-                <button onClick={() => handleUpdate(space._id)} className="btn-update">Update</button>
-                <button onClick={() => handleDelete(space._id)} className="btn-delete">Delete</button>
-              </div>
+              {!isReadOnly && (
+                <div className="ucs-buttons">
+                  <button onClick={() => handleUpdate(space._id)} className="btn-update">Update</button>
+                  <button onClick={() => handleDelete(space._id)} className="btn-delete">Delete</button>
+                </div>
+              )}
             </div>
           ))}
         </div>
