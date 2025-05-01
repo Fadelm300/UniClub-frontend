@@ -73,7 +73,7 @@ const UserCreativeSpaces = ({ userId, isReadOnly = false }) => {
 
               {!isReadOnly && (
                 <div className="ucs-buttons">
-                  <button onClick={() => handleUpdate(space._id)} className="btn-update">Update</button>
+                  {/* <button onClick={() => handleUpdate(space._id)} className="btn-update">Update</button> */}
                   <button onClick={() => handleDelete(space._id)} className="btn-delete">Delete</button>
                 </div>
               )}

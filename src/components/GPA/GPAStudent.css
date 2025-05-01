@@ -125,3 +125,62 @@
 .text-right {
   text-align: right; 
 }
+@media screen and (max-width: 480px) {
+  .gpa-calculator4 {
+    width: 95%;
+    padding: 15px;
+    margin: 80px auto 20px auto;
+  }
+
+  .add-course-button4,
+  .calculate-gpa-button4,
+  .clear-data-button4,
+  .calculate-cumulative-gpa-button4 {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .button-row4 {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .gpa-title4,
+  .cumulative-title4 {
+    font-size: 16px;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .gpa-calculator4 {
+    width: 90%;
+    padding: 18px;
+    margin: 100px auto 20px auto;
+  }
+
+  .add-course-button4,
+  .calculate-gpa-button4,
+  .clear-data-button4,
+  .calculate-cumulative-gpa-button4 {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .button-row4 {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .gpa-calculator4 {
+    width: 85%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .gpa-calculator4 {
+    width: 600px;
+  }
+}

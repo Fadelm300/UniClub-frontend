@@ -113,3 +113,46 @@ padding-left: 10px;
 .delete-button22:hover {
   background-color: #b71c1c;
 }
+
+
+
+/* Default: hidden on large screens */
+.toggle-sidebar-btn {
+  display: none;
+}
+
+/* Show and position button on smaller screens */
+@media (max-width: 1024px) {
+  .toggle-sidebar-btn {
+    display: block;
+    position: fixed;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    z-index: 200;
+    background-color: #2563eb;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .sidebar-responsive {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 30%;
+    height: 100%;
+    background-color: #f0f4ff;
+    transition: left 0.4s ease;
+    z-index: 150;
+    padding-top: 80px;
+    overflow-y: auto;
+  }
+
+  .sidebar-responsive.open {
+    left: 0;
+  }
+}

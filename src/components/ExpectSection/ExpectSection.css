@@ -89,4 +89,45 @@
     font-size: 0.95rem;
   }
   
+
+
+  @media (max-width: 1024px) {
+    .expect-container {
+      flex-direction: column;
+      padding: 30px 15px;
+    }
+  
+    .expect {
+      width: 100%;
+    }
+  
+    .expect-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .expect-title {
+      font-size: 24px;
+    }
+  
+    .expect-item {
+      padding: 15px;
+    }
+  
+    .expect-item h3 {
+      font-size: 16px; 
+    }
+  
+    .expect-item p {
+      font-size: 14px;
+    }
+  
+    .expect-header img,
+    .expect-item img {
+      width: 24px;
+      height: 24px;
+    }
+  }
+  
   

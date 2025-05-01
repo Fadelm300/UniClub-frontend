@@ -1042,3 +1042,15 @@ display: flex;
 }
 
 
+
+
+
+
+@media (max-width: 1024px) {
+  .user-profile-comments  {
+  display: none;
+  }
+
+  
+ 
+}

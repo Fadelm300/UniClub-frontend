@@ -127,7 +127,8 @@ return (
             </div>
         )}
         {page === 2 &&(
-            <><div>back</div>
+            <>
+            {/* <div>back</div> */}
             <OtpForm
               handleOtpSubmit = {handleOtpSubmit}
 

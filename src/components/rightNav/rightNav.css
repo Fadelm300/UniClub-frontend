@@ -7,7 +7,8 @@
   min-height: 100vh; 
 }
 
-.rightNav {
+
+.mainRightNav {
   flex: 0 0 210px; 
   background-color: #1f2937;
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
@@ -88,5 +89,22 @@
   
   .backToTop:hover {
     background-color: rgb(4, 118, 179);
+  }
+  @media (max-width: 1024px) {
+    .rightNav  {
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .mainRightNav {
+   
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      display: none;
+    }
+
+   
   }
   
