@@ -224,6 +224,35 @@ a {
   transform: scale(1.1); 
 }
 
+.search-icon-button {
+  all: unset;
+}
+
+.search-container{
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search-bar {
+  width: 100%;
+  max-width: 600px;
+  padding: 10px;
+  border-radius: 20px;
+  border: 2px solid #ccc; 
+  background-color: #fff; 
+  display: flex;
+  align-items: center;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
 
 
 

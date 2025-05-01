@@ -1,13 +1,15 @@
 import { Link } from 'react-router-dom';
 import './PostList.css';
 import postService from '../../services/postService';
-import { useState } from 'react';
+import { useState , useEffect } from 'react';
 import { filter } from 'framer-motion/client';
 
 const PostList = (props) => {
   if (!props.posts || props.posts.length === 0) return <main>No posts yet...</main>;
 
   const sortedPosts = [...props.posts].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  const [Posts, setPosts] = useState([]);
+
   const DEFAULT_IMAGE_URL = "https://img.icons8.com/?size=100&id=kfZajSPygW1l&format=png&color=000000";
   const MAX_TEXT_LENGTH = 200;
 
@@ -15,6 +17,34 @@ const PostList = (props) => {
   const [showPopUp, setShowPopUp] = useState(false); 
   const [reportingPost, setReportingPost] = useState(null);
   const [reportReason, setReportReason] = useState("");
+  const [filter, setFilter] = useState({
+    sortBy: 'n',
+    course: 'all',
+    query:'', 
+  });
+  const [tempQuery, setTempQuery] = useState('');
+
+  const courses = []
+  for(let i = new Date().getFullYear(); i >= 2024; i--){
+    courses.push(`${i}/${i+1}_First`);
+    courses.push(`${i}/${i+1}_Second`);
+    courses.push(`${i}/${i+1}_Summer`);
+  }
+
+  useEffect(() => {
+    async function fetchPosts() {
+      const fetchedPosts = await postService.getPosts(props.channelId , filter);
+      setPosts(fetchedPosts);
+    }
+    fetchPosts();
+  }, [filter]); // <-- Correct place for dependency array
+  
+
+  const handleSortChange = (e) => {
+    const { name, value } = e.target;
+    setFilter({...filter,  [name]: value});
+    
+  }
 
   const toggleLike = async (postId) => {
     try {
@@ -80,7 +110,56 @@ const PostList = (props) => {
       )}
 
       <div className="cardContaner">
-        {sortedPosts.map((post, idx) => {
+
+
+
+
+        <div className="cardHeader">
+          <label htmlFor="sort-dropdown">Sort By: </label>
+          <select
+            id="sort-dropdown"
+            name='sortBy'
+            onChange={handleSortChange}
+          >
+            <option value="n">Newest</option>
+            <option value="m">Most Liked</option>
+          </select>
+          <label htmlFor="course-dropdown">{filter.course=='all'?'Courses:':'Course:'} </label>
+          <select
+            id="course-dropdown"
+            name='course'
+            onChange={handleSortChange}
+          >
+            <option value="all">All</option>
+            {courses.map((course, idx) => (
+              <option key={idx} value={course}>{course}</option>
+            ))}
+          </select>
+          </div>
+          <div className="search-container">
+          <button
+            className="search-icon-button"
+            onClick={() => {
+              setFilter({ ...filter, query: tempQuery });
+            }
+            }
+          >
+            
+            <i className="fa fa-search search-icon"></i>
+          </button>
+          <input
+          name="query"
+          type="text"
+          className="search-bar"
+          placeholder="Search"
+          value={tempQuery}
+          onChange={(e) => setTempQuery(e.target.value)}
+        />
+        
+        
+
+        </div>
+        {Posts?.map((post, idx) => {
           const postDate = new Date(post.createdAt);
           const isLongText = post.text.length > MAX_TEXT_LENGTH;
           const truncatedText = isLongText ? post.text.slice(0, MAX_TEXT_LENGTH) + '...' : post.text;
