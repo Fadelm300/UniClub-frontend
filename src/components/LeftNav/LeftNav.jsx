@@ -10,6 +10,7 @@ const LeftNav = ({ user }) => {
   const [error, setError] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [eventIdToDelete, setEventIdToDelete] = useState(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); 
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -54,40 +55,52 @@ const LeftNav = ({ user }) => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className="leftNav22">
-      <h1 className="events-h1-22">Upcoming Events</h1>
-      <div className="event-cards22">
-        {events.map((event) => (
-          <div className="event-card22" key={event._id} style={{ backgroundImage: `url(${event.image})` }}>
-            <div className="event-details22">
-              <h2 className="event-title22">{event.title}</h2>
-              <p className="event-description22">{event.description}</p>
-              <div className="event-info22">
-                <p className="event-date-time">
-                  <strong>Date:</strong> {new Date(event.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
-                  <br />
-                  <strong>Time:</strong> {new Date(event.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}
-                </p>
-                <p><strong>Location:</strong> {event.location}</p>
-              </div>
+    <>
+      {/* <button className="toggle-sidebar-btn" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+      {isSidebarOpen ? (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <path d="M8 5L15 12L8 19" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>  // → right arrow
+  ) : (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <path d="M16 5L9 12L16 19" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg> // ← left arrow
+  )}      </button> */}
 
-              {user?.admin && (
-                <div className="event-actions22">
-                  <Link to={`/edit-event/${event._id}`} className="edit-button22">Edit</Link>
-                  <button className="delete-button22" onClick={() => openModal(event._id)}>Delete</button>
+      <div className={`leftNav22 sidebar-responsive ${isSidebarOpen ? 'open' : ''}`}>
+        <h1 className="events-h1-22">Upcoming Events</h1>
+        <div className="event-cards22">
+          {events.map((event) => (
+            <div className="event-card22" key={event._id} style={{ backgroundImage: `url(${event.image})` }}>
+              <div className="event-details22">
+                <h2 className="event-title22">{event.title}</h2>
+                <p className="event-description22">{event.description}</p>
+                <div className="event-info22">
+                  <p className="event-date-time">
+                    <strong>Date:</strong> {new Date(event.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}<br />
+                    <strong>Time:</strong> {new Date(event.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}
+                  </p>
+                  <p><strong>Location:</strong> {event.location}</p>
                 </div>
-              )}
-            </div>
-          </div>
-        ))}
-      </div>
 
-      <ConfirmDeleteModal 
-        isOpen={isModalOpen} 
-        onConfirm={handleDelete} 
-        onCancel={closeModal} 
-      />
-    </div>
+                {user?.admin && (
+                  <div className="event-actions22">
+                    <Link to={`/edit-event/${event._id}`} className="edit-button22">Edit</Link>
+                    <button className="delete-button22" onClick={() => openModal(event._id)}>Delete</button>
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <ConfirmDeleteModal
+          isOpen={isModalOpen}
+          onConfirm={handleDelete}
+          onCancel={closeModal}
+        />
+      </div>
+    </>
   );
 };
 

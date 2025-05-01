@@ -1,6 +1,7 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import './FileDetails.css';
+import { motion } from "framer-motion";
+import "./FileDetails.css";
 
 import FileService from "../../services/FileService";
 import { deriveChannelPath } from "../../utils/helpers/urlHelpers";
@@ -8,6 +9,7 @@ import { deriveChannelPath } from "../../utils/helpers/urlHelpers";
 const FileDetails = ({ user }) => {
   const { fileid, uni, college, major, course, event } = useParams();
   const [file, setFile] = useState(null);
+  const [showPopUp, setShowPopUp] = useState(false);
   const path = deriveChannelPath({ uni, college, major, course, event });
   const navigate = useNavigate();
 
@@ -32,27 +34,86 @@ const FileDetails = ({ user }) => {
     }
   };
 
+  const handleShare = () => {
+    const fileLink = `${window.location.origin}${path}/file/${fileid}`;
+    navigator.clipboard.writeText(fileLink)
+      .then(() => {
+        setShowPopUp(true);
+        setTimeout(() => setShowPopUp(false), 3000);
+      })
+      .catch((error) => {
+        console.error("Failed to copy the link:", error);
+      });
+  };
+
   if (!file) {
     return (
-      <main>
+      <main className="file-container">
         <h3>404 - File Not Found</h3>
       </main>
     );
   }
 
   return (
-    <div className="topCard3">
-      <p>Uploaded by: {file.user.username}</p>
-      <h1>{file.title}</h1>
-      <a href={file.link} target="_blank" rel="noopener noreferrer">
-        View File
-      </a>
-      <p>{file.description}</p>
+    <motion.div
+      className="file-container"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+    >
+      <h1 className="file-title">{file.title}</h1>
+      
+        <Link to={file.user._id === user?.id ? `/profile/${file.user._id}` : `/userlist/${file.user._id}`}>
+      
+      <p className="uploader">Uploaded by: {file.user.username}</p>
+        </Link>
+      <motion.div
+        className="file-viewer"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+      >
+        <iframe
+          src={file.link}
+          title="file"
+          frameBorder="0"
+          className="file-iframe"
+        ></iframe>
+      </motion.div>
 
-      {user?.id === file.user._id.toString() && (
-        <button onClick={handleDeleteFile}>Delete</button>
+      <div className="description-box-file">
+        <h2 className="description-title-file">Description</h2>
+        <p className="description-file">{file.description}</p>
+      </div>
+
+      <div className="action-buttons-file">
+        {user?.id === file.user._id.toString() && (
+          <motion.button
+            className="delete-btn-file"
+            onClick={handleDeleteFile}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Delete File
+          </motion.button>
+        )}
+
+        <motion.button
+          className="share-btn-file"
+          onClick={handleShare}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          Share
+        </motion.button>
+      </div>
+
+      {showPopUp && (
+        <div className="file-share-popup">
+          🔗 Link copied to clipboard!
+        </div>
       )}
-    </div>
+    </motion.div>
   );
 };
 

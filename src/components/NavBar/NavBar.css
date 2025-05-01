@@ -100,10 +100,6 @@ nav .logoHome:hover {
     padding: 0 10px;
   }
 
-  .Navimg {
-    height: 50px;
-    width: 50px;
-  }
 
   .dropdownMenu {
     min-width: 120px;
@@ -121,10 +117,7 @@ nav .logoHome:hover {
     padding: 5px;
   }
 
-  .Navimg {
-    height: 40px;
-    width: 40px;
-  }
+ 
 
   .profilePicAndName {
     flex-direction: column;
@@ -141,3 +134,16 @@ nav .logoHome:hover {
     font-size: 16px;
   }
 }
+@media (max-width: 1024px) {
+
+
+  .Navimg{
+    height: 100px;
+    height: 50px;
+    width: 70px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  }

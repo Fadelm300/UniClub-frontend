@@ -411,7 +411,8 @@ const UserProfile = () => {
                         >
                           Create a New Creative Space
                         </button>
-                        <UserCreativeSpaces userId={userId} />
+                        <UserCreativeSpaces userId={userId} isReadOnly={false} />
+
                       </div>
 
 

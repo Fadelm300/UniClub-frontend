@@ -127,7 +127,7 @@ const Landing = (props) => {
                   <div key={subchannel._id} className="subchannel-container">
                     
                     <Link to={`${path.endsWith(subchannel.name) ? path : `${path}/${subchannel.name}`}`}>
-                      <button className="channelButton">{subchannel.name}</button>
+                      <button className="channelButton">{subchannel.titel}</button>
                     </Link>
 
                     {props.user?.admin && (
@@ -216,8 +216,9 @@ const Landing = (props) => {
           )}
 
         </div>
+        <div className="mainRightNav">
         <RightNav />
-
+        </div>
         </div>
       </div>
       {showDeleteModal && (

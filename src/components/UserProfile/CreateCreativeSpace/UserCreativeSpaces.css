@@ -1,8 +1,9 @@
 .ucs-container {
-    margin-top: 16px;
-    padding: 12px;
-  }
-  
+  margin-top: 16px;
+  padding: 12px;
+  max-width: 100%;
+  box-sizing: border-box;
+}
   .ucs-title {
     font-size: 16px;
     font-weight: bold;
@@ -32,10 +33,14 @@
   .ucs-card {
     background-color: #fff;
     border: 1px solid #ccc;
-    border-radius: 6px;
-    padding: 12px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
     font-size: 13px;
+    box-sizing: border-box;
+    overflow-wrap: break-word;     /* مهم للنصوص الطويلة */
+    word-break: break-word;
+    max-width: 100%;
   }
   
   .ucs-card-title {
@@ -45,17 +50,20 @@
   }
   
   .ucs-card-desc {
-    font-size: 13px;
+    font-size: 14px;
     color: #333;
     margin-bottom: 10px;
+    white-space: pre-wrap;         /* يسمح بعرض الفقرات والتفاف النص */
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
   
   .ucs-card-image {
     width: 100%;
-    height: 120px;
+    height: auto;
+    max-height: 180px;
     object-fit: cover;
-    border-radius: 4px;
-    margin-bottom: 10px;
+    border-radius: 8px;
   }
   
   .ucs-card-link {
@@ -71,16 +79,14 @@
   }
   
   .user-profile-ads {
-    width: 100%;
-    max-width: 200px;
-    background-color: #5aa9e6;
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    position: relative; 
+    width: 80%; 
+    height: auto; 
+    overflow: hidden; 
+    padding: 10px; 
     box-sizing: border-box;
-    border-radius: 6px;
   }
+  
   
   .create-space-button {
     background-color: #3b82f6;
@@ -100,7 +106,6 @@
   .create-space-button:hover {
     background-color: #2563eb;
   }
-  
   @media (max-width: 600px) {
     .user-profile-ads {
       width: 100%;
@@ -109,21 +114,32 @@
     }
   
     .create-space-button {
-      font-size: 12px;
-      padding: 8px;
+      font-size: 13px;
+      padding: 10px;
     }
   
     .ucs-card-image {
-      height: 100px;
+      max-height: 140px;
     }
   
     .ucs-title {
-      font-size: 14px;
+      font-size: 16px;
+    }
+  
+    .ucs-card-title {
+      font-size: 15px;
+    }
+  
+    .ucs-card-desc {
+      font-size: 13px;
+    }
+  
+    .btn-update,
+    .btn-delete {
+      font-size: 12px;
+      padding: 6px 10px;
     }
   }
-  
-
-
 
 
 

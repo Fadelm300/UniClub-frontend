@@ -7,11 +7,11 @@
   }
   
   .sidebar {
-    width: 200px;
+    width: 300px;
     background-color: #3c3f5c; 
     padding: 10px;
     position: fixed;
-    left: -250px;
+    left: -350px;
     height: 96%;
     top: 0;
     transition: left 0.7s ease;
@@ -60,7 +60,7 @@
     background-color: #007bff;
     transition: background-color 0.4s ease-in-out;
     text-transform: uppercase;
-    font-size: 15px ;
+    font-size: 14px ;
     border: 0.1px solid rgb(34, 34, 209);
   }
   
@@ -303,7 +303,7 @@
     }
   
     .sidebar {
-      width: 25%;
+      width: 50%;
       padding-top: 90px;
     }
   
@@ -420,6 +420,7 @@ span {
   display: flex;
   align-items: center; 
   gap: 20px; 
+  justify-content: center;
 }
 
 .navIcon:hover {

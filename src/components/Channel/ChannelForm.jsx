@@ -99,7 +99,12 @@ const ChannelForm = ({ handleAddchannel }) => {
           {errors.description && <span className="error-text">{errors.description}</span>}
 
           {/* <input type="file" accept="image/*" onChange={handleFileChange} /> */}
-
+ <motion.input
+            type="file"
+            accept="image/*"
+            onChange={handleFileChange}
+            whileHover={{ scale: 1.01 }}
+          />
           <motion.button
             type="submit"
             className="submit-button"

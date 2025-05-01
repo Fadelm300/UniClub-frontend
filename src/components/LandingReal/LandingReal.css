@@ -40,9 +40,16 @@
   margin-top: 30px;
   margin-bottom: 30px;
 }
+.channel-list {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: center; 
+  gap: 20px; 
+  padding: 20px;
+}
 
 .liftbox {
-  flex: 1; /* Makes the liftbox take up equal space */
+  flex: 1; 
   background-color: #f6f6f6;
   position: relative;
   border-top-left-radius: 15px;   
@@ -52,7 +59,7 @@
 .liftbox img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensures the image covers the entire box */
+  object-fit: cover;
   border-top-left-radius: 15px;   
   border-bottom-left-radius: 15px;
 }
@@ -102,7 +109,7 @@
 .landingimg {
   position: relative;
   width: 100%;
-  height: 500px; /* Default for larger screens */
+  height: 500px; 
   display: flex;
   justify-content: center;
   align-items: center;
