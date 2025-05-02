@@ -46,6 +46,23 @@ const FileDetails = ({ user }) => {
       });
   };
 
+  // Handle file download
+  const handleDownload = (url, filename) => {
+    fetch(url)
+      .then(res => res.blob())
+      .then(blob => {
+        const blobUrl = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = blobUrl;
+        a.download = filename || "download";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        window.URL.revokeObjectURL(blobUrl);
+      })
+      .catch(err => console.error("Download failed:", err));
+  };
+
   if (!file) {
     return (
       <main className="file-container">
@@ -62,24 +79,44 @@ const FileDetails = ({ user }) => {
       transition={{ duration: 0.6 }}
     >
       <h1 className="file-title">{file.title}</h1>
-      
-        <Link to={file.user._id === user?.id ? `/profile/${file.user._id}` : `/userlist/${file.user._id}`}>
-      
-      <p className="uploader">Uploaded by: {file.user.username}</p>
-        </Link>
-      <motion.div
-        className="file-viewer"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.3 }}
-      >
-        <iframe
-          src={file.link}
-          title="file"
-          frameBorder="0"
-          className="file-iframe"
-        ></iframe>
-      </motion.div>
+
+      <Link to={file.user._id === user?.id ? `/profile/${file.user._id}` : `/userlist/${file.user._id}`}>
+        <p className="uploader">Uploaded by: {file.user.username}</p>
+      </Link>
+
+      <div className="file-container-img">
+        <motion.div
+          className="file-viewer"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3 }}
+        >
+          {file.type.startsWith("image/") ? (
+            <img
+              src={file.link}
+              alt="Uploaded file"
+              className="file-img"
+            />
+          ) : (
+            <iframe
+              src={file.link}
+              title="file"
+              frameBorder="0"
+              className="file-iframe"
+            ></iframe>
+          )}
+        </motion.div>
+      </div>
+      {!file.type.startsWith("image/") && (
+          <motion.button
+            className="download-btn-file"
+            onClick={() => handleDownload(file.link, file.title)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Download
+          </motion.button>
+        )}
 
       <div className="description-box-file">
         <h2 className="description-title-file">Description</h2>
@@ -106,6 +143,8 @@ const FileDetails = ({ user }) => {
         >
           Share
         </motion.button>
+
+        
       </div>
 
       {showPopUp && (
