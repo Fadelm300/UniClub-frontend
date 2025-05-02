@@ -22,9 +22,9 @@ function MemberList({userUser}) {
         userUser?'U'
      :
         'G';
-        console.log("User Data:", userUser);
-        console.log("Role Assigned:", Role);
-        console.log("Channel Data:", channel);
+        // console.log("User Data:", userUser);
+        // console.log("Role Assigned:", Role);
+        // console.log("Channel Data:", channel);
         
     useEffect(() => {
         const fetchUsers = async (path) => {

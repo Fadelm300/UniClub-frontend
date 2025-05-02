@@ -37,7 +37,7 @@ const CommentForm = ({user,handleAddComment}) => {
         method: 'PUT',
         body: file,
         });
-        console.log(formDataLink);
+        // console.log(formDataLink);
         handleAddComment(formDataLink);
 
       }else{

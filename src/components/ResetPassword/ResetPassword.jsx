@@ -28,7 +28,7 @@ const ResetPassword = () => {
     try {
       const response = await authService.resetPasswordStep1(formData);
       console.table(formData);
-      console.log(response);
+      // console.log(response);
       if (response.message) {
         setSuccessMessage("One-time passcode sent successfully!");
         setTimeout(() => {
@@ -161,6 +161,18 @@ return (
                             value={formData.password}
                             onChange={handleChange}
                         />
+                          {formData.password && (
+                        <>
+                          {formData.password.length < 8 ? (
+                            <p className="error-message">Password must be at least 8 characters long.</p>
+                          ) : !/[A-Z]/.test(formData.password) ? (
+                            <p className="error-message">Password must contain at least one uppercase letter.</p>
+                          ) : !/[0-9]/.test(formData.password) ? (
+                            <p className="error-message">Password must contain at least one number.</p>
+                          ) : null}
+                        </>
+                      )}
+
                         <input
                             type="password"
                             placeholder="Confirm Password"
@@ -168,6 +180,9 @@ return (
                             value={formData.confirmPassword}
                             onChange={handleChange}
                         />
+                         {formData.password !== formData.passwordConf && formData.passwordConf !== "" && (
+                  <p className="error-message">Passwords do not match</p>
+                )}
                         <button type="submit">Reset Password</button>
                         {successMessage && <p className="reset-pass-step3-success-message">{successMessage}</p>}
                         {errorMessage && <p className="reset-pass-step3-error-message">{errorMessage}</p>}

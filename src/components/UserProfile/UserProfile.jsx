@@ -307,12 +307,12 @@ const UserProfile = () => {
             placeholder="URL img"
             accept='image/*'
             />
-            <input
+            {/* <input
                 id="image" 
                 name="image" 
                 onChange={handleChange}
                 placeholder="URL img"
-              />
+              /> */}
             <div className='Save_and_Cancel'>
             <button className="reset-button" onClick={resetToDefaultImage}> <img src="https://img.icons8.com/?id=K2njhUKeLfle&format=png&color=000000" alt="" /> </button>
               <button onClick={() => setShowEditConfirm(true)}> 

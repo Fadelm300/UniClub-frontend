@@ -112,53 +112,55 @@ const PostList = (props) => {
       <div className="cardContaner">
 
 
+<div className="cardHeader">
+  <div className="sort-section">
+    <label htmlFor="sort-dropdown">Sort By:</label>
+    <select
+      id="sort-dropdown"
+      name="sortBy"
+      onChange={handleSortChange}
+    >
+      <option value="n">Newest</option>
+      <option value="m">Most Liked</option>
+    </select>
+  </div>
 
+  <div className="course-section">
+    <label htmlFor="course-dropdown">
+      {filter.course === 'all' ? 'Courses:' : 'Course:'}
+    </label>
+    <select
+      id="course-dropdown"
+      name="course"
+      onChange={handleSortChange}
+    >
+      <option value="all">All</option>
+      {courses.map((course, idx) => (
+        <option key={idx} value={course}>{course}</option>
+      ))}
+    </select>
+  </div>
 
-        <div className="cardHeader">
-          <label htmlFor="sort-dropdown">Sort By: </label>
-          <select
-            id="sort-dropdown"
-            name='sortBy'
-            onChange={handleSortChange}
-          >
-            <option value="n">Newest</option>
-            <option value="m">Most Liked</option>
-          </select>
-          <label htmlFor="course-dropdown">{filter.course=='all'?'Courses:':'Course:'} </label>
-          <select
-            id="course-dropdown"
-            name='course'
-            onChange={handleSortChange}
-          >
-            <option value="all">All</option>
-            {courses.map((course, idx) => (
-              <option key={idx} value={course}>{course}</option>
-            ))}
-          </select>
-          </div>
-          <div className="search-container">
-          <button
-            className="search-icon-button"
-            onClick={() => {
-              setFilter({ ...filter, query: tempQuery });
-            }
-            }
-          >
-            
-            <i className="fa fa-search search-icon"></i>
-          </button>
-          <input
-          name="query"
-          type="text"
-          className="search-bar"
-          placeholder="Search"
-          value={tempQuery}
-          onChange={(e) => setTempQuery(e.target.value)}
-        />
-        
-        
+  <div className="search-container">
+    <button
+      className="search-icon-button"
+      onClick={() => {
+        setFilter({ ...filter, query: tempQuery });
+      }}
+    >
+      <i className="fa fa-search search-icon"></i>
+    </button>
+    <input
+      name="query"
+      type="text"
+      className="search-bar"
+      placeholder="Search"
+      value={tempQuery}
+      onChange={(e) => setTempQuery(e.target.value)}
+    />
+  </div>
+</div>
 
-        </div>
         {Posts?.map((post, idx) => {
           const postDate = new Date(post.createdAt);
           const isLongText = post.text.length > MAX_TEXT_LENGTH;

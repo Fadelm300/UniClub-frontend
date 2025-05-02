@@ -7,7 +7,7 @@ const FileList = (props) => {
   const [showModalDelet, setShowModalDelet] = useState(false);
   const [fileToDelete, setFileToDelete] = useState(null);
   const [filesinside, setFilesinside] = useState(props.files);
-  console.log(props.user)
+  // console.log(props.user)
   const handleDeleteConfirmation = (fileId) => {
     setFileToDelete(fileId);
     setShowModalDelet(true);
