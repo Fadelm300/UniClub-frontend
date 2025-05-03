@@ -102,7 +102,7 @@ const FileList = (props) => {
                 <div className="dawnCard2">
                   {file.type?.includes("pdf")?(
                   
-                    <img src="/pdf.png" alt="pdf" className='PDFPng' />
+                    <img src="/pdf.png" alt="pdf" className='PDFPng1' />
                   
                   ):(file.type?.includes("image")?(
                     <img src={file.link} alt="pic" className='PDFPng'/>

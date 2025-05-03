@@ -34,14 +34,17 @@
 }
 
 /* File Icon image (pdf) */
-.PDFPng {
-  width: 100%;
-  max-width: 140px;
+.PDFPng, .PDFPng1 {
+  width: 80%;
+  height: auto;
   margin: auto;
   transition: transform 0.3s ease;
+  display: block;
+  max-height: 120px;
+  object-fit: contain;
 }
 
-.dawnCard2:hover .PDFPng {
+.dawnCard2:hover .PDFPng .PDFPng1 {
   transform: scale(1.1);
 }
 
@@ -293,7 +296,6 @@
   transform: scale(1.05);
 }
 
-/* Media Query for responsiveness */
 @media (max-width: 768px) {
   .cardsWrapper {
     justify-content: center;
@@ -310,5 +312,86 @@
     display: none;
   }
 
+  .usernametxt {
+    font-size: 18px;
+  }
+
+  .fileimg img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .topCard2 {
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .deleteandEdit {
+    flex-direction: row;
+    gap: 10px;
+    padding: 5px;
+  }
+
+  .PDFPng, .PDFPng1 {
+    width: 70%;
+    max-height: 100px;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .card2 {
+    width: 80%;
+    height: auto;
+    padding: 6px;
+  }
+  .PDFPng, .PDFPng1 {
+    width:100%;
+    height: auto;
+    padding-bottom: 20px;
+  }
   
+  .usernametxt {
+    font-size: 14px;
+  }
+
+  .TitleforFile {
+    font-size: 11px;
+  }
+
+  .fileTitle2 {
+    font-size: 9px;
+  }
+
+  .topCard2 {
+    flex-direction: column;
+    height: auto;
+    gap: 5px;
+  }
+
+  .username, .deleteandEdit {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding: 4px 0;
+  }
+
+  .iconButton img.buttonIcon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .filter-buttons {
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    align-items: center;
+  }
+
+  .btn-filter {
+    padding: 6px 16px;
+    font-size: 12px;
+    width: 85%;
+  }
 }
