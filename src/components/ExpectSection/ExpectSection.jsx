@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./ExpectSection.css"; // Import the CSS file
+import "./ExpectSection.css"; 
 
 const ExpectSection = () => {
   return (
     <div className="expect-container">
       <div className="expect">
         <h2 className="expect-title">What to Expect from UniClub</h2>
-        <Link to="/intro-video" className="video-link">Watch Intro Video &rarr;</Link>
+        <Link to="https://youtu.be/ww4G4PPFDec" className="video-link">Watch Intro Video &rarr;</Link>
       </div>
 
       <div className="expect-grid">

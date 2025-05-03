@@ -13,7 +13,7 @@ const EditEvent = () => {
     date: '',
     time: '',
     location: '',
-    logo: ''
+    // logo: ''
   });
   const [oldData, setOldData] = useState({});
   const [error, setError] = useState(null);
@@ -93,9 +93,9 @@ const EditEvent = () => {
         <motion.input id="location" name="location" value={formData.location} onChange={handleChange} required 
           whileHover={{ scale: 1.02, transition: { duration: 0.15 } }} />
 
-        <label htmlFor="logo">Logo URL</label>
+        {/* <label htmlFor="logo">Logo URL</label>
         <motion.input id="logo" name="logo" value={formData.logo} onChange={handleChange} required 
-          whileHover={{ scale: 1.02, transition: { duration: 0.15 } }} />
+          whileHover={{ scale: 1.02, transition: { duration: 0.15 } }} /> */}
 
         <div className="button-container">
           <motion.button type="submit" className='UpdateEvent'
@@ -139,12 +139,12 @@ const EditEvent = () => {
                 <p><strong>New Location:</strong> {formData.location}</p>
               </div>
             )}
-            {hasChanged('logo') && (
+            {/* {hasChanged('logo') && (
               <div>
                 <p><strong>Old Logo:</strong> {oldData.logo}</p>
                 <p><strong>New Logo:</strong> {formData.logo}</p>
               </div>
-            )}
+            )} */}
             <div className="modal-buttons">
               <motion.button onClick={handleOk} className="save-btn"
                 whileHover={{ scale: 1.05, transition: { duration: 0.15 } }}>

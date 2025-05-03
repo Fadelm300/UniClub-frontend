@@ -290,6 +290,10 @@
   }
   
   @media (max-width: 480px) {
+    .mainContent{
+      margin-top: 40px;
+    
+    }
     .toggleSidebarBtn {
       top: 120px;
       left: 5px;

@@ -128,12 +128,12 @@ const FileList = (props) => {
           />
         )}
 
-        <div className="radomFiles">
+        {/* <div className="radomFiles">
           <div className="randomcards"><h1>111</h1></div>
           <div className="randomcards"><h1>111</h1></div>
           <div className="randomcards"><h1>111</h1></div>
           <div className="randomcards"><h1>111</h1></div>
-        </div>
+        </div> */}
       </div>
     </>
   );
