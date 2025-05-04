@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import EventService from '../../../services/EventService';
+import postService from '../../../services/postService';
 import { useParams, useNavigate } from 'react-router-dom';
 import './EditEvent.css';
 
@@ -13,8 +14,9 @@ const EditEvent = () => {
     date: '',
     time: '',
     location: '',
-    logo: ''
+    image: ''
   });
+  const [file, setFile] = useState(null);
   const [oldData, setOldData] = useState({});
   const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false);
@@ -42,10 +44,26 @@ const EditEvent = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+g    setFile(file);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await EventService.editEvent(eventid, formData);
+      if(file) {
+        const response = await postService.upload()
+        const formDataLink = { ...formData, image: response.publicUrl };
+        const { url: uploadUrl } = response;
+        const r2 = await fetch(uploadUrl, { 
+          method: 'PUT',
+          body: file,
+        });
+        await EventService.editEvent(eventid, formDataLink);
+      }else{
+        await EventService.editEvent(eventid, formData);
+      }
       setShowModal(true);
     } catch (err) {
       setError(err.message);
@@ -93,8 +111,8 @@ const EditEvent = () => {
         <motion.input id="location" name="location" value={formData.location} onChange={handleChange} required 
           whileHover={{ scale: 1.02, transition: { duration: 0.15 } }} />
 
-        <label htmlFor="logo">Logo URL</label>
-        <motion.input id="logo" name="logo" value={formData.logo} onChange={handleChange} required 
+        <label htmlFor="logo">picture</label>
+        <motion.input  type='file' accept='image/* 'id="logo" name="logo"onChange={handleFileChange} 
           whileHover={{ scale: 1.02, transition: { duration: 0.15 } }} />
 
         <div className="button-container">
