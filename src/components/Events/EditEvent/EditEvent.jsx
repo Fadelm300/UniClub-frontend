@@ -46,7 +46,7 @@ const EditEvent = () => {
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-g    setFile(file);
+    setFile(file);
   };
 
   const handleSubmit = async (e) => {
