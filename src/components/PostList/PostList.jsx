@@ -157,6 +157,11 @@ const PostList = (props) => {
       placeholder="Search"
       value={tempQuery}
       onChange={(e) => setTempQuery(e.target.value)}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter') {
+          setFilter({ ...filter, query: tempQuery });
+        }
+      }}
     />
   </div>
 </div>
@@ -174,12 +179,23 @@ const PostList = (props) => {
             <div className="card" key={idx}>
               
               <div className="dawnCard">
-                <Link to={post.user._id === props.user?.id ? `/profile/${post.user._id}` : `/userlist/${post.user._id}`}>
+              {props.user ? (
+            <Link to={post.user._id === props.user.id ? `/profile/${post.user._id}` : `/userlist/${post.user._id}`}>
                   <div className="dawnCardpostimg">
                     <img src={post.user.image || DEFAULT_IMAGE_URL} alt="Post Image" />
                     <div className="dawncardusername">{post.user.username}</div>
                   </div>
                 </Link>
+              ) : (
+                <div className="dawnCardpostimg">
+                <img src={post.user.image || DEFAULT_IMAGE_URL} alt="Post Image" />
+                <div className="dawncardusername">{post.user.username}</div>
+                <div className="login-warning" >
+                  🔒 You need to log in to view profiles
+                </div>
+              </div>
+              )}
+
                 <div className="dawnCardText">
                   <div className="dawncardDate">
                   <div className="date">

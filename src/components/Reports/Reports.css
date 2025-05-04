@@ -92,7 +92,6 @@
 
 
 
-  /* Report- model  */
   .Report-modal-overlay {
     position: fixed;
     top: 0; 
@@ -139,5 +138,32 @@
     padding: 8px 16px;
     border-radius: 6px;
     cursor: pointer;
+  }
+  
+
+  .pagination-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  
+  .pagination-buttons button {
+    background: linear-gradient(to right, #4f46e5, #6366f1);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+    transition: all 0.3s ease;
+  }
+  
+  .pagination-buttons button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(79, 70, 229, 0.4);
+    background: linear-gradient(to right, #4338ca, #4f46e5);
   }
   
