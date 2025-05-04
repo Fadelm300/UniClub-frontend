@@ -36,7 +36,7 @@ const OtpForm = ({handleOtpSubmit , error ,  setError , message , setMessage , e
       <div className="otp-verification-container">
         <h1>OTP Verification</h1>
         <p>
-          Please enter the OTP sent to your email address {email}.
+          Please enter the OTP sent to your email address {email}
         </p>
         <div className="form-otp">
           <input

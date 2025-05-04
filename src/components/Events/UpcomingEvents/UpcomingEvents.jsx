@@ -5,7 +5,8 @@ import ConfirmDeleteModal from '../ConfirmDelete/ConfirmDeleteModal';
 import './UpcomingEvents.css';
 
 const UpcomingEvents = ({ user }) => {
-  const [events, setEvents] = useState([]);
+  const [futureEvents, setFutureEvents] = useState([]);
+  const [pastEvents, setPastEvents] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [eventIdToDelete, setEventIdToDelete] = useState(null);
 
@@ -13,7 +14,9 @@ const UpcomingEvents = ({ user }) => {
     const fetchEvents = async () => {
       try {
         const data = await EventService.getEvents();
-        setEvents(data);
+        setFutureEvents(data[0]);
+        setPastEvents(data[1]);
+
       } catch (err) {
         console.error(err);
       }
@@ -26,7 +29,8 @@ const UpcomingEvents = ({ user }) => {
     if (eventIdToDelete) {
       try {
         await EventService.deleteEvent(eventIdToDelete);
-        setEvents(events.filter(event => event._id !== eventIdToDelete));
+        setFutureEvents(futureEvents.filter(event => event._id !== eventIdToDelete));
+        setPastEvents(pastEvents.filter(event => event._id !== eventIdToDelete));
         setIsModalOpen(false);
         setEventIdToDelete(null);
       } catch (error) {
@@ -69,7 +73,7 @@ const UpcomingEvents = ({ user }) => {
     <div className="events-container">
       <h1 className="events-h1">Upcoming Events</h1>
       <div className="event-cards">
-        {events.map((event, index) => (
+        {futureEvents.map((event, index) => (
           <div
             id={`card-${index}`}
             key={event._id}
@@ -111,6 +115,56 @@ const UpcomingEvents = ({ user }) => {
           </div>
         ))}
       </div>
+
+      <h1 className="events-h1">Past Events</h1>
+      <div className="event-cards"></div>
+      <div className="event-cards">
+        {pastEvents.map((event, index) => (
+          <div
+            id={`card-${index}`}
+            key={event._id}
+            className="event-card"
+            style={{ backgroundImage: `url(${event.image})` }}
+            onMouseMove={(e) => handleMouseMove(e, index)}
+            onMouseLeave={() => handleMouseLeave(index)}
+          >
+            <div className="event-details">
+              <h2 className="event-title">{event.title}</h2>
+              <p className="event-description">{event.description}</p>
+              <div className="event-info">
+                <p className="event-date-time_main">
+                  <strong>Date:</strong>{' '}
+                  {new Date(event.date).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                  <br />
+                  <strong>Time:</strong>{' '}
+                  {new Date(event.date).toLocaleTimeString('en-US', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                  })}
+                </p>
+                <p>
+                  <strong>Location:</strong> {event.location}
+                </p>
+              </div>
+
+              {user?.admin && (
+                <div className="event-actions">
+                  <Link to={`/edit-event/${event._id}`} className="edit-button">Edit</Link>
+                  <button className="delete-button" onClick={() => openModal(event._id)}>Delete</button>
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+      
+
+      
+
 
       <ConfirmDeleteModal
         isOpen={isModalOpen}

@@ -61,6 +61,7 @@
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.85));
   padding: 20px;
   color: #f9fafb;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   backdrop-filter: blur(2px);
 }
 
@@ -68,11 +69,14 @@
   font-size: 1.4rem;
   font-weight: bold;
   margin-bottom: 8px;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+
 }
 
 .event-description {
   font-size: 0.95rem;
   color: #e2e8f0;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   margin-bottom: 10px;
   max-height: 70px;
   overflow: hidden;
