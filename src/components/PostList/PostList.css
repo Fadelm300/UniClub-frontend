@@ -224,9 +224,7 @@ a {
   transform: scale(1.1); 
 }
 
-.search-icon-button {
-  all: unset;
-}
+
 
 .search-container {
   display: flex;
@@ -549,7 +547,7 @@ a {
 }
 
 .search-icon-button {
-  position: absolute;
+  position: relative;
   right: 8px;
   background: none;
   border: none;
@@ -640,4 +638,12 @@ a {
   .search-icon-button {
     font-size: 16px;
   }
+}
+
+
+.login-warning {
+  color: #ef4444;
+  font-size: 16px;
+  margin-top: 8px;
+  font-weight: 500;
 }
