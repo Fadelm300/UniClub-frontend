@@ -125,7 +125,6 @@ const Landing = (props) => {
             <hr className="separatorLine" />
             {props.channel.subchannels?.map((subchannel) => (
                   <div key={subchannel._id} className="subchannel-container">
-                    {console.log(subchannel)}
                     <Link to={`${path.endsWith(subchannel.name) ? path : `${path}/${subchannel.name}`}`}>
                       <button className="channelButton">{subchannel.titel}</button>
                     </Link>
