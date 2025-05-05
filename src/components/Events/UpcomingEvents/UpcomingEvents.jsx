@@ -95,10 +95,8 @@ const UpcomingEvents = ({ user }) => {
                   })}
                   <br />
                   <strong>Time:</strong>{' '}
-                  {new Date(event.date).toLocaleTimeString('en-US', {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                  })}
+                  {event.time}
+                  
                 </p>
                 <p>
                   <strong>Location:</strong> {event.location}

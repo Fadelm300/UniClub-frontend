@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { deriveChannelPath } from "../../../utils/helpers/urlHelpers";
 import axios from "axios";
 import EventService from "../../../services/EventService";
 import ErrorModal from "../ErrorModal/ErrorModal";
@@ -8,13 +9,15 @@ import "./AddEvent.css";
 import postService from "../../../services/postService";
 
 const AddEvent = () => {
+  const { uni, college, major, course, event } = useParams();
+  const path = deriveChannelPath({ uni, college, major, course, event });
   const [formData, setFormData] = useState({
     title: "",
     description: "",
     date: "",
     time: "",
     location: "",
-    image: ""
+    image: "",
   });
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -55,9 +58,9 @@ const AddEvent = () => {
       method: 'PUT',
       body: file,
     });
-      await EventService.addEvent(formDataLink);
+      await EventService.addEvent(formDataLink,path);
     }else{
-      await EventService.addEvent(formData);
+      await EventService.addEvent(formData,path);
     }
       setFormData({
         title: '',

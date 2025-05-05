@@ -146,7 +146,7 @@ const Landing = (props) => {
           </div>
         </div>
         <div className="mainContentWithRightNav">
-          <LeftNav/>
+          <LeftNav path={path} user={props.user} channel={props.channel}/>
         <div className="mainContent">
           <h1 className="titlename">{props.channel.titel}</h1>
           <p>{props.channel.description}</p>

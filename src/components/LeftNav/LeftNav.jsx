@@ -3,8 +3,9 @@ import EventService from '../../services/EventService';
 import { Link } from 'react-router-dom';
 import ConfirmDeleteModal from '../Events/ConfirmDelete/ConfirmDeleteModal';
 import './LeftNav.css';
+import { path } from 'framer-motion/client';
 
-const LeftNav = ({ user }) => {
+const LeftNav = ({ user , path ,channel }) => {
   const [futureEvents, setFutureEvents] = useState([]);
   const [pastEvents, setPastEvents] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -12,11 +13,11 @@ const LeftNav = ({ user }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [eventIdToDelete, setEventIdToDelete] = useState(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); 
-
+  
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const data = await EventService.getEvents();
+        const data = await EventService.getEvents(path);
         setFutureEvents(data[0]);
         setPastEvents(data[1]);
         setLoading(false);
@@ -58,18 +59,14 @@ const LeftNav = ({ user }) => {
 
   return (
     <>
-      {/* <button className="toggle-sidebar-btn" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
-      {isSidebarOpen ? (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-      <path d="M8 5L15 12L8 19" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>  // → right arrow
-  ) : (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-      <path d="M16 5L9 12L16 19" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-    </svg> // ← left arrow
-  )}      </button> */}
+      
 
       <div className={`leftNav22 sidebar-responsive ${isSidebarOpen ? 'open' : ''}`}>
+      {(user.admin ||channel.moderators.includes(user.id))&&
+      <Link to={`${path}/AddEvent`}>
+        <button className="channelButtonunadd">Add New Event</button>
+      </Link>
+      }
         <h1 className="events-h1-22">Future Events</h1>
         <div className="event-cards22">
           {futureEvents.map((event) => (
