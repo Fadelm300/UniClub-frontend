@@ -139,6 +139,8 @@ const App = () => {
         path="/:uni/:college/:major/:course/newchannel"
         element={<ChannelForm handleAddchannel={handleAddchannel} />}
        />
+
+      
        
 
        </> 
@@ -246,6 +248,17 @@ const App = () => {
             />
 
           ))}
+
+          
+                {pathArr.map((path, index) => (
+                      <Route
+                        key={index}
+                        path={`${path}/AddEvent`}
+                        element={<AddEvent />}
+                        
+                      />
+          ))}
+          <Route path="/AddEvent" element={<AddEvent />} />
 
           
      </>
@@ -387,7 +400,6 @@ const App = () => {
         <Route path="/GPAStudent" element={<GPAStudent />} />
 
         <Route path="/UserList" element={<UserList />} />
-        <Route path="/AddEvent" element={<AddEvent />} />
         <Route path="/otp" element={<OtpVerification />} />
         <Route path="/resetpassword" element={<ResetPassword />} />
         <Route path="/creativespaces" element={<CreativeSpacesForm user={user} />} />

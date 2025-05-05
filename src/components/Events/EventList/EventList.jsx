@@ -10,10 +10,11 @@ const EventList = ({ events, onDelete }) => {
       alert(`Error: ${error.message}`);
     }
   };
+  console.log(events);
 
   return (
     <div>
-      {events.map((event) => (
+      {events[0].map((event) => (
         <div key={event._id}>
           <h3>{event.title}</h3>
           <button onClick={() => handleDelete(event._id)}>Delete</button>

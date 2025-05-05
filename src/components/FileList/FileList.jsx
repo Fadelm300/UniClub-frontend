@@ -63,11 +63,11 @@ const FileList = (props) => {
               <div className="topCard2">
                 <div className='username'> 
                   <div className="fileimg">
-                    <img src={file.user.image} alt="" />
+                    <img src={file.user?.image} alt="" />
                   </div>
-                  <span className='usernametxt'>{file.user.username}</span>
+                  <span className='usernametxt'>{file.user?.username}</span>
                 </div>
-                {(props.user.admin || props.user.id == file.user._id) && (
+                {(props.user.admin || props.user.id == file.user?._id) && (
                 <div className='deleteandEdit'>
                   <Link to={`${props.path}/editfile`}>
                     <button className="iconButton">

@@ -38,7 +38,6 @@ const AddChannelForm = ({ onChannelAdded, closeModal, path }) => {
         const newChannel = await channelService.create(formData, path || "");
         setMessage(`Channel '${newChannel.name}' created successfully!`);
         onChannelAdded?.();
-  
         setTimeout(() => {
           closeModal?.();
           setMessage("");

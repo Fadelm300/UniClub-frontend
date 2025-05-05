@@ -1,8 +1,8 @@
 const BASE_URL = `${import.meta.env.VITE_BACKEND_URL}/event`;
 
-const getEvents = async () => {
+const getEvents = async (path) => {
   try {
-    const res = await fetch(BASE_URL, {
+    const res = await fetch(`${BASE_URL}/get${path||'/'}`, {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
     });
     if (!res.ok) {
@@ -30,7 +30,7 @@ const getEventById = async (eventId) => {
   }
 };
 
-const addEvent = async (formData) => {
+const addEvent = async (formData ,path) => {
   try {
     const options = {
       method: 'POST',
@@ -41,7 +41,7 @@ const addEvent = async (formData) => {
       body: JSON.stringify(formData),
     };
 
-    const res = await fetch(BASE_URL, options);
+    const res = await fetch(`${BASE_URL}/add${path}`, options);
     if (!res.ok) {
       const errorData = await res.text();
       throw new Error(`Error adding event: ${res.status} ${errorData}`);
