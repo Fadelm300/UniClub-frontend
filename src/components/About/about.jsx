@@ -16,7 +16,7 @@ const AboutUs = () => {
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.3 }}
       >
-        We are a team of four friends working together on an exciting project to create the best platform for university students. Our mission is to make studying easier by providing a centralized hub for academic resources and essential student tools.
+        We are a team of three friends working together on an exciting project to create the best platform for university students. Our mission is to make studying easier by providing a centralized hub for academic resources and essential student tools.
       </motion.p>
       <motion.p 
         initial={{ opacity: 0, x: -20 }}

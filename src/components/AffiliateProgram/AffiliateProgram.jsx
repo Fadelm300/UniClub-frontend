@@ -31,7 +31,7 @@ function AffiliateProgram() {
         Apply today to become an affiliate and start earning by helping students succeed. For more information, contact our support team.
       </p>
       <motion.a 
-        href="/"
+        href="/contact"
         className="get-started-button"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

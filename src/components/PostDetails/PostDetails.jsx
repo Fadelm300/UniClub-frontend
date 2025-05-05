@@ -111,13 +111,23 @@ const PostDetails = ({ user, handleDeletePost }) => {
 
 
               
-            <Link to={post.user._id === user?.id ? `/profile/${post.user._id}` : `/userlist/${post.user._id}`}>
-            <div className="post-detail-user-image">
+          {user ? (
+                <Link to={post.user._id === user.id ? `/profile/${post.user._id}` : `/userlist/${post.user._id}`}>
+                  <div className="post-detail-user-image">
                     <img src={post.user.image || DEFAULT_IMAGE_URL} alt="Post Image" />
-                   <h4>{post.user.username}</h4>
+                    <h4>{post.user.username}</h4>
                   </div>
-            </Link>
-              
+                </Link>
+              ) : (
+                <div className="post-detail-user-image">
+                  <img src={post.user.image || DEFAULT_IMAGE_URL} alt="Post Image" />
+                  <h4>{post.user.username}</h4>
+                  <div className="login-warning" >
+                    🔒 You need to log in to view profiles
+                  </div>
+                </div>
+              )}
+
 
 
 
@@ -246,10 +256,30 @@ const PostDetails = ({ user, handleDeletePost }) => {
                     <article>
                       <header>
                         <div className="usernamecontener">
-                        <Link to={comment.user._id === user?.id ? `/profile/${comment.user._id}` : `/userlist/${comment.user._id}`}>
+                        {/* <Link to={comment.user._id === user?.id ? `/profile/${comment.user._id}` : `/userlist/${comment.user._id}`}>
 
                           <div>{comment.user?.username}</div>
-                          </Link>
+                          </Link> */}
+
+                              {user ? (
+
+                              <Link to={comment.user._id === user?.id ? `/profile/${comment.user._id}` : `/userlist/${comment.user._id}`}>
+                            <div className="comment-detail-user-image">
+                              <img src={comment.user.image || DEFAULT_IMAGE_URL} alt="Post Image" />
+
+                                <h4>{comment.user?.username}</h4>
+                                
+                                </div>  
+                                </Link>
+                              ) : (
+                              <div className="comment-detail-user-image">
+                              <img src={comment.user.image || DEFAULT_IMAGE_URL} alt="Post Image" />
+                              <h4>{comment.user?.username}</h4>
+                              {/* <div className="login-warning-comment" >
+                              🔒 You need to log in to view profiles
+                              </div> */}
+                              </div>                   
+                              )}
                           <div>
                             {new Date(comment.createdAt).toLocaleDateString(
                              navigator.language.startsWith('ar') ? 'ar-EG' : 'en-US',

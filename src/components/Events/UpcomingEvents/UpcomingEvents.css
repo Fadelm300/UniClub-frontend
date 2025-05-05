@@ -69,9 +69,11 @@
   font-size: 1.4rem;
   font-weight: bold;
   margin-bottom: 8px;
+
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 
-}
+  background-color: #d9dde080;
+
 
 .event-description {
   font-size: 0.95rem;

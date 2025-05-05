@@ -7,7 +7,7 @@ const FileList = (props) => {
   const [showModalDelet, setShowModalDelet] = useState(false);
   const [fileToDelete, setFileToDelete] = useState(null);
   const [filesinside, setFilesinside] = useState(props.files);
-  console.log(props.user)
+  // console.log(props.user)
   const handleDeleteConfirmation = (fileId) => {
     setFileToDelete(fileId);
     setShowModalDelet(true);
@@ -102,7 +102,7 @@ const FileList = (props) => {
                 <div className="dawnCard2">
                   {file.type?.includes("pdf")?(
                   
-                    <img src="/pdf.png" alt="pdf" className='PDFPng' />
+                    <img src="/pdf.png" alt="pdf" className='PDFPng1' />
                   
                   ):(file.type?.includes("image")?(
                     <img src={file.link} alt="pic" className='PDFPng'/>
@@ -128,12 +128,12 @@ const FileList = (props) => {
           />
         )}
 
-        <div className="radomFiles">
+        {/* <div className="radomFiles">
           <div className="randomcards"><h1>111</h1></div>
           <div className="randomcards"><h1>111</h1></div>
           <div className="randomcards"><h1>111</h1></div>
           <div className="randomcards"><h1>111</h1></div>
-        </div>
+        </div> */}
       </div>
     </>
   );

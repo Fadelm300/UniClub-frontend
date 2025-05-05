@@ -307,12 +307,12 @@ const UserProfile = () => {
             placeholder="URL img"
             accept='image/*'
             />
-            <input
+            {/* <input
                 id="image" 
                 name="image" 
                 onChange={handleChange}
                 placeholder="URL img"
-              />
+              /> */}
             <div className='Save_and_Cancel'>
             <button className="reset-button" onClick={resetToDefaultImage}> <img src="https://img.icons8.com/?id=K2njhUKeLfle&format=png&color=000000" alt="" /> </button>
               <button onClick={() => setShowEditConfirm(true)}> 
@@ -409,7 +409,7 @@ const UserProfile = () => {
                           onClick={() => navigate('/creativespaces')}
                           className="create-space-button"
                         >
-                          Create a New Creative Space
+                         🚀 Create a New Creative Space🎨
                         </button>
                         <UserCreativeSpaces userId={userId} isReadOnly={false} />
 
@@ -447,6 +447,16 @@ const UserProfile = () => {
                     ? `Post text: ${post.text.substring(0, maxLength)}...`
                     : post.text}
                 </Link>
+                {post.text.length > maxLength && !expandedPosts[post._id] && (
+                  <button className="see-more" onClick={() => togglePostVisibility(post._id)}>
+                    🔽Click to see more details
+                  </button>
+                )}
+                {expandedPosts[post._id] && (
+                  <button className="see-less" onClick={() => togglePostVisibility(post._id)}>
+                    🔼Click to see less
+                  </button>
+                )}
                 {post.file && (
 
                       <div className="post-media-wrapper">
@@ -478,16 +488,6 @@ const UserProfile = () => {
 
             
         
-                {post.text.length > maxLength && !expandedPosts[post._id] && (
-                  <button className="see-more" onClick={() => togglePostVisibility(post._id)}>
-                    Click to see more details
-                  </button>
-                )}
-                {expandedPosts[post._id] && (
-                  <button className="see-less" onClick={() => togglePostVisibility(post._id)}>
-                    Click to see less
-                  </button>
-                )}
 
               </li>
             ))}
@@ -537,12 +537,12 @@ const UserProfile = () => {
         
               {post.text.length > maxLengthForCommintSection && !expandedPosts[post._id] && (
                 <button className="see-more" onClick={() => togglePostVisibility(post._id)}>
-                  Click to see more details
+                  🔽Click to see more details
                 </button>
               )}
               {expandedPosts[post._id] && (
                 <button className="see-less" onClick={() => togglePostVisibility(post._id)}>
-                  Click to see less
+                 🔼 Click to see less
                 </button>
               )}
             </div>
@@ -578,12 +578,12 @@ const UserProfile = () => {
 
                   {comment.text.length > commentMaxLength && !expandedComments[comment._id] && (
                     <button className="see-more" onClick={() => toggleCommentVisibility(comment._id)}>
-                      Click to see more details
+                     🔽 Click to see more details
                     </button>
                   )}
                   {expandedComments[comment._id] && (
                     <button className="see-less" onClick={() => toggleCommentVisibility(comment._id)}>
-                      Click to see less
+                     🔼 Click to see less
                     </button>
                   )}
                 </div>

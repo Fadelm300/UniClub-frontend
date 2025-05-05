@@ -1,7 +1,7 @@
 .file-container {
   max-width: 1000px;
   margin: 40px auto;
-  padding: 40px;
+  padding: 40px 20px;
   border-radius: 24px;
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(10px);
@@ -12,13 +12,13 @@
   transition: all 0.3s ease;
 }
 
-.file-container h1 {
-  font-size: 2.8rem;
+.file-title {
+  font-size: 2.5rem;
   color: #2563eb;
   margin-bottom: 15px;
 }
 
-.file-container .uploader {
+.uploader {
   font-size: 1.1rem;
   color: #374151;
   margin-bottom: 25px;
@@ -26,26 +26,33 @@
 
 .file-viewer {
   width: 100%;
+  max-height: 80vh;
   aspect-ratio: 1 / 1.41;
   margin: 25px 0;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
   border: 1px solid #e5e7eb;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-
-.file-iframe {
+.file-iframe,
+.file-img {
   width: 100%;
   height: 100%;
+  object-fit: contain;
   border: none;
 }
-.description-file-box {
+
+.description-box-file {
   margin-top: 30px;
   text-align: left;
 }
 
-.description-file-title {
+.description-title-file {
   font-size: 1.5rem;
   color: #2563eb;
   margin-bottom: 10px;
@@ -65,72 +72,17 @@
   border-left: 5px solid #2563eb;
 }
 
-.delete-btn-file {
+.action-buttons-file {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
   margin-top: 30px;
-  background: linear-gradient(135deg, #ef4444, #dc2626);
-  color: white;
-  border: none;
-  padding: 14px 28px;
-  border-radius: 12px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s;
 }
 
-.delete-btn-file:hover {
-  background: linear-gradient(135deg, #dc2626, #b91c1c);
-  transform: scale(1.03);
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-  .file-container {
-    padding: 30px;
-  }
-
-  .file-container h1 {
-    font-size: 2.4rem;
-  }
-
-  .file-viewer {
-    height: 450px;
-  }
-}
-
-@media (max-width: 768px) {
-  .file-container {
-    padding: 20px;
-    margin: 20px 10px;
-  }
-
-  .file-container h1 {
-    font-size: 2rem;
-  }
-
-  .description-file {
-    font-size: 1rem;
-  }
-
-  .file-viewer {
-    height: 350px;
-  }
-
-  .delete-btn-file {
-    padding: 12px 22px;
-    font-size: 0.95rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .file-viewer {
-    height: 300px;
-  }
-}
-
-
-
-.share-btn-file {
-  margin-top: 20px;
+.delete-btn-file,
+.share-btn-file ,
+.download-btn-file{
   background-color: #2563eb;
   color: white;
   padding: 12px 24px;
@@ -139,8 +91,16 @@
   font-weight: 500;
   border: none;
   cursor: pointer;
-  transition: background-color 0.3s;
-  margin: 20px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.delete-btn-file {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.delete-btn-file:hover {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  transform: scale(1.03);
 }
 
 .share-btn-file:hover {
@@ -158,7 +118,6 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   animation: fadeInOut 3s ease-in-out;
   text-align: center;
-  
 }
 
 @keyframes fadeInOut {
@@ -167,3 +126,102 @@
   90% { opacity: 1; }
   100% { opacity: 0; transform: translateY(-10px); }
 }
+
+@media (max-width: 768px) {
+  .file-title {
+    font-size: 2rem;
+  }
+
+  .description-file {
+    font-size: 1rem;
+    padding: 15px 20px;
+  }
+
+  .delete-btn-file,
+  .share-btn-file {
+    padding: 10px 20px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .file-container {
+    padding: 30px 15px;
+    margin-top: 160px; 
+  }
+
+  .file-title {
+    font-size: 1.75rem;
+    word-wrap: break-word; 
+    overflow-wrap: break-word;
+  }
+
+  .file-viewer {
+    aspect-ratio: auto;
+    height: auto;
+  }
+
+  .file-iframe,
+  .file-img {
+    max-height: 300px;
+  }
+
+  .description-title-file {
+    font-size: 1.25rem;
+  }
+}
+
+.download-btn-file {
+  margin-top: 20px;
+  background-color: #10b981;
+  color: white;
+
+}
+
+.download-btn-file:hover {
+  background-color: #059669;
+}
+
+
+.file-img {
+  width: 100%;
+  height: auto;
+  max-height: 600px;
+  object-fit: contain;
+  display: block;
+  border-radius: 10px;
+}
+
+.file-container-img {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  padding: 0 15px;
+}
+
+.file-viewer {
+  width: 100%;
+  max-width: 800px;  
+  height: auto;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.file-iframe {
+  width: 100%;
+  height: 480px; 
+  border: none;
+  display: block;
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .file-iframe {
+    height: 300px;
+  }
+}
+
+
+

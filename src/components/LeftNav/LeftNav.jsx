@@ -99,7 +99,12 @@ const LeftNav = ({ user , path ,channel }) => {
             <div className="event-card22" key={event._id} style={{ backgroundImage: `url(${event.image})` }}>
               <div className="event-details22">
                 <h2 className="event-title22">{event.title}</h2>
-                <p className="event-description22">{event.description}</p>
+              <Link  to={`/`}>
+                <p className="event-description22">
+                  {event.description.length > 30
+                  ? `${event.description.slice(0, 50)}...`
+                  : event.description}</p>
+                  </Link>
                 <div className="event-info22">
                   <p className="event-date-time">
                     <strong>Date:</strong> {new Date(event.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}<br />

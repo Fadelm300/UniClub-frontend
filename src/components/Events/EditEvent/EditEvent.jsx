@@ -15,6 +15,7 @@ const EditEvent = () => {
     time: '',
     location: '',
     image: ''
+
   });
   const [file, setFile] = useState(null);
   const [oldData, setOldData] = useState({});
@@ -111,9 +112,11 @@ const EditEvent = () => {
         <motion.input id="location" name="location" value={formData.location} onChange={handleChange} required 
           whileHover={{ scale: 1.02, transition: { duration: 0.15 } }} />
 
+
         <label htmlFor="logo">picture</label>
         <motion.input  type='file' accept='image/* 'id="logo" name="logo"onChange={handleFileChange} 
           whileHover={{ scale: 1.02, transition: { duration: 0.15 } }} />
+
 
         <div className="button-container">
           <motion.button type="submit" className='UpdateEvent'
@@ -157,12 +160,12 @@ const EditEvent = () => {
                 <p><strong>New Location:</strong> {formData.location}</p>
               </div>
             )}
-            {hasChanged('logo') && (
+            {/* {hasChanged('logo') && (
               <div>
                 <p><strong>Old Logo:</strong> {oldData.logo}</p>
                 <p><strong>New Logo:</strong> {formData.logo}</p>
               </div>
-            )}
+            )} */}
             <div className="modal-buttons">
               <motion.button onClick={handleOk} className="save-btn"
                 whileHover={{ scale: 1.05, transition: { duration: 0.15 } }}>

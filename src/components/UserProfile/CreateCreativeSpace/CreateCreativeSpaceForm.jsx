@@ -57,8 +57,7 @@ const CreateCreativeSpaceForm = ({ user }) => {
       };
 
       await creativeSpaceServices.addCreativeSpace(newCreativeSpace);
-      console.log("Creative space added successfully");
-      navigate('/');
+      navigate(`/profile/${user.id}`);
     } catch (error) {
       console.error("Error adding creative space:", error);
       setError('An error occurred while creating the Creative Space.');

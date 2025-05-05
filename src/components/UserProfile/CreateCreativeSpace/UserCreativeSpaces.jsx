@@ -45,13 +45,13 @@ const UserCreativeSpaces = ({ userId, isReadOnly = false }) => {
         <div className="ucs-list">
           {creativeSpaces.map((space) => (
             <div key={space._id} className="ucs-card">
-              <p className="ucs-p">Title</p>
+              <p className="ucs-p">Title :</p>
               <h3 className="ucs-card-title">{space.title}</h3>
 
-              <p className="ucs-p">Description</p>
+              <p className="ucs-p">Description :</p>
               <p className="ucs-card-desc">{space.description}</p>
 
-              <p className="ucs-p">Image</p>
+              {/* <p className="ucs-p">Image :</p> */}
               {space.image && (
                 <img
                   src={space.image}

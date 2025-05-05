@@ -24,7 +24,6 @@ const ChannelForm = ({ handleAddchannel }) => {
     if (!formData.titel.trim()) newErrors.titel = 'Title is required';
     if (!formData.name.trim()) newErrors.name = 'Name is required';
     if (!formData.description.trim()) newErrors.description = 'Description is required';
-    setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
@@ -69,15 +68,18 @@ const ChannelForm = ({ handleAddchannel }) => {
       >
         <h2>Create New Channel</h2>
         <form className="channel-form" onSubmit={handleSubmit}>
-          <input
+        <input
             type="text"
             name="titel"
             placeholder="Title"
             value={formData.titel}
             onChange={handleChange}
-            className={errors.titel ? 'input-error' : ''}
+            className={/^[a-zA-Z0-9\s]*$/.test(formData.titel) ? '' : 'input-error'}
           />
-          {errors.titel && <span className="error-text">{errors.titel}</span>}
+
+          {formData.titel === '' ? null : !/^[a-zA-Z0-9\s.]*$/.test(formData.titel) ? (
+            <p className="error-message">Title must contain only letters, numbers, and spaces, and periods ('.').</p>
+          ) : null}
 
           <input
             type="text"
@@ -85,9 +87,12 @@ const ChannelForm = ({ handleAddchannel }) => {
             placeholder="Name"
             value={formData.name}
             onChange={handleChange}
-            className={errors.name ? 'input-error' : ''}
+            className={/^[a-z]+$/.test(formData.name) || formData.name === '' ? '' : 'input-error'}
           />
-          {errors.name && <span className="error-text">{errors.name}</span>}
+
+          {formData.name === '' ? null : !/^[a-z0-9]+$/.test(formData.name) ? (
+            <p className="error-message">Name must contain only lowercase letters (a–z) ,and numbers .</p>
+          ) : null}
 
           <textarea
             name="description"
@@ -99,7 +104,7 @@ const ChannelForm = ({ handleAddchannel }) => {
           {errors.description && <span className="error-text">{errors.description}</span>}
 
           {/* <input type="file" accept="image/*" onChange={handleFileChange} /> */}
- <motion.input
+          <motion.input
             type="file"
             accept="image/*"
             onChange={handleFileChange}
