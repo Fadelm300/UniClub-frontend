@@ -64,7 +64,7 @@ const LeftNav = ({ user , path ,channel }) => {
       <div className={`leftNav22 sidebar-responsive ${isSidebarOpen ? 'open' : ''}`}>
       {(user.admin ||channel.moderators.includes(user.id))&&
       <Link to={`${path}/AddEvent`}>
-        <button className="channelButtonunadd">Add New Event</button>
+        <button className="channelButtonunadd22">Add New Event</button>
       </Link>
       }
         <h1 className="events-h1-22">Future Events</h1>
@@ -83,11 +83,12 @@ const LeftNav = ({ user , path ,channel }) => {
                 </div>
 
                 {user?.admin && (
-                  <div className="event-actions22">
-                    <Link to={`/edit-event/${event._id}`} className="edit-button22">Edit</Link>
-                    <button className="delete-button22" onClick={() => openModal(event._id)}>Delete</button>
+                  <div className="event-actions-modern">
+                    <Link to={`/edit-event/${event._id}`} className="edit-button-modern">Edit</Link>
+                    <button className="delete-button-modern" onClick={() => openModal(event._id)}>Delete</button>
                   </div>
                 )}
+
               </div>
             </div>
           ))}

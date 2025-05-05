@@ -84,36 +84,43 @@ padding-left: 10px;
   margin-top: 10px;
 }
 
-.edit-button22,
-.delete-button22 {
-  padding: 8px 12px;
-  font-size: 14px;
-  font-weight: bold;
-  text-transform: uppercase;
+.event-actions-modern {
+  display: flex;
+  gap: 8px;
+}
+
+.edit-button-modern,
+.delete-button-modern {
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: capitalize;
   border: none;
+  border-radius: 6px;
   cursor: pointer;
-  border-radius: 5px;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
 }
 
-.edit-button22 {
+.edit-button-modern {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.edit-button-modern:hover {
   background-color: #2563eb;
-  color: white;
-  text-decoration: none;
+  transform: translateY(-1px);
 }
 
-.edit-button22:hover {
-  background-color: #1e40af;
-}
-
-.delete-button22 {
-  background-color: #d32f2f;
+.delete-button-modern {
+  background-color: #ef4444;
   color: white;
 }
 
-.delete-button22:hover {
-  background-color: #b71c1c;
+.delete-button-modern:hover {
+  background-color: #dc2626;
+  transform: translateY(-1px);
 }
-
 
 
 /* Default: hidden on large screens */
@@ -155,4 +162,24 @@ padding-left: 10px;
   .sidebar-responsive.open {
     left: 0;
   }
+}
+
+
+.channelButtonunadd22 {
+  padding: 8px 16px;
+  background-image: linear-gradient(to right, #60a5fa, #38bdf8); 
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-size: 0.95rem;
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.channelButtonunadd22:hover {
+  background-image: linear-gradient(to right, #3b82f6, #0ea5e9); 
+  transform: translateY(-2px) scale(1.03);
 }
