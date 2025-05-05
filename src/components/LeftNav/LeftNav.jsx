@@ -62,7 +62,7 @@ const LeftNav = ({ user , path ,channel }) => {
       
 
       <div className={`leftNav22 sidebar-responsive ${isSidebarOpen ? 'open' : ''}`}>
-      {(user.admin ||channel.moderators.includes(user.id))&&
+      {(user?.admin ||channel.moderators.includes(user?.id))&&
       <Link to={`${path}/AddEvent`}>
         <button className="channelButtonunadd22">Add New Event</button>
       </Link>
