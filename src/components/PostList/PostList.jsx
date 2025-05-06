@@ -100,6 +100,18 @@ const PostList = (props) => {
     }
   };
   
+  const formatNumber = (num) => {
+    if (num >= 1e9) {
+      return (num / 1e9).toFixed(1) + 'B'; 
+    }
+    if (num >= 1e6) {
+      return (num / 1e6).toFixed(1) + 'M'; 
+    }
+    if (num >= 1e3) {
+      return (num / 1e3).toFixed(1) + 'k'; 
+    }
+    return num;
+  };
   
   return (
     <>
@@ -298,7 +310,7 @@ const PostList = (props) => {
 
                   <div className="interactionItem">
                     <img src="/icons8-results-24.png" alt="Views" />
-                    <span>{post.views || 0}</span>
+                    <span>{formatNumber(post.views || 0)}</span>
                   </div>
 
                   <div className="interactionItem">
