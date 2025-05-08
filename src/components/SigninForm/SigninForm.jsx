@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import authService from "../../services/authService";
 import "./SigninForm.css";
-
+import { FaEye, FaEyeSlash } from "react-icons/fa"; 
 const SigninForm = (props) => {
   const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
@@ -14,6 +14,7 @@ const SigninForm = (props) => {
  const [message, setMessage] = useState(['']);
 const [error, setError] = useState("");
 const [submitted, setSubmitted] = useState(false);
+const [showPassword, setShowPassword] = useState(false);
 
   const [formData, setFormData] = useState({
     username: "",
@@ -98,15 +99,16 @@ const [submitted, setSubmitted] = useState(false);
                 required
               />
              
-          {submitted && formData.username.trim() === "" ? (
+             {formData.username.trim() === "" ? (
   <p className="error-message">Username is required</p>
-) : submitted && formData.username.includes(" ") ? (
+) : formData.username.includes(" ") ? (
   <p className="error-message">Username cannot contain spaces.</p>
-) :submitted && !/^[a-zA-Z0-9_]{3,}$/.test(formData.username) ? (
+) : !/^[a-zA-Z0-9_]{3,}$/.test(formData.username) ? (
   <p className="error-message">
     Username must be at least 3 characters and can only contain letters, numbers, and underscores.
   </p>
 ) : null}
+
 
 
                 <input
@@ -133,14 +135,25 @@ const [submitted, setSubmitted] = useState(false);
                   <p className="error-message">Phone number must be numeric</p>
                 )}
 
-                <input
-                  type="password"
+                  <div className="input-with-eye">
+                  <input
+                    type={showPassword ? "text" : "password"}
                   placeholder="Password"
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
                   required
                 />
+                <button
+                type="button"
+                className="eye-button"
+                onClick={() => setShowPassword(prev => !prev)}
+                tabIndex={-1}
+                aria-label="Toggle password visibility"
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+              </div>
                {formData.password && (
                         <>
                           {formData.password.length < 8 ? (
@@ -153,14 +166,25 @@ const [submitted, setSubmitted] = useState(false);
                         </>
                       )}
 
-                <input
-                  type="password"
+                  <div className="input-with-eye">
+                  <input
+                    type={showPassword ? "text" : "password"}
                   placeholder="Confirm Password"
                   name="passwordConf"
                   value={formData.passwordConf}
                   onChange={handleChange}
                   required
                 />
+                 <button
+                type="button"
+                className="eye-button"
+                onClick={() => setShowPassword(prev => !prev)}
+                tabIndex={-1}
+                aria-label="Toggle password visibility"
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+              </div>
                 {formData.password !== formData.passwordConf && formData.passwordConf !== "" && (
                   <p className="error-message">Passwords do not match</p>
                 )}
@@ -191,15 +215,27 @@ const [submitted, setSubmitted] = useState(false);
               value={formData.username}
               onChange={handleChange}
             />
-            <input
-              type="password"
-              autoComplete="off"
-              placeholder="Password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-            />
+            <div className="input-with-eye">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  autoComplete="off"
+                  placeholder="Password"
+                  id="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                />
+                <button
+                  type="button"
+                  className="eye-button"
+                  onClick={() => setShowPassword(prev => !prev)}
+                  tabIndex={-1}
+                  aria-label="Toggle password visibility"
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </button>
+              </div>
+
             <button type="submit">Sign In</button>
             <Link to="/resetpassword">forgot password</Link>
           </form>

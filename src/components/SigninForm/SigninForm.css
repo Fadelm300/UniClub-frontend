@@ -360,3 +360,27 @@
     
   }
 }
+.input-with-eye {
+  position: relative;
+  width: 100%;
+}
+
+.input-with-eye input {
+  width: 100%;
+  padding-right: 40px; /* add space for the eye icon */
+}
+
+.input-with-eye .eye-button {
+  all: unset; /* resets all inherited and default styles */
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #333;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
