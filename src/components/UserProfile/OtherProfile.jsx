@@ -208,6 +208,7 @@ const UserProfile = () => {
         
           <div className="profile-info">
           <h1>{user?.username.charAt(0).toUpperCase() + user?.username.slice(1)}</h1>
+          {/* 0209 */}
             {user?.blockedUntil && (
                 <p className="blocked-info">
                   🛑 <strong>Posting Blocked Until:</strong> {formatBlockedDate(user.blockedUntil)}
