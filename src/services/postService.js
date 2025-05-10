@@ -201,12 +201,12 @@ const submitReport = async (postId) => {
 
   try {
     const response = await postService.reportPost(postId, reportReason); // Just pass reportReason
-    alert("Report submitted successfully");
+    // alert("Report submitted successfully");
     setReportingPost(null);
     setReportReason("");
   } catch (error) {
     console.error("Error reporting post:", error.message);
-    alert(`Failed to submit report: ${error.message || "Unknown error"}`);
+    // alert(`Failed to submit report: ${error.message || "Unknown error"}`);
   }
 };
 

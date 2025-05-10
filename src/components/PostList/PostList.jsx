@@ -12,7 +12,7 @@ const PostList = (props) => {
 
   const DEFAULT_IMAGE_URL = "https://img.icons8.com/?size=100&id=kfZajSPygW1l&format=png&color=000000";
   const MAX_TEXT_LENGTH = 200;
-
+  const [popupMessage, setPopupMessage] = useState('');
   const [LikedPosts, setLikedPosts] = useState([]);
   const [showPopUp, setShowPopUp] = useState(false); 
   const [reportingPost, setReportingPost] = useState(null);
@@ -63,6 +63,7 @@ const PostList = (props) => {
     const postLink = `${window.location.origin}${props.path}/post/${postId}`;
     navigator.clipboard.writeText(postLink)
       .then(() => {
+        setPopupMessage('Link copied to clipboard!');
         setShowPopUp(true);  
         setTimeout(() => {
           setShowPopUp(false);  
@@ -87,17 +88,24 @@ const PostList = (props) => {
   };
 
   const submitReport = async (postId) => {
-      if (!reportReason) return alert("Please select a reason.");
-  
+    if (!reportReason) {
+      setPopupMessage('Please select a reason before submitting.');
+      setShowPopUp(true);
+      setTimeout(() => setShowPopUp(false), 3000);
+      return;
+    }
     try {
-      const response = await postService.reportPost(postId, reportReason);
-      alert("Report submitted successfully");
+      await postService.reportPost(postId, reportReason);
+      setPopupMessage('Report submitted successfully.');
+      setShowPopUp(true);
+      setTimeout(() => setShowPopUp(false), 3000);
       setReportingPost(null); 
       setReportReason(""); 
     } catch (error) {
       console.error("Error reporting post:", error.message);
-      alert(`Failed to submit report: ${error.message || "Unknown error"}`);
-    }
+      setPopupMessage(`Failed to submit report: ${error.message || "Unknown error"}`);
+      setShowPopUp(true);
+      setTimeout(() => setShowPopUp(false), 3000);    }
   };
   
   const formatNumber = (num) => {
@@ -115,11 +123,9 @@ const PostList = (props) => {
   
   return (
     <>
-      {showPopUp && (
-        <div className="popup-message">
-          Link copied to clipboard!
-        </div>
-      )}
+  {showPopUp && <div className="popup-message">{popupMessage}</div>}
+
+     
 
       <div className="cardContaner">
 

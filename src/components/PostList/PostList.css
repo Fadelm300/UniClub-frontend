@@ -258,19 +258,20 @@ a {
 
 
 
+
 .popup-message {
   position: fixed;
-  top: 20%;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  background-color: #444;
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 5px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-  z-index: 1000;
-  opacity: 0;
-  animation: fadeInOut 3s forwards;
+  transform: translate(-50%, -50%); 
+
+  background: linear-gradient(to right, #4338ca, #4f46e5);
+  color: white;
+  padding: 16px 24px;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  animation: fadeInOut 3s ease-in-out;
+  z-index: 10000;
 }
 
 @keyframes fadeInOut {
@@ -647,3 +648,6 @@ a {
   margin-top: 8px;
   font-weight: 500;
 }
+
+
+

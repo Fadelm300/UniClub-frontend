@@ -9,6 +9,7 @@ const Reports = (props) => {
   const [flaggedPosts, setFlaggedPosts] = useState([]);
   const [blockDurations, setBlockDurations] = useState({});
   const [modalData, setModalData] = useState(null);
+  const [feedbackMsg, setFeedbackMsg] = useState(null);
   const [page, setPage] = useState(0);
 
   const { uni, college, major, course, event } = useParams();
@@ -38,6 +39,11 @@ const Reports = (props) => {
     setModalData({ action, postId, userId });
   };
 
+  const showMessage = (msg) => {
+    setFeedbackMsg(msg);
+    setTimeout(() => setFeedbackMsg(null), 3000);
+  };
+
   const handleConfirmAction = async () => {
     if (!modalData) return;
     const { action, postId, userId } = modalData;
@@ -47,6 +53,7 @@ const Reports = (props) => {
         case "deletePost":
           await postService.delete(postId, path);
           setReportedPosts(reportedPosts.filter((post) => post._id !== postId));
+          showMessage("Post deleted.");
           break;
         case "deleteReport":
           await postService.deleteReport(postId);
@@ -59,38 +66,40 @@ const Reports = (props) => {
               )
               .filter((post) => post.report.length > 0)
           );
+          showMessage("Report deleted.");
           break;
         case "deleteAllReports":
           await postService.deleteAllReports(postId);
           setReportedPosts(reportedPosts.filter((post) => post._id !== postId));
+          showMessage("All reports deleted.");
           break;
         case "blockUser":
           const duration = blockDurations[userId];
-          if (!duration) return alert("Please select a block duration.");
+          if (!duration) return showMessage("Please select a block duration.");
           await postService.blockUser(userId, duration);
           const userPosts = reportedPosts.filter((post) => post.user._id === userId);
           for (const post of userPosts) {
             await postService.delete(post._id, path);
           }
           setReportedPosts(reportedPosts.filter((post) => post.user._id !== userId));
-          alert(`User blocked for ${duration} and their posts deleted.`);
+          showMessage(`User blocked for ${duration} and their posts deleted.`);
           break;
         case "allow":
           await postService.allowPost(postId);
           setFlaggedPosts(flaggedPosts.filter((post) => post._id !== postId));
-          alert(`Post allowed.`);
+          showMessage("Post allowed.");
           break;
         case "deleteFlagged":
           await postService.deleteFlagged(postId);
           setFlaggedPosts(flaggedPosts.filter((post) => post._id !== postId));
-          alert(`Post deleted.`);
+          showMessage("Post deleted.");
           break;
         default:
           console.error("Unknown action:", action);
       }
     } catch (err) {
       console.error(`Error performing action (${action}):`, err);
-      alert(`Failed to ${action.replace(/([A-Z])/g, ' $1').toLowerCase()}.`);
+      showMessage(`Failed to ${action.replace(/([A-Z])/g, ' $1').toLowerCase()}.`);
     } finally {
       setModalData(null);
     }
@@ -223,6 +232,13 @@ const Reports = (props) => {
               </button>
             </div>
           </div>
+        </div>
+      )}
+
+      {/* Feedback message */}
+      {feedbackMsg && (
+        <div className="Report-feedback-msg">
+          {feedbackMsg}
         </div>
       )}
     </div>
