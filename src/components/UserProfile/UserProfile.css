@@ -8,6 +8,17 @@
   align-items: center;
   justify-content: center;
 }
+
+.follow-button {
+  padding: 8px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 5px;
+  white-space: nowrap;
+}
 .background-animation {
   position: absolute;
   top: 0;

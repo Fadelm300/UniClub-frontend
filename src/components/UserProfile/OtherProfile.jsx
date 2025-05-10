@@ -64,6 +64,44 @@ const UserProfile = () => {
       [commentId]: !prev[commentId],
     }));
   };
+
+  let isTogglingFollow = false; // simple mutex
+
+const toggleFollow = async (userId) => {
+  if (isTogglingFollow) return;
+  isTogglingFollow = true;
+  
+  setUser((prev) => {
+    const isFollowing = prev.followers.includes(userId);
+    return {
+      ...prev,
+      followers: isFollowing
+        ? prev.followers.filter((id) => id !== userId)
+        : [...prev.followers, userId]
+    };
+  });
+
+  try {
+    authService.toggleFollow(userId);
+  } catch (error) {
+    console.error('Toggle follow failed, reverting UI:', error);
+
+    // Revert UI on failure
+    setUser((prev) => {
+      const isFollowing = prev.followers.includes(userId);
+      return {
+        ...prev,
+        followers: isFollowing
+          ? prev.followers.filter((id) => id !== userId)
+          : [...prev.followers, userId]
+      };
+    });
+  } finally {
+    isTogglingFollow = false;
+  }
+};
+
+
   
   const fetchFollowers = async () => {
     try {
@@ -208,7 +246,9 @@ const UserProfile = () => {
         
           <div className="profile-info">
           <h1>{user?.username.charAt(0).toUpperCase() + user?.username.slice(1)}</h1>
-          {/* 0209 */}
+          <button className='follow-button' onClick={() => toggleFollow(user._id)}>
+            {user?.followers.includes(userId) ? 'Unfollow' : 'Follow'}
+          </button>
             {user?.blockedUntil && (
                 <p className="blocked-info">
                   🛑 <strong>Posting Blocked Until:</strong> {formatBlockedDate(user.blockedUntil)}
