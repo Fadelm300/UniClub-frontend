@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import AuthorDate from "../common/AuthorDate";
 import CommentForm from '../CommentForm/CommentForm';
 import { deriveChannelPath } from "../../utils/helpers/urlHelpers";
-
+import FileView from "../FileView/FileView";
 const PostDetails = ({ user, handleDeletePost }) => {
   const { postid } = useParams();
   const [post, setPost] = useState(null);
@@ -53,6 +53,16 @@ const PostDetails = ({ user, handleDeletePost }) => {
     const copyPost = { ...post };
     copyPost.comments.push(newComment);
     setPost(copyPost);
+  };
+
+  const handleDeleteComment = async (commentId) => {
+    try {
+      await commentService.deleteComment(postid, commentId);
+      const updatedComments = post.comments.filter((comment) => comment._id !== commentId);
+      setPost((prevPost) => ({ ...prevPost, comments: updatedComments }));
+    } catch (error) {
+      console.error("Error deleting comment:", error.message);
+    }
   };
 
   const handleEditPost = async () => {
@@ -289,7 +299,13 @@ const PostDetails = ({ user, handleDeletePost }) => {
                          </div>
 
                         </div>
-                        <div className="usercomment">{comment.text}</div>                          
+                        <div className="usercomment">{comment.text}</div> 
+                        <FileView file={comment.file} /> 
+                        {user?.id === comment.user._id && (
+                          <div className="commentButtons">
+                            <button className="deleteButton" onClick={() => handleDeleteComment(comment._id)}>Delete</button>
+                          </div>
+                        )}                        
                           
                         {user && (
                         <div className="interactionItem" onClick={() => toggleLikeComment(comment._id ,post._id)}>

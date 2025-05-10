@@ -20,6 +20,25 @@ const create = async (path , postId, formData) => {
   }
 }
 
+const deleteComment = async (postId, commentId) => {
+  try {
+    const options = {
+      method: 'DELETE',
+      headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type': 'application/json',
+              },
+    }
+
+    const res = await fetch(`${BASE_URL}/delete/${postId}/${commentId}`, options)
+
+    return res.json()
+  }catch(e){
+    console.log(e)
+  }
+}
+
 export default {
-  create
+  create,
+  deleteComment
 }
