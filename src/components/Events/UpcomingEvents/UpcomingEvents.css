@@ -58,9 +58,9 @@
   position: absolute;
   bottom: 0;
   width: 100%;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.85));
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.441) 20%, rgba(60, 60, 60, 0.471));
   padding: 20px;
-  color: #f9fafb;
+  color: #ffffff;
   backdrop-filter: blur(2px);
 }
 
@@ -69,24 +69,37 @@
   font-weight: bold;
   margin-bottom: 8px;
 
-
-  background-color: #d9dde080;
+  background-color: #e8e8e894;
+  border-radius: 20px;
 
 }
 .event-description {
   font-size: 0.95rem;
-  color: #e2e8f0;
+  color: #ffffff;
   margin-bottom: 10px;
   max-height: 70px;
   overflow: hidden;
   text-overflow: ellipsis;
+  
 }
 
 .event-info p {
-  font-size: 0.85rem;
-  color: #cbd5e1;
+  font-size: 0.95rem;
+  color: #ffffff;
   margin: 4px 0;
   line-height: 1.4;
+  color: #ffffff;     
+  font-weight: bold;
+  font-style: italic;
+  font-size: 1.1em;
+ 
+}
+.event-description {
+  color: #ffffff;
+  font-size: 1rem;
+    font-style: italic;
+
+
 }
 
 .event-actions {
@@ -151,3 +164,5 @@
     width: 100%;
   }
 }
+
+
