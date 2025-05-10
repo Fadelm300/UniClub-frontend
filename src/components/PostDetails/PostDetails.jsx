@@ -296,16 +296,19 @@ const PostDetails = ({ user, handleDeletePost }) => {
                             { year: 'numeric', month: 'long', day: 'numeric' 
                         
                             })}
+                        {(user?.id === comment.user?._id || user?.admin || user?.id === post.user?._id) && (
+                          <div className="commentButtons">
+                            <button className="trash2" onClick={() => handleDeleteComment(comment._id)}>
+                              <img src="/trash2.png" alt="Delete" className="trashIcon" />
+                            </button>
+                          </div>
+                        )} 
                          </div>
 
                         </div>
                         <div className="usercomment">{comment.text}</div> 
                         <FileView file={comment.file} /> 
-                        {user?.id === comment.user._id && (
-                          <div className="commentButtons">
-                            <button className="deleteButton" onClick={() => handleDeleteComment(comment._id)}>Delete</button>
-                          </div>
-                        )}                        
+                                           
                           
                         {user && (
                         <div className="interactionItem" onClick={() => toggleLikeComment(comment._id ,post._id)}>
