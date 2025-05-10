@@ -1,0 +1,14 @@
+/* Ensure images are responsive */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Ensure iframes are responsive */
+iframe {
+  max-width: 100%;
+  height: auto;
+  border: none;
+  display: block;
+}

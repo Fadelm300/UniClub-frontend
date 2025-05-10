@@ -37,7 +37,7 @@ const PostList = (props) => {
       setPosts(fetchedPosts);
     }
     fetchPosts();
-  }, [filter]); // <-- Correct place for dependency array
+  }, [filter , props.channelId]); // <-- Correct place for dependency array
   
 
   const handleSortChange = (e) => {

@@ -306,7 +306,6 @@ const blockUser = async (userId, duration) => {
 
 const checkImg = async (url) => {
   try {
-    console.log(import.meta.env.img_classifer_key);
     const response = await fetch(`https://api.apilayer.com/image_labeling/url?url=${url}`, {
       method: "GET",
       headers: {
@@ -315,7 +314,6 @@ const checkImg = async (url) => {
       
     });
     const TorF=containsBannedWords(await response.json());
-    console.log("TorF",TorF);
 
 
     if (!response.ok) {
