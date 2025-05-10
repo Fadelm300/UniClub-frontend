@@ -289,7 +289,8 @@ const PostDetails = ({ user, handleDeletePost }) => {
                          </div>
 
                         </div>
-                        <div className="usercomment">{comment.text}</div>
+                        <div className="usercomment">{comment.text}</div>                          
+                          
                         {user && (
                         <div className="interactionItem" onClick={() => toggleLikeComment(comment._id ,post._id)}>
                           <img

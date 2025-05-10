@@ -28,7 +28,7 @@ const LeftNav = ({ user , path ,channel }) => {
     };
 
     fetchEvents();
-  }, []);
+  }, [path]);
 
   const handleDelete = async () => {
     if (eventIdToDelete) {
