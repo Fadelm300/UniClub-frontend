@@ -159,12 +159,12 @@ const resetPasswordStep3 = async (formData) => {try {
 }
 }
 
-const resendOtp = async (email) => {
+const resendOtp = async (formData) => {
   try {
     const response = await fetch(`${BACKEND_URL}/users/resendotp`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email }),
+      body: JSON.stringify(formData),
     });
 
     const json = await response.json();
