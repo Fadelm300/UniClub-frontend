@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import authService from '../../services/authService';
 
-const OtpForm = ({handleOtpSubmit , error ,  setError , message , setMessage , email , otp , setOtp}) => {
+const OtpForm = ({handleOtpSubmit , error ,  setError , message , setMessage , email ,username, otp , setOtp}) => {
 
     const [timer, setTimer] = useState(180);
 
@@ -9,7 +9,13 @@ const OtpForm = ({handleOtpSubmit , error ,  setError , message , setMessage , e
       try {
         setError("");
         setMessage("");
-        const successMessage = await authService.resendOtp(email);
+        const lowerCaseEmail = email.toLowerCase();
+        const lowerCaseUsername = username.toLowerCase();
+        const lowerCaseFormData = {
+          email: lowerCaseEmail,
+          username: lowerCaseUsername,
+        };
+        const successMessage = await authService.resendOtp(lowerCaseFormData);
         setMessage(successMessage);
         setTimer(180); // 3 minutes
       } catch (err) {

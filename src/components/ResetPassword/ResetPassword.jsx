@@ -53,7 +53,7 @@ const ResetPassword = () => {
       try {
         setError("");
         setMessage("");
-        const response = await authService.resetPasswordStep2({ email: formData.email , username:formData.username , otp:otp });
+        const response = await authService.resetPasswordStep2({ email: formData.email.toLowerCase() , username:formData.username.toLowerCase() , otp:otp });
 
         if (response.message) {
           setMessage("OTP Verified Successfully!...");
@@ -72,7 +72,14 @@ const ResetPassword = () => {
   const handleResetSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await authService.resetPasswordStep3(formData);
+      const LowerCaseUsername = formData.username.toLowerCase();
+      const LowerCaseEmail = formData.email.toLowerCase();
+      const formDataWithLowerCase = {
+        ...formData,
+        username: LowerCaseUsername,
+        email: LowerCaseEmail,
+      };
+      const response = await authService.resetPasswordStep3(formDataWithLowerCase);
       if (response.message) {
         setSuccessMessage("Password reset successfully!");
         setTimeout(() => {
@@ -144,6 +151,7 @@ return (
               setMessage={setMessage}
 
               email={formData.email}
+              username={formData.username}
 
               otp={otp}
               setOtp={setOtp}
@@ -185,7 +193,7 @@ return (
                             value={formData.confirmPassword}
                             onChange={handleChange}
                         />
-                         {formData.password !== formData.passwordConf && formData.passwordConf !== "" && (
+                         {formData.password !== formData.confirmPassword && formData.confirmPassword !== "" && (
                   <p className="error-message">Passwords do not match</p>
                 )}
                         <button type="submit">Reset Password</button>
