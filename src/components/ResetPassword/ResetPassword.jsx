@@ -26,9 +26,14 @@ const ResetPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await authService.resetPasswordStep1(formData);
-      console.table(formData);
-      // console.log(response);
+      const LowerCaseUsername = formData.username.toLowerCase();
+      const LowerCaseEmail = formData.email.toLowerCase();
+      const formDataWithLowerCase = {
+        ...formData,
+        username: LowerCaseUsername,
+        email: LowerCaseEmail,
+      };
+      const response = await authService.resetPasswordStep1(formDataWithLowerCase);
       if (response.message) {
         setSuccessMessage("One-time passcode sent successfully!");
         setTimeout(() => {
