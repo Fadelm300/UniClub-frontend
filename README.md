@@ -11,7 +11,6 @@ UniClub Application is an app developed to allow the users to add channels for u
 ## Instructions
 Before the user signs up or signs in, he can only view the channels and the posts along with the post details in the website, then the user must sign up and then sign in, after that he can view all the added channels and posts along with their details, in addition, he can add channels, he also can add posts in all of the channels along with the details of the post. Finally he can add files and see the files added by the other users. Also, there is a feature that the user can view his profile in order to see his added posts, when he click on the post, it directly takes him to the post details of the post that he clicked on.
 
- [Deployment Link](https://uni-club-frontend.vercel.app/)
 
 
 
